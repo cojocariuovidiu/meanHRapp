@@ -1,4 +1,4 @@
-angular.module('mainController', ['authServices', 'userServices', 'interviewServices', 'ngMaterial'])
+angular.module('mainController', ['authServices', 'userServices', 'interviewServices', 'ngMaterial', 'md.data.table'])
 
 .controller('mainCtrl', function($mdDialog, Interview, Auth, $scope, $http, $timeout, $location, $rootScope, $window, $interval, $route, User, AuthToken) { //Auth from authServices
     var app = this;
@@ -186,7 +186,18 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             // $location.path('/tabella/edit');
             $scope.editedUser = response.data;
             app.editedUser = response.data
-            showModal(1)
+
+            //show MD Dialog
+            $mdDialog.show(
+                $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('This is an alert title')
+                .textContent(app.editedUser.nomecognome)
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+                //.targetEvent(ev)
+            );
         })
     }
 
@@ -216,4 +227,23 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             //.targetEvent(ev)
         );
     }
+
+
+
+    //MD TABLE 
+    $scope.selected = [];
+
+    $scope.query = {
+        order: 'name',
+        limit: 5,
+        page: 1
+    };
+
+    function success(desserts) {
+        $scope.desserts = desserts;
+    }
+
+    $scope.getDesserts = function() {
+        $scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
+    };
 })
