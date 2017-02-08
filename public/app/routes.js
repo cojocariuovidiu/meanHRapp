@@ -39,6 +39,10 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/tableData/editinterview.html',
             authenticated: true
         })
+        .when('/interviews', {
+            templateUrl: 'app/views/pages/interviews/interviews.html',
+            authenticated: true
+        })
         .otherwise({ redirectTo: '/' });
 
     $locationProvider.html5Mode({

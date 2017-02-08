@@ -41,6 +41,7 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
                     <li><a ng-show="main.isLoggedIn" href="/tabella">Tabella</a></li>
+                    <li><a ng-show="main.isLoggedIn" href="/interviews">Interviews</a></li>
                     <li><a ng-show="!main.isLoggedIn" href="/login">Login</a></li>
                     <!--<li><a ng-show="!main.isLoggedIn" href="/register">Register</a></li>-->
                     <li class="dropdown">
@@ -63,9 +64,7 @@
     </nav>
 
     <div class="container theme-showcase" role="main">
-
         <div ng-view></div>
-
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
@@ -89,7 +88,6 @@
 
             </div>
         </div>
-
     </div>
     <!--jQuery, Bootstrap-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

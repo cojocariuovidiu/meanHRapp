@@ -180,62 +180,56 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     $scope.sortReverse = false; // set the default sort order
 
     $scope.edit = function(id) {
-        console.log(id);
         $http.post('/api/getinterview', { id: id }).then(function(response) {
 
-            // $location.path('/tabella/edit');
-            $scope.editedUser = response.data;
-            app.editedUser = response.data
+            editedObject = response.data
 
-            //show MD Dialog
-            $mdDialog.show(
-                $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('This is an alert title')
-                .textContent(app.editedUser.nomecognome)
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Got it!')
-                //.targetEvent(ev)
-            );
+            //show MD Dialog//////////////////////////////////
+            $mdDialog.show({
+                    controller: DialogController,
+                    templateUrl: 'app/views/dialogs/dialog.html',
+                    locals: {
+                        editedObject: editedObject
+                    },
+                    parent: angular.element(document.body),
+                    //targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+                })
+                .then(function(answer) {
+                    $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                    $scope.status = 'You cancelled the dialog.';
+                });
+            console.log(editedObject.nomecognome);
         })
+
     }
 
-    $scope.showDialog = function() {
-        // $mdDialog.show({
-        //         controller: DialogController,
-        //         templateUrl: 'dialog1.tmpl.html',
-        //         parent: angular.element(document.body),
-        //         //targetEvent: ev,
-        //         clickOutsideToClose: false,
-        //         fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-        //     })
-        //     .then(function(answer) {
-        //         $scope.status = 'You said the information was "' + answer + '".';
-        //     }, function() {
-        //         $scope.status = 'You cancelled the dialog.';
-        //     });
+    function DialogController($scope, $mdDialog, editedObject) {
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
 
-        $mdDialog.show(
-            $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title('This is an alert title')
-            .textContent('You can specify some description text in here.')
-            .ariaLabel('Alert Dialog Demo')
-            .ok('Got it!')
-            //.targetEvent(ev)
-        );
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.save = function(data) {
+            $mdDialog.hide(data);
+            console.log(data);
+        };
+
+        $scope.editedObject = editedObject
+
     }
 
-
-
-    //MD TABLE 
+    //MD TABLE ////////////////////////////////////////////
     $scope.selected = [];
 
     $scope.query = {
         order: 'name',
-        limit: 5,
+        limit: 3,
         page: 1
     };
 

@@ -1,0 +1,35 @@
+<md-dialog aria-label="Mango (Fruit)">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit Interview</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    x
+                    <md-icon aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <h2>{{editedObject.nomecognome}}</h2>
+                <p>{{editedObject.dataapplicazione}}</p>
+                <p>{{editedObject.sesso}}</p>
+                <p>{{editedObject.eta}}</p>
+                <p>{{editedObject.numero}}</p>
+
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="saveEdit(data)">
+                Save
+            </md-button>
+            <md-button class="md-raised md-warn" ng-click="cancelEdit()">
+                Cancel
+            </md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
