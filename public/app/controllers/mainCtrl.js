@@ -179,7 +179,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     $scope.sortType = 'dataapplicazione'; // set the default sort type
     $scope.sortReverse = false; // set the default sort order
 
-    $scope.edit = function(id) {
+    $scope.editInterview = function(id) {
         $http.post('/api/getinterview', { id: id }).then(function(response) {
 
             editedObject = response.data
@@ -187,7 +187,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             //show MD Dialog//////////////////////////////////
             $mdDialog.show({
                     controller: DialogController,
-                    templateUrl: 'app/views/dialogs/dialog.html',
+                    templateUrl: 'app/views/dialogs/editInterview.html',
                     locals: {
                         editedObject: editedObject
                     },
