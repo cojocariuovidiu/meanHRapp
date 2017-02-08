@@ -1,0 +1,125 @@
+<div class="row">
+    <div class="col-xs-2"><a href="/tabella/interview" class="btn btn-info">Add </a></div>
+    <div class="col-xs-8">
+        <input ng-model="searchInterview" class="form-control" placeholder="Search" type="text">
+    </div>
+</div>
+
+<!--<div class="alert alert-info">
+    <p>Sort Type: {{ sortType }}</p>
+    <p>Sort Reverse: {{ sortReverse }}</p>
+    <p>Search Query: {{ searchFish }}</p>
+</div>-->
+
+<table class="table table-hover table-inverse">
+    <thead>
+        <tr>
+            <th>
+                <a href="#" ng-click="sortType = 'dataapplicazione'; sortReverse = !sortReverse">
+                    Data applicazione
+                <span ng-show="sortType == 'dataapplicazione' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'dataapplicazione' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'nomecognome'; sortReverse = !sortReverse">
+                    Nome e cognome
+                <span ng-show="sortType == 'nomecognome' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'nomecognome' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'sesso'; sortReverse = !sortReverse">
+                    Sesso
+                <span ng-show="sortType == 'sesso' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'sesso' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'eta'; sortReverse = !sortReverse">
+                    Eta'
+                <span ng-show="sortType == 'eta' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'eta' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'tel'; sortReverse = !sortReverse">
+                    Numero di telefono
+                <span ng-show="sortType == 'tel' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'tel' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'esito1'; sortReverse = !sortReverse">
+                    Esito 1 chiamata
+                <span ng-show="sortType == 'esito1' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'esito1' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'esito2'; sortReverse = !sortReverse">
+                    Esito 2 chiamata
+                <span ng-show="sortType == 'esito2' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'esito2' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'note'; sortReverse = !sortReverse">
+                    Note
+                <span ng-show="sortType == 'note' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'note' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'esitocolloquio'; sortReverse = !sortReverse">
+                    Esito colloquio
+                <span ng-show="sortType == 'esitocolloquio' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'esitocolloquio' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'sito'; sortReverse = !sortReverse">
+                    Sito
+                <span ng-show="sortType == 'sito' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'sito' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'email'; sortReverse = !sortReverse">
+                    E-mail
+                <span ng-show="sortType == 'email' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'email' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                <a href="#" ng-click="sortType = 'username'; sortReverse = !sortReverse">
+                    Posted by
+                <span ng-show="sortType == 'username' && !sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortType == 'username' && sortReverse" class="fa fa-caret-up"></span>
+                </a>
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in main.interviewsList | orderBy:sortType:sortReverse | filter:searchInterview" ng-click="clickedItem(item)" ng-class="{selected : item._id === idSelectedRow._id}">
+            <td>{{ item.dataapplicazione }}</td>
+            <td>{{ item.nomecognome }}</td>
+            <td>{{ item.sesso }}</td>
+            <td>{{ item.eta }}</td>
+            <td>{{ item.tel }}</td>
+            <td>{{ item.esito1 }}</td>
+            <td>{{ item.esito2 }}</td>
+            <td>{{ item.note }}</td>
+            <td>{{ item.esitocolloquio }}</td>
+            <td>{{ item.sito }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.username }}</td>
+            <td><a ng-click="edit(item._id)" class="btn btn-warning">Edit </a></td>
+        </tr>
+    </tbody>
+</table>
+
+scope: {{ editedUser.email }} app: {{ main.editedUser.email}}
