@@ -222,20 +222,12 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
         $scope.editedObject = editedObject
 
-        $scope.user = {
-            name: 'John Doe',
-            email: '',
-            phone: '',
-            address: 'Mountain View, CA',
-            donation: 19.99
-        };
-
         $scope.sessi = ['M', 'F']
 
-        $scope.submitInterview = function() {
-            // console.log(app.newInterview);
-            console.log('submited');
-            //Interview.create({ newInterview: app.newInterview, username: app.username })
+        $scope.submitInterview = function(newInterview) {
+            // console.log(newInterview, app.username)
+            Interview.create({ newInterview: newInterview, username: app.username })
+
         }
     }
 

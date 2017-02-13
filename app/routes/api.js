@@ -110,7 +110,6 @@ module.exports = function(router) {
     router.post('/interview', function(req, res) {
         var interview = new Interview()
 
-        interview.nr = req.body.newInterview.nr
         interview.dataapplicazione = req.body.newInterview.dataapplicazione
         interview.nomecognome = req.body.newInterview.nomecognome
         interview.sesso = req.body.newInterview.sesso
@@ -129,7 +128,7 @@ module.exports = function(router) {
         //     req.body.email === null || req.body.email === undefined || req.body.email === '') {
         //     res.json({ success: false, message: 'Empty fields' })
         // } else {
-
+        console.log(req.body)
         interview.save(function(err) {
                 if (err) {
                     console.log('save failed');
