@@ -144,10 +144,6 @@ header .navbar {
     }
 }
 
-.ng-scope {
-    margin-top: 30px
-}
-
 table {
     cursor: pointer;
 }
@@ -158,4 +154,14 @@ th {
 
 .selected {
     background-color: #F0F0F0;
+}
+
+.interviews {
+    padding-top: 60px;
+}
+
+.md-button.md-fab.md-mini {
+    line-height: 4rem;
+    width: 4rem;
+    height: 4rem;
 }

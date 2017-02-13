@@ -1,61 +1,64 @@
-<div layout="row">
-    <md-button class="md-raised md-primary" ng-click="editInterview()">
-        Add
-    </md-button>
-    <!--<span flex></span>-->
-    <md-input-container>
-        <label>Search</label>
-        <input ng-model="searchInterview">
-    </md-input-container>
-</div>
+<div class="interviews">
+    <div layout="row">
+        <md-button class="md-raised md-primary" ng-click="editInterview()">
+            <md-icon>add</md-icon>
+        </md-button>
+        <!--<span flex></span>-->
+        <md-input-container>
+            <label>Search</label>
+            <input ng-model="searchInterview">
+        </md-input-container>
+    </div>
 
-<md-table-container>
-    <table md-table md-progress="promise">
-        <!--<thead md-head md-order="query.order" md-on-reorder="getDesserts">-->
-        <thead md-head md-order="query.order" md-on-reorder="sortInterviews()">
-            <tr md-row>
-                <th md-column md-numeric>Photo</th>
-                <th md-column md-order-by="dataapplicazione"><span>Data applicazione</span></th>
-                <th md-column md-numeric md-order-by="nomecognome"><span>Nome e cognome</span></th>
-                <th md-column md-numeric>Sesso</th>
-                <th md-column md-numeric>Eta'</th>
-                <th md-column md-numeric>Numero di telefono</th>
-                <th md-column md-numeric>Esito 1 chiamata</th>
-                <th md-column md-numeric>Esito 2 chiamata</th>
-                <th md-column md-numeric>Note</th>
-                <th md-column md-numeric>Esito colloquio</th>
-                <th md-column md-numeric>Sito</th>
-                <th md-column md-numeric>E-mail</th>
-                <th md-column md-numeric>Posted by</th>
-                <th md-column md-numeric>Action</th>
-            </tr>
-        </thead>
-        <tbody md-body>
-            <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="item in main.interviewsList | orderBy:query.order  | limitTo: query.limit : (query.page -1) * query.limit | filter:searchInterview">
-                <td md-cell><i class="material-icons">face</i></td>
-                <td md-cell>{{ item.dataapplicazione }}</td>
-                <td md-cell>{{ item.nomecognome }}</td>
-                <td md-cell>{{ item.sesso }}</td>
-                <td md-cell>{{ item.eta }}</td>
-                <td md-cell>{{ item.tel }}</td>
-                <td md-cell>{{ item.esito1 }}</td>
-                <td md-cell>{{ item.esito2 }}</td>
-                <td md-cell>{{ item.note }}</td>
-                <td md-cell>{{ item.esitocolloquio }}</td>
-                <td md-cell>{{ item.sito }}</td>
-                <td md-cell>{{ item.email }}</td>
-                <td md-cell>{{ item.username }}</td>
-                <!--<td md-cell><a ng-click="editInterview(item._id)" class="btn btn-warning">Edit </a></td>-->
-                <td md-cell>
-                    <md-button ng-click="editInterview(item._id)" class="md-raised md-warn">Edit</md-button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</md-table-container>
+    <md-table-container>
+        <table md-table md-progress="promise">
+            <!--<thead md-head md-order="query.order" md-on-reorder="getDesserts">-->
+            <thead md-head md-order="query.order" md-on-reorder="sortInterviews()">
+                <tr md-row>
+                    <th md-column>Photo</th>
+                    <th md-column md-order-by="dataapplicazione"><span>Data applicazione</span></th>
+                    <th md-column md-order-by="nomecognome"><span>Nome e cognome</span></th>
+                    <th md-column>Sesso</th>
+                    <th md-column md-numeric>Eta'</th>
+                    <th md-column md-numeric>Numero di telefono</th>
+                    <!--<th md-column >Esito 1 chiamata</th>
+                    <th md-column >Esito 2 chiamata</th>
+                    <th md-column >Note</th>
+                    <th md-column >Esito colloquio</th>-->
+                    <th md-column>Sito</th>
+                    <th md-column>E-mail</th>
+                    <th md-column>Posted by</th>
+                    <th md-column>Action</th>
+                </tr>
+            </thead>
+            <tbody md-body>
+                <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="item in main.interviewsList | orderBy:query.order  | limitTo: query.limit : (query.page -1) * query.limit | filter:searchInterview">
+                    <td md-cell><i class="material-icons">face</i></td>
+                    <td md-cell>{{ item.dataapplicazione | date}}</td>
+                    <td md-cell>{{ item.nomecognome }}</td>
+                    <td md-cell>{{ item.sesso }}</td>
+                    <td md-cell>{{ item.eta }}</td>
+                    <td md-cell>{{ item.tel }}</td>
+                    <!--<td md-cell>{{ item.esito1 }}</td>
+                    <td md-cell>{{ item.esito2 }}</td>
+                    <td md-cell>{{ item.note }}</td>
+                    <td md-cell>{{ item.esitocolloquio }}</td>-->
+                    <td md-cell>{{ item.sito }}</td>
+                    <td md-cell>{{ item.email }}</td>
+                    <td md-cell>{{ item.username }}</td>
+                    <!--<td md-cell><a ng-click="editInterview(item._id)" class="btn btn-warning">Edit </a></td>-->
+                    <td md-cell>
+                        <md-button ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">
+                            <md-icon>edit</md-icon>
+                        </md-button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <!--<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{interviews.count}}" md-on-paginate="geInterviews" md-page-select></md-table-pagination>-->
 
-<!--<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{interviews.count}}" md-on-paginate="geInterviews" md-page-select></md-table-pagination>-->
-
-<!--<div ng-if="status" id="status">
+    <!--<div ng-if="status" id="status">
     <b layout="row" layout-align="center center" class="md-padding">{{status}}</b>
 </div>-->
+</div>
