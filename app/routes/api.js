@@ -115,10 +115,10 @@ module.exports = function(router) {
         interview.sesso = req.body.newInterview.sesso
         interview.eta = req.body.newInterview.eta
         interview.tel = req.body.newInterview.tel
-        interview.esito1 = req.body.newInterview.esito1
-        interview.esito2 = req.body.newInterview.esito2
-        interview.note = req.body.newInterview.note
-        interview.esitocolloquio = req.body.newInterview.esitocolloquio
+            // interview.esito1 = req.body.newInterview.esito1
+            // interview.esito2 = req.body.newInterview.esito2
+            // interview.note = req.body.newInterview.note
+            // interview.esitocolloquio = req.body.newInterview.esitocolloquio
         interview.sito = req.body.newInterview.sito
         interview.email = req.body.newInterview.email
         interview.username = req.body.username
@@ -138,7 +138,7 @@ module.exports = function(router) {
                     res.json({ success: true })
                 }
             })
-            //}
+            // }
     })
 
     //http://127.0.0.1:3000/api/getinterviews
@@ -148,16 +148,35 @@ module.exports = function(router) {
         })
     })
 
-    //http://127.0.0.1:3000/api/getinterview
-    router.post('/getinterview', function(req, res) {
+    //http://127.0.0.1:3000/api/getinterview/:id
+    router.get('/getinterview/:id', function(req, res) {
 
-        var id = mongoose.Types.ObjectId(req.body.id);
+        Interview.find({ _id: req.params.id }).select().exec(function(err, item) {
 
-        Interview.findOne({ _id: id }, function(err, obj) {
-            //console.log(obj);
-            res.send(obj)
+            if (err) throw err;
+            if (!item) {
+                console.log('no item found')
+            } else {
+                var theOne = item[0]
+                console.log(theOne)
+                res.json({ theOne })
+            }
         });
+
+        //DONT DELETE (code for post query)
+        //var id = mongoose.Types.ObjectId(req.body.id);
+
+        // Interview.findOne({ _id: id }, function(err, obj) {
+        //     console.log(obj);
+        //     res.send(obj)
+        // });
+
+
     })
+
+    // app.get('/getinterview/:id', function(req, res) {
+    //     console.log(req.params.id)
+    // })
 
     return router //return whatever the route is
 }

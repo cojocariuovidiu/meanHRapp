@@ -1,13 +1,13 @@
-<div layout="row">
-    <md-button class="md-raised md-primary" ng-click="editInterview()">
-        <md-icon>add</md-icon>
-    </md-button>
-    <!--<span flex></span>-->
-    <md-input-container>
-        <label>Search</label>
-        <input ng-model="searchInterview">
-    </md-input-container>
-</div>
+<md-button class="md-raised md-primary md-fab md-mini" ng-click="editInterview()">
+    <md-icon>add</md-icon>
+</md-button>
+
+<md-input-container>
+    <label>Search</label>
+    <input ng-model="searchInterview">
+</md-input-container>
+
+
 
 <md-table-container>
     <table md-table md-progress="promise">

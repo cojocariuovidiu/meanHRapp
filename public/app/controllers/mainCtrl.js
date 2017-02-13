@@ -181,9 +181,9 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
 
     $scope.editInterview = function(id) {
-        $http.post('/api/getinterview', { id: id }).then(function(response) {
 
-            editedObject = response.data
+        $http.get('/api/getinterview/' + id).then(function(response) {
+            editedObject = response.data.theOne
 
             //show MD Dialog//////////////////////////////////
             $mdDialog.show({
@@ -197,11 +197,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     clickOutsideToClose: true,
                     fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
                 })
-                .then(function(answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function() {
-                    $scope.status = 'You cancelled the dialog.';
-                });
+                // .then(function(answer) {
+                //     $scope.status = 'You said the information was "' + answer + '".';
+                // }, function() {
+                //     $scope.status = 'You cancelled the dialog.';
+                // });
         })
     }
 
@@ -241,8 +241,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
 
     $scope.sortInterviews = function() {
-        console.log($scope.query.order)
-            //$scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
+        //console.log($scope.query.order)
+        //$scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
     };
 
 

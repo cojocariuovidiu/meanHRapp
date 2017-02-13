@@ -1,39 +1,38 @@
-<md-dialog aria-label="Mango (Fruit)">
+<md-dialog aria-label="Add/Edit">
     <!--<form ng-submit="main.submitInterview(newInterview)" novalidate ng-cloak>-->
     <form ng-submit="submitInterview(newInterview)">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2 ng-if="editedObject.username != null">Edit Interview</h2>
-                <h2 ng-if="editedObject.username == null">Add Interview</h2>
+                <h2 ng-if="editedObject.username">Edit Interview</h2>
+                <h2 ng-if="!editedObject.username">Add Interview</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
-                    x
-                    <md-icon aria-label="Close dialog"></md-icon>
+                    <md-icon aria-label="Close dialog">close</md-icon>
                 </md-button>
             </div>
         </md-toolbar>
 
 
-        <md-dialog-content>
+        <md-dialog-content aria-label="MD Dialog Content">
             <div layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
 
-                <md-content md-theme="docs-dark" layout-padding="">
+                <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
                     <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm="">
+                        <md-input-container aria-label="MD Input Container" class="md-block" flex-gt-sm="">
                             <label ng-if="editedObject.nomecognome">{{editedObject.nomecognome}}</label>
                             <label ng-if="!editedObject.nomecognome">name</label>
-                            <input ng-model="newInterview.nomecognome">
+                            <input aria-label="nomecognomeInput" ng-model="newInterview.nomecognome">
                         </md-input-container>
 
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label>Last Name</label>
-                            <input ng-model="theMax">
+                            <input aria-label="lastnameInput" ng-model="theMax">
                         </md-input-container>
 
                         <md-input-container>
                             <label ng-if="editedObject.nomecognome">{{editedObject.dataapplicazione}}</label>
                             <label ng-if="!editedObject.dataapplicazione">Data Applicazione</label>
-                            <md-datepicker ng-model="newInterview.dataapplicazione"></md-datepicker>
+                            <md-datepicker aria-label="dataapplicazioneInput" ng-model="newInterview.dataapplicazione"></md-datepicker>
                         </md-input-container>
                     </div>
                 </md-content>
@@ -43,7 +42,7 @@
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label ng-if="editedObject.sesso">{{editedObject.sesso}}</label>
                             <label ng-if="!editedObject.sesso">Sesso</label>
-                            <md-select ng-model="newInterview.sesso">
+                            <md-select aria-label="sessoInput" ng-model="newInterview.sesso">
                                 <md-option ng-repeat="sesso in sessi" value="{{sesso}}">
                                     {{sesso}}
                                 </md-option>
@@ -53,14 +52,14 @@
                             <md-input-container class="md-block" flex-gt-xs="">
                                 <label ng-if="editedObject.eta">{{editedObject.eta}}</label>
                                 <label ng-if="!editedObject.eta">Eta'</label>
-                                <input ng-model="newInterview.eta">
+                                <input aria-label="etaInput" ng-model="newInterview.eta">
                             </md-input-container>
                         </div>
 
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label ng-if="editedObject.tel">{{editedObject.tel}}</label>
                             <label ng-if="!editedObject.tel">07xxxxxxxx</label>
-                            <input name="postalCode" ng-model="newInterview.tel" ng-pattern="/^[0-9]{10}$/">
+                            <input aria-label="telInput" name="postalCode" ng-model="newInterview.tel" ng-pattern="/^[0-9]{10}$/">
                             <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
                                 <div ng-message="pattern" class="my-message">That doesn't look like a telephone number.</div>
                             </div>
@@ -68,36 +67,41 @@
 
 
                     </div>
-
+                    <!--
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-xs="">
                             <label ng-if="editedObject.esito1">{{editedObject.esito1}}</label>
                             <label ng-if="!editedObject.esito1">Esito 1 chiamata</label>
-                            <input ng-model="newInterview.esito1">
+                            <input ng-model="newInterview.esito1" aria-label="esito1Input">
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-xs="">
                             <label ng-if="editedObject.esito2">{{editedObject.esito2}}</label>
                             <label ng-if="!editedObject.esito2">Esito 2 chiamata</label>
-                            <input ng-model="newInterview.esito2">
+                            <input ng-model="newInterview.esito2" aria-label="esito2Input">
                         </md-input-container>
                         <md-input-container class="md-block" flex-gt-xs="">
                             <label ng-if="editedObject.esitocolloquio">{{editedObject.esitocolloquio}}</label>
                             <label ng-if="!editedObject.esitocolloquio">Esito colloquio</label>
-                            <input ng-model="newInterview.esitocolloquio">
+                            <input ng-model="newInterview.esitocolloquio" aria-label="esitocolloquioInput">
                         </md-input-container>
-                    </div>
+                    </div>-->
 
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
-                            <label ng-if="editedObject.sito">{{editedObject.sito}}</label>
+                            <!--<label ng-if="editedObject.sito">{{editedObject.sito}}</label>-->
+                            <input ng-if="editedObject.sito" ng-model="newInterview.sito" aria-label="newInterviewInput">
+
                             <label ng-if="!editedObject.sito">Sito</label>
-                            <input ng-model="newInterview.sito">
+                            <input ng-if="!editedObject.sito" ng-model="newInterview.sito" aria-label="newInterviewInput">
                         </md-input-container>
 
                         <md-input-container class="md-block">
                             <label ng-if="editedObject.email">{{editedObject.email}}</label>
+                            <input ng-if="editedObject.email" ng-model="newInterview.email" aria-label="emailInput" />
+
                             <label ng-if="!editedObject.email">Email</label>
-                            <input ng-model="newInterview.email" />
+                            <input ng-if="!editedObject.email" ng-model="newInterview.email" aria-label="emailInput" />
+
                             <!--<input ng-mode="newInterview.email" type="email"minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
                             <div ng-messages="projectForm.clientEmail.$error" role="alert">
                                 <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
@@ -108,10 +112,10 @@
 
                     </div>
 
-                    <md-input-container class="md-block">
+                    <!--<md-input-container class="md-block">
                         <label>Note</label>
                         <textarea ng-model="newInterview.note" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>
-                    </md-input-container>
+                    </md-input-container>-->
 
                     <div layout-gt-sm="row">
                         <md-input-container ng-if="editedObject.username != null" class="md-block" flex-gt-sm="">
