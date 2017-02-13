@@ -164,10 +164,10 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     })
 
     //submit new Interview
-    this.submitInterview = function(obj) {
-        // console.log(app.newInterview);
-        Interview.create({ newInterview: app.newInterview, username: app.username })
-    }
+    // this.submitInterview = function(obj) {
+    //     // console.log(app.newInterview);
+    //     Interview.create({ newInterview: app.newInterview, username: app.username })
+    // }
 
     //highlight cliecked row using ng-class="{selected : item._id === idSelectedRow._id}"
     $scope.idSelectedRow = null;
@@ -178,6 +178,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     //sorting defaults
     $scope.sortType = 'dataapplicazione'; // set the default sort type
     $scope.sortReverse = false; // set the default sort order
+
+
 
     $scope.editInterview = function(id) {
         $http.post('/api/getinterview', { id: id }).then(function(response) {
@@ -201,9 +203,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 }, function() {
                     $scope.status = 'You cancelled the dialog.';
                 });
-            console.log(editedObject.nomecognome);
         })
-
     }
 
     function DialogController($scope, $mdDialog, editedObject) {
@@ -222,6 +222,21 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
         $scope.editedObject = editedObject
 
+        $scope.user = {
+            name: 'John Doe',
+            email: '',
+            phone: '',
+            address: 'Mountain View, CA',
+            donation: 19.99
+        };
+
+        $scope.sessi = ['M', 'F']
+
+        $scope.submitInterview = function() {
+            // console.log(app.newInterview);
+            console.log('submited');
+            //Interview.create({ newInterview: app.newInterview, username: app.username })
+        }
     }
 
     //MD TABLE ////////////////////////////////////////////
@@ -241,3 +256,15 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         $scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
     };
 })
+
+
+//config
+.config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('docs-dark')
+});
+
+// .config(function($mdThemingProvider) {
+//   $mdThemingProvider.theme('default')
+//     .primaryPalette('pink')
+//     .accentPalette('orange');
+// });

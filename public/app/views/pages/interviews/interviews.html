@@ -1,6 +1,11 @@
+<md-button class="md-raised md-primary" ng-click="editInterview()">
+    Add
+</md-button>
+
 <md-table-container>
     <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-        <thead md-head md-order="query.order" md-on-reorder="getDesserts">
+        <!--<thead md-head md-order="query.order" md-on-reorder="getDesserts">-->
+        <thead md-head>
             <tr md-row>
                 <th md-column md-order-by="nameToLower"><span>Data applicazione</span></th>
                 <th md-column md-numeric md-order-by="calories.value"><span>Nome e cognome</span></th>
@@ -19,7 +24,6 @@
         </thead>
         <tbody md-body>
             <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="item in main.interviewsList | orderBy:sortType:sortReverse | filter:searchInterview">
-
                 <td md-cell>{{ item.dataapplicazione }}</td>
                 <td md-cell>{{ item.nomecognome }}</td>
                 <td md-cell>{{ item.sesso }}</td>
