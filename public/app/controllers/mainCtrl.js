@@ -235,18 +235,23 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     $scope.selected = [];
 
     $scope.query = {
-        order: 'name',
-        limit: 3,
-        page: 1
+        order: 'nomecognome',
+        limit: 'ALL',
+        //page: 1
     };
 
-    function success(desserts) {
-        $scope.desserts = desserts;
+
+    $scope.sortInterviews = function() {
+        console.log($scope.query.order)
+            //$scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
+    };
+
+
+    $scope.loadStuff = function() {
+        $scope.promise = $timeout(function() {
+            // loading
+        }, 2000);
     }
-
-    $scope.getDesserts = function() {
-        $scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
-    };
 })
 
 

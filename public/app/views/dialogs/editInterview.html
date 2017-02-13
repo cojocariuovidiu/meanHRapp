@@ -3,7 +3,8 @@
     <form ng-submit="submitInterview(newInterview)">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Edit/Add Interview</h2>
+                <h2 ng-if="editedObject.username != null">Edit Interview</h2>
+                <h2 ng-if="editedObject.username == null">Add Interview</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     x
@@ -113,7 +114,7 @@
                     </md-input-container>
 
                     <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-sm="">
+                        <md-input-container ng-if="editedObject.username != null" class="md-block" flex-gt-sm="">
                             <label>Created By {{editedObject.username}}</label>
                         </md-input-container>
                     </div>
