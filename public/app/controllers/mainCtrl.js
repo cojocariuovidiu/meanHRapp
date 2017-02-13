@@ -44,59 +44,55 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
     app.checkSession();
 
-    var showModal = function(option) {
-        app.choiceMade = false;
-        app.modalHeader = undefined;
-        app.modalBody = undefined;
-        app.hideButton = false;
+    // var showModal = function(option) {
+    //     app.choiceMade = false;
+    //     app.modalHeader = undefined;
+    //     app.modalBody = undefined;
+    //     app.hideButton = false;
 
-        if (option === 1) {
-            app.modalHeader = 'Edit Interview'
-            app.modalBody = 'editing stuff'
-            $('#myModal').modal({ backdrop: "static" }) //can't click on background
+    //     if (option === 1) {
+    //         app.modalHeader = 'Edit Interview'
+    //         app.modalBody = 'editing stuff'
+    //         $('#myModal').modal({ backdrop: "static" }) //can't click on background
 
-        } else if (option === 2) {
-            //logout portion
-            app.hideButton = true;
-            app.modalHeader = 'Logging Out';
-            $('#myModal').modal({ backdrop: "static" }) //can't click on background
-            $timeout(function() {
-                Auth.logout();
-                $location.path('/login');
-                hideModal();
-                $route.reload();
-            }, 2000);
-        }
-    }
+    //     } else if (option === 2) {
+    //         //logout portion
+    //         // $timeout(function() {
+    //         Auth.logout();
+    //         $location.path('/login');
+    //         $route.reload();
+    //         //}, 2000);
+    //     }
+    // }
 
-    app.renewSession = function() {
+    // app.renewSession = function() {
 
-        app.choiceMade = true;
+    //     app.choiceMade = true;
 
-        User.renewSession(app.username).then(function(data) {
-            if (data.data.success) {
-                AuthToken.setToken(data.data.token); //reset the token
-                app.checkSession()
-            } else {
-                app.modalBody = data.data.message;
-            }
-        });
+    //     User.renewSession(app.username).then(function(data) {
+    //         if (data.data.success) {
+    //             AuthToken.setToken(data.data.token); //reset the token
+    //             app.checkSession()
+    //         } else {
+    //             app.modalBody = data.data.message;
+    //         }
+    //     });
 
-        hideModal();
-        console.log('session has been renewed');
-    }
+    //     // hideModal();
+    //     console.log('session has been renewed');
+    // }
 
-    app.endSession = function() {
-        app.choiceMade = false;
-        hideModal();
-        $timeout(function() {
-                showModal(2)
-            }, 1000) //1000 timeout between popop modals
-    }
+    // app.endSession = function() {
+    //     app.choiceMade = false;
+    //     // hideModal();
+    //     $timeout(function() {
+    //             // showModal(2)
+    //         }, 1000) //1000 timeout between popop modals
+    // }
 
-    var hideModal = function() {
-        $('#myModal').modal('hide');
-    }
+    // var hideModal = function() {
+    //     $('#myModal').modal('hide');
+    // }
 
     //$rootScope.$on('$viewContentLoaded', function() {
     $rootScope.$on('$routeChangeStart', function() {
@@ -140,20 +136,23 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     app.loginData = null;
                     app.successMsg = false;
                     app.checkSession();
-                }, 2000)
+                }, 500)
 
             } else {
                 //Create error message
                 app.errorMsg = data.data.message;
                 $timeout(function() {
                     app.isLoading = false
-                }, 2000)
+                }, 500)
             }
         })
     }
 
     this.logout = function() {
-        showModal(2)
+        // showModal(2)
+        Auth.logout();
+        $location.path('/login');
+        $route.reload();
     }
 
     ////////////////////InterviewController
