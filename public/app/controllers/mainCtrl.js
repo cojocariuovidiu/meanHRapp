@@ -183,9 +183,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     $scope.editInterview = function(id) {
 
         $http.get('/api/getinterview/' + id).then(function(response) {
-            editedObject = response.data.theOne
-
-            //show MD Dialog//////////////////////////////////
+            editedObject = response.data.item
+                //show MD Dialog//////////////////////////////////
             $mdDialog.show({
                     controller: DialogController,
                     templateUrl: 'app/views/dialogs/editInterview.html',

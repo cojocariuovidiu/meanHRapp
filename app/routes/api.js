@@ -151,28 +151,23 @@ module.exports = function(router) {
     //http://127.0.0.1:3000/api/getinterview/:id
     router.get('/getinterview/:id', function(req, res) {
 
-        Interview.find({ _id: req.params.id }).select().exec(function(err, item) {
-
+        Interview.findOne({ _id: req.params.id }).select().exec(function(err, item) {
             if (err) throw err;
             if (!item) {
                 console.log('no item found')
             } else {
-                var theOne = item[0]
-                console.log(theOne)
-                res.json({ theOne })
+                console.log(item)
+                res.json({ item })
             }
-        });
-
-        //DONT DELETE (code for post query)
-        //var id = mongoose.Types.ObjectId(req.body.id);
-
-        // Interview.findOne({ _id: id }, function(err, obj) {
-        //     console.log(obj);
-        //     res.send(obj)
-        // });
-
-
+        })
     })
+
+    //DONT DELETE (code for post query)
+    //var id = mongoose.Types.ObjectId(req.body.id);
+    // Interview.findOne({ _id: id }, function(err, obj) {
+    //     console.log(obj);
+    //     res.send(obj)
+    // });
 
     // app.get('/getinterview/:id', function(req, res) {
     //     console.log(req.params.id)
