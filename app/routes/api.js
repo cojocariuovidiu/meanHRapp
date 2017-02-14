@@ -110,15 +110,15 @@ module.exports = function(router) {
     router.post('/interview', function(req, res) {
         var interview = new Interview()
 
-        // interview.dataapplicazione = req.body.newInterview.dataapplicazione
-        // interview.nomecognome = req.body.newInterview.nomecognome
-        // interview.sesso = req.body.newInterview.sesso
-        // interview.eta = req.body.newInterview.eta
-        // interview.tel = req.body.newInterview.tel
-        // interview.esito1 = req.body.newInterview.esito1
-        // interview.esito2 = req.body.newInterview.esito2
-        // interview.note = req.body.newInterview.note
-        // interview.esitocolloquio = req.body.newInterview.esitocolloquio
+        interview.dataapplicazione = req.body.newInterview.dataapplicazione
+        interview.nomecognome = req.body.newInterview.nomecognome
+        interview.sesso = req.body.newInterview.sesso
+        interview.eta = req.body.newInterview.eta
+        interview.tel = req.body.newInterview.tel
+        interview.esito1 = req.body.newInterview.esito1
+        interview.esito2 = req.body.newInterview.esito2
+        interview.note = req.body.newInterview.note
+        interview.esitocolloquio = req.body.newInterview.esitocolloquio
         interview.sito = req.body.newInterview.sito
         interview.email = req.body.newInterview.email
         interview.username = req.body.username
@@ -132,13 +132,14 @@ module.exports = function(router) {
         interview.save(function(err) {
                 if (err) {
                     console.log('save failed');
+                    console.log(err)
                     res.json({ success: false })
                 } else {
                     console.log('save success');
                     res.json({ success: true })
                 }
             })
-            // }
+            //}
     })
 
     //http://127.0.0.1:3000/api/getinterviews
@@ -170,6 +171,7 @@ module.exports = function(router) {
             dataapplicazione: req.body.dataapplicazione,
             nomecognome: req.body.nomecognome,
             sesso: req.body.sesso,
+            eta: req.body.eta,
             tel: req.body.tel,
             esito1: req.body.esito1,
             esito2: req.body.esito2,
@@ -178,11 +180,7 @@ module.exports = function(router) {
             email: req.body.email,
             note: req.body.note,
 
-
             // username: { type: String }
-
-
-
 
         }, { new: true }, function(err) {
             if (err) {

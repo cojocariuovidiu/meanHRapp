@@ -246,7 +246,12 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
             if (isEmpty(editedObject)) {
                 console.log('new interview:', newInterview, app.username)
-                Interview.create({ newInterview: newInterview, username: app.username })
+                Interview.create({ newInterview: newInterview, username: app.username }).then(function() {
+                    Interview.getinterviews().then(function(response) {
+                        app.interviewsList = response.data
+                    })
+                    $mdDialog.hide();
+                })
             } else {
                 console.log('editing', editedObject._id)
                 console.log('sending data:', newInterview)
