@@ -234,6 +234,10 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         $scope.editedObject = editedObject
         $scope.newInterview = angular.copy($scope.editedObject)
 
+
+        $scope.newInterview.dataapplicazione = new Date($scope.newInterview.dataapplicazione)
+        console.log($scope.newInterview.dataapplicazione)
+
         $scope.submitInterview = function(newInterview) {
 
             function isEmpty(obj) {
