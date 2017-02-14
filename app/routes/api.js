@@ -167,8 +167,23 @@ module.exports = function(router) {
         var id = req.params.id
 
         Interview.findOneAndUpdate({ _id: id }, {
+            dataapplicazione: req.body.dataapplicazione,
+            nomecognome: req.body.nomecognome,
+            sesso: req.body.sesso,
+            tel: req.body.tel,
+            esito1: req.body.esito1,
+            esito2: req.body.esito2,
+            esitocolloquio: req.body.esitocolloquio,
+            sito: req.body.sito,
             email: req.body.email,
-            sito: req.body.sito
+            note: req.body.note,
+
+
+            // username: { type: String }
+
+
+
+
         }, { new: true }, function(err) {
             if (err) {
                 console.log('update failed');
