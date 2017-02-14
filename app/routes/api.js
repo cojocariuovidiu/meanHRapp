@@ -110,15 +110,15 @@ module.exports = function(router) {
     router.post('/interview', function(req, res) {
         var interview = new Interview()
 
-        interview.dataapplicazione = req.body.newInterview.dataapplicazione
-        interview.nomecognome = req.body.newInterview.nomecognome
-        interview.sesso = req.body.newInterview.sesso
-        interview.eta = req.body.newInterview.eta
-        interview.tel = req.body.newInterview.tel
-            // interview.esito1 = req.body.newInterview.esito1
-            // interview.esito2 = req.body.newInterview.esito2
-            // interview.note = req.body.newInterview.note
-            // interview.esitocolloquio = req.body.newInterview.esitocolloquio
+        // interview.dataapplicazione = req.body.newInterview.dataapplicazione
+        // interview.nomecognome = req.body.newInterview.nomecognome
+        // interview.sesso = req.body.newInterview.sesso
+        // interview.eta = req.body.newInterview.eta
+        // interview.tel = req.body.newInterview.tel
+        // interview.esito1 = req.body.newInterview.esito1
+        // interview.esito2 = req.body.newInterview.esito2
+        // interview.note = req.body.newInterview.note
+        // interview.esitocolloquio = req.body.newInterview.esitocolloquio
         interview.sito = req.body.newInterview.sito
         interview.email = req.body.newInterview.email
         interview.username = req.body.username
@@ -154,13 +154,33 @@ module.exports = function(router) {
         Interview.findOne({ _id: req.params.id }).select().exec(function(err, item) {
             if (err) throw err;
             if (!item) {
-                console.log('no item found')
+                console.log("can't find id to edit")
             } else {
-                console.log(item)
                 res.json({ item })
             }
         })
     })
+
+    //http://127.0.0.1:3000/api/editinterview/:id
+    router.put('/editinterview/:id', function(req, res) {
+
+        var id = req.params.id
+
+        Interview.findOneAndUpdate({ _id: id }, {
+            email: req.body.email,
+            sito: req.body.sito
+        }, { new: true }, function(err) {
+            if (err) {
+                console.log('update failed');
+                res.json({ success: false })
+            } else {
+                console.log('update success');
+                res.json({ success: true })
+            }
+        });
+    })
+
+
 
     //DONT DELETE (code for post query)
     //var id = mongoose.Types.ObjectId(req.body.id);

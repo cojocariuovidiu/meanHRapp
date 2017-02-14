@@ -178,33 +178,46 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     $scope.sortType = 'dataapplicazione'; // set the default sort type
     $scope.sortReverse = false; // set the default sort order
 
-
-
     $scope.editInterview = function(id) {
-
-        $http.get('/api/getinterview/' + id).then(function(response) {
-            editedObject = response.data.item
-                //show MD Dialog//////////////////////////////////
+        if (id) {
+            $http.get('/api/getinterview/' + id).then(function(response) {
+                editedObject = response.data.item
+                $mdDialog.show({
+                        controller: DialogController,
+                        templateUrl: 'app/views/dialogs/editInterview.html',
+                        locals: {
+                            editedObject: editedObject
+                        },
+                        parent: angular.element(document.body),
+                        //targetEvent: ev,
+                        clickOutsideToClose: true,
+                        fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+                    })
+                    // .then(function(answer) {
+                    //     $scope.status = 'You said the information was "' + answer + '".';
+                    // }, function() {
+                    //     $scope.status = 'You cancelled the dialog.';
+                    // });
+            })
+        } else {
+            console.log('NEW Interview detected')
+            editedObject = {}
             $mdDialog.show({
-                    controller: DialogController,
-                    templateUrl: 'app/views/dialogs/editInterview.html',
-                    locals: {
-                        editedObject: editedObject
-                    },
-                    parent: angular.element(document.body),
-                    //targetEvent: ev,
-                    clickOutsideToClose: true,
-                    fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-                })
-                // .then(function(answer) {
-                //     $scope.status = 'You said the information was "' + answer + '".';
-                // }, function() {
-                //     $scope.status = 'You cancelled the dialog.';
-                // });
-        })
+                controller: DialogController,
+                templateUrl: 'app/views/dialogs/editInterview.html',
+                locals: {
+                    editedObject: editedObject
+                },
+                parent: angular.element(document.body),
+                //targetEvent: ev,
+                clickOutsideToClose: true,
+                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+            })
+        }
     }
 
     function DialogController($scope, $mdDialog, editedObject) {
+        $scope.sessi = ['M', 'F']
         $scope.hide = function() {
             $mdDialog.hide();
         };
@@ -219,13 +232,30 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         };
 
         $scope.editedObject = editedObject
-
-        $scope.sessi = ['M', 'F']
+        $scope.newInterview = angular.copy($scope.editedObject)
 
         $scope.submitInterview = function(newInterview) {
-            // console.log(newInterview, app.username)
-            Interview.create({ newInterview: newInterview, username: app.username })
 
+            function isEmpty(obj) {
+                return Object.keys(obj).length === 0;
+            }
+
+            if (isEmpty(editedObject)) {
+                console.log('new interview:', newInterview, app.username)
+                Interview.create({ newInterview: newInterview, username: app.username })
+            } else {
+                console.log('editing', editedObject._id)
+                console.log('sending data:', newInterview)
+                $http.put('/api/editinterview/' + editedObject._id, newInterview).then(function(response) {
+                    console.log('Data updated status:', newInterview)
+                }).then(function(response) {
+                    Interview.getinterviews().then(function(response) {
+                        app.interviewsList = response.data
+                            //console.log(app.interviewsList);
+                    })
+                    $mdDialog.hide();
+                })
+            }
         }
     }
 
