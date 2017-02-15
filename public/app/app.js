@@ -5,7 +5,7 @@ angular.module('userApp', [
     'ngAnimate',
     'mainController',
     'authServices',
-    'interviewServices'
+    'interviewServices',
 ])
 
 .config(function($httpProvider) {

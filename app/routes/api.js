@@ -4,7 +4,45 @@ var jwt = require('jsonwebtoken')
 var secret = 'harrypotter'
 var mongoose = require('mongoose')
 
+var path = require('path')
+var conn = mongoose.connection
+var fs = require('fs')
+let Grid = require('gridfs-stream')
+var conn = mongoose.createConnection('mongodb://localhost:27017/loginapp');
+
+
 module.exports = function(router) {
+    // conn.once('open', function() {
+    // var gfs = Grid(conn.db, mongoose.mongo);
+    // // all set!
+
+    // router.post('/img', (req, res) => {
+    //     let part = req.body
+
+    //     //let part = req.files.file;
+    //     console.log(part)
+
+    //     // let writeStream = gfs.createWriteStream({
+    //     //     filename: 'img_' + part.name,
+    //     //     mode: 'w',
+    //     //     content_type: part.mimetype
+    //     // });
+
+    //     // writeStream.on('close', (file) => {
+    //     //     return res.status(200).send({
+    //     //         message: 'Success',
+    //     //         file: file
+    //     //     });
+    //     // });
+
+    //     // writeStream.write(part.data);
+
+    //     // writeStream.end();
+    // });
+    // console.log('all set')
+
+    //})
+
     //USER REGISTRATION ROUTE
     //http://127.0.0.1:3000/users
     router.post('/users', function(req, res) {
@@ -193,6 +231,9 @@ module.exports = function(router) {
         });
     })
 
+    // router.post('/api/uploadcv', function(req, res) {
+    //     //let part = req.files.fileslet writeStream -
+    // })
 
 
     //DONT DELETE (code for post query)

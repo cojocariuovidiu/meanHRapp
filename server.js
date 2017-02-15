@@ -1,3 +1,20 @@
+// 'use strict';
+
+// const app = require('express')(),
+//     config = require('./app/config/config')
+
+// //Express conf !
+// require('./app/config/express.config')(app);
+
+// //Mongoose Conf !
+// require('./app/config/mongoose.config')(config);
+
+// app.listen(config.dev.port, () => {
+//     console.log("Listening ..");
+// });
+
+
+
 var express = require('express')
 var app = express()
 var port = process.env.PORT || 3000

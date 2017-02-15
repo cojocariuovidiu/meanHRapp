@@ -110,6 +110,12 @@
 
 
         <md-dialog-actions layout="row">
+            <!--<md-button type="file" ng-click="UploadFile()" type="file" class="md-raised md-accent">
+        Upload CV
+            </md-button>
+            <label for="input-file-id" class="md-button md-raised md-primary">Upload CV</label>
+            <input ng-click="UploadFile(uploadCV)" ng-model="uploadCV" class="ng-hide" id="input-file-id" multiple type="file" />
+            -->
             <span flex></span>
             <md-button type="submit" class="md-raised md-primary">
                 Save
@@ -119,4 +125,42 @@
             </md-button>
         </md-dialog-actions>
     </form>
+
+    <!--Upload File-->
+    <div ng-show="uploading" class="progress">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+            <div class="sr-only"></div>
+        </div>
+    </div>
+    <form>
+        <label>Browse</label>
+        <input type="file" name="myfile" ng-disabled="uploading" style="display: none">
+        <br>
+        <button ng-disabled="uploading">Upload</button>
+    </form>
+
+    <br>
+
+    <img class="mythumbnail" ng-src="{{ thumbnail.dataUrl || 'http://technologie.aramo.xyz/other/pt/images/3/8/2/img_como_mudar_o_nome_de_usuario_no_facebook_2283_200_square.jpg'}}" alt="">
+    <br>
+    <div ng-show="message">
+        error: {{message}}
+    </div>
+    <!--<form action="/api/uploadcv" method="POST" enctype="multipart/form-data">
+        <input name="myFile" type="file">
+        <input name="width" value="50%">
+        <input name="widgetId" value="123">
+        <button type="submit">Upload</button>
+    </form>-->
+
+    <!--<input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />-->
+
+    <!--<input type="file" nv-file-select uploader="uploader" /><br/>
+    <ul>
+        <li ng-repeat="item in uploader.queue">
+            Name: <span ng-bind="item.file.name"></span><br/>
+            <button ng-click="item.upload()">upload</button>
+        </li>
+    </ul>-->
+
 </md-dialog>

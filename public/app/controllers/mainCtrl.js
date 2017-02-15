@@ -266,9 +266,10 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 })
             }
         }
+
     }
 
-    //MD TABLE ////////////////////////////////////////////
+    //MD TABLE ///
     $scope.selected = [];
 
     $scope.query = {
