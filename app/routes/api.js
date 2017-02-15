@@ -251,31 +251,61 @@ module.exports = function(router) {
         console.log(id)
         console.log(req.body.updateData.note)
         console.log(req.body.cv)
-        Interview.findOneAndUpdate({ _id: id }, {
-            dataapplicazione: req.body.updateData.dataapplicazione,
-            nomecognome: req.body.updateData.nomecognome,
-            sesso: req.body.updateData.sesso,
-            eta: req.body.updateData.eta,
-            tel: req.body.updateData.tel,
-            esito1: req.body.updateData.esito1,
-            esito2: req.body.updateData.esito2,
-            esitocolloquio: req.body.updateData.esitocolloquio,
-            sito: req.body.updateData.sito,
-            email: req.body.updateData.email,
-            note: req.body.updateData.note,
-            cv: req.body.cv
 
-            // username: { type: String }
+        var cv
+        if (!req.body.cv) {
+            Interview.findOneAndUpdate({ _id: id }, {
+                dataapplicazione: req.body.updateData.dataapplicazione,
+                nomecognome: req.body.updateData.nomecognome,
+                sesso: req.body.updateData.sesso,
+                eta: req.body.updateData.eta,
+                tel: req.body.updateData.tel,
+                esito1: req.body.updateData.esito1,
+                esito2: req.body.updateData.esito2,
+                esitocolloquio: req.body.updateData.esitocolloquio,
+                sito: req.body.updateData.sito,
+                email: req.body.updateData.email,
+                note: req.body.updateData.note,
 
-        }, { new: true }, function(err) {
-            if (err) {
-                console.log('update failed');
-                res.json({ success: false })
-            } else {
-                console.log('update success');
-                res.json({ success: true })
-            }
-        });
+                // username: { type: String }
+
+            }, { new: true }, function(err) {
+                if (err) {
+                    console.log('update failed');
+                    res.json({ success: false })
+                } else {
+                    console.log('update success (no CV)');
+                    res.json({ success: true })
+                }
+            });
+        } else {
+            Interview.findOneAndUpdate({ _id: id }, {
+                dataapplicazione: req.body.updateData.dataapplicazione,
+                nomecognome: req.body.updateData.nomecognome,
+                sesso: req.body.updateData.sesso,
+                eta: req.body.updateData.eta,
+                tel: req.body.updateData.tel,
+                esito1: req.body.updateData.esito1,
+                esito2: req.body.updateData.esito2,
+                esitocolloquio: req.body.updateData.esitocolloquio,
+                sito: req.body.updateData.sito,
+                email: req.body.updateData.email,
+                note: req.body.updateData.note,
+                cv: req.body.cv
+
+                // username: { type: String }
+
+            }, { new: true }, function(err) {
+                if (err) {
+                    console.log('update failed');
+                    res.json({ success: false })
+                } else {
+                    console.log('update success (with CV)');
+                    res.json({ success: true })
+                }
+            });
+        }
+
     })
 
     // router.post('/api/uploadcv', function(req, res) {
