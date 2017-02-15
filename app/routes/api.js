@@ -5,18 +5,19 @@ var secret = 'harrypotter'
 var mongoose = require('mongoose')
 var multer = require('multer')
 
+var uploadedFileName = ''
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './public/uploads')
     },
     filename: function(req, file, cb) {
-        console.log(file.originalname)
-        if (!file.originalname.match(/\.(png|jpeg|jpg)$/)) {
+        if (!file.originalname.match(/\.(pdf|png|jpeg|jpg)$/)) {
             var err = new Error()
             err.code = 'filetype'
             return cb(err)
         } else {
-            cb(null, Date.now() + '_' + file.originalname)
+            uploadedFileName = Date.now() + '_' + file.originalname
+            cb(null, uploadedFileName)
         }
 
         //cb(null, file.fieldname + '-' + Date.now())
@@ -24,7 +25,7 @@ var storage = multer.diskStorage({
 })
 var upload = multer({
         storage: storage,
-        limits: { fileSize: 1000000 } //limit 10 MB
+        limits: { fileSize: 10000000 } //limit 10 MB
     }).single('myfile') //from service and input html field
 
 module.exports = function(router) {
@@ -35,7 +36,7 @@ module.exports = function(router) {
                     if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
                         res.json({ success: false, message: 'file size is too large. Max limit is 10MB' })
                     } else if (err.code === 'filetype') { //our custom error
-                        res.json({ success: false, message: 'File type is invalid. Must be .png' })
+                        res.json({ success: false, message: 'File type is invalid. Must be pdf|png|jpeg|jpg' })
                     } else {
                         console.log(err)
                         res.json({ success: false, message: 'File unable to upload' })
@@ -44,7 +45,8 @@ module.exports = function(router) {
                     if (!req.file) {
                         res.json({ success: false, message: 'No file was selected' })
                     } else {
-                        res.json({ success: true, message: 'File was uploaded' })
+                        console.log(uploadedFileName)
+                        res.json({ success: true, message: 'File was uploaded', filename: uploadedFileName })
                     }
                 }
             })

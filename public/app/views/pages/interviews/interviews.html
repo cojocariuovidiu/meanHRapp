@@ -72,12 +72,13 @@
 </form>
 
 <br>
-
-<img class="mythumbnail" ng-src="{{ thumbnail.dataUrl || 'http://technologie.aramo.xyz/other/pt/images/3/8/2/img_como_mudar_o_nome_de_usuario_no_facebook_2283_200_square.jpg'}}" alt="">
-<br>
 <div ng-show="message">
-    error: {{message}}
+    {{message}}
 </div>
+
+<img src="http://localhost:3000/uploads/{{filename}}" />
+<a href="http://localhost:3000/uploads/{{filename}}" target="_blank">image</a>
+
 <!--<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{interviews.count}}" md-on-paginate="geInterviews" md-page-select></md-table-pagination>-->
 
 <!--<div ng-if="status" id="status">

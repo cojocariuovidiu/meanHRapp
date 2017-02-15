@@ -303,6 +303,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 $scope.alert = 'alert alert-success'
                 $scope.message = data.data.message
                 $scope.file = {}
+                $scope.filename = data.data.filename
             } else {
                 $scope.uploading = false
                 $scope.alert = 'alert alert-danger'
