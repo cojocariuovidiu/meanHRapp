@@ -32,7 +32,7 @@
         </thead>
         <tbody md-body>
             <tr md-row md-select="dessert" md-select-id="name" md-auto-select ng-repeat="item in main.interviewsList | orderBy:query.order  | limitTo: query.limit : (query.page -1) * query.limit | filter:searchInterview">
-                <td md-cell><i class="material-icons"><a href="http://localhost:3000/uploads/{{item.cv}}">face</a></i></td>
+                <td md-cell><i ng-if="item.cv" class="material-icons"><a target="blank" href="http://localhost:3000/uploads/{{item.cv}}">face</a></i></td>
                 <td md-cell>{{ item.dataapplicazione | date}}</td>
                 <td md-cell>{{ item.nomecognome }}</td>
                 <td md-cell>{{ item.sesso }}</td>

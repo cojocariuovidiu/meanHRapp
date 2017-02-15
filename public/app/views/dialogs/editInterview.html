@@ -107,7 +107,7 @@
                                 Upload CV
                             </md-button>
                             <div ng-show="message">
-                                {{message}}
+                                <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">{{file.upload.name}} </a> {{message}}
                             </div>
                         </div>
                         <span flex></span>
@@ -115,7 +115,6 @@
                             <label>Created By {{editedObject.username}}</label>
                         </md-input-container>
                     </div>
-                    <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">image</a>
                 </md-content>
             </div>
         </md-dialog-content>

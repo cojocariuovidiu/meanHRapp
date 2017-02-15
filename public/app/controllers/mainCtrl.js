@@ -271,17 +271,17 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             }
         }
 
-        //Upload File Code:
         $scope.file = {}
+            //Upload File Code:
         $scope.SubmitUpload = function() {
             $scope.uploading = true
-            console.log($scope.file)
+            console.log($scope.file.upload.name)
             uploadFile.upload($scope.file).then(function(data) {
                 if (data.data.success) {
                     $scope.uploading = false
                     $scope.alert = 'alert alert-success'
                     $scope.message = data.data.message
-                    $scope.file = {}
+                        // $scope.file = {}
                     $scope.cv = data.data.cv
                 } else {
                     $scope.uploading = false
