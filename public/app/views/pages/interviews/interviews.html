@@ -63,9 +63,10 @@
         <div class="sr-only"></div>
     </div>
 </div>
-<form>
-    <label>Browse</label>
-    <input file-model="file.upload" type="file" name="myfile" ng-disabled="uploading" style="display: none">
+<form ng-submit="SubmitUpload()">
+    <label>Browse
+        <input file-model="file.upload" type="file" name="myfile" ng-disabled="uploading" style="display: none">
+    </label>
     <br>
     <button ng-disabled="uploading">Upload</button>
 </form>

@@ -3,18 +3,60 @@ var Interview = require('../models/interview')
 var jwt = require('jsonwebtoken')
 var secret = 'harrypotter'
 var mongoose = require('mongoose')
+var multer = require('multer')
 
-var path = require('path')
-var conn = mongoose.connection
-var fs = require('fs')
-let Grid = require('gridfs-stream')
-var conn = mongoose.createConnection('mongodb://localhost:27017/loginapp');
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/uploads')
+    },
+    filename: function(req, file, cb) {
+        console.log(file.originalname)
+        if (!file.originalname.match(/\.(png|jpeg|jpg)$/)) {
+            var err = new Error()
+            err.code = 'filetype'
+            return cb(err)
+        } else {
+            cb(null, Date.now() + '_' + file.originalname)
+        }
 
+        //cb(null, file.fieldname + '-' + Date.now())
+    }
+})
+var upload = multer({
+        storage: storage,
+        limits: { fileSize: 1000000 } //limit 10 MB
+    }).single('myfile') //from service and input html field
 
 module.exports = function(router) {
-    // conn.once('open', function() {
-    // var gfs = Grid(conn.db, mongoose.mongo);
-    // // all set!
+
+    router.post('/upload', function(req, res) {
+            upload(req, res, function(err) {
+                if (err) {
+                    if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
+                        res.json({ success: false, message: 'file size is too large. Max limit is 10MB' })
+                    } else if (err.code === 'filetype') { //our custom error
+                        res.json({ success: false, message: 'File type is invalid. Must be .png' })
+                    } else {
+                        console.log(err)
+                        res.json({ success: false, message: 'File unable to upload' })
+                    }
+                } else {
+                    if (!req.file) {
+                        res.json({ success: false, message: 'No file was selected' })
+                    } else {
+                        res.json({ success: true, message: 'File was uploaded' })
+                    }
+                }
+            })
+        })
+        // var path = require('path')
+        // var conn = mongoose.connection
+        // var fs = require('fs')
+        // let Grid = require('gridfs-stream')
+        // var conn = mongoose.createConnection('mongodb://localhost:27017/loginapp');
+        // conn.once('open', function() {
+        // var gfs = Grid(conn.db, mongoose.mongo);
+        // // all set!
 
     // router.post('/img', (req, res) => {
     //     let part = req.body

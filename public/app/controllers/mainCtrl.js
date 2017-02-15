@@ -290,6 +290,27 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             // loading
         }, 2000);
     }
+
+
+    //Upload File Code:
+    $scope.file = {}
+    $scope.SubmitUpload = function() {
+        $scope.uploading = true
+        console.log($scope.file)
+        uploadFile.upload($scope.file).then(function(data) {
+            if (data.data.success) {
+                $scope.uploading = false
+                $scope.alert = 'alert alert-success'
+                $scope.message = data.data.message
+                $scope.file = {}
+            } else {
+                $scope.uploading = false
+                $scope.alert = 'alert alert-danger'
+                $scope.message = data.data.message;
+                $scope.file = {}
+            }
+        })
+    }
 })
 
 
