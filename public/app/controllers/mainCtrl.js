@@ -1,4 +1,4 @@
-angular.module('mainController', ['authServices', 'userServices', 'interviewServices', 'ngMaterial', 'md.data.table'])
+angular.module('mainController', ['fileModelDirective', 'authServices', 'userServices', 'interviewServices', 'ngMaterial', 'md.data.table'])
 
 .controller('mainCtrl', function($mdDialog, Interview, Auth, $scope, $http, $timeout, $location, $rootScope, $window, $interval, $route, User, AuthToken) { //Auth from authServices
     var app = this;

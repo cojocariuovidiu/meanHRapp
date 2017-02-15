@@ -134,7 +134,7 @@
     </div>
     <form>
         <label>Browse</label>
-        <input type="file" name="myfile" ng-disabled="uploading" style="display: none">
+        <input file-model="file.upload" type="file" name="myfile" ng-disabled="uploading" style="display: none">
         <br>
         <button ng-disabled="uploading">Upload</button>
     </form>
