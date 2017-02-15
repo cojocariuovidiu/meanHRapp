@@ -267,6 +267,27 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             }
         }
 
+        //Upload File Code:
+        $scope.file = {}
+        $scope.SubmitUpload = function() {
+            $scope.uploading = true
+            console.log($scope.file)
+            uploadFile.upload($scope.file).then(function(data) {
+                if (data.data.success) {
+                    $scope.uploading = false
+                    $scope.alert = 'alert alert-success'
+                    $scope.message = data.data.message
+                    $scope.file = {}
+                    $scope.filename = data.data.filename
+                } else {
+                    $scope.uploading = false
+                    $scope.alert = 'alert alert-danger'
+                    $scope.message = data.data.message;
+                    $scope.file = {}
+                }
+            })
+        }
+
     }
 
     //MD TABLE ///
@@ -289,28 +310,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         $scope.promise = $timeout(function() {
             // loading
         }, 2000);
-    }
-
-
-    //Upload File Code:
-    $scope.file = {}
-    $scope.SubmitUpload = function() {
-        $scope.uploading = true
-        console.log($scope.file)
-        uploadFile.upload($scope.file).then(function(data) {
-            if (data.data.success) {
-                $scope.uploading = false
-                $scope.alert = 'alert alert-success'
-                $scope.message = data.data.message
-                $scope.file = {}
-                $scope.filename = data.data.filename
-            } else {
-                $scope.uploading = false
-                $scope.alert = 'alert alert-danger'
-                $scope.message = data.data.message;
-                $scope.file = {}
-            }
-        })
     }
 })
 

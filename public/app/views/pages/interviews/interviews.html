@@ -55,32 +55,3 @@
         </tbody>
     </table>
 </md-table-container>
-
-
-<!--Upload File-->
-<div ng-show="uploading" class="progress">
-    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-        <div class="sr-only"></div>
-    </div>
-</div>
-<form ng-submit="SubmitUpload()">
-    <label>Browse
-        <input file-model="file.upload" type="file" name="myfile" ng-disabled="uploading" style="display: none">
-    </label>
-    <br>
-    <button ng-disabled="uploading">Upload</button>
-</form>
-
-<br>
-<div ng-show="message">
-    {{message}}
-</div>
-
-<img src="http://localhost:3000/uploads/{{filename}}" />
-<a href="http://localhost:3000/uploads/{{filename}}" target="_blank">image</a>
-
-<!--<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{interviews.count}}" md-on-paginate="geInterviews" md-page-select></md-table-pagination>-->
-
-<!--<div ng-if="status" id="status">
-    <b layout="row" layout-align="center center" class="md-padding">{{status}}</b>
-</div>-->
