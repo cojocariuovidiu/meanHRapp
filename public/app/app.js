@@ -6,6 +6,8 @@ angular.module('userApp', [
     'mainController',
     'authServices',
     'interviewServices',
+    'fileModelDirective',
+    'uploadFileService'
 ])
 
 .config(function($httpProvider) {

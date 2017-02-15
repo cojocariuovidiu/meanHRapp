@@ -51,11 +51,32 @@
                         <md-icon>edit</md-icon>
                     </md-button>
                 </td>
-            </tr>
+
         </tbody>
     </table>
 </md-table-container>
 
+
+<!--Upload File-->
+<div ng-show="uploading" class="progress">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+        <div class="sr-only"></div>
+    </div>
+</div>
+<form>
+    <label>Browse</label>
+    <input file-model="file.upload" type="file" name="myfile" ng-disabled="uploading" style="display: none">
+    <br>
+    <button ng-disabled="uploading">Upload</button>
+</form>
+
+<br>
+
+<img class="mythumbnail" ng-src="{{ thumbnail.dataUrl || 'http://technologie.aramo.xyz/other/pt/images/3/8/2/img_como_mudar_o_nome_de_usuario_no_facebook_2283_200_square.jpg'}}" alt="">
+<br>
+<div ng-show="message">
+    error: {{message}}
+</div>
 <!--<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{interviews.count}}" md-on-paginate="geInterviews" md-page-select></md-table-pagination>-->
 
 <!--<div ng-if="status" id="status">
