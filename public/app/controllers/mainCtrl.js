@@ -255,7 +255,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             } else {
                 console.log('editing', editedObject._id)
                 console.log('sending data:', newInterview)
-                $http.put('/api/editinterview/' + editedObject._id, newInterview).then(function(response) {
+                $http.put('/api/editinterview/' + editedObject._id, {
+                    updateData: newInterview,
+                    editedBy: app.username,
+                    cv: $scope.cv
+                }).then(function(response) {
                     console.log('Data updated status:', newInterview)
                 }).then(function(response) {
                     Interview.getinterviews().then(function(response) {
@@ -278,7 +282,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     $scope.alert = 'alert alert-success'
                     $scope.message = data.data.message
                     $scope.file = {}
-                    $scope.filename = data.data.filename
+                    $scope.cv = data.data.cv
                 } else {
                     $scope.uploading = false
                     $scope.alert = 'alert alert-danger'

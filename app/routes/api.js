@@ -5,7 +5,7 @@ var secret = 'harrypotter'
 var mongoose = require('mongoose')
 var multer = require('multer')
 
-var uploadedFileName = ''
+var cv = ''
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './public/uploads')
@@ -16,8 +16,8 @@ var storage = multer.diskStorage({
             err.code = 'filetype'
             return cb(err)
         } else {
-            uploadedFileName = Date.now() + '_' + file.originalname
-            cb(null, uploadedFileName)
+            cv = Date.now() + '_' + file.originalname
+            cb(null, cv)
         }
 
         //cb(null, file.fieldname + '-' + Date.now())
@@ -45,8 +45,8 @@ module.exports = function(router) {
                     if (!req.file) {
                         res.json({ success: false, message: 'No file was selected' })
                     } else {
-                        console.log(uploadedFileName)
-                        res.json({ success: true, message: 'File was uploaded', filename: uploadedFileName })
+                        console.log(cv)
+                        res.json({ success: true, message: 'File was uploaded', cv: cv })
                     }
                 }
             })
@@ -248,19 +248,22 @@ module.exports = function(router) {
     router.put('/editinterview/:id', function(req, res) {
 
         var id = req.params.id
-
+        console.log(id)
+        console.log(req.body.updateData.note)
+        console.log(req.body.cv)
         Interview.findOneAndUpdate({ _id: id }, {
-            dataapplicazione: req.body.dataapplicazione,
-            nomecognome: req.body.nomecognome,
-            sesso: req.body.sesso,
-            eta: req.body.eta,
-            tel: req.body.tel,
-            esito1: req.body.esito1,
-            esito2: req.body.esito2,
-            esitocolloquio: req.body.esitocolloquio,
-            sito: req.body.sito,
-            email: req.body.email,
-            note: req.body.note,
+            dataapplicazione: req.body.updateData.dataapplicazione,
+            nomecognome: req.body.updateData.nomecognome,
+            sesso: req.body.updateData.sesso,
+            eta: req.body.updateData.eta,
+            tel: req.body.updateData.tel,
+            esito1: req.body.updateData.esito1,
+            esito2: req.body.updateData.esito2,
+            esitocolloquio: req.body.updateData.esitocolloquio,
+            sito: req.body.updateData.sito,
+            email: req.body.updateData.email,
+            note: req.body.updateData.note,
+            cv: req.body.cv
 
             // username: { type: String }
 

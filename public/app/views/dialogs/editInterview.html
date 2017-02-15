@@ -99,21 +99,23 @@
                     </md-input-container>
 
                     <div layout-gt-sm="row">
-                        <label>Browse
-                            <input file-model="file.upload" type="file" name="myfile" ng-disabled="uploading" style="display: none">
-                        </label>
-                        <md-button ng-click="SubmitUpload()" ng-disabled="uploading" class="md-raised md-accent">
-                            Upload CV
-                        </md-button>
-                        <div ng-show="message">
-                            {{message}}
+                        <div ng-if="editedObject.username">
+                            <input class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" ng-disabled="uploading" style="display: none">
+                            <label for="input-file-id" class="md-button md-raised">Browse</label>
+
+                            <md-button ng-click="SubmitUpload()" ng-disabled="uploading" class="md-raised md-accent">
+                                Upload CV
+                            </md-button>
+                            <div ng-show="message">
+                                {{message}}
+                            </div>
                         </div>
                         <span flex></span>
                         <md-input-container ng-if="editedObject.username != null" class="md-block" flex-gt-sm="">
                             <label>Created By {{editedObject.username}}</label>
                         </md-input-container>
                     </div>
-                    <a href="http://localhost:3000/uploads/{{filename}}" target="_blank">image</a>
+                    <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">image</a>
                 </md-content>
             </div>
         </md-dialog-content>
