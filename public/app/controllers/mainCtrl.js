@@ -1,6 +1,6 @@
 angular.module('mainController', ['authServices', 'userServices', 'interviewServices', 'ngMaterial', 'md.data.table'])
 
-.controller('mainCtrl', function(uploadFile, $mdDialog, Interview, Auth, $scope, $http, $timeout, $location, $rootScope, $window, $interval, $route, User, AuthToken) { //Auth from authServices
+.controller('mainCtrl', function(uploadFile, $mdSidenav, $mdDialog, Interview, Auth, $scope, $http, $timeout, $location, $rootScope, $window, $interval, $route, User, AuthToken) { //Auth from authServices
     var app = this;
 
     app.loadme = false;
@@ -150,6 +150,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
     this.logout = function() {
         // showModal(2)
+        buildToggler('left')
         Auth.logout();
         $location.path('/login');
         $route.reload();
@@ -315,6 +316,41 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             // loading
         }, 2000);
     }
+
+
+
+    /////////////////////////
+    $scope.toggleLeft = buildToggler('left');
+    $scope.toggleRight = buildToggler('right');
+
+    function buildToggler(componentId) {
+        return function() {
+            $mdSidenav(componentId).toggle();
+        };
+    }
+    $scope.menu = [{
+            link: '/',
+            title: 'Home',
+            icon: 'dashboard'
+        },
+        {
+            link: '/interviews',
+            title: 'Interviews',
+            icon: 'message'
+        }
+    ];
+    $scope.admin = [{
+            link: '',
+            title: 'Log Out',
+            icon: 'delete',
+        },
+        {
+            link: '/profile',
+            title: 'Profile',
+            icon: 'settings'
+        }
+    ];
+
 })
 
 

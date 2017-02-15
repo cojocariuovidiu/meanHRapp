@@ -25,9 +25,11 @@
 
 </head>
 
-<body ng-show="main.loadme" ng-cloak ng-app="userApp" ng-controller="mainCtrl as main">
+<!--<body ng-show="main.loadme" ng-cloak ng-app="userApp" ng-controller="mainCtrl as main">-->
+
+<body ng-cloak ng-app="userApp" ng-controller="mainCtrl as main">
     <!-- Fixed navbar -->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <!--<nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -41,28 +43,85 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="/">Home</a></li>
-                    <!--<li><a ng-show="main.isLoggedIn" href="/tabella">Tabella</a></li>-->
+                    <li><a ng-show="main.isLoggedIn" href="/tabella">Tabella</a></li>
                     <li><a ng-show="main.isLoggedIn" href="/interviews">Interviews</a></li>
                     <li><a ng-show="!main.isLoggedIn" href="/login">Login</a></li>
-                    <!--<li><a ng-show="!main.isLoggedIn" href="/register">Register</a></li>-->
                     <li class="dropdown">
                         <a ng-show="main.isLoggedIn" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{ main.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/profile">Profile</a></li>
-                            <!--<li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>-->
                             <li><a ng-show="main.isLoggedIn" href="#" ng-click="main.logout()">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
-            <!--/.nav-collapse -->
         </div>
-    </nav>
+    </nav>-->
+    <section layout="row" flex="">
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
+            <!--<md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
+            </md-toolbar>-->
+            <md-toolbar class="md-tall md-hue-2">
+                <span flex></span>
+                <div layout="column" class="md-toolbar-tools-bottom inset">
+                    <user-avatar></user-avatar>
+                    <span></span>
+                    <div>Hello {{ main.username }}</div>
+                    <div>mail@yahoo.com</div>
+                </div>
+            </md-toolbar>
+
+            <md-content layout-margin="">
+                <md-list>
+                    <md-item ng-repeat="item in menu">
+                        <a>
+                            <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                                <div class="inset">
+                                    <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
+                                </div>
+                                <div class="inset"><a ng-click="toggleLeft()" href="{{item.link}}">{{item.title}}</a> </div>
+                            </md-item-content>
+                        </a>
+                    </md-item>
+                    <md-divider></md-divider>
+                    <!--<md-subheader>Management</md-subheader>-->
+                    <md-item>
+                        <a>
+                            <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                                <div class="inset">
+                                    <ng-md-icon icon="profile"></ng-md-icon>
+                                </div>
+                                <div class="inset"><a ng-click="toggleLeft()" href="/profile">Profile</a></div>
+                            </md-item-content>
+                        </a>
+                        <a>
+                            <md-item-content md-ink-ripple layout="row" layout-align="start center">
+                                <div class="inset">
+                                    <ng-md-icon icon="delete"></ng-md-icon>
+                                </div>
+                                <div class="inset"><a ng-click="main.logout()" href="#">Log Out</a></div>
+                            </md-item-content>
+                        </a>
+                    </md-item>
+                    <md-item>
+
+                    </md-item>
+                </md-list>
+            </md-content>
+        </md-sidenav>
+        <i ng-click="toggleLeft()" class="material-icons">menu</i>
+    </section>
+
+    <!--<md-content class="md-padding">
+            <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+              <md-nav-item md-nav-href="/">Home</md-nav-item>
+                <md-nav-item md-nav-href="/interviews">Interviews</md-nav-item>
+                <md-nav-item ng-show="!main.isLoggedIn" md-nav-href="/login">Login</md-nav-item>
+            </md-nav-bar>
+        </md-content>-->
+
+
     <div class="bumpmenu">
         <div ng-view></div>
     </div>

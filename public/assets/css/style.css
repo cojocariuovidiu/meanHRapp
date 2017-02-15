@@ -156,9 +156,10 @@ th {
     background-color: #F0F0F0;
 }
 
-.bumpmenu {
+
+/*.bumpmenu {
     padding-top: 60px;
-}
+}*/
 
 .md-button.md-fab.md-mini {
     line-height: 4rem;
@@ -175,3 +176,11 @@ th {
 a {
     text-decoration: none !important;
 }
+
+
+/*
+.navBardemoBasicUsage md-content .ext-content {
+    padding: 50px;
+    margin: 20px;
+    background-color: #FFF2E0;
+}*/

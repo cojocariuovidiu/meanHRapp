@@ -19,8 +19,6 @@ var storage = multer.diskStorage({
             cv = Date.now() + '_' + file.originalname
             cb(null, cv)
         }
-
-        //cb(null, file.fieldname + '-' + Date.now())
     }
 })
 var upload = multer({
@@ -31,61 +29,26 @@ var upload = multer({
 module.exports = function(router) {
 
     router.post('/upload', function(req, res) {
-            upload(req, res, function(err) {
-                if (err) {
-                    if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
-                        res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })
-                    } else if (err.code === 'filetype') { //our custom error
-                        res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg' })
-                    } else {
-                        console.log(err)
-                        res.json({ success: false, message: 'Unable to upload, call Administrator' })
-                    }
+        upload(req, res, function(err) {
+            if (err) {
+                if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
+                    res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })
+                } else if (err.code === 'filetype') { //our custom error
+                    res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg' })
                 } else {
-                    if (!req.file) {
-                        res.json({ success: false, message: 'No file was selected' })
-                    } else {
-                        console.log(cv)
-                        res.json({ success: true, message: 'uploaded succesfully!', cv: cv })
-                    }
+                    console.log(err)
+                    res.json({ success: false, message: 'Unable to upload, call Administrator' })
                 }
-            })
+            } else {
+                if (!req.file) {
+                    res.json({ success: false, message: 'No file was selected' })
+                } else {
+                    console.log(cv)
+                    res.json({ success: true, message: 'uploaded succesfully!', cv: cv })
+                }
+            }
         })
-        // var path = require('path')
-        // var conn = mongoose.connection
-        // var fs = require('fs')
-        // let Grid = require('gridfs-stream')
-        // var conn = mongoose.createConnection('mongodb://localhost:27017/loginapp');
-        // conn.once('open', function() {
-        // var gfs = Grid(conn.db, mongoose.mongo);
-        // // all set!
-
-    // router.post('/img', (req, res) => {
-    //     let part = req.body
-
-    //     //let part = req.files.file;
-    //     console.log(part)
-
-    //     // let writeStream = gfs.createWriteStream({
-    //     //     filename: 'img_' + part.name,
-    //     //     mode: 'w',
-    //     //     content_type: part.mimetype
-    //     // });
-
-    //     // writeStream.on('close', (file) => {
-    //     //     return res.status(200).send({
-    //     //         message: 'Success',
-    //     //         file: file
-    //     //     });
-    //     // });
-
-    //     // writeStream.write(part.data);
-
-    //     // writeStream.end();
-    // });
-    // console.log('all set')
-
-    //})
+    })
 
     //USER REGISTRATION ROUTE
     //http://127.0.0.1:3000/users
