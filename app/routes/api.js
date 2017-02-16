@@ -200,9 +200,24 @@ module.exports = function(router) {
         Interview.findOne({ _id: req.params.id }).select().exec(function(err, item) {
             if (err) throw err;
             if (!item) {
-                console.log("can't find id to edit")
+                console.log("can't find id to edit.")
             } else {
                 res.json({ item })
+            }
+        })
+    })
+
+    router.delete('/interviews/:id', function(req, res) {
+        // Interview.findOneAndRemove({_id: req.params.id})
+        console.log('id sent:', req.params.id)
+
+        Interview.findOne({ _id: req.params.id }).remove().exec(function(err, data) {
+            if (err) {
+                console.log(err);
+                res.json({ success: false, message: 'Could not delete.' })
+            } else {
+                res.json({ success: true, message: data.result.n + ' documents deleted.' })
+                console.log(data.result.n, 'document removed.')
             }
         })
     })

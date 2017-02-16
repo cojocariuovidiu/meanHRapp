@@ -1,17 +1,20 @@
-<md-button class="md-raised md-primary md-fab md-mini" ng-click="editInterview()">
-    <md-icon>add</md-icon>
-</md-button>
+<md-row>
 
-<md-input-container>
-    <label>Search</label>
-    <input ng-model="searchInterview">
-</md-input-container>
+    <md-button class="md-raised md-primary md-fab md-mini" ng-click="editInterview()">
+        <md-icon>add</md-icon>
+    </md-button>
+    <span flex></span>
+    <md-input-container>
+        <label>Search</label>
+        <input ng-model="searchInterview">
+    </md-input-container>
+</md-row>
 
 <md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
     <div class="md-toolbar-tools">
-        <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected {{selected[0]._id}} </span>
+        <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected </span>
         <span flex></span>
-        <md-button class="md-raised md-accent md-fab md-mini" ng-click="deleteInterview()">
+        <md-button class="md-raised md-accent md-fab md-mini" ng-click="deleteInterview(selected)">
             <md-icon>delete</md-icon>
         </md-button>
 
@@ -21,7 +24,7 @@
 <md-table-container>
     <table md-table md-row-select md-progress="promise" ng-model="selected" multiple>
         <!--<thead md-head md-order="sort.order" md-on-reorder="getDesserts">-->
-        <thead md-head md-order="sort.order" md-on-reorder="sortInterviews()">
+        <thead md-head md-order="sort.order" md-on-reorder="promiseInterviews()">
             <tr md-row>
                 <th md-column>CV</th>
                 <th md-column md-order-by="dataapplicazione"><span>Data applicazione</span></th>
@@ -40,7 +43,7 @@
             </tr>
         </thead>
         <tbody md-body>
-            <tr md-row md-select="item" md-select-id="name" md-auto-select ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">
+            <tr md-row md-select="item" md-select-id="name" ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">
                 <td md-cell><i ng-if="item.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.cv}}">face</a></i></td>
                 <td md-cell>{{ item.dataapplicazione | date}}</td>
                 <td md-cell>{{ item.nomecognome }}</td>
@@ -69,4 +72,5 @@
         </tfoot>
     </table>
 </md-table-container>
-<md-table-pagination md-limit="sort.limit" md-limit-options="[2, 5, 10, 15]" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="sortInterviews" md-page-select></md-table-pagination>
+<md-table-pagination md-limit="sort.limit" md-limit-options="[5, 10, 15]" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
+<!--<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->

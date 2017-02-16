@@ -216,8 +216,22 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         }
     }
 
-    $scope.deleteInterview = function() {
-        console.log('ss')
+    $scope.deleteInterview = function(idArray) {
+
+
+        idArray.forEach(function(element) {
+            console.log('deleteing:', element._id)
+
+            $http.delete('/api/interviews/' + element._id).then(function(response) {
+                console.log(response.data.success, response.data.message)
+                Interview.getinterviews().then(function(response) {
+                    app.interviewsList = response.data
+                        //console.log(app.interviewsList);
+                })
+            })
+        }, this);
+
+        $scope.selected = []
     }
 
     function DialogController($scope, $mdDialog, editedObject) {
@@ -308,14 +322,21 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         page: 1
     };
 
+    $scope.limitOptions = [5, 10, 15, {
+        label: 'All',
+        value: function() {
+            return app.interviewsList.length;
+        }
+    }];
+
     function success(interviews) {
         $scope.interviewsList = interviews;
     }
 
-    $scope.sortInterviews = function() {
+    $scope.promiseInterviews = function() {
         // console.log($scope.sort.order)
-        console.log($scope.selected)
-            //$scope.promise = Interview.getinterviews($scope.sort, success).$promise;
+        //console.log($scope.selected)
+        //$scope.promise = Interview.getinterviews($scope.sort, success).$promise;
     };
 
 
