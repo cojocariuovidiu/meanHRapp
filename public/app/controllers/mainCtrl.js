@@ -136,14 +136,14 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     app.loginData = null;
                     app.successMsg = false;
                     app.checkSession();
-                }, 500)
+                }, 1000)
 
             } else {
                 //Create error message
                 app.errorMsg = data.data.message;
                 $timeout(function() {
                     app.isLoading = false
-                }, 500)
+                }, 1000)
             }
         })
     }

@@ -1,4 +1,36 @@
-<div class="page-header">
+<div layout="column" flex id="content" role="main">
+    <md-content layout="vertical" flex id="content">
+        <div class="loginBox md-whiteframe-z1" layout="column">
+            <md-toolbar>
+                <h2 class="md-toolbar-tools"><span>Login</span></h2>
+            </md-toolbar>
+            <md-content class="md-padding" layout="column">
+                <md-input-container>
+                    <label>EmailAddress</label>
+                    <input ng-model="main.loginData.username" type="text" />
+                </md-input-container>
+                <md-input-container>
+                    <label>Password</label>
+                    <input type="password" ng-model="main.loginData.password" />
+                </md-input-container>
+                <div layout="row" layout-align="center center" style="padding-top:20px">
+                    <md-button ng-click="main.doLogin(loginData)" class="md-raised md-primary">Login</md-button>
+                    <span ng-show="main.isLoading" class="fa fa-circle-o-notch fa-spin" style="font-size:25px;color:red"></span>
+                    <div flex="flex"></div>
+                    <md-button href="/register" md-no-ink="md-no-ink">Register</md-button>
+                </div>
+            </md-content>
+            <div ng-show="main.successMsg" class="row show-hide-message">
+                <div class="alert alert-success">{{ main.successMsg }}</div>
+            </div>
+            <div ng-show="main.errorMsg" class="row show-hide-message">
+                <div class="alert alert-danger">{{ main.errorMsg}}</div>
+            </div>
+        </div>
+    </md-content>
+</div>
+
+<!--<div class="page-header">
     <h3>User Login</h3>
 </div>
 <form ng-submit="main.doLogin(loginData)">
@@ -9,18 +41,12 @@
     <input ng-model="main.loginData.password" class="form-control" type="password" name="password" placeholder="please enter-password">
     <br>
     <button class="btn btn-primary" type="submit">Login</button>
-    <span ng-show="main.isLoading" class="fa fa-circle-o-notch fa-spin" style="font-size:25px;color:red"></span>
+
     <a ng-show="!main.isLoggedIn" href="/register">Register</a>
 </form>
 
 <br>
 
-<div ng-show="main.successMsg" class="row show-hide-message">
-    <div class="alert alert-success">{{ main.successMsg }}</div>
-</div>
 
-<br>
 
-<div ng-show="main.errorMsg" class="row show-hide-message">
-    <div class="alert alert-danger">{{ main.errorMsg}}</div>
-</div>
+<br>-->

@@ -1,98 +1,10 @@
-.main {
-    padding-top: 30px;
-}
-
-
-/* =====================================
-START: LOADING ICON FOR LOGGING OUT USER 
-===================================== */
-
-.dizzy-gillespie {
-    filter: saturate(3);
-    width: 0.1px;
-    height: 0.1px;
-    border: 40px solid transparent;
-    border-radius: 5px;
-    animation: loader 3s ease-in infinite, spin 1s linear infinite;
-    margin: auto;
-}
-
-.dizzy-gillespie::before {
-    filter: saturate(0.3);
-    display: block;
-    position: absolute;
-    z-index: -1;
-    margin-left: -40px;
-    margin-top: -40px;
-    content: '';
-    height: 0.1;
-    width: 0.1;
-    border: 40px solid transparent;
-    border-radius: 5px;
-    animation: loader 2s ease-in infinite reverse, spin 0.8s linear infinite reverse;
-}
-
-.dizzy-gillespie::after {
-    display: block;
-    position: absolute;
-    z-index: 2;
-    margin-left: -10px;
-    margin-top: -10px;
-    content: '';
-    height: 20px;
-    width: 20px;
-    border-radius: 20px;
-    background-color: white;
-}
-
-@keyframes loader {
-    0% {
-        border-bottom-color: transparent;
-        border-top-color: #114357
-    }
-    25% {
-        border-left-color: transparent;
-        border-right-color: #826C75
-    }
-    50% {
-        border-top-color: transparent;
-        border-bottom-color: #F29492
-    }
-    75% {
-        border-right-color: transparent;
-        border-left-color: #826C75
-    }
-    100% {
-        border-bottom-color: transparent;
-        border-top-color: #114357
-    }
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg)
-    }
-    100% {
-        transform: rotate(-360deg)
-    }
-}
-
-
-/* ===================================
-END: LOADING ICON FOR LOGGING OUT USER 
-=================================== */
-
-
-/* HEADER 
-===================== */
-
-header .navbar {
+/*header .navbar {
     border-radius: 0;
 }
 
 .reset {
     float: right;
-}
+}*/
 
 
 /* NGANIMATE
@@ -101,11 +13,12 @@ header .navbar {
 
 /* show and hide */
 
-.show-hide-message.ng-hide-remove {
+
+/*.show-hide-message.ng-hide-remove {
     -webkit-animation: zoomIn 0.3s both ease;
     -moz-animation: zoomIn 0.3s both ease;
     animation: zoomIn 0.3s both ease;
-}
+}*/
 
 
 /* ANIMATIONS
@@ -144,9 +57,8 @@ header .navbar {
     }
 }
 
-table {
-    cursor: pointer;
-}
+
+/*TABLE*/
 
 th {
     background-color: #F0F0F0;
@@ -155,11 +67,6 @@ th {
 .selected {
     background-color: #F0F0F0;
 }
-
-
-/*.bumpmenu {
-    padding-top: 60px;
-}*/
 
 .md-button.md-fab.md-mini {
     line-height: 4rem;
@@ -176,6 +83,23 @@ th {
 a {
     text-decoration: none !important;
 }
+
+.loginBox {
+    /*max-width: 90%;
+    width: 500px ;*/
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
+
+.stretch input {
+    width: 100%
+}
+
+
+/*.bumpmenu {
+    padding-top: 60px;
+}*/
 
 
 /*

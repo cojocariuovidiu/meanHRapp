@@ -19,14 +19,14 @@
                 <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
                     <div layout-gt-sm="row">
                         <md-input-container aria-label="MD Input Container" class="md-block" flex-gt-sm="">
-                            <label>name</label>
+                            <label>Nome e cognome</label>
                             <input aria-label="nomecognomeInput" ng-model="newInterview.nomecognome">
                         </md-input-container>
 
-                        <md-input-container class="md-block" flex-gt-sm="">
+                        <!--<md-input-container class="md-block" flex-gt-sm="">
                             <label>Last Name</label>
                             <input aria-label="lastnameInput" ng-model="theMax">
-                        </md-input-container>
+                        </md-input-container>-->
 
                         <md-input-container>
                             <label>Data Applicazione</label>
@@ -52,10 +52,11 @@
 
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label>Telefono</label>
-                            <input aria-label="telInput" name="postalCode" ng-model="newInterview.tel" ng-pattern="/^[0-9]{10}$/">
+                            <input aria-label="telInput" name="postalCode" ng-model="newInterview.tel">
+                            <!--<input aria-label="telInput" name="postalCode" ng-model="newInterview.tel" ng-pattern="/^[0-9]{10}$/">
                             <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
                                 <div ng-message="pattern" class="my-message">That doesn't look like a telephone number.</div>
-                            </div>
+                            </div>-->
                         </md-input-container>
                     </div>
 

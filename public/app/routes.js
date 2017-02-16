@@ -58,7 +58,7 @@ app.run(['$rootScope', 'Auth', '$location', function($rootScope, Auth, $location
             //console.log('needs to be auth');
             if (!Auth.isLoggedIn()) {
                 event.preventDefault(); //prevent from navigating
-                $location.path('/')
+                $location.path('/login')
             }
 
         } else if (next.$$route.authenticated == false) {
