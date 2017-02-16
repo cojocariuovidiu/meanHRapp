@@ -9,15 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Theme Template for Bootstrap</title>
+    <title>Bitech HR</title>
 
     <!--CDN Styles: Bootstrap, Font-Awesome-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootswatch/3.2.0/sandstone/bootstrap.min.css">-->
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css">-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.css">
-    <link href="bower_components/angular-material-data-table/dist/md-data-table.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--Local Styles: style.css-->
@@ -28,40 +28,9 @@
 <!--<body ng-show="main.loadme" ng-cloak ng-app="userApp" ng-controller="mainCtrl as main">-->
 
 <body ng-cloak ng-app="userApp" ng-controller="mainCtrl as main">
-    <!-- Fixed navbar -->
-    <!--<nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-                <a class="navbar-brand" href="#">HR Bitech</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a ng-show="main.isLoggedIn" href="/tabella">Tabella</a></li>
-                    <li><a ng-show="main.isLoggedIn" href="/interviews">Interviews</a></li>
-                    <li><a ng-show="!main.isLoggedIn" href="/login">Login</a></li>
-                    <li class="dropdown">
-                        <a ng-show="main.isLoggedIn" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{ main.username }} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/profile">Profile</a></li>
-                            <li><a ng-show="main.isLoggedIn" href="#" ng-click="main.logout()">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>-->
+
     <section layout="row" flex="">
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-disable-backdrop="" md-whiteframe="4">
-            <!--<md-toolbar class="md-theme-indigo">
-                <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
-            </md-toolbar>-->
             <md-toolbar class="md-tall md-hue-2">
                 <span flex></span>
                 <div layout="column" class="md-toolbar-tools-bottom inset">
@@ -85,7 +54,6 @@
                         </a>
                     </md-item>
                     <md-divider></md-divider>
-                    <!--<md-subheader>Management</md-subheader>-->
                     <md-item>
                         <a>
                             <md-item-content md-ink-ripple layout="row" layout-align="start center">
@@ -121,6 +89,35 @@
             </md-nav-bar>
         </md-content>-->
 
+    <!-- Fixed navbar -->
+    <!--<nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+                <a class="navbar-brand" href="#">HR Bitech</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/">Home</a></li>
+                    <li><a ng-show="main.isLoggedIn" href="/tabella">Tabella</a></li>
+                    <li><a ng-show="main.isLoggedIn" href="/interviews">Interviews</a></li>
+                    <li><a ng-show="!main.isLoggedIn" href="/login">Login</a></li>
+                    <li class="dropdown">
+                        <a ng-show="main.isLoggedIn" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello {{ main.username }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a ng-show="main.isLoggedIn" href="#" ng-click="main.logout()">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>-->
 
     <div class="bumpmenu">
         <div ng-view></div>
@@ -136,7 +133,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-aria.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.1.3/angular-material.min.js"></script>
-    <script type="text/javascript" src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material-data-table/0.10.10/md-data-table.min.js"></script>
     <!--Angular Config Routes-->
     <script src="app/app.js"></script>
     <script src="app/routes.js"></script>
