@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true })) //for parse application/x-www
 app.use(express.static(__dirname + '/public'))
 app.use('/api', appRoutes) //to deconflict te backend and the frontend routes
 
-mongoose.connect('mongodb://localhost:27017/loginapp', function(err) {
+mongoose.connect('mongodb://localhost:27017/hrbitech', function(err) {
     if (err) {
         console.log('not connected to the db', err)
     } else {

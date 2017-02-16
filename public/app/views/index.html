@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bitech HR</title>
+    <title>HR Bitech </title>
 
     <!--CDN Styles: Bootstrap, Font-Awesome-->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -68,9 +68,14 @@
                                 <div class="inset">
                                     <ng-md-icon icon="delete"></ng-md-icon>
                                 </div>
-                                <div class="inset"><a ng-click="main.logout()" href="#">Log Out</a></div>
+                                <!--<div class="inset"><a ng-click="main.logout()" href="#">Log Out</a></div>-->
+                                <div class="inset">
+                                    <a ng-click="toggleLeft()" href="#">
+                                        <p ng-click="main.logout()"> Log Out </i>
+                                        </p>
+                                </div>
                             </md-item-content>
-                        </a>
+                            </a>
                     </md-item>
                     <md-item>
 
@@ -78,7 +83,7 @@
                 </md-list>
             </md-content>
         </md-sidenav>
-        <i ng-click="toggleLeft()" class="material-icons">menu</i>
+        <i ng-if="main.isLoggedIn" ng-click="toggleLeft()" class="material-icons">menu</i>
     </section>
 
     <!--<md-content class="md-padding">
