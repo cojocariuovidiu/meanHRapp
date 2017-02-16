@@ -272,8 +272,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             }
         }
 
+        //Upload File Code:
         $scope.file = {}
-            //Upload File Code:
         $scope.SubmitUpload = function() {
             $scope.uploading = true
             console.log($scope.file.upload.name)
@@ -298,28 +298,32 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     //MD TABLE ///
     $scope.selected = [];
 
-    $scope.query = {
-        order: 'nomecognome',
-        limit: 'ALL',
-        //page: 1
+    $scope.sort = {
+        order: 'dataapplicazione',
+        limit: '5',
+        page: 1
     };
 
+    function success(interviews) {
+        $scope.interviewsList = interviews;
+    }
 
     $scope.sortInterviews = function() {
-        //console.log($scope.query.order)
-        //$scope.promise = $nutrition.desserts.get($scope.query, success).$promise;
+        console.log($scope.sort.order)
+            // $scope.promise = Interview.getinterviews($scope.sort, success).$promise;
     };
 
 
     $scope.loadStuff = function() {
         $scope.promise = $timeout(function() {
             // loading
+            console.log('loading stuff')
         }, 2000);
     }
 
 
 
-    /////////////////////////
+    /////////////////////////MENU
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
 
@@ -336,6 +340,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         {
             link: '/interviews',
             title: 'Interviews',
+            icon: 'message'
+        },
+        {
+            link: '/statistics',
+            title: 'Statistics',
             icon: 'message'
         }
     ];

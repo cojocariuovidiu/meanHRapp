@@ -19,10 +19,10 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/users/login.html',
             authenticated: false
         })
-        .when('/logout', {
-            templateUrl: 'app/views/pages/users/logout.html',
-            authenticated: true
-        })
+        // .when('/logout', {
+        //     templateUrl: 'app/views/pages/users/logout.html',
+        //     authenticated: true
+        // })
         .when('/profile', {
             templateUrl: 'app/views/pages/users/profile.html',
             authenticated: true
@@ -31,16 +31,20 @@ var app = angular.module('appRoutes', ['ngRoute'])
         //     templateUrl: 'app/views/pages/tableData/tabella.html',
         //     authenticated: true
         // })
-        .when('/tabella/interview', {
-            templateUrl: 'app/views/pages/tableData/interview.html',
-            authenticated: true
-        })
+        // .when('/tabella/interview', {
+        //     templateUrl: 'app/views/pages/tableData/interview.html',
+        //     authenticated: true
+        // })
         // .when('/tabella/edit', {
         //     templateUrl: 'app/views/pages/tableData/editinterview.html',
         //     authenticated: true
         // })
         .when('/interviews', {
             templateUrl: 'app/views/pages/interviews/interviews.html',
+            authenticated: true
+        })
+        .when('/statistics', {
+            templateUrl: 'app/views/pages/interviews/statistics.html',
             authenticated: true
         })
         .otherwise({ redirectTo: '/' });
@@ -65,7 +69,7 @@ app.run(['$rootScope', 'Auth', '$location', function($rootScope, Auth, $location
             //console.log('does not need to be auth');
             if (Auth.isLoggedIn()) {
                 event.preventDefault();
-                // $location.path('/about')
+                $location.path('/')
             }
         }
         // console.log(Auth.isLoggedIn());
