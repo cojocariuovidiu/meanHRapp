@@ -102,17 +102,16 @@
 
                     <div layout-gt-sm="row">
                         <div ng-if="editedObject.username">
-                            <input class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" ng-disabled="uploading" style="display: none">
+                            <input ng-click=Browse() class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
                             <label for="input-file-id" class="md-button md-raised">Browse</label>
 
-                            <md-button ng-click="SubmitUpload()" ng-disabled="uploading" class="md-raised md-accent">
+                            <md-button ng-click="SubmitUpload()" ng-disabled="!browseClicked" class="md-raised md-accent">
                                 Upload CV
                             </md-button>
                             <div ng-show="message">
                                 <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">{{file.upload.name}} </a> {{message}}
                             </div>
                             <div ng-show="!message">{{file.upload.name}}</div>
-
 
                         </div>
                         <span flex></span>
@@ -143,12 +142,11 @@
         </md-dialog-actions>
     </form>
 
-
-    <div ng-show="uploading" class="progress">
+    <!--<div ng-show="uploading" class="progress">
         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
             <div class="sr-only"></div>
         </div>
-    </div>
+    </div>-->
 
 
 
