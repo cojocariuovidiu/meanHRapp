@@ -292,8 +292,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             $scope.browseClicked = true
         }
 
-
-
         //Upload File Code:
         $scope.file = {}
         $scope.SubmitUpload = function() {
@@ -359,25 +357,27 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             //.textContent('All of the banks have agreed to forgive you your debts.')
             .ariaLabel('Danger')
             //.targetEvent(ev)
-            .ok('OK')
-            .cancel('Cancel');
+            .ok('Cancel')
+            .cancel('Ok');
 
-        $mdDialog.show(confirm).then(function() {
-            var idArray = $scope.selected
-            idArray.forEach(function(element) {
-                // console.log('deleteing:', element._id)
-                $http.delete('/api/interviews/' + element._id).then(function(response) {
-                    console.log(response.data.success, response.data.message)
-                    Interview.getinterviews().then(function(response) {
-                        app.interviewsList = response.data
-                            //console.log(app.interviewsList);
+        $mdDialog.show(confirm).then(
+            function() {
+                console.log('Dialog Canceled')
+            },
+            function() {
+                var idArray = $scope.selected
+                idArray.forEach(function(element) {
+                    // console.log('deleteing:', element._id)
+                    $http.delete('/api/interviews/' + element._id).then(function(response) {
+                        console.log(response.data.success, response.data.message)
+                        Interview.getinterviews().then(function(response) {
+                            app.interviewsList = response.data
+                                //console.log(app.interviewsList);
+                        })
                     })
-                })
-            }, this);
-            $scope.selected = []
-        }, function() {
-            console.log('Dialog Canceled')
-        });
+                }, this);
+                $scope.selected = []
+            });
     };
 
 
