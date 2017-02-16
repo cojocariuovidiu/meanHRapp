@@ -310,7 +310,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
     $scope.sortInterviews = function() {
         console.log($scope.sort.order)
-            // $scope.promise = Interview.getinterviews($scope.sort, success).$promise;
+            //$scope.promise = Interview.getinterviews($scope.sort, success).$promise;
     };
 
 

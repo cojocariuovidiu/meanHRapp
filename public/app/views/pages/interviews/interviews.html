@@ -51,13 +51,13 @@
                     </md-button>
                 </td>
         </tbody>
-        <!--<tfoot md-foot>
+        <tfoot md-foot>
             <tr md-row>
                 <td md-cell></td>
-                <td md-cell><strong>Total: </strong>{{main.interviewsList.total}}</td>
-                <td md-cell colspan="6"></td>
+                <td md-cell><strong>Total: </strong>{{main.interviewsList.length}}</td>
+                <td md-cell colspan="9"></td>
             </tr>
-        </tfoot>-->
+        </tfoot>
     </table>
 </md-table-container>
-<md-table-pagination md-limit="sort.limit" md-limit-options="[2, 5, 10, 15]" md-page="sort.page" md-total="{{interviewsList.count}}" md-on-paginate="sortInterviews" md-page-select></md-table-pagination>
+<md-table-pagination md-limit="sort.limit" md-limit-options="[2, 5, 10, 15]" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="sortInterviews" md-page-select></md-table-pagination>
