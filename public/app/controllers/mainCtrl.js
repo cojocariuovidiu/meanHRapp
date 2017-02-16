@@ -201,7 +201,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     // });
             })
         } else {
-            console.log('NEW Interview detected')
             editedObject = {}
             $mdDialog.show({
                 controller: DialogController,
@@ -236,11 +235,12 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         $scope.newInterview = angular.copy($scope.editedObject)
 
 
-        $scope.newInterview.dataapplicazione = new Date($scope.newInterview.dataapplicazione)
-        console.log($scope.newInterview.dataapplicazione)
+        if ($scope.newInterview.dataapplicazione) {
+            $scope.newInterview.dataapplicazione = new Date($scope.newInterview.dataapplicazione)
+            console.log($scope.newInterview.dataapplicazione)
+        }
 
         $scope.submitInterview = function(newInterview) {
-
             function isEmpty(obj) {
                 return Object.keys(obj).length === 0;
             }
