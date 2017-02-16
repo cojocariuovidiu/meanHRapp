@@ -1,7 +1,45 @@
-<div class="page-header">
-    <h3>User Registration</h3>
+<div layout="column" flex id="content" role="main">
+    <md-content layout="vertical" flex id="content">
+        <div class="loginBox md-whiteframe-z1" layout="column">
+            <md-toolbar>
+                <h2 class="md-toolbar-tools"><span>Register</span></h2>
+            </md-toolbar>
+            <md-content class="md-padding" layout="column">
+                <md-input-container>
+                    <label>Email Address</label>
+                    <input ng-model="register.regData.email" type="text" />
+                </md-input-container>
+                <md-input-container>
+                    <label>User Name</label>
+                    <input ng-model="register.regData.username" type="text" />
+                </md-input-container>
+                <md-input-container>
+                    <label>Password</label>
+                    <input type="password" ng-model="register.regData.password" />
+                </md-input-container>
+                <div layout="row" layout-align="center center" style="padding-top:20px">
+                    <md-button ng-click="register.regUser(regData)" class="md-raised md-primary">Register</md-button>
+                    <span ng-show="main.isLoading" class="fa fa-circle-o-notch fa-spin" style="font-size:25px;color:red"></span>
+                    <div flex="flex"></div>
+                    <md-button href="/login" md-no-ink="md-no-ink">Login</md-button>
+                </div>
+            </md-content>
+            <div ng-show="main.successMsg" class="row show-hide-message">
+                <div class="alert alert-success">{{ main.successMsg }}</div>
+            </div>
+            <div ng-show="main.errorMsg" class="row show-hide-message">
+                <div class="alert alert-danger">{{ main.errorMsg}}</div>
+            </div>
+        </div>
+    </md-content>
 </div>
-<form ng-submit="register.regUser(regData)">
+<div ng-show="register.successMsg " class="row show-hide-message ">
+    <div class="alert alert-success ">{{ register.successMsg }}</div>
+</div>
+
+
+
+<!--<form ng-submit="register.regUser(regData)">
     <label>Email:</label>
     <input ng-model="register.regData.email" class="form-control" type="text" name="email" placeholder="please enter email">
     <br>
@@ -26,4 +64,4 @@
 
 <div ng-show="register.errorMsg " class="row show-hide-message ">
     <div class="alert alert-danger ">{{ register.errorMsg}}</div>
-</div>
+</div>-->

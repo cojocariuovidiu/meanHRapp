@@ -5,16 +5,16 @@ var app = angular.module('appRoutes', ['ngRoute'])
         .when('/', {
             templateUrl: 'app/views/pages/home.html'
         })
-        .when('/about', {
-            templateUrl: 'app/views/pages/about.html',
-            authenticated: true
-        })
-        .when('/register', {
-            templateUrl: 'app/views/pages/users/register.html',
-            controller: 'regCtrl',
-            controllerAs: 'register',
-            authenticated: false
-        })
+        // .when('/about', {
+        //     templateUrl: 'app/views/pages/about.html',
+        //     authenticated: true
+        // })
+        // .when('/register', {
+        //     templateUrl: 'app/views/pages/users/register.html',
+        //     controller: 'regCtrl',
+        //     controllerAs: 'register',
+        //     authenticated: false
+        // })
         .when('/login', {
             templateUrl: 'app/views/pages/users/login.html',
             authenticated: false
@@ -27,18 +27,18 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/users/profile.html',
             authenticated: true
         })
-        .when('/tabella', {
-            templateUrl: 'app/views/pages/tableData/tabella.html',
-            authenticated: true
-        })
+        // .when('/tabella', {
+        //     templateUrl: 'app/views/pages/tableData/tabella.html',
+        //     authenticated: true
+        // })
         .when('/tabella/interview', {
             templateUrl: 'app/views/pages/tableData/interview.html',
             authenticated: true
         })
-        .when('/tabella/edit', {
-            templateUrl: 'app/views/pages/tableData/editinterview.html',
-            authenticated: true
-        })
+        // .when('/tabella/edit', {
+        //     templateUrl: 'app/views/pages/tableData/editinterview.html',
+        //     authenticated: true
+        // })
         .when('/interviews', {
             templateUrl: 'app/views/pages/interviews/interviews.html',
             authenticated: true
@@ -67,7 +67,6 @@ app.run(['$rootScope', 'Auth', '$location', function($rootScope, Auth, $location
                 event.preventDefault();
                 // $location.path('/about')
             }
-
         }
         // console.log(Auth.isLoggedIn());
         // console.log(next.$$route.authenticated);

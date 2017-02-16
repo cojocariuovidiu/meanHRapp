@@ -84,6 +84,10 @@ a {
     text-decoration: none !important;
 }
 
+.loginScreen {
+    margin-top: 50px;
+}
+
 .loginBox {
     /*max-width: 90%;
     width: 500px ;*/
@@ -94,6 +98,11 @@ a {
 
 .stretch input {
     width: 100%
+}
+
+.menuSilder {
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 
