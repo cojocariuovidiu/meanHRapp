@@ -9,12 +9,12 @@ var app = angular.module('appRoutes', ['ngRoute'])
         //     templateUrl: 'app/views/pages/about.html',
         //     authenticated: true
         // })
-        // .when('/register', {
-        //     templateUrl: 'app/views/pages/users/register.html',
-        //     controller: 'regCtrl',
-        //     controllerAs: 'register',
-        //     authenticated: false
-        // })
+        .when('/adminregister', {
+            templateUrl: 'app/views/pages/users/register.html',
+            controller: 'regCtrl',
+            controllerAs: 'register',
+            authenticated: false
+        })
         .when('/login', {
             templateUrl: 'app/views/pages/users/login.html',
             authenticated: false
