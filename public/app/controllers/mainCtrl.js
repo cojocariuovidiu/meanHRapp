@@ -1,6 +1,6 @@
 angular.module('mainController', ['authServices', 'userServices', 'interviewServices', 'ngMaterial', 'md.data.table'])
 
-.controller('mainCtrl', function(uploadFile, $mdSidenav, $mdDialog, Interview, Auth, $scope, $http, $timeout, $location, $rootScope, $window, $interval, $route, User, AuthToken) { //Auth from authServices
+.controller('mainCtrl', function($mdToast, uploadFile, $mdSidenav, $mdDialog, Interview, Auth, $scope, $http, $timeout, $location, $rootScope, $window, $interval, $route, User, AuthToken) { //Auth from authServices
     var app = this;
 
     app.loadme = false;
@@ -387,6 +387,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     function buildToggler(componentId) {
         return function() {
             $mdSidenav(componentId).toggle();
+            // showToast()
         };
     }
     $scope.menu = [{
@@ -416,6 +417,17 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             icon: 'settings'
         }
     ];
+
+    // var showToast = function() {
+    //     $mdToast.show(
+    //         $mdToast.simple()
+    //         .textContent('Hello World!')
+    //         .hideDelay(3000)
+    //         .highlightAction(true)
+    //         .capsule(true)
+    //         // .theme(string)
+    //     );
+    // }
 
 })
 

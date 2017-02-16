@@ -110,6 +110,7 @@ md-card:first-child {
 }
 
 .label {
+    font-size: 100%;
     color: #707070;
 }
 
