@@ -216,6 +216,10 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         }
     }
 
+    $scope.deleteInterview = function() {
+        console.log('ss')
+    }
+
     function DialogController($scope, $mdDialog, editedObject) {
         $scope.sessi = ['M', 'F']
         $scope.hide = function() {
@@ -309,7 +313,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     }
 
     $scope.sortInterviews = function() {
-        console.log($scope.sort.order)
+        // console.log($scope.sort.order)
+        console.log($scope.selected)
             //$scope.promise = Interview.getinterviews($scope.sort, success).$promise;
     };
 

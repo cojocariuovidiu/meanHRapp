@@ -7,10 +7,19 @@
     <input ng-model="searchInterview">
 </md-input-container>
 
+<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
+    <div class="md-toolbar-tools">
+        <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected {{selected[0]._id}} </span>
+        <span flex></span>
+        <md-button class="md-raised md-accent md-fab md-mini" ng-click="deleteInterview()">
+            <md-icon>delete</md-icon>
+        </md-button>
 
+    </div>
+</md-toolbar>
 
 <md-table-container>
-    <table md-table md-row-select md-progress="promise" ng-model="selected">
+    <table md-table md-row-select md-progress="promise" ng-model="selected" multiple>
         <!--<thead md-head md-order="sort.order" md-on-reorder="getDesserts">-->
         <thead md-head md-order="sort.order" md-on-reorder="sortInterviews()">
             <tr md-row>
