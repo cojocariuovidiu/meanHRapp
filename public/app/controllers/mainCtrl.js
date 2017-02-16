@@ -216,23 +216,21 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         }
     }
 
-    $scope.deleteInterview = function(idArray) {
+    // $scope.deleteInterview = function(idArray) {
+    //     idArray.forEach(function(element) {
+    //         console.log('deleteing:', element._id)
 
+    //         $http.delete('/api/interviews/' + element._id).then(function(response) {
+    //             console.log(response.data.success, response.data.message)
+    //             Interview.getinterviews().then(function(response) {
+    //                 app.interviewsList = response.data
+    //                     //console.log(app.interviewsList);
+    //             })
+    //         })
+    //     }, this);
 
-        idArray.forEach(function(element) {
-            console.log('deleteing:', element._id)
-
-            $http.delete('/api/interviews/' + element._id).then(function(response) {
-                console.log(response.data.success, response.data.message)
-                Interview.getinterviews().then(function(response) {
-                    app.interviewsList = response.data
-                        //console.log(app.interviewsList);
-                })
-            })
-        }, this);
-
-        $scope.selected = []
-    }
+    //     $scope.selected = []
+    // }
 
     function DialogController($scope, $mdDialog, editedObject) {
         $scope.sessi = ['M', 'F']
@@ -347,11 +345,38 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         }, 2000);
     }
 
+    //Detele Selected 
+    $scope.showConfirm = function() {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.confirm()
+            .title('Are you sure you want to delete?')
+            //.textContent('All of the banks have agreed to forgive you your debts.')
+            .ariaLabel('Danger')
+            //.targetEvent(ev)
+            .ok('OK')
+            .cancel('Cancel');
+
+        $mdDialog.show(confirm).then(function() {
+            var idArray = $scope.selected
+            idArray.forEach(function(element) {
+                // console.log('deleteing:', element._id)
+                $http.delete('/api/interviews/' + element._id).then(function(response) {
+                    console.log(response.data.success, response.data.message)
+                    Interview.getinterviews().then(function(response) {
+                        app.interviewsList = response.data
+                            //console.log(app.interviewsList);
+                    })
+                })
+            }, this);
+            $scope.selected = []
+        }, function() {
+            console.log('Dialog Canceled')
+        });
+    };
 
 
     /////////////////////////MENU
     $scope.toggleLeft = buildToggler('left');
-    $scope.toggleRight = buildToggler('right');
 
     function buildToggler(componentId) {
         return function() {

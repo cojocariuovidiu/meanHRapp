@@ -109,6 +109,10 @@ md-card:first-child {
     flex: 0 0 auto;
 }
 
+.label {
+    color: #707070;
+}
+
 
 /*LOGIN*/
 

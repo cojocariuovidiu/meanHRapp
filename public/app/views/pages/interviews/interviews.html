@@ -14,7 +14,8 @@
     <div class="md-toolbar-tools">
         <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected </span>
         <span flex></span>
-        <md-button class="md-raised md-accent md-fab md-mini" ng-click="deleteInterview(selected)">
+        <!--<md-button class="md-raised md-accent md-fab md-mini" ng-click="deleteInterview(selected)">-->
+        <md-button class="md-raised md-accent md-fab md-mini" ng-click="showConfirm()">
             <md-icon>delete</md-icon>
         </md-button>
 
@@ -72,5 +73,5 @@
         </tfoot>
     </table>
 </md-table-container>
-<md-table-pagination md-limit="sort.limit" md-limit-options="[5, 10, 15]" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
+<md-table-pagination md-limit="sort.limit" md-limit-options="[5, 10, 50,'ALL']" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
 <!--<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->
