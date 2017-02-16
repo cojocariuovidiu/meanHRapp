@@ -17,7 +17,7 @@
 
 var express = require('express')
 var app = express()
-var port = process.env.PORT || 9000
+var port = process.env.PORT || 3000
     //var morgan = require('morgan')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
