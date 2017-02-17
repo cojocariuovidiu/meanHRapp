@@ -16,11 +16,11 @@ angular.module('interviewServices', [])
     }
 
     //Interview.update(updateInterview)
-    interviewFactory.update = function(id) {
-        return $http.put('/api/getinterviews', id).then(function(response) {
-            console.log('Data updated status:', response.data.success)
-        })
-    }
+    // interviewFactory.update = function(id) {
+    //     return $http.put('/api/getinterviews', id).then(function(response) {
+    //         console.log('Data updated status:', response.data.success)
+    //     })
+    // }
 
     // interviewFactory.delete = function(id) {
     //     return $http.delete('/api/interviews/', id).then(function(response) {

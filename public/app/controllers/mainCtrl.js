@@ -94,6 +94,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     //     $('#myModal').modal('hide');
     // }
 
+    //Load interviews from DB On Page refresh or any page load
+    Interview.getinterviews().then(function(response) {
+        app.interviewsList = response.data
+    })
+
     //$rootScope.$on('$viewContentLoaded', function() {
     $rootScope.$on('$routeChangeStart', function() {
 
@@ -136,6 +141,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     app.loginData = null;
                     app.successMsg = false;
                     app.checkSession();
+
+                    //Load interviews from DB
+                    Interview.getinterviews().then(function(response) {
+                        app.interviewsList = response.data
+                    })
                 }, 1000)
 
             } else {
@@ -156,12 +166,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         $route.reload();
     }
 
-    ////////////////////InterviewController
-    //on load get data from db
-    Interview.getinterviews().then(function(response) {
-        app.interviewsList = response.data
-            //console.log(app.interviewsList);
-    })
 
     //submit new Interview
     // this.submitInterview = function(obj) {
@@ -215,22 +219,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             })
         }
     }
-
-    // $scope.deleteInterview = function(idArray) {
-    //     idArray.forEach(function(element) {
-    //         console.log('deleteing:', element._id)
-
-    //         $http.delete('/api/interviews/' + element._id).then(function(response) {
-    //             console.log(response.data.success, response.data.message)
-    //             Interview.getinterviews().then(function(response) {
-    //                 app.interviewsList = response.data
-    //                     //console.log(app.interviewsList);
-    //             })
-    //         })
-    //     }, this);
-
-    //     $scope.selected = []
-    // }
 
     function DialogController($scope, $mdDialog, editedObject) {
         $scope.sessi = ['M', 'F']
