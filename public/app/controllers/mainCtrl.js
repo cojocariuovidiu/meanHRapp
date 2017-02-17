@@ -136,7 +136,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 app.successMsg = data.data.message + '...Redirecting';
                 $timeout(function() {
                     //Redirect To HomePage
-                    $location.path('/')
+                    $location.path('/interviews')
                     app.isLoading = false
                     app.loginData = null;
                     app.successMsg = false;
