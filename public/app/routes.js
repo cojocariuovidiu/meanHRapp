@@ -3,7 +3,8 @@ var app = angular.module('appRoutes', ['ngRoute'])
 .config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: 'app/views/pages/home.html'
+            templateUrl: 'app/views/pages/home.html',
+            authenticated: true
         })
         // .when('/about', {
         //     templateUrl: 'app/views/pages/about.html',
@@ -13,7 +14,7 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/users/register.html',
             controller: 'regCtrl',
             controllerAs: 'register',
-            authenticated: false
+            authenticated: true
         })
         .when('/login', {
             templateUrl: 'app/views/pages/users/login.html',
@@ -59,16 +60,16 @@ var app = angular.module('appRoutes', ['ngRoute'])
 app.run(['$rootScope', 'Auth', '$location', function($rootScope, Auth, $location) {
     $rootScope.$on('$routeChangeStart', function(event, next, current) {
         if (next.$$route.authenticated == true) {
-            //console.log('needs to be auth');
+            console.log('route restricted');
             if (!Auth.isLoggedIn()) {
-                event.preventDefault(); //prevent from navigating
+                //event.preventDefault(); //prevent from navigating
                 $location.path('/login')
             }
 
         } else if (next.$$route.authenticated == false) {
-            //console.log('does not need to be auth');
+            console.log('route allowed');
             if (Auth.isLoggedIn()) {
-                event.preventDefault();
+                // event.preventDefault();
                 $location.path('/')
             }
         }
