@@ -4,7 +4,7 @@ var InterviewSchema = new Schema({
     dataapplicazione: { type: Date },
     nomecognome: { type: String },
     sesso: { type: String, uppercase: true },
-    eta: { type: Number },
+    eta: { type: String },
     tel: { type: String },
     esito1: { type: String },
     esito2: { type: String },

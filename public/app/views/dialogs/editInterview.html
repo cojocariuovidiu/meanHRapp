@@ -103,9 +103,9 @@
                     <div layout-gt-sm="row">
                         <div ng-if="editedObject.username">
                             <input ng-click=Browse() class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
-                            <label for="input-file-id" class="md-button md-raised">Browse</label>
+                            <label for="input-file-id" class="md-button md-accent md-raised">Browse</label>
 
-                            <md-button ng-click="SubmitUpload()" ng-disabled="!browseClicked" class="md-raised md-accent">
+                            <md-button ng-click="SubmitUpload()" ng-disabled="!browseClicked" class="md-raised ">
                                 Upload CV
                             </md-button>
                             <div ng-show="message">

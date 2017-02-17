@@ -249,7 +249,8 @@ module.exports = function(router) {
 
             }, { new: true }, function(err) {
                 if (err) {
-                    console.log('update failed');
+                    console.log('update failed (no CV)');
+                    console.log(err)
                     res.json({ success: false })
                 } else {
                     console.log('update success (no CV)');
@@ -275,7 +276,8 @@ module.exports = function(router) {
 
             }, { new: true }, function(err) {
                 if (err) {
-                    console.log('update failed');
+                    console.log('update failed (with CV)');
+                    console.log(err)
                     res.json({ success: false })
                 } else {
                     console.log('update success (with CV)');
