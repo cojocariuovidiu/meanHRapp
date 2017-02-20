@@ -16,7 +16,7 @@ var storage = multer.diskStorage({
             err.code = 'filetype'
             return cb(err)
         } else {
-            cv = file.originalname + '_' + Date.now()
+            cv = Date.now() + '_' + file.originalname
             cb(null, cv)
         }
     }
