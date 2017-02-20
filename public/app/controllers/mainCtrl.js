@@ -195,7 +195,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                         },
                         parent: angular.element(document.body),
                         //targetEvent: ev,
-                        clickOutsideToClose: true,
+                        clickOutsideToClose: false,
                         fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
                     })
                     // .then(function(answer) {
@@ -214,7 +214,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 },
                 parent: angular.element(document.body),
                 //targetEvent: ev,
-                clickOutsideToClose: true,
+                clickOutsideToClose: false,
                 fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
             })
         }
