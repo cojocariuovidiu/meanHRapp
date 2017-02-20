@@ -207,6 +207,22 @@ module.exports = function(router) {
         })
     })
 
+    router.post('/getInterviewsFiltered', function(req, res) {
+        var start = new Date(req.body.year - 1, 11, 32);
+        var end = new Date(req.body.year, 11, 32);
+
+        // console.log(start)
+        // console.log(end)
+        console.log('sorting by:', req.body.year)
+
+        Interview.find({
+            dataapplicazione: { $gte: start, $lt: end }
+        }, function(err, interviews) {
+            res.send(interviews)
+        })
+
+    })
+
     router.delete('/interviews/:id', function(req, res) {
         // Interview.findOneAndRemove({_id: req.params.id})
         console.log('id sent:', req.params.id)

@@ -329,7 +329,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         //$scope.promise = Interview.getinterviews($scope.sort, success).$promise;
     };
 
-
     $scope.loadStuff = function() {
         $scope.promise = $timeout(function() {
             // loading
@@ -363,10 +362,16 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                                 //console.log(app.interviewsList);
                         })
                     })
-                }, this);
+                });
                 $scope.selected = []
             });
     };
+
+    $scope.getInterviewsFiltered = function(year) {
+        $http.post('/api/getInterviewsFiltered', { year: year }).then(function(response) {
+            app.interviewsList = response.data
+        }, this)
+    }
 
 
     /////////////////////////MENU
