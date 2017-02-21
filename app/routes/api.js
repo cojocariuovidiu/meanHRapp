@@ -4,6 +4,7 @@ var jwt = require('jsonwebtoken')
 var secret = 'harrypotter'
 var mongoose = require('mongoose')
 var multer = require('multer')
+var moment = require('moment')
 
 var cv = ''
 var storage = multer.diskStorage({
@@ -207,6 +208,7 @@ module.exports = function(router) {
         })
     })
 
+    //http://127.0.0.1:3000/api/getInterviewsFiltered
     router.post('/getInterviewsFiltered', function(req, res) {
         var start = new Date(req.body.year - 1, 11, 32);
         var end = new Date(req.body.year, 11, 32);
@@ -215,12 +217,26 @@ module.exports = function(router) {
         // console.log(end)
         console.log('sorting by:', req.body.year)
 
-        Interview.find({
-            dataapplicazione: { $gte: start, $lt: end }
-        }, function(err, interviews) {
+        Interview.find({ dataapplicazione: { $gte: start, $lt: end } }, function(err, interviews) {
             res.send(interviews)
         })
 
+    })
+
+    //http://127.0.0.1:3000/api/getRangeFilter
+    router.post('/getRangeFilter', function(req, res) {
+        console.log(req.body.from)
+        console.log(req.body.to)
+
+        var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
+        var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
+
+        console.log(momentFrom)
+        console.log(momentTo)
+
+        Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function(err, interviews) {
+            res.send(interviews)
+        })
     })
 
     router.delete('/interviews/:id', function(req, res) {

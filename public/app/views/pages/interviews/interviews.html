@@ -9,6 +9,18 @@
         <input ng-model="searchInterview">
     </md-input-container>
 
+    <!--Date Picker-->
+    <md-input-container>
+        <label>From</label>
+        <md-datepicker ng-model="main.fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
+    </md-input-container>
+    <md-input-container>
+        <label>To</label>
+        <md-datepicker ng-model="main.toDate" md-current-view="year" aria-label="fromDate" aria-label="toDate"></md-datepicker>
+    </md-input-container>
+    <md-button class="md-raised md-accent md-fab md-mini" ng-click="RangeFilter()">
+        Go
+    </md-button>
     <md-button class="md-raised md-accent md-fab md-mini" ng-click="getInterviewsFiltered(2016)">
         2016
     </md-button>
@@ -80,5 +92,5 @@
         </tfoot>
     </table>
 </md-table-container>
-<md-table-pagination md-limit="sort.limit" md-limit-options="[5, 10, 50,'ALL']" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
+<md-table-pagination md-limit="sort.limit" md-limit-options="['ALL',5, 10, 50]" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
 <!--<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->

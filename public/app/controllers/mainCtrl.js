@@ -308,7 +308,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
     $scope.sort = {
         order: 'dataapplicazione',
-        limit: '5',
+        limit: 'ALL',
         page: 1
     };
 
@@ -373,6 +373,19 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         }, this)
     }
 
+    $scope.RangeFilter = function() {
+        console.log(app.fromDate)
+        console.log(app.toDate)
+
+        if (app.fromDate == undefined || app.fromDate == null || app.toDate == undefined || app.toDate == null) {
+            showToast('Select From - To Period')
+        } else {
+            $http.post('/api/getRangeFilter', { from: app.fromDate, to: app.toDate }).then(function(response) {
+                app.interviewsList = response.data
+            }, this)
+        }
+    }
+
 
     /////////////////////////MENU
     $scope.toggleLeft = buildToggler('left');
@@ -411,16 +424,28 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         }
     ];
 
-    // var showToast = function() {
-    //     $mdToast.show(
-    //         $mdToast.simple()
-    //         .textContent('Hello World!')
-    //         .hideDelay(3000)
-    //         .highlightAction(true)
-    //         .capsule(true)
-    //         // .theme(string)
-    //     );
-    // }
+    var showToast = function(message) {
+        $mdToast.show(
+            $mdToast.simple()
+            .action('OK')
+            .textContent(message)
+            .hideDelay(3000)
+            .highlightAction(true)
+            .capsule(true)
+            .position('top right')
+            // .theme(string)
+        );
+        // $mdToast.show(
+        //     $mdToast.simple()
+        //     .textContent('Error!')
+        //     .highlightAction(true)
+        //     .parent(document.querySelectorAll('#toaster'))
+        //     .position('bottom right')
+        //     .hideDelay(3000)
+        //     .action('OK')
+        //     //.action('x')
+        // );
+    }
 
 })
 
