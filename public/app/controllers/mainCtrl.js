@@ -95,7 +95,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     // }
 
     //Load interviews from DB On Page refresh or any page load
-    Interview.getinterviews().then(function(response) {
+    Interview.getLast7Days().then(function(response) {
         app.interviewsList = response.data
     })
 

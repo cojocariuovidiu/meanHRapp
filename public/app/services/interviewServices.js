@@ -15,6 +15,10 @@ angular.module('interviewServices', [])
         })
     }
 
+    interviewFactory.getLast7Days = function() {
+        return $http.get('/api/getLast7Days')
+    }
+
     //Interview.update(updateInterview)
     // interviewFactory.update = function(id) {
     //     return $http.put('/api/getinterviews', id).then(function(response) {

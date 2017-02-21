@@ -195,6 +195,20 @@ module.exports = function(router) {
         })
     })
 
+    //http://127.0.0.1:3000/api/getLast7Days
+    router.get('/getLast7Days', function(req, res) {
+        var currentDate = moment().format("YYYY/MM/DD");
+        var sevenDays = moment().subtract(7, 'd').format('YYYY/MM/DD');
+        console.log(currentDate)
+        console.log(sevenDays)
+
+        Interview.find({ dataapplicazione: { $gte: sevenDays, $lte: currentDate } }, function(err, interviews) {
+            res.send(interviews)
+        })
+    })
+
+
+
     //http://127.0.0.1:3000/api/getinterview/:id
     router.get('/getinterview/:id', function(req, res) {
 
