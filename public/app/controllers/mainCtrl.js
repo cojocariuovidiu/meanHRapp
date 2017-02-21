@@ -273,9 +273,10 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             if (isEmpty(editedObject)) {
                 console.log('new interview:', newInterview, app.username)
                 Interview.create({ newInterview: newInterview, username: app.username }).then(function() {
-                    Interview.getinterviews().then(function(response) {
-                        app.interviewsList = response.data
-                    })
+                    // Interview.getinterviews().then(function(response) {
+                    //     app.interviewsList = response.data
+                    // })
+                    checkDisplaying()
                     $mdDialog.hide();
                 })
             } else {
@@ -288,10 +289,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 }).then(function(response) {
                     console.log('Data updated status:', newInterview)
                 }).then(function(response) {
-                    Interview.getinterviews().then(function(response) {
-                        app.interviewsList = response.data
-                            //console.log(app.interviewsList);
-                    })
+                    // Interview.getinterviews().then(function(response) {
+                    //     app.interviewsList = response.data
+                    //         //console.log(app.interviewsList);
+                    // })
+                    checkDisplaying()
                     $mdDialog.hide();
                 })
             }
