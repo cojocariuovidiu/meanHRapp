@@ -143,14 +143,14 @@ a {
     margin-top: 10px;
 }
 
-#toaster {
-    position: fixed;
-    top: 56px;
-    height: 48px;
-    left: 0;
-    width: 100%;
-    z-index: 10000;
+
+/*.bottomSheetdemoBasicUsage md-toast .md-toast-content {
+    background-color: #B14141;
 }
+
+.bottomSheetdemoBasicUsage md-toast>* {
+    font-weight: bolder;
+}*/
 
 
 /*.bumpmenu {

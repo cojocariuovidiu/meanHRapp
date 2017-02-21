@@ -94,9 +94,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     //     $('#myModal').modal('hide');
     // }
 
+
     //Load interviews from DB On Page refresh or any page load
     Interview.getLast7Days().then(function(response) {
         app.interviewsList = response.data
+        $scope.displaying = 'last 7 days' + ' (Total: ' + app.interviewsList.length + ' )'
     })
 
     //$rootScope.$on('$viewContentLoaded', function() {
@@ -371,12 +373,14 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         if (option == 'All') {
             Interview.getinterviews().then(function(response) {
                 app.interviewsList = response.data
+                $scope.displaying = option + ' (Total: ' + app.interviewsList.length + ' )'
             })
             console.log('Displaying', option)
         } else if (option == 2017 || option == 2016) {
             console.log('Displaying', option)
             $http.post('/api/getInterviewsFiltered', { year: option }).then(function(response) {
                 app.interviewsList = response.data
+                $scope.displaying = option + ' (Total: ' + app.interviewsList.length + ' )'
             }, this)
         }
     }
@@ -385,8 +389,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         if (app.fromDate == undefined || app.fromDate == null || app.toDate == undefined || app.toDate == null) {
             showToast('Select From - To Period')
         } else {
+            var momentFrom = moment(app.fromDate).format('MMM/D/YYYY')
+            var momentTo = moment(app.toDate).format('MMM/D/YYYY')
             $http.post('/api/getRangeFilter', { from: app.fromDate, to: app.toDate }).then(function(response) {
                 app.interviewsList = response.data
+                $scope.displaying = momentFrom + ' - ' + momentTo + ' (Total: ' + app.interviewsList.length + ' )'
             }, this)
         }
     }
