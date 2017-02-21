@@ -399,10 +399,18 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             console.log('check All')
             Interview.getinterviews().then(function(response) {
                 app.interviewsList = response.data
+                displayingObject = {
+                    message: option + ' (Total: ' + app.interviewsList.length + ' )',
+                    activator: 'All'
+                }
+                $scope.displaying = displayingObject.message
             })
         } else if (displayingObject.activator == 'last7Days') {
             console.log('check last 7 days')
             RunLast7Days()
+        } else if (displayingObject.activator == 'Range') {
+            console.log('check Range')
+            $scope.RangeFilter()
         } else {
             console.log('check unknown')
         }
