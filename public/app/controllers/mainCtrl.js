@@ -367,16 +367,21 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             });
     };
 
-    $scope.getInterviewsFiltered = function(year) {
-        $http.post('/api/getInterviewsFiltered', { year: year }).then(function(response) {
-            app.interviewsList = response.data
-        }, this)
+    $scope.getInterviewsFiltered = function(option) {
+        if (option == 'All') {
+            Interview.getinterviews().then(function(response) {
+                app.interviewsList = response.data
+            })
+            console.log('Displaying', option)
+        } else if (option == 2017 || option == 2016) {
+            console.log('Displaying', option)
+            $http.post('/api/getInterviewsFiltered', { year: option }).then(function(response) {
+                app.interviewsList = response.data
+            }, this)
+        }
     }
 
     $scope.RangeFilter = function() {
-        console.log(app.fromDate)
-        console.log(app.toDate)
-
         if (app.fromDate == undefined || app.fromDate == null || app.toDate == undefined || app.toDate == null) {
             showToast('Select From - To Period')
         } else {
@@ -429,7 +434,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             $mdToast.simple()
             .action('OK')
             .textContent(message)
-            .hideDelay(3000)
+            .hideDelay(2000)
             .highlightAction(true)
             .capsule(true)
             .position('top right')
