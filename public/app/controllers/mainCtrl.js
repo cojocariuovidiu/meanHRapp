@@ -99,7 +99,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     var displayingObject = {}
 
     //Load interviews from DB On Page refresh or any page load
-    var RunLast7Days = function() {
+    $scope.RunLast7Days = function() {
         Interview.getLast7Days().then(function(response) {
             app.interviewsList = response.data
 
@@ -111,7 +111,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             $scope.displaying = displayingObject.message
         })
     }
-    RunLast7Days()
+    $scope.RunLast7Days()
 
 
     //$rootScope.$on('$viewContentLoaded', function() {
@@ -407,7 +407,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             })
         } else if (displayingObject.activator == 'last7Days') {
             console.log('check last 7 days')
-            RunLast7Days()
+            $scope.RunLast7Days()
         } else if (displayingObject.activator == 'Range') {
             console.log('check Range')
             $scope.RangeFilter()
