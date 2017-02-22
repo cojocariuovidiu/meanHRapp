@@ -194,11 +194,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     //     Interview.create({ newInterview: app.newInterview, username: app.username })
     // }
 
-    //highlight cliecked row using ng-class="{selected : item._id === idSelectedRow._id}"
-    $scope.idSelectedRow = null;
-    $scope.clickedItem = function(item) {
-        $scope.idSelectedRow = item;
-    }
 
     //sorting defaults
     $scope.sortType = 'dataapplicazione'; // set the default sort type
@@ -324,10 +319,31 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             })
         }
 
+        $scope.showConfirm = function() {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                .title('Are you sure you want to delete?')
+                //.textContent('All of the banks have agreed to forgive you your debts.')
+                .ariaLabel('Danger')
+                //.targetEvent(ev)
+                .ok('Cancel')
+                .cancel('Ok');
+
+            $mdDialog.show(confirm).then(
+                function() {
+                    console.log('Dialog Canceled')
+                },
+                function() {
+                    $http.delete('/api/interviews/' + editedObject._id).then(function(response) {
+                        //console.log(response.data.success, response.data.message)
+                        checkDisplaying()
+                    })
+                });
+        };
+
     }
 
     //MD TABLE ///
-    $scope.selected = [];
 
     $scope.sort = {
         order: 'dataapplicazione',
@@ -358,34 +374,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             console.log('loading stuff')
         }, 2000);
     }
-
-    //Detele Selected 
-    $scope.showConfirm = function() {
-        // Appending dialog to document.body to cover sidenav in docs app
-        var confirm = $mdDialog.confirm()
-            .title('Are you sure you want to delete?')
-            //.textContent('All of the banks have agreed to forgive you your debts.')
-            .ariaLabel('Danger')
-            //.targetEvent(ev)
-            .ok('Cancel')
-            .cancel('Ok');
-
-        $mdDialog.show(confirm).then(
-            function() {
-                console.log('Dialog Canceled')
-            },
-            function() {
-                var idArray = $scope.selected
-                idArray.forEach(function(element) {
-                    // console.log('deleteing:', element._id)
-                    $http.delete('/api/interviews/' + element._id).then(function(response) {
-                        console.log(response.data.success, response.data.message)
-                    })
-                });
-                $scope.selected = []
-                checkDisplaying()
-            });
-    };
 
     function checkDisplaying() {
 

@@ -132,25 +132,39 @@ table.md-table td.md-cell {
 
 table.md-table td.md-cell:last-child,
 table.md-table th.md-column:last-child {
+    padding: 0px;
+}
+
+table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
     padding: 0px !important;
 }
 
 
 /*clear padding for select to delete checkbox*/
 
-table.md-table.md-row-select td.md-cell:first-child,
-table.md-table.md-row-select th.md-column:first-child {
+table.md-table td.md-cell:first-child,
+table.md-table th.md-column:first-child {
     width: 10px;
     padding: 0 0 0 5px;
+}
+
+table.md-table:not(.md-row-select) td.md-cell:first-child,
+table.md-table:not(.md-row-select) th.md-column:first-child {
+    padding: 0 0px;
+}
+
+table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2),
+table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
+    padding: 0px;
 }
 
 
 /*clear padding for cv icon*/
 
-table.md-table.md-row-select td.md-cell:nth-child(2),
-table.md-table.md-row-select th.md-column:nth-child(2) {
+
+/*table.md-table:not(.md-row-select) td.md-cell:first-child {
     padding: 5px;
-}
+}*/
 
 table.md-table th.md-column {
     font-size: 11px;

@@ -36,21 +36,21 @@
     <md-label md-accent>Displaying: {{displaying}}</md-label>
 </md-row>
 
-<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
+<!--<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
     <div class="md-toolbar-tools">
         <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected </span>
         <span flex></span>
-        <!--<md-button class="md-raised md-accent md-fab md-mini" ng-click="deleteInterview(selected)">-->
         <md-button class="md-raised md-accent md-fab md-mini" ng-click="showConfirm()">
             <md-icon>delete</md-icon>
         </md-button>
 
     </div>
-</md-toolbar>
+</md-toolbar>-->
 
 <md-table-container>
     <!--<multiple>-->
-    <table md-table md-row-select md-progress="promise" ng-model="selected">
+    <!--<table md-table md-row-select md-progress="promise" ng-model="selected">-->
+    <table md-table md-progress="promise" ng-model="selected">
         <thead md-head md-order="sort.order" md-on-reorder="promiseInterviews()">
             <tr md-row>
                 <th md-column md-order-by="cv">CV</th>
@@ -70,7 +70,8 @@
             </tr>
         </thead>
         <tbody md-body>
-            <tr md-row md-select="item" md-select-id="name" ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">
+            <!--<tr md-row md-select="item" md-select-id="name" ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">-->
+            <tr md-row ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">
                 <td md-cell><i ng-if="item.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.cv}}">face</a></i></td>
                 <td md-cell>{{ item.dataapplicazione | date}}</td>
                 <td md-cell>{{ item.nomecognome }}</td>
