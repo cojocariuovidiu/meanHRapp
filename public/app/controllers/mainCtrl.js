@@ -113,7 +113,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     }
     $scope.RunLast7Days()
 
-
     //$rootScope.$on('$viewContentLoaded', function() {
     $rootScope.$on('$routeChangeStart', function() {
 
@@ -157,16 +156,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     app.successMsg = false;
                     app.checkSession();
 
-                    //Load last 7 days on login
-                    Interview.getLast7Days().then(function(response) {
-                        app.interviewsList = response.data
-                        displayingObject = {
-                            message: 'last 7 days' + ' (Total: ' + app.interviewsList.length + ' )',
-                            activator: 'last7Days'
-                        }
-
-                        $scope.displaying = displayingObject.message
-                    })
+                    $scope.RunLast7Days()
                 }, 1000)
 
             } else {
@@ -415,7 +405,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 }
 
                 $scope.displaying = displayingObject.message
-
+                    // showToast('Displaying ' + option + ' Total: ' + app.interviewsList.length)
             })
             console.log('Displaying', option)
         } else if (option == 2017 || option == 2016) {
@@ -433,6 +423,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     //     console.log('promisse')
                     // }, 2000);
                 $scope.promise = app.interviewsList
+                    // showToast('Displaying ' + option + ' Total: ' + app.interviewsList.length)
             }, this)
         }
     }

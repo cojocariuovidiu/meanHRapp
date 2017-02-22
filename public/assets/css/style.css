@@ -58,6 +58,11 @@
 }
 
 
+/*Table Toolbar*/
+
+.sortToolbar {}
+
+
 /*TABLE*/
 
 th {
@@ -80,10 +85,11 @@ th {
     max-width: 50px;
 }
 
-body,
+
+/*body,
 md-content {
     background-color: #f5f5f5 !important;
-}
+}*/
 
 body>md-toolbar {
     z-index: 3;

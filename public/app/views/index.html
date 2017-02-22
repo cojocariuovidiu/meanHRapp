@@ -82,15 +82,14 @@
                 </md-list>
             </md-content>
         </md-sidenav>
-        <md-button ng-if="main.isLoggedIn" ng-click="toggleLeft()" class="md-primary md-fab md-mini material-icons menuSilder">
-            <md-icon>menu</md-icon>
-        </md-button>
-
     </section>
 
-    <div class="bumpmenu">
-        <div ng-view></div>
-    </div>
+    <md-button ng-if="main.isLoggedIn" ng-click="toggleLeft()" class="md-primary md-fab md-mini material-icons menuSilder">
+        <md-icon>menu</md-icon>
+    </md-button>
+
+    <div ng-view></div>
+
 
     <!--jQuery, Bootstrap-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
