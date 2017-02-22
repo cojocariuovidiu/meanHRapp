@@ -432,8 +432,13 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         if (app.fromDate == undefined || app.fromDate == null || app.toDate == undefined || app.toDate == null) {
             showToast('Select From - To Period')
         } else {
+            console.log('from: ', app.fromDate)
+            console.log('to', app.toDate)
             var momentFrom = moment(app.fromDate).format('MMM/D/YYYY')
             var momentTo = moment(app.toDate).format('MMM/D/YYYY')
+            console.log('momentfrom', momentFrom)
+            console.log('momentto', momentTo)
+
             $http.post('/api/getRangeFilter', { from: app.fromDate, to: app.toDate }).then(function(response) {
                 app.interviewsList = response.data
 
