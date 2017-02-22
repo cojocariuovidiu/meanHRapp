@@ -55,8 +55,8 @@
                     <th md-column md-order-by="cv">CV</th>
                     <th md-column md-order-by="dataapplicazione"><span>Data app</span></th>
                     <th md-column md-order-by="nomecognome"><span>Nome e cognome</span></th>
-                    <th md-column md-order-by="sesso">Sesso</th>
-                    <th md-column md-order-by="eta">Eta'</th>
+                    <th class="sesso" md-column md-order-by="sesso">Sesso</th>
+                    <th class="eta" md-column md-order-by="eta">Eta'</th>
                     <th class="tel" md-column md-order-by="tel">Telefono</th>
                     <th md-column md-order-by="esito1">Esito 1 chiamata</th>
                     <th md-column md-order-by="esito2">Esito 2 chiamata</th>
@@ -74,8 +74,8 @@
                     <td md-cell><i ng-if="item.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.cv}}">face</a></i></td>
                     <td md-cell>{{ item.dataapplicazione | date}}</td>
                     <td md-cell>{{ item.nomecognome }}</td>
-                    <td md-cell>{{ item.sesso }}</td>
-                    <td md-cell>{{ item.eta }}</td>
+                    <td class="sesso" md-cell>{{ item.sesso }}</td>
+                    <td class="eta" md-cell>{{ item.eta }}</td>
                     <td class="tel" md-cell>{{ item.tel }}</td>
                     <td md-cell>{{ item.esito1 }}</td>
                     <td md-cell>{{ item.esito2 }}</td>
@@ -100,5 +100,6 @@
         </table>
     </md-table-container>
 </md-card>
+
 <!--<md-table-pagination md-limit="sort.limit" md-limit-options="['ALL',5, 10, 50]" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->
 <!--<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->

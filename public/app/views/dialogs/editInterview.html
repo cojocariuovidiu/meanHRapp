@@ -20,7 +20,7 @@
                     <div layout-gt-sm="row">
                         <md-input-container aria-label="MD Input Container" class="md-block" flex-gt-sm="">
                             <label>Nome e cognome</label>
-                            <input aria-label="nomecognomeInput" ng-model="newInterview.nomecognome">
+                            <input required aria-label="nomecognomeInput" ng-model="newInterview.nomecognome">
                         </md-input-container>
 
                         <!--<md-input-container class="md-block" flex-gt-sm="">
@@ -30,7 +30,7 @@
 
                         <md-input-container>
                             <label>Data Applicazione</label>
-                            <md-datepicker ng-model="newInterview.dataapplicazione" aria-label="dataapplicazioneInput"></md-datepicker>
+                            <md-datepicker required ng-model="newInterview.dataapplicazione" aria-label="dataapplicazioneInput"></md-datepicker>
                         </md-input-container>
                     </div>
 
@@ -93,7 +93,7 @@
                         </md-input-container>
                         <md-input-container class="md-block">
                             <label>Email</label>
-                            <input ng-model="newInterview.email" aria-label="emailInput" />
+                            <input type="email" ng-model="newInterview.email" aria-label="emailInput" />
 
                             <!--<input ng-mode="newInterview.email" type="email"minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
                             <div ng-messages="projectForm.clientEmail.$error" role="alert">
@@ -119,6 +119,8 @@
                             <md-button ng-click="SubmitUpload()" ng-disabled="!browseClicked" class="md-raised ">
                                 Upload CV
                             </md-button>
+                            <i ng-if="newInterview.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newInterview.cv}}">face</a></i>
+
                             <div ng-show="message">
                                 <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">{{file.upload.name}} </a> {{message}}
                             </div>
@@ -142,7 +144,7 @@
             <label for="input-file-id" class="md-button md-raised md-primary">Upload CV</label>
             <input ng-click="UploadFile(uploadCV)" ng-model="uploadCV" class="ng-hide" id="input-file-id" multiple type="file" />
             -->
-            <md-button ng-click="showConfirm()" class="md-raised">
+            <md-button ng-if="editedObject.username" ng-click="showConfirm()" class="md-raised">
                 Delete
             </md-button>
             <span flex></span>
