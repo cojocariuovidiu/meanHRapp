@@ -165,6 +165,17 @@ table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+
 }
 
 
+/*toolbar color reset to white*/
+
+md-toolbar.md-table-toolbar:not(.md-menu-toolbar).md-default .md-button {
+    color: white;
+}
+
+.md-toolbar-tools {
+    font-size: 13px;
+}
+
+
 /*clear padding for cv icon*/
 
 

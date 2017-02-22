@@ -1,5 +1,10 @@
 angular.module('mainController', ['authServices', 'userServices', 'interviewServices', 'ngMaterial', 'md.data.table'])
 
+//config
+.config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('docs-dark')
+})
+
 .controller('mainCtrl', function($mdToast, uploadFile, $mdSidenav, $mdDialog, Interview, Auth, $scope, $http, $timeout, $location, $rootScope, $window, $interval, $route, User, AuthToken) { //Auth from authServices
     var app = this;
 
@@ -336,8 +341,9 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     //MD TABLE ///
 
     $scope.sort = {
+        //defaults
         order: 'dataapplicazione',
-        limit: 'ALL',
+        limit: '5',
         page: 1
     };
 
@@ -360,7 +366,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
     $scope.loadStuff = function() {
         $scope.promise = $timeout(function() {
-            // loading
             console.log('loading stuff')
         }, 2000);
     }
@@ -452,6 +457,9 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         }
     }
 
+    $scope.ServerSearch = function(data) {
+        console.log(data)
+    }
 
     /////////////////////////MENU
     $scope.toggleLeft = buildToggler('left');
@@ -518,13 +526,10 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         // );
     }
 
-})
-
-
-//config
-.config(function($mdThemingProvider) {
-    $mdThemingProvider.theme('docs-dark')
 });
+
+
+
 
 // .config(function($mdThemingProvider) {
 //   $mdThemingProvider.theme('default')
