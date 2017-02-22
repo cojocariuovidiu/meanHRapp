@@ -342,7 +342,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
     $scope.sort = {
         //defaults
-        order: 'dataapplicazione',
+        order: '-dataapplicazione',
         limit: '5',
         page: 1
     };
