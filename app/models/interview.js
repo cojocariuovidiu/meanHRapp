@@ -9,6 +9,8 @@ var InterviewSchema = new Schema({
     esito1: { type: String },
     esito2: { type: String },
     esitocolloquio: { type: String },
+    colloquio_sostenuto_da: { type: String },
+    responsabile_colloquio: { type: String },
     sito: { type: String },
     email: { type: String },
     note: { type: String },
