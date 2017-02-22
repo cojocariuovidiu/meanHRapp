@@ -114,8 +114,52 @@ md-card:first-child {
     color: #707070;
 }
 
+table.md-table.md-row-select th.md-column:nth-child(n+3):nth-last-child(n+2) {
+    padding: 0px !important;
+}
 
-/*LOGIN*/
+table.md-table.md-row-select td.md-cell:nth-child(n+3):nth-last-child(n+2),
+table.md-table.md-row-select th.md-column:nth-child(n+3):nth-last-child(n+2) {
+    padding: 0px !important;
+}
+
+table.md-table td.md-cell {
+    font-size: 12px;
+}
+
+
+/*clear padding on Edit button*/
+
+table.md-table td.md-cell:last-child,
+table.md-table th.md-column:last-child {
+    padding: 0px !important;
+}
+
+
+/*clear padding for select to delete checkbox*/
+
+table.md-table.md-row-select td.md-cell:first-child,
+table.md-table.md-row-select th.md-column:first-child {
+    width: 10px;
+    padding: 0 0 0 5px;
+}
+
+
+/*clear padding for cv icon*/
+
+table.md-table.md-row-select td.md-cell:nth-child(2),
+table.md-table.md-row-select th.md-column:nth-child(2) {
+    padding: 5px;
+}
+
+table.md-table th.md-column {
+    font-size: 11px;
+}
+
+.tel {
+    max-width: 70px;
+    word-wrap: break-word;
+}
 
 a {
     text-decoration: none !important;

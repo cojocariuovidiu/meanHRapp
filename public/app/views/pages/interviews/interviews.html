@@ -53,19 +53,19 @@
     <table md-table md-row-select md-progress="promise" ng-model="selected">
         <thead md-head md-order="sort.order" md-on-reorder="promiseInterviews()">
             <tr md-row>
-                <th md-column>CV</th>
-                <th md-column md-order-by="dataapplicazione"><span>Data applicazione</span></th>
+                <th md-column md-order-by="cv">CV</th>
+                <th md-column md-order-by="dataapplicazione"><span>Data app</span></th>
                 <th md-column md-order-by="nomecognome"><span>Nome e cognome</span></th>
-                <th md-column>Sesso</th>
-                <th md-column md-numeric>Eta'</th>
-                <th md-column md-numeric>Numero di telefono</th>
-                <!--<th md-column >Esito 1 chiamata</th>
-                    <th md-column >Esito 2 chiamata</th>
-                    <th md-column >Note</th>
-                    <th md-column >Esito colloquio</th>-->
-                <th md-column>Sito</th>
-                <th md-column>E-mail</th>
-                <th md-column>Created by</th>
+                <th md-column md-order-by="sesso">Sesso</th>
+                <th md-column md-order-by="eta">Eta'</th>
+                <th class="tel" md-column md-order-by="tel">Telefono</th>
+                <th md-column md-order-by="esito1">Esito 1 chiamata</th>
+                <th md-column md-order-by="esito2">Esito 2 chiamata</th>
+                <th md-column md-order-by="note">Note</th>
+                <th md-column md-order-by="esitocolloquio">Esito colloquio</th>
+                <th md-column md-order-by="sito">Sito</th>
+                <th md-column md-order-by="email">E-mail</th>
+                <th md-column md-order-by="username">Created by</th>
                 <th md-column>Action</th>
             </tr>
         </thead>
@@ -76,11 +76,11 @@
                 <td md-cell>{{ item.nomecognome }}</td>
                 <td md-cell>{{ item.sesso }}</td>
                 <td md-cell>{{ item.eta }}</td>
-                <td md-cell>{{ item.tel }}</td>
-                <!--<td md-cell>{{ item.esito1 }}</td>
-                    <td md-cell>{{ item.esito2 }}</td>
-                    <td md-cell>{{ item.note }}</td>
-                    <td md-cell>{{ item.esitocolloquio }}</td>-->
+                <td class="tel" md-cell>{{ item.tel }}</td>
+                <td md-cell>{{ item.esito1 }}</td>
+                <td md-cell>{{ item.esito2 }}</td>
+                <td md-cell>{{ item.note }}</td>
+                <td md-cell>{{ item.esitocolloquio }}</td>
                 <td md-cell>{{ item.sito }}</td>
                 <td md-cell>{{ item.email }}</td>
                 <td md-cell>{{ item.username }}</td>
@@ -94,7 +94,7 @@
             <tr md-row>
                 <td md-cell></td>
                 <td md-cell><strong>Total: </strong>{{main.interviewsList.length}}</td>
-                <td md-cell colspan="9"></td>
+                <td md-cell colspan="13"></td>
             </tr>
         </tfoot>
     </table>

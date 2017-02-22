@@ -427,6 +427,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 }
 
                 $scope.displaying = displayingObject.message
+
             })
             console.log('Displaying', option)
         } else if (option == 2017 || option == 2016) {
@@ -440,6 +441,10 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 }
 
                 $scope.displaying = displayingObject.message
+                    // $scope.promise = $timeout(function() {
+                    //     console.log('promisse')
+                    // }, 2000);
+                $scope.promise = app.interviewsList
             }, this)
         }
     }
