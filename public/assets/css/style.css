@@ -181,6 +181,16 @@ table.md-table th.md-column {
     word-wrap: break-word;
 }
 
+
+/*.note,
+.esito1,
+.esitocolloquio,
+.sito,
+.email {
+    max-width: 100px;
+    word-wrap: break-word;
+}*/
+
 a {
     text-decoration: none !important;
 }

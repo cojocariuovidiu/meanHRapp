@@ -59,7 +59,7 @@
                     <th class="eta" md-column md-order-by="eta">Eta'</th>
                     <th class="tel" md-column md-order-by="tel">Telefono</th>
                     <th md-column md-order-by="esito1">Esito 1 chiamata</th>
-                    <th md-column md-order-by="esito2">Esito 2 chiamata</th>
+                    <!--<th md-column md-order-by="esito2">Esito 2 chiamata</th>-->
                     <th md-column md-order-by="note">Note</th>
                     <th md-column md-order-by="esitocolloquio">Esito colloquio</th>
                     <th md-column md-order-by="sito">Sito</th>
@@ -75,14 +75,14 @@
                     <td md-cell>{{ item.dataapplicazione | date}}</td>
                     <td md-cell>{{ item.nomecognome }}</td>
                     <td class="sesso" md-cell>{{ item.sesso }}</td>
-                    <td class="eta" md-cell>{{ item.eta }}</td>
+                    <td md-cell>{{ item.eta }}</td>
                     <td class="tel" md-cell>{{ item.tel }}</td>
-                    <td md-cell>{{ item.esito1 }}</td>
-                    <td md-cell>{{ item.esito2 }}</td>
-                    <td md-cell>{{ item.note }}</td>
-                    <td md-cell>{{ item.esitocolloquio }}</td>
-                    <td md-cell>{{ item.sito }}</td>
-                    <td md-cell>{{ item.email }}</td>
+                    <td class="esito1" md-cell>{{ item.esito1 }}</td>
+                    <!--<td md-cell>{{ item.esito2 }}</td>-->
+                    <td class="note" md-cell>{{ item.note }}</td>
+                    <td class="esitocolloquio" md-cell>{{ item.esitocolloquio }}</td>
+                    <td class="sito" md-cell>{{ item.sito }}</td>
+                    <td class="email" md-cell>{{ item.email }}</td>
                     <td md-cell>{{ item.username }}</td>
                     <td md-cell>
                         <md-button ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">

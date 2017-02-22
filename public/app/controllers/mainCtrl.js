@@ -473,6 +473,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             icon: 'message'
         },
         {
+            link: '/employees',
+            title: 'Employees',
+            icon: 'message'
+        },
+        {
             link: '/statistics',
             title: 'Statistics',
             icon: 'message'
