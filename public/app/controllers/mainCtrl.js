@@ -184,6 +184,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         if (id) {
             $http.get('/api/getinterview/' + id).then(function(response) {
                 editedObject = response.data.item
+
                 $mdDialog.show({
                         controller: DialogController,
                         templateUrl: 'app/views/dialogs/editInterview.html',
@@ -236,7 +237,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         $scope.editedObject = editedObject
         $scope.newInterview = angular.copy($scope.editedObject)
 
-
         if ($scope.newInterview.dataapplicazione) {
             $scope.newInterview.dataapplicazione = new Date($scope.newInterview.dataapplicazione)
             console.log($scope.newInterview.dataapplicazione)
@@ -258,7 +258,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 $http.put('/api/editinterview/' + editedObject._id, {
                     updateData: newInterview,
                     editedBy: app.username,
-                    cv: $scope.cv
+                    cv: $scope.cv,
+                    employee: $scope.isEmployee
                 }).then(function(response) {
                     console.log('Data updated status:', newInterview)
                 }).then(function(response) {
@@ -267,8 +268,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 })
             }
         }
-
-
 
         $scope.Browse = function() {
             $scope.browseClicked = true
@@ -316,6 +315,18 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     })
                 });
         };
+
+        $scope.isEmployee = editedObject.employee
+        console.log($scope.isEmployee)
+        $scope.AddRemoveEmployee = function() {
+            console.log('before add/remove: ', $scope.isEmployee)
+            if ($scope.isEmployee) {
+                $scope.isEmployee = false
+            } else {
+                $scope.isEmployee = true
+            }
+            console.log('after click:', $scope.isEmployee)
+        }
     }
 
     //Call Sort Modal

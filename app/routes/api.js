@@ -279,8 +279,10 @@ module.exports = function(router) {
         console.log(id)
         console.log(req.body.updateData.note)
         console.log(req.body.cv)
+        console.log(req.body.employee)
 
         var cv
+        var employee
         if (!req.body.cv) {
             Interview.findOneAndUpdate({ _id: id }, {
                 dataapplicazione: req.body.updateData.dataapplicazione,
@@ -296,6 +298,7 @@ module.exports = function(router) {
                 sito: req.body.updateData.sito,
                 email: req.body.updateData.email,
                 note: req.body.updateData.note,
+                employee: req.body.employee
 
                 // username: { type: String }
 
@@ -324,7 +327,8 @@ module.exports = function(router) {
                 sito: req.body.updateData.sito,
                 email: req.body.updateData.email,
                 note: req.body.updateData.note,
-                cv: req.body.cv
+                cv: req.body.cv,
+                employee: req.body.employee
 
                 // username: { type: String }
 

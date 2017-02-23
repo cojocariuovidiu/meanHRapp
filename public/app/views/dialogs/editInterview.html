@@ -147,6 +147,10 @@
             <md-button ng-if="editedObject.username" ng-click="showConfirm()" class="md-raised">
                 Delete
             </md-button>
+            <md-button ng-if="editedObject.username" ng-click="AddRemoveEmployee()" ng-class="{'employee': isEmployee}">
+                <span ng-if="!isEmployee">Add Empoyee</span>
+                <span ng-if="isEmployee">Remove Empoyee</span>
+            </md-button>
             <span flex></span>
             <md-button type="submit" class="md-raised md-primary">
                 Save
