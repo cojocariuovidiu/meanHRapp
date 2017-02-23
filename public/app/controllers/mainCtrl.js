@@ -467,8 +467,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             icon: 'message'
         },
         {
-            link: '/employees',
-            title: 'Employees',
+            link: '/agenda',
+            title: 'Agenda',
             icon: 'message'
         },
         {
