@@ -232,6 +232,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             console.log(data);
         };
 
+        //to get the edited data in input boxes
         $scope.editedObject = editedObject
         $scope.newInterview = angular.copy($scope.editedObject)
 
@@ -274,6 +275,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 })
             }
         }
+
+
 
         $scope.Browse = function() {
             $scope.browseClicked = true
@@ -321,8 +324,33 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     })
                 });
         };
-
     }
+
+    $scope.sortModal = function() {
+        $mdDialog.show({
+            controller: SortDialogController,
+            templateUrl: 'app/views/dialogs/sortDialog.html',
+            // locals: {
+            //     editedObject: editedObject
+            // },
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+    }
+
+    function SortDialogController($scope, $mdDialog) {
+        $scope.RangeFilter = function() {
+            $mdDialog.hide();
+        };
+
+        $scope.getAll = function() {
+            $mdDialog.hide();
+        };
+    }
+
+
 
     //MD TABLE ///
 

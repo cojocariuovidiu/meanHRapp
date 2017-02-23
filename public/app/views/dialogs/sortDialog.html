@@ -1,0 +1,24 @@
+<md-dialog aria-label="sortModal">
+    <md-dialog-content>
+
+        <md-input-container>
+            <label>From</label>
+            <md-datepicker ng-model="main.fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
+        </md-input-container>
+
+        <md-input-container>
+            <label>To</label>
+            <md-datepicker ng-model="main.toDate" md-current-view="year" aria-label="toDate"></md-datepicker>
+        </md-input-container>
+
+        <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter()">
+            Go
+        </md-button>
+
+        <md-button class="md-raised md-fab md-mini" ng-class="md-accent" ng-click="getAll()">
+            ALL
+        </md-button>
+
+    </md-dialog-content>
+
+</md-dialog>
