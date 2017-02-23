@@ -103,20 +103,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
     var displayingObject = {}
 
-    //Load interviews from DB On Page refresh or any page load
-    $scope.RunLast7Days = function() {
-        Interview.getLast7Days().then(function(response) {
-            app.interviewsList = response.data
-
-            displayingObject = {
-                message: 'last 7 days' + ' (Total: ' + app.interviewsList.length + ' )',
-                activator: 'last7Days'
-            }
-
-            $scope.displaying = displayingObject.message
-        })
-    }
-    $scope.RunLast7Days()
+    getInterviewsFiltered('All')
 
     //$rootScope.$on('$viewContentLoaded', function() {
     $rootScope.$on('$routeChangeStart', function() {
@@ -155,14 +142,13 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 app.successMsg = data.data.message + '...Redirecting';
                 $timeout(function() {
                     //Redirect To HomePage
+                    app.checkSession();
+                    getInterviewsFiltered()
                     $location.path('/interviews')
                     app.isLoading = false
                     app.loginData = null;
                     app.successMsg = false;
-                    app.checkSession();
-
-                    $scope.RunLast7Days()
-                }, 1000)
+                })
 
             } else {
                 //Create error message
@@ -347,7 +333,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         page: 1
     };
 
-    $scope.limitOptions = [5, 10, 15, {
+    $scope.limitOptions = [5, 10, 30, {
         label: 'All',
         value: function() {
             return app.interviewsList.length;
@@ -365,32 +351,23 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     };
 
     $scope.loadStuff = function() {
+        checkDisplaying()
         $scope.promise = $timeout(function() {
             console.log('loading stuff')
-        }, 2000);
+        }, 1000);
     }
 
     function checkDisplaying() {
-
-        if (displayingObject.activator == 2016) {
-            $scope.getInterviewsFiltered(2016)
-            console.log('check 2016')
-        } else if (displayingObject.activator == 2017) {
-            console.log('check 2017')
-            $scope.getInterviewsFiltered(2017)
-        } else if (displayingObject.activator == 'All') {
+        if (displayingObject.activator == 'All') {
             console.log('check All')
             Interview.getinterviews().then(function(response) {
                 app.interviewsList = response.data
                 displayingObject = {
-                    message: option + ' (Total: ' + app.interviewsList.length + ' )',
+                    message: ' (Total: ' + app.interviewsList.length + ' )',
                     activator: 'All'
                 }
                 $scope.displaying = displayingObject.message
             })
-        } else if (displayingObject.activator == 'last7Days') {
-            console.log('check last 7 days')
-            $scope.RunLast7Days()
         } else if (displayingObject.activator == 'Range') {
             console.log('check Range')
             $scope.RangeFilter()
@@ -398,38 +375,25 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             console.log('check unknown')
         }
     }
+    $scope.getAll = function() {
+        getInterviewsFiltered('All')
+    }
 
-    $scope.getInterviewsFiltered = function(option) {
+    function getInterviewsFiltered(option) {
         if (option == 'All') {
+            app.loadAll = true
             Interview.getinterviews().then(function(response) {
                 app.interviewsList = response.data
-
                 displayingObject = {
                     message: option + ' (Total: ' + app.interviewsList.length + ' )',
                     activator: 'All'
                 }
-
                 $scope.displaying = displayingObject.message
-                    // showToast('Displaying ' + option + ' Total: ' + app.interviewsList.length)
             })
+            $scope.promise = $timeout(function() {
+                console.log('promisse')
+            }, 1000);
             console.log('Displaying', option)
-        } else if (option == 2017 || option == 2016) {
-            console.log('Displaying', option)
-            $http.post('/api/getInterviewsFiltered', { year: option }).then(function(response) {
-                app.interviewsList = response.data
-
-                displayingObject = {
-                    message: option + ' (Total: ' + app.interviewsList.length + ' )',
-                    activator: option
-                }
-
-                $scope.displaying = displayingObject.message
-                    // $scope.promise = $timeout(function() {
-                    //     console.log('promisse')
-                    // }, 2000);
-                $scope.promise = app.interviewsList
-                    // showToast('Displaying ' + option + ' Total: ' + app.interviewsList.length)
-            }, this)
         }
     }
 
@@ -453,6 +417,9 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 }
 
                 $scope.displaying = displayingObject.message
+                $scope.promise = $timeout(function() {
+                    console.log('promisse')
+                }, 1000);
             }, this)
         }
     }

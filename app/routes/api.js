@@ -117,6 +117,7 @@ module.exports = function(router) {
             //verify token
             jwt.verify(token, secret, function(err, decoded) {
                 if (err) { //if token expired
+                    console.log('Token Invalid', err)
                     res.json({ success: false, message: 'Token Invalid' })
                 } else {
                     //takes the token, verifies it with the secret and send it back decoded
@@ -125,6 +126,7 @@ module.exports = function(router) {
                 }
             })
         } else {
+            console.log('No token provided')
             res.json({ success: false, message: 'No token provided' })
         }
     })
