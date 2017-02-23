@@ -155,7 +155,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 app.errorMsg = data.data.message;
                 $timeout(function() {
                     app.isLoading = false
-                }, 1000)
+                }, 500)
             }
         })
     }
@@ -318,6 +318,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         };
     }
 
+    //Call Sort Modal
     $scope.sortModal = function() {
         $mdDialog.show({
             controller: SortDialogController,
@@ -332,6 +333,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         })
     }
 
+    //Controler for SortModal
     function SortDialogController($scope, $mdDialog) {
         $scope.RangeFilter = function(fromDate, toDate) {
             RangeFilter(fromDate, toDate);
@@ -345,8 +347,9 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     }
 
     function getInterviewsFiltered(option) {
-        if (option == 'All') {
-            app.loadAll = true
+        //if (option == 'All') {
+        app.loadAll = true
+        $scope.promise = $timeout(function() {
             Interview.getinterviews().then(function(response) {
                 app.interviewsList = response.data
                 displayingObject = {
@@ -355,34 +358,34 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 }
                 $scope.displaying = displayingObject.message
             })
-            $scope.promise = $timeout(function() {
-                console.log('promisse')
-            }, 1000);
-            console.log('Displaying', option)
-        }
+            console.log('promisse all')
+        }, 500);
+        console.log('Displaying', option)
+            //}
     }
 
     function RangeFilter(fromDate, toDate) {
         if (fromDate == undefined || fromDate == null || toDate == undefined || toDate == null) {
             showToast('Select From - To Period')
         } else {
-            console.log('from: ', fromDate)
-            console.log('to', toDate)
             var momentFrom = moment(fromDate).format('MMM/D/YYYY')
             var momentTo = moment(toDate).format('MMM/D/YYYY')
             console.log('momentfrom', momentFrom)
             console.log('momentto', momentTo)
 
-            $http.post('/api/getRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
-                app.interviewsList = response.data
-                displayingObject = {
-                    message: momentFrom + ' - ' + momentTo + ' (Total: ' + app.interviewsList.length + ' )',
-                    activator: 'Range'
-                }
-            }, this)
+            $scope.fromDate = fromDate
+            $scope.toDate = toDate
+
             $scope.promise = $timeout(function() {
-                console.log('promisse')
-            }, 1000);
+                $http.post('/api/getRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
+                    app.interviewsList = response.data
+                    displayingObject = {
+                        message: momentFrom + ' - ' + momentTo + ' (Total: ' + app.interviewsList.length + ' )',
+                        activator: 'Range'
+                    }
+                }, this)
+                console.log('promisse range')
+            }, 500);
         }
     }
 
@@ -418,23 +421,16 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         checkDisplaying()
         $scope.promise = $timeout(function() {
             console.log('loading stuff')
-        }, 1000);
+        }, 500);
     }
 
     function checkDisplaying() {
         if (displayingObject.activator == 'All') {
-            console.log('check All')
-            Interview.getinterviews().then(function(response) {
-                app.interviewsList = response.data
-                displayingObject = {
-                    message: ' (Total: ' + app.interviewsList.length + ' )',
-                    activator: 'All'
-                }
-                $scope.displaying = displayingObject.message
-            })
+            getInterviewsFiltered('All')
         } else if (displayingObject.activator == 'Range') {
             console.log('check Range')
-            $scope.RangeFilter()
+            console.log($scope.fromDate, $scope.toDate)
+            RangeFilter($scope.fromDate, $scope.toDate)
         } else {
             console.log('check unknown')
         }

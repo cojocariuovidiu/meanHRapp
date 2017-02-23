@@ -29,28 +29,6 @@ var upload = multer({
 
 module.exports = function(router) {
 
-    router.post('/upload', function(req, res) {
-        upload(req, res, function(err) {
-            if (err) {
-                if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
-                    res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })
-                } else if (err.code === 'filetype') { //our custom error
-                    res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg' })
-                } else {
-                    console.log(err)
-                    res.json({ success: false, message: 'Unable to upload, call Administrator' })
-                }
-            } else {
-                if (!req.file) {
-                    res.json({ success: false, message: 'No file was selected' })
-                } else {
-                    console.log(cv)
-                    res.json({ success: true, message: 'uploaded succesfully!', cv: cv })
-                }
-            }
-        })
-    })
-
     //USER REGISTRATION ROUTE
     //http://127.0.0.1:3000/users
     router.post('/users', function(req, res) {
@@ -254,6 +232,28 @@ module.exports = function(router) {
 
         Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function(err, interviews) {
             res.send(interviews)
+        })
+    })
+
+    router.post('/upload', function(req, res) {
+        upload(req, res, function(err) {
+            if (err) {
+                if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
+                    res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })
+                } else if (err.code === 'filetype') { //our custom error
+                    res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg' })
+                } else {
+                    console.log(err)
+                    res.json({ success: false, message: 'Unable to upload, call Administrator' })
+                }
+            } else {
+                if (!req.file) {
+                    res.json({ success: false, message: 'No file was selected' })
+                } else {
+                    console.log(cv)
+                    res.json({ success: true, message: 'uploaded succesfully!', cv: cv })
+                }
+            }
         })
     })
 
