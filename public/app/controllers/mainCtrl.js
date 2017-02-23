@@ -250,15 +250,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             if (isEmpty(editedObject)) {
                 console.log('new interview:', newInterview, app.username)
                 Interview.create({ newInterview: newInterview, username: app.username }).then(function() {
-                    // Interview.getinterviews().then(function(response) {
-                    //     app.interviewsList = response.data
-                    // })
                     checkDisplaying()
                     $mdDialog.hide();
                 })
             } else {
                 console.log('editing', editedObject._id)
-                console.log('sending data:', newInterview)
                 $http.put('/api/editinterview/' + editedObject._id, {
                     updateData: newInterview,
                     editedBy: app.username,
@@ -266,10 +262,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 }).then(function(response) {
                     console.log('Data updated status:', newInterview)
                 }).then(function(response) {
-                    // Interview.getinterviews().then(function(response) {
-                    //     app.interviewsList = response.data
-                    //         //console.log(app.interviewsList);
-                    // })
                     checkDisplaying()
                     $mdDialog.hide();
                 })
@@ -341,13 +333,57 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     }
 
     function SortDialogController($scope, $mdDialog) {
-        $scope.RangeFilter = function() {
+        $scope.RangeFilter = function(fromDate, toDate) {
+            RangeFilter(fromDate, toDate);
             $mdDialog.hide();
         };
 
         $scope.getAll = function() {
+            getInterviewsFiltered('All')
             $mdDialog.hide();
         };
+    }
+
+    function getInterviewsFiltered(option) {
+        if (option == 'All') {
+            app.loadAll = true
+            Interview.getinterviews().then(function(response) {
+                app.interviewsList = response.data
+                displayingObject = {
+                    message: option + ' (Total: ' + app.interviewsList.length + ' )',
+                    activator: 'All'
+                }
+                $scope.displaying = displayingObject.message
+            })
+            $scope.promise = $timeout(function() {
+                console.log('promisse')
+            }, 1000);
+            console.log('Displaying', option)
+        }
+    }
+
+    function RangeFilter(fromDate, toDate) {
+        if (fromDate == undefined || fromDate == null || toDate == undefined || toDate == null) {
+            showToast('Select From - To Period')
+        } else {
+            console.log('from: ', fromDate)
+            console.log('to', toDate)
+            var momentFrom = moment(fromDate).format('MMM/D/YYYY')
+            var momentTo = moment(toDate).format('MMM/D/YYYY')
+            console.log('momentfrom', momentFrom)
+            console.log('momentto', momentTo)
+
+            $http.post('/api/getRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
+                app.interviewsList = response.data
+                displayingObject = {
+                    message: momentFrom + ' - ' + momentTo + ' (Total: ' + app.interviewsList.length + ' )',
+                    activator: 'Range'
+                }
+            }, this)
+            $scope.promise = $timeout(function() {
+                console.log('promisse')
+            }, 1000);
+        }
     }
 
 
@@ -402,58 +438,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         } else {
             console.log('check unknown')
         }
-    }
-    $scope.getAll = function() {
-        getInterviewsFiltered('All')
-    }
-
-    function getInterviewsFiltered(option) {
-        if (option == 'All') {
-            app.loadAll = true
-            Interview.getinterviews().then(function(response) {
-                app.interviewsList = response.data
-                displayingObject = {
-                    message: option + ' (Total: ' + app.interviewsList.length + ' )',
-                    activator: 'All'
-                }
-                $scope.displaying = displayingObject.message
-            })
-            $scope.promise = $timeout(function() {
-                console.log('promisse')
-            }, 1000);
-            console.log('Displaying', option)
-        }
-    }
-
-    $scope.RangeFilter = function() {
-        if (app.fromDate == undefined || app.fromDate == null || app.toDate == undefined || app.toDate == null) {
-            showToast('Select From - To Period')
-        } else {
-            console.log('from: ', app.fromDate)
-            console.log('to', app.toDate)
-            var momentFrom = moment(app.fromDate).format('MMM/D/YYYY')
-            var momentTo = moment(app.toDate).format('MMM/D/YYYY')
-            console.log('momentfrom', momentFrom)
-            console.log('momentto', momentTo)
-
-            $http.post('/api/getRangeFilter', { from: app.fromDate, to: app.toDate }).then(function(response) {
-                app.interviewsList = response.data
-
-                displayingObject = {
-                    message: momentFrom + ' - ' + momentTo + ' (Total: ' + app.interviewsList.length + ' )',
-                    activator: 'Range'
-                }
-
-                $scope.displaying = displayingObject.message
-                $scope.promise = $timeout(function() {
-                    console.log('promisse')
-                }, 1000);
-            }, this)
-        }
-    }
-
-    $scope.ServerSearch = function(data) {
-        console.log(data)
     }
 
     /////////////////////////MENU
