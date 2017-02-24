@@ -24,10 +24,10 @@
     <md-button class="md-raised md-fab md-mini" ng-click="editInterview()">
         <md-icon>add</md-icon>
     </md-button>
-    <md-button class="md-icon-button" ng-click="sortModal()">
+    <md-button class="md-raised md-icon-button" ng-click="sortModal()">
         <md-icon>sort</md-icon>
     </md-button>
-    <md-button class="md-icon-button" ng-click="loadStuff()">
+    <md-button class="md-raised md-icon-button" ng-click="loadStuff()">
         <md-icon>refresh</md-icon>
     </md-button>
 </div>
@@ -51,7 +51,7 @@
         <!--<table md-table md-row-select md-progress="promise" ng-model="selected">-->
         <table md-table="" md-progress="promise">
             <!--<thead md-head md-order="sort.order" ">-->
-            <thead md-head md-order="sort.order" md-on-reorder="promiseThReorder()">
+            <thead md-head md-order="sort.order">
                 <tr md-row>
                     <th md-column md-order-by="cv">CV</th>
                     <th md-column md-order-by="dataapplicazione"><span>Data app</span></th>

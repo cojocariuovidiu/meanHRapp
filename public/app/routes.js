@@ -44,10 +44,6 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/interviews/interviews.html',
             authenticated: true
         })
-        .when('/agenda', {
-            templateUrl: 'app/views/pages/agenda/agenda.html',
-            authenticated: true
-        })
         .when('/statistics', {
             templateUrl: 'app/views/pages/interviews/statistics.html',
             authenticated: true

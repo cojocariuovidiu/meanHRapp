@@ -509,11 +509,6 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             icon: 'message'
         },
         {
-            link: '/agenda',
-            title: 'Agenda',
-            icon: 'message'
-        },
-        {
             link: '/statistics',
             title: 'Statistics',
             icon: 'message'
