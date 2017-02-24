@@ -230,7 +230,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
         $scope.save = function(data) {
             $mdDialog.hide(data);
-            console.log(data);
+            //console.log(data);
         };
 
         //to get the edited data in input boxes
@@ -239,7 +239,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
         if ($scope.newInterview.dataapplicazione) {
             $scope.newInterview.dataapplicazione = new Date($scope.newInterview.dataapplicazione)
-            console.log($scope.newInterview.dataapplicazione)
+                //console.log($scope.newInterview.dataapplicazione)
         }
 
         $scope.submitInterview = function(newInterview) {
@@ -248,7 +248,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             }
 
             if (isEmpty(editedObject)) {
-                console.log('new interview:', newInterview, app.username)
+                //console.log('new interview:', newInterview, app.username)
                 Interview.create({ newInterview: newInterview, username: app.username }).then(function() {
                     checkDisplaying()
                     $mdDialog.hide();
@@ -258,8 +258,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 $http.put('/api/editinterview/' + editedObject._id, {
                     updateData: newInterview,
                     editedBy: app.username,
-                    cv: $scope.cv,
-                    employee: $scope.isEmployee
+                    interviewStatus: $scope.interviewStatus,
+                    cv: $scope.cv
                 }).then(function(response) {
                     console.log('Data updated status:', newInterview)
                 }).then(function(response) {
@@ -316,16 +316,32 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 });
         };
 
-        $scope.isEmployee = editedObject.employee
-        console.log($scope.isEmployee)
-        $scope.AddRemoveEmployee = function() {
-            console.log('before add/remove: ', $scope.isEmployee)
-            if ($scope.isEmployee) {
-                $scope.isEmployee = false
-            } else {
-                $scope.isEmployee = true
+        // $scope.isEmployee = editedObject.employee
+        // console.log($scope.isEmployee)
+
+        // $scope.AddRemoveEmployee = function() {
+        //     console.log('before add/remove: ', $scope.isEmployee)
+        //     if ($scope.isEmployee) {
+        //         $scope.isEmployee = false
+        //     } else {
+        //         $scope.isEmployee = true
+        //     }
+        //     console.log('after click:', $scope.isEmployee)
+        // }
+
+        // $scope.status = editedObject.status
+        // console.log($scope.status)
+
+        $scope.interviewStatus = editedObject.interviewStatus
+        $scope.SetStatus = function(option) {
+            if (option == 'isEmployee') {
+                status = 'isEmployee'
+            } else if (option == 'callLater') {
+                status = 'callLater'
+            } else if (option == 'clear') {
+                status = 'clear'
             }
-            console.log('after click:', $scope.isEmployee)
+            return $scope.interviewStatus = status
         }
     }
 
@@ -355,24 +371,52 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             getInterviewsFiltered('All')
             $mdDialog.hide();
         };
+        $scope.getEmployees = function() {
+            getInterviewsFiltered('isEmployee')
+            $mdDialog.hide();
+        };
+        $scope.getCallLater = function() {
+            getInterviewsFiltered('callLater')
+            $mdDialog.hide();
+        };
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
     }
 
     function getInterviewsFiltered(option) {
-        //if (option == 'All') {
-        app.loadAll = true
+        if (option == 'All') {
+            // app.loadAll = true
+            $scope.promise = $timeout(function() {
+                Interview.getinterviews().then(function(response) {
+                    app.interviewsList = response.data
+                    displayingObject = {
+                        message: option + ' (Total: ' + app.interviewsList.length + ' )',
+                        activator: 'All'
+                    }
+                    $scope.displaying = displayingObject.message
+                })
+                console.log('promisse all')
+            }, 500);
+            console.log('Displaying', option)
+        } else if (option == 'isEmployee') {
+            FilterByStatus('isEmployee')
+        } else if (option == 'callLater') {
+            FilterByStatus('callLater')
+        } else {
+            console.log('something wrong on getInterviewsFiltered')
+        }
+    }
+    //executed on filter with option
+    function FilterByStatus(option) {
         $scope.promise = $timeout(function() {
-            Interview.getinterviews().then(function(response) {
+            $http.post('/api/getInterviewsByStatus', { option: option }).then(function(response) {
                 app.interviewsList = response.data
                 displayingObject = {
-                    message: option + ' (Total: ' + app.interviewsList.length + ' )',
-                    activator: 'All'
+                    activator: option
                 }
-                $scope.displaying = displayingObject.message
             })
-            console.log('promisse all')
-        }, 500);
-        console.log('Displaying', option)
-            //}
+        }, 500)
     }
 
     function RangeFilter(fromDate, toDate) {
@@ -381,8 +425,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         } else {
             var momentFrom = moment(fromDate).format('MMM/D/YYYY')
             var momentTo = moment(toDate).format('MMM/D/YYYY')
-            console.log('momentfrom', momentFrom)
-            console.log('momentto', momentTo)
+                // console.log('momentfrom', momentFrom)
+                // console.log('momentto', momentTo)
 
             $scope.fromDate = fromDate
             $scope.toDate = toDate
@@ -407,7 +451,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
     $scope.sort = {
         //defaults
         order: '-dataapplicazione',
-        limit: '5',
+        limit: '10',
         page: 1
     };
 
@@ -422,11 +466,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         $scope.interviewsList = interviews;
     }
 
-    $scope.promiseInterviews = function() {
-        // console.log($scope.sort.order)
-        //console.log($scope.selected)
-        //$scope.promise = Interview.getinterviews($scope.sort, success).$promise;
-    };
+    // $scope.promiseThReorder = function() {
+    //     $scope.promise = $timeout(function() {
+    //         console.log('promisse reorder')
+    //     }, 500);
+    // };
 
     $scope.loadStuff = function() {
         checkDisplaying()
@@ -439,11 +483,9 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         if (displayingObject.activator == 'All') {
             getInterviewsFiltered('All')
         } else if (displayingObject.activator == 'Range') {
-            console.log('check Range')
-            console.log($scope.fromDate, $scope.toDate)
             RangeFilter($scope.fromDate, $scope.toDate)
         } else {
-            console.log('check unknown')
+            FilterByStatus(displayingObject.activator)
         }
     }
 

@@ -149,7 +149,8 @@ module.exports = function(router) {
         interview.responsabile_colloquio = req.body.newInterview.responsabile_colloquio
         interview.sito = req.body.newInterview.sito
         interview.email = req.body.newInterview.email
-        interview.username = req.body.username
+        interview.username = req.body.username,
+            interview.interviewStatus = req.body.interviewStatus
 
         // if (req.body.nomecognome === null || req.body.nomecognome === undefined || req.body.nomecognome === '' ||
         //     req.body.sesso === null || req.body.sesso === undefined || req.body.sesso === '' ||
@@ -177,17 +178,17 @@ module.exports = function(router) {
         })
     })
 
-    //http://127.0.0.1:3000/api/getLast7Days
-    router.get('/getLast7Days', function(req, res) {
-        var currentDate = moment().format("YYYY/MM/DD");
-        var sevenDays = moment().subtract(7, 'd').format('YYYY/MM/DD');
-        console.log(currentDate)
-        console.log(sevenDays)
+    // //http://127.0.0.1:3000/api/getLast7Days
+    // router.get('/getLast7Days', function(req, res) {
+    //     var currentDate = moment().format("YYYY/MM/DD");
+    //     var sevenDays = moment().subtract(7, 'd').format('YYYY/MM/DD');
+    //     console.log(currentDate)
+    //     console.log(sevenDays)
 
-        Interview.find({ dataapplicazione: { $gte: sevenDays, $lte: currentDate } }, function(err, interviews) {
-            res.send(interviews)
-        })
-    })
+    //     Interview.find({ dataapplicazione: { $gte: sevenDays, $lte: currentDate } }, function(err, interviews) {
+    //         res.send(interviews)
+    //     })
+    // })
 
 
 
@@ -217,6 +218,15 @@ module.exports = function(router) {
             res.send(interviews)
         })
 
+    })
+
+    //http://127.0.0.1:3000/api/getInterviewsByStatus
+    router.post('/getInterviewsByStatus', function(req, res) {
+        console.log(req.body.option)
+        Interview.find({ interviewStatus: req.body.option }, function(err, interviews) {
+            console.log(interviews)
+            res.send(interviews)
+        })
     })
 
     //http://127.0.0.1:3000/api/getRangeFilter
@@ -276,13 +286,9 @@ module.exports = function(router) {
     router.put('/editinterview/:id', function(req, res) {
 
         var id = req.params.id
-        console.log(id)
-        console.log(req.body.updateData.note)
         console.log(req.body.cv)
-        console.log(req.body.employee)
-
         var cv
-        var employee
+
         if (!req.body.cv) {
             Interview.findOneAndUpdate({ _id: id }, {
                 dataapplicazione: req.body.updateData.dataapplicazione,
@@ -298,7 +304,7 @@ module.exports = function(router) {
                 sito: req.body.updateData.sito,
                 email: req.body.updateData.email,
                 note: req.body.updateData.note,
-                employee: req.body.employee
+                interviewStatus: req.body.interviewStatus
 
                 // username: { type: String }
 
@@ -327,8 +333,8 @@ module.exports = function(router) {
                 sito: req.body.updateData.sito,
                 email: req.body.updateData.email,
                 note: req.body.updateData.note,
-                cv: req.body.cv,
-                employee: req.body.employee
+                interviewStatus: req.body.interviewStatus,
+                cv: req.body.cv
 
                 // username: { type: String }
 

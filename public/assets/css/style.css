@@ -228,8 +228,17 @@ a {
     margin-top: 10px;
 }
 
-.employee {
+.isEmployee {
     background-color: #dbf2d5
+}
+
+.callLater {
+    background-color: #f2c5a9
+}
+
+.clear {
+    /*background-color: rgba(158, 158, 158, 0.2);*/
+    background-color: white;
 }
 
 

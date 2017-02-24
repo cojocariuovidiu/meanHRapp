@@ -27,7 +27,14 @@
                     </md-button>
                 </div>
                 <!--<md-button md-colors="{background: 'red'}" layout-fill class="md-raised md-accent" ng-click="getAll()">-->
-                <md-button layout-fill class="md-raised md-accent" ng-click="getAll()">
+                <!--<md-button layout-fill class="md-raised md-accent" ng-click="getAll()">-->
+                <md-button class="isEmployee" ng-click="getEmployees()">
+                    Show Employees
+                </md-button>
+                <md-button class="callLater" ng-click="getCallLater()">
+                    Show Call Later
+                </md-button>
+                <md-button class="md-raised md-accent" ng-click="getAll()">
                     Show ALL
                 </md-button>
             </md-content>

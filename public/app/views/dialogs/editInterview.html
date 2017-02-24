@@ -147,23 +147,51 @@
             <md-button ng-if="editedObject.username" ng-click="showConfirm()" class="md-raised">
                 Delete
             </md-button>
-            <md-button ng-if="editedObject.username" ng-click="AddRemoveEmployee()" ng-class="{'employee': isEmployee}">
-                <span ng-if="!isEmployee">Add Empoyee</span>
-                <span ng-if="isEmployee">Remove Empoyee</span>
-            </md-button>
+
+            <md-menu>
+                <md-button ng-class="{'{{interviewStatus}}': interviewStatus, 'isEmployee': interviewStatus == 'isEmployee', 'callLater': interviewStatus =='callLater', 'clear': interviewStatus == 'clear'}" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">
+                    <!--<md-button ng-class="{'{{editedObject.interviewStatus}}' : editedObject.interviewStatus, 'isEmployee': interviewStatus == 'isEmployee'}" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">-->
+                    <span ng-if="editedObject.interviewStatus && !interviewStatus">{{ editedObject.interviewStatus }}</span>
+
+                    <span ng-if="!editedObject.interviewStatus && !interviewStatus">Status</span>
+                    <span ng-if="interviewStatus">{{ interviewStatus }}</span>
+                </md-button>
+                <md-menu-content width="3 ">
+                    <md-menu-item>
+                        <md-button ng-click="SetStatus( 'isEmployee') " class="isEmployee ">
+                            Add Employee
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="SetStatus( 'callLater') " class="callLater ">
+                            Call Later
+                        </md-button>
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="SetStatus( 'clear') " class="clear">
+                            Clear
+                        </md-button>
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+            <!--<md-button ng-if="editedObject.username " ng-click="AddRemoveEmployee() " ng-class="{ 'employee': isEmployee} ">
+                <span ng-if="!isEmployee ">Add Empoyee</span>
+                <span ng-if="isEmployee ">Remove Empoyee</span>
+            </md-button>-->
             <span flex></span>
-            <md-button type="submit" class="md-raised md-primary">
+            <md-button type="submit " class="md-raised md-primary ">
                 Save
             </md-button>
-            <md-button class="md-raised md-warn" ng-click="cancel()">
+            <md-button class="md-raised md-warn " ng-click="cancel() ">
                 Cancel
             </md-button>
         </md-dialog-actions>
     </form>
 
-    <!--<div ng-show="uploading" class="progress">
-        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-            <div class="sr-only"></div>
+    <!--<div ng-show="uploading " class="progress ">
+        <div class="progress-bar progress-bar-striped active " role="progressbar " aria-valuenow="45 " aria-valuemin="0 " aria-valuemax="100 " style="width: 100% ">
+            <div class="sr-only "></div>
         </div>
     </div>-->
 
