@@ -8,13 +8,12 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
     $scope.series = ['Interviews', 'Employees'];
     $scope.data = []
 
-    var jan2017Total = 0
-    var feb2017Total = 0
-
     this.loadChartData = function() {
         Interview.getChartData().then(function(response) {
 
             $scope.data = []
+            jan2017Total = 0
+            feb2017Total = 0
 
             response.data.forEach(function(element) {
                 var momenYear = moment(element.dataapplicazione).format('YYYY')
@@ -33,17 +32,12 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
                     // console.log(momenYear)
                 }
             }, this);
-            console.log('jan2017Total', jan2017Total)
-            console.log('feb2017Total', feb2017Total)
 
             $scope.data.push(jan2017Total)
             $scope.data.push(feb2017Total)
-
-            console.log($scope.data)
         })
     }
 
     app.loadChartData()
-
 
 });
