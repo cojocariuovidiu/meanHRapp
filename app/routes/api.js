@@ -352,6 +352,19 @@ module.exports = function(router) {
 
     })
 
+    //Chart API
+    router.get('/getChartData', function(req, res) {
+        Interview.find({}, function(err, interviews) {
+            // interviews.forEach(function(element) {
+            //     console.log(element.dataapplicazione)
+            // }, this);
+            res.send(interviews)
+        })
+    })
+
+
+
+
     // router.post('/api/uploadcv', function(req, res) {
     //     //let part = req.files.fileslet writeStream -
     // })
