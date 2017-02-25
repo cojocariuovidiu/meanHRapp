@@ -14,10 +14,27 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
 
     this.loadChartData = function() {
         Interview.getChartData().then(function(response) {
+            var jan2017Total = 0
+
             response.data.forEach(function(element) {
-                var momentDate = moment(element.dataapplicazione).format('M')
-                console.log(momentDate)
+                var momenYear = moment(element.dataapplicazione).format('YYYY')
+
+                if (momenYear == 2017) {
+                    var momentDate = moment(element.dataapplicazione).format('M')
+
+                    if (momentDate == 1) {
+                        jan2017Total++
+                    }
+                    console.log("2017:", momentDate)
+
+                } else if (momenYear == 2016) {
+                    var momentDate = moment(element.dataapplicazione).format('M')
+                    console.log("2016:", momentDate)
+                } else {
+                    // console.log(momenYear)
+                }
             }, this);
+            console.log('jan2017Total', jan2017Total)
         })
     }
 });
