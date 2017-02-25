@@ -46,6 +46,8 @@ var app = angular.module('appRoutes', ['ngRoute'])
         })
         .when('/statistics', {
             templateUrl: 'app/views/pages/interviews/statistics.html',
+            controller: 'chartCtrl',
+            controllerAs: 'chart',
             authenticated: true
         })
         .otherwise({ redirectTo: '/' });

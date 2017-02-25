@@ -7,7 +7,8 @@ angular.module('userApp', [
     'authServices',
     'interviewServices',
     'fileModelDirective',
-    'uploadFileService'
+    'uploadFileService',
+    'chartControllers'
 ])
 
 .config(function($httpProvider) {
