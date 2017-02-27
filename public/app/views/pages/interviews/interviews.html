@@ -1,21 +1,6 @@
 <!--<md-toolbar class="md-table-toolbar md-default">-->
 <div class="md-toolbar-tools">
-    <!--Date Picker-->
-    <!--<md-input-container>
-        <label>From</label>
-        <md-datepicker ng-model="main.fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
-    </md-input-container>
-    <md-input-container>
-        <label>To</label>
-        <md-datepicker ng-model="main.toDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
-    </md-input-container>
-    <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter()">
-        Go
-    </md-button>
-    <md-button class="md-raised md-fab md-mini" ng-class="md-accent" ng-click="getAll()">
-        ALL
-    </md-button>-->
-
+    <div class="toolbarTitle">Interviews</div>
     <div flex></div>
     <md-input-container>
         <label>Search</label>
@@ -31,20 +16,30 @@
         <md-icon>refresh</md-icon>
     </md-button>
 </div>
-<!--</md-toolbar>-->
-<!--<md-label md-accent>Displaying: {{displaying}}</md-label>-->
 
+<!-- Toolbar with span flex and hue
+        <md-toolbar>
+        <div class="md-toolbar-tools">
 
-<!--<md-toolbar class="md-table-toolbar alternate" ng-show="selected.length">
-    <div class="md-toolbar-tools">
-        <span>{{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected </span>
-        <span flex></span>
-        <md-button class="md-raised md-accent md-fab md-mini" ng-click="showConfirm()">
-            <md-icon>delete</md-icon>
-        </md-button>
+            <h1 class="md-title">sss</h2>
+                <span flex></span>
 
-    </div>
-</md-toolbar>-->
+                <md-input-container>
+                    <label>Search</label>
+                    <input ng-model="searchInterview">
+                </md-input-container>
+                <md-button class="md-raised md-fab md-mini" ng-click="editInterview()">
+                    <md-icon>add</md-icon>
+                </md-button>
+                <md-button class="md-raised md-icon-button" ng-click="sortModal()">
+                    <md-icon>sort</md-icon>
+                </md-button>
+                <md-button class="md-raised md-icon-button" ng-click="loadStuff()">
+                    <md-icon>refresh</md-icon>
+                </md-button>
+        </div>
+    </md-toolbar>-->
+
 <md-card>
     <md-table-container>
         <!--<multiple>-->

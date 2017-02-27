@@ -241,6 +241,10 @@ a {
     background-color: white;
 }
 
+.toolbarTitle {
+    font-size: 24px;
+}
+
 
 /*.bottomSheetdemoBasicUsage md-toast .md-toast-content {
     background-color: #B14141;

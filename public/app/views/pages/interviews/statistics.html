@@ -1,5 +1,13 @@
-<h3>
-    Statistics for {{selectedYear}}</h3>
+<div class="md-toolbar-tools">
+    <div class="toolbarTitle">Statistics for {{selectedYear}}</div>
+    <div flex></div>
+    <!--<md-button class="md-raised md-icon-button" ng-click="chart.loadChartData(2016)">
+        2016
+    </md-button>
+    <md-button class="md-raised md-icon-button" ng-click="chart.loadChartData(2017)">
+        2017
+    </md-button>-->
+</div>
 <canvas height="300" width="500" id="bar" class="chart chart-bar" chart-data="data" chart-labels="labels" chart-series="series"></canvas>
 
 <!--<canvas class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-click="onClick"></canvas>-->
