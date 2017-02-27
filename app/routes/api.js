@@ -79,7 +79,7 @@ module.exports = function(router) {
                         username: user.username,
                         email: user.email
                     }, secret, {
-                        expiresIn: '24h'
+                        expiresIn: '6360h'
                     })
 
                     res.json({ success: true, message: 'User authenticated!', token: token })
@@ -113,24 +113,24 @@ module.exports = function(router) {
         res.send(req.decoded)
     })
 
-    router.get('renewToken/:username', function(req, res) {
-        User.find({ username: req.params.username }).select().exec(function(err, user) {
-            if (err) throw err;
-            if (!user) {
-                res.json({ success: false, message: 'No user was found' })
-            } else {
-                //create jwt token
-                var newToken = jwt.sign({
-                    username: user.username,
-                    email: user.email
-                }, secret, {
-                    expiresIn: '24h'
-                })
+    // router.get('renewToken/:username', function(req, res) {
+    //     User.find({ username: req.params.username }).select().exec(function(err, user) {
+    //         if (err) throw err;
+    //         if (!user) {
+    //             res.json({ success: false, message: 'No user was found' })
+    //         } else {
+    //             //create jwt token
+    //             var newToken = jwt.sign({
+    //                 username: user.username,
+    //                 email: user.email
+    //             }, secret, {
+    //                 expiresIn: '24h'
+    //             })
 
-                res.json({ success: true, token: newToken })
-            }
-        });
-    })
+    //             res.json({ success: true, token: newToken })
+    //         }
+    //     });
+    // })
 
     //http://127.0.0.1:3000/api/interview
     router.post('/interview', function(req, res) {
