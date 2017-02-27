@@ -19,11 +19,13 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
     app.barChart = {};
     app.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     app.barChart.series = ['Interviews', 'Employees']
-    app.barChart.data = []
     app.barChart.options = {
         responsive: false,
         maintainAspectRatio: true
     }
+    app.barChart.data = []
+    app.barChart.Interviews = []
+    app.barChart.Employees = [11, 22, 33, 44, 55, 66]
 
     // $scope.options = { legend: { display: true } }; // missing 
     // $scope.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -57,9 +59,11 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
                     }
                 }, this);
 
-                app.barChart.data.push(jan2017Total)
-                app.barChart.data.push(feb2017Total)
-                app.barChart.data.push(mar2017Total)
+                app.barChart.Interviews.push(jan2017Total)
+                app.barChart.Interviews.push(feb2017Total)
+                app.barChart.Interviews.push(mar2017Total)
+                app.barChart.data.push(app.barChart.Interviews)
+                app.barChart.data.push(app.barChart.Employees)
             })
         } else if (option == 2016) {
             Interview.getChartData().then(function(response) {
@@ -111,21 +115,23 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
                     }
                 }, this);
 
-                app.barChart.data.push(jan2016Total)
-                app.barChart.data.push(feb2016Total)
-                app.barChart.data.push(mar2016Total)
-                app.barChart.data.push(apr2016Total)
-                app.barChart.data.push(mai2016Total)
-                app.barChart.data.push(jun2016Total)
-                app.barChart.data.push(jul2016Total)
-                app.barChart.data.push(aug2016Total)
-                app.barChart.data.push(jun2016Total)
-                app.barChart.data.push(jul2016Total)
-                app.barChart.data.push(aug2016Total)
-                app.barChart.data.push(sep2016Total)
-                app.barChart.data.push(oct2016Total)
-                app.barChart.data.push(nov2016Total)
-                app.barChart.data.push(dec2016Total)
+                app.barChart.Interviews.push(jan2016Total)
+                app.barChart.Interviews.push(feb2016Total)
+                app.barChart.Interviews.push(mar2016Total)
+                app.barChart.Interviews.push(apr2016Total)
+                app.barChart.Interviews.push(mai2016Total)
+                app.barChart.Interviews.push(jun2016Total)
+                app.barChart.Interviews.push(jul2016Total)
+                app.barChart.Interviews.push(aug2016Total)
+                app.barChart.Interviews.push(jun2016Total)
+                app.barChart.Interviews.push(jul2016Total)
+                app.barChart.Interviews.push(aug2016Total)
+                app.barChart.Interviews.push(sep2016Total)
+                app.barChart.Interviews.push(oct2016Total)
+                app.barChart.Interviews.push(nov2016Total)
+                app.barChart.Interviews.push(dec2016Total)
+                app.barChart.data.push(app.barChart.Interviews)
+                app.barChart.data.push(app.barChart.Employees)
             })
         }
 
