@@ -1,31 +1,40 @@
 angular.module("chartControllers", ["chart.js", 'interviewServices'])
 
-.config(['ChartJsProvider', function(ChartJsProvider) {
-    // Configure all charts
-    ChartJsProvider.setOptions({
-        chartColors: ['#FF5252', '#FF8A80'],
-        responsive: false
-    });
-    // Configure all line charts
-    ChartJsProvider.setOptions('line', {
-        showLines: true
-    });
-}])
+// .config(['ChartJsProvider', function(ChartJsProvider) {
+//     // Configure all charts
+//     ChartJsProvider.setOptions({
+//         //chartColors: ['#FF5252', '#FF8A80'],
+//         responsive: false
+//     });
+//     // Configure all line charts
+//     ChartJsProvider.setOptions('line', {
+//         showLines: false
+//     });
+// }])
 
 .controller("chartCtrl", function(Interview, $scope) {
 
     var app = this
 
-    $scope.options = { legend: { display: true } }; // missing 
-    $scope.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    $scope.series = ['Interviews', 'Employees'];
-    $scope.data = []
+    app.barChart = {};
+    app.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    app.barChart.series = ['Interviews', 'Employees']
+    app.barChart.data = []
+    app.barChart.options = {
+        responsive: false,
+        maintainAspectRatio: true
+    }
+
+    // $scope.options = { legend: { display: true } }; // missing 
+    // $scope.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    // $scope.series = ['Interviews', 'Employees'];
+    //$scope.data = []
 
     this.loadChartData = function(option) {
         $scope.selectedYear = option
         if (option == 2017) {
             Interview.getChartData().then(function(response) {
-                $scope.data = []
+                app.barChart.data = []
                 jan2017Total = 0
                 feb2017Total = 0
                 mar2017Total = 0
@@ -48,13 +57,13 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
                     }
                 }, this);
 
-                $scope.data.push(jan2017Total)
-                $scope.data.push(feb2017Total)
-                $scope.data.push(mar2017Total)
+                app.barChart.data.push(jan2017Total)
+                app.barChart.data.push(feb2017Total)
+                app.barChart.data.push(mar2017Total)
             })
         } else if (option == 2016) {
             Interview.getChartData().then(function(response) {
-                $scope.data = []
+                app.barChart.data = []
                 jan2016Total = 0
                 feb2016Total = 0
                 mar2016Total = 0
@@ -102,21 +111,21 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
                     }
                 }, this);
 
-                $scope.data.push(jan2016Total)
-                $scope.data.push(feb2016Total)
-                $scope.data.push(mar2016Total)
-                $scope.data.push(apr2016Total)
-                $scope.data.push(mai2016Total)
-                $scope.data.push(jun2016Total)
-                $scope.data.push(jul2016Total)
-                $scope.data.push(aug2016Total)
-                $scope.data.push(jun2016Total)
-                $scope.data.push(jul2016Total)
-                $scope.data.push(aug2016Total)
-                $scope.data.push(sep2016Total)
-                $scope.data.push(oct2016Total)
-                $scope.data.push(nov2016Total)
-                $scope.data.push(dec2016Total)
+                app.barChart.data.push(jan2016Total)
+                app.barChart.data.push(feb2016Total)
+                app.barChart.data.push(mar2016Total)
+                app.barChart.data.push(apr2016Total)
+                app.barChart.data.push(mai2016Total)
+                app.barChart.data.push(jun2016Total)
+                app.barChart.data.push(jul2016Total)
+                app.barChart.data.push(aug2016Total)
+                app.barChart.data.push(jun2016Total)
+                app.barChart.data.push(jul2016Total)
+                app.barChart.data.push(aug2016Total)
+                app.barChart.data.push(sep2016Total)
+                app.barChart.data.push(oct2016Total)
+                app.barChart.data.push(nov2016Total)
+                app.barChart.data.push(dec2016Total)
             })
         }
 
