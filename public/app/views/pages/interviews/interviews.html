@@ -6,9 +6,6 @@
         <label>Search</label>
         <input ng-model="searchInterview">
     </md-input-container>
-    <md-button ng-if="main.group == 'normal'" disabled class="md-raised md-fab md-mini" ng-click="editInterview()">
-        <md-icon>add</md-icon>
-    </md-button>
     <md-button ng-if="main.group == 'hr'" class="md-raised md-fab md-mini" ng-click="editInterview()">
         <md-icon>add</md-icon>
     </md-button>
@@ -63,7 +60,7 @@
                     <th md-column md-order-by="sito">Sito</th>
                     <th md-column md-order-by="email">E-mail</th>
                     <th md-column md-order-by="username">Created by</th>
-                    <th md-column>Action</th>
+                    <th ng-if="main.group == 'hr'" md-column>Action</th>
                 </tr>
             </thead>
             <tbody md-body>
@@ -82,11 +79,8 @@
                     <td class="sito" md-cell>{{ item.sito }}</td>
                     <td class="email" md-cell>{{ item.email }}</td>
                     <td md-cell>{{ item.username }}</td>
-                    <td md-cell>
-                        <md-button ng-if="main.group == 'hr'" ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">
-                            <md-icon>edit</md-icon>
-                        </md-button>
-                        <md-button ng-if="main.group == 'normal'" disabled ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">
+                    <td md-cell ng-if="main.group == 'hr'">
+                        <md-button ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">
                             <md-icon>edit</md-icon>
                         </md-button>
                     </td>
