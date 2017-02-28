@@ -37,10 +37,14 @@ module.exports = function(router) {
         user.username = req.body.username
         user.password = req.body.password
         user.email = req.body.email
+        user.group = req.body.group
+
+        // console.log(user.group)
 
         if (req.body.username === null || req.body.username === undefined || req.body.username === '' ||
             req.body.password === null || req.body.password === undefined || req.body.username === '' ||
-            req.body.email === null || req.body.email === undefined || req.body.email === '') {
+            req.body.email === null || req.body.email === undefined || req.body.email === '' ||
+            req.body.group === null || req.body.group === undefined || req.body.group === '') {
             res.json({ success: false, message: 'Ensure username, email and password were provided' })
         } else {
             user.save(function(err) {
@@ -51,7 +55,7 @@ module.exports = function(router) {
                 }
             })
         }
-        console.log(req.body.username, req.body.password, req.body.email);
+        console.log(req.body.username, req.body.password, req.body.email, req.body.group);
     })
 
     //USER LOGIN ROUTE
