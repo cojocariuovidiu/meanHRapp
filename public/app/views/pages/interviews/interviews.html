@@ -60,7 +60,7 @@
                     <th md-column md-order-by="sito">Sito</th>
                     <th md-column md-order-by="email">E-mail</th>
                     <th md-column md-order-by="username">Created by</th>
-                    <th ng-if="main.group == 'hr'" md-column>Action</th>
+                    <th ng-if="main.group == 'hr' || main.group =='admin'" md-column>Action</th>
                 </tr>
             </thead>
             <tbody md-body>
@@ -79,7 +79,7 @@
                     <td class="sito" md-cell>{{ item.sito }}</td>
                     <td class="email" md-cell>{{ item.email }}</td>
                     <td md-cell>{{ item.username }}</td>
-                    <td md-cell ng-if="main.group == 'hr'">
+                    <td ng-if="main.group == 'hr' || main.group =='admin'" md-cell>
                         <md-button ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">
                             <md-icon>edit</md-icon>
                         </md-button>
