@@ -6,6 +6,20 @@
             </md-toolbar>
             <md-content class="md-padding" layout="column">
                 <md-input-container>
+                    <label>Group</label>
+                    <md-select aria-label="groupDropDown" ng-model="register.regData.group">
+                        <md-option value="admin">
+                            Admin
+                        </md-option>
+                        <md-option value="hr">
+                            HR
+                        </md-option>
+                        <md-option value="normal">
+                            Normal
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container>
                     <label>Email Address</label>
                     <input ng-model="register.regData.email" type="text" />
                 </md-input-container>
