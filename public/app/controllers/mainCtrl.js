@@ -143,11 +143,16 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 $timeout(function() {
                     //Redirect To HomePage
                     app.checkSession();
+
+                    //Error might be comming from here <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     getInterviewsFiltered()
                     $location.path('/interviews')
                     app.isLoading = false
                     app.loginData = null;
                     app.successMsg = false;
+
+                    app.group = data.data.group
+                    console.log(data.data.group)
                 })
 
             } else {

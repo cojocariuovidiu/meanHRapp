@@ -63,7 +63,7 @@ module.exports = function(router) {
     router.post('/authenticate', function(req, res) {
         console.log(req.body.username, req.body.password);
 
-        User.findOne({ username: req.body.username }).select('email username password').exec(function(err, user) {
+        User.findOne({ username: req.body.username }).select('group email username password').exec(function(err, user) {
             if (err) throw err;
 
             if (!user) {
@@ -86,7 +86,9 @@ module.exports = function(router) {
                         expiresIn: '6360h'
                     })
 
-                    res.json({ success: true, message: 'User authenticated!', token: token })
+                    console.log('group', user.group)
+
+                    res.json({ success: true, message: 'User authenticated!', token: token, group: user.group })
                 }
             }
         })

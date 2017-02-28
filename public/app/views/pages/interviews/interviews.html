@@ -6,7 +6,10 @@
         <label>Search</label>
         <input ng-model="searchInterview">
     </md-input-container>
-    <md-button class="md-raised md-fab md-mini" ng-click="editInterview()">
+    <md-button ng-if="main.group == 'normal'" disabled class="md-raised md-fab md-mini" ng-click="editInterview()">
+        <md-icon>add</md-icon>
+    </md-button>
+    <md-button ng-if="main.group == 'hr'" class="md-raised md-fab md-mini" ng-click="editInterview()">
         <md-icon>add</md-icon>
     </md-button>
     <md-button class="md-raised md-icon-button" ng-click="sortModal()">
@@ -39,7 +42,6 @@
                 </md-button>
         </div>
     </md-toolbar>-->
-
 <md-card>
     <md-table-container>
         <!--<multiple>-->
@@ -81,7 +83,10 @@
                     <td class="email" md-cell>{{ item.email }}</td>
                     <td md-cell>{{ item.username }}</td>
                     <td md-cell>
-                        <md-button ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">
+                        <md-button ng-if="main.group == 'hr'" ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">
+                            <md-icon>edit</md-icon>
+                        </md-button>
+                        <md-button ng-if="main.group == 'normal'" disabled ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">
                             <md-icon>edit</md-icon>
                         </md-button>
                     </td>
