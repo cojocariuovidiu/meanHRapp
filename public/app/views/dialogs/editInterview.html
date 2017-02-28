@@ -125,7 +125,6 @@
                                 <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">{{file.upload.name}} </a> {{message}}
                             </div>
                             <div ng-show="!message">{{file.upload.name}}</div>
-
                         </div>
                         <span flex></span>
                         <md-input-container ng-if="editedObject.username != null" class="md-block" flex-gt-sm="">
@@ -158,17 +157,17 @@
                 </md-button>
                 <md-menu-content width="3 ">
                     <md-menu-item>
-                        <md-button ng-click="SetStatus( 'isEmployee') " class="isEmployee ">
+                        <md-button ng-click="SetStatus('isEmployee') " class="isEmployee ">
                             Add Employee
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="SetStatus( 'callLater') " class="callLater ">
+                        <md-button ng-click="SetStatus('callLater') " class="callLater ">
                             Call Later
                         </md-button>
                     </md-menu-item>
                     <md-menu-item>
-                        <md-button ng-click="SetStatus( 'clear') " class="clear">
+                        <md-button ng-click="SetStatus('clear') " class="clear">
                             Clear
                         </md-button>
                     </md-menu-item>

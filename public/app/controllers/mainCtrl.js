@@ -255,11 +255,20 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
             if (isEmpty(editedObject)) {
                 //console.log('new interview:', newInterview, app.username)
-                Interview.create({ newInterview: newInterview, username: app.username }).then(function() {
+
+                console.log(newInterview)
+
+                //CREATE Interview
+                Interview.create({
+                    newInterview: newInterview,
+                    interviewStatus: $scope.interviewStatus,
+                    username: app.username
+                }).then(function() {
                     checkDisplaying()
                     $mdDialog.hide();
                 })
             } else {
+                //Update Interview
                 console.log('editing', editedObject._id)
                 $http.put('/api/editinterview/' + editedObject._id, {
                     updateData: newInterview,
