@@ -25,7 +25,7 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
     }
     app.barChart.data = []
     app.barChart.Interviews = []
-    app.barChart.Employees = [11, 22, 33, 44, 55, 66]
+    app.barChart.Employees = []
 
     // $scope.options = { legend: { display: true } }; // missing 
     // $scope.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -34,40 +34,132 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
 
     this.loadChartData = function(option) {
         $scope.selectedYear = option
+        app.barChart.data = []
+        app.barChart.Interviews = []
+        app.barChart.Employees = []
+            // app.barChart.Employees = []
+
         if (option == 2017) {
             Interview.getChartData().then(function(response) {
-                app.barChart.data = []
-                jan2017Total = 0
-                feb2017Total = 0
-                mar2017Total = 0
+                janTotal = 0
+                febTotal = 0
+                marTotal = 0
+                aprTotal = 0
+                mayTotal = 0
+                junTotal = 0
+                julTotal = 0
+                augTotal = 0
+                sepTotal = 0
+                oct2017Total = 0
+                nov2017Total = 0
+                dec2017Total = 0
+                jan2017Emp = 0
+                feb2017Emp = 0
+                mar2017Emp = 0
+                apr2017Emp = 0
+                mai2017Emp = 0
+                jun2017Emp = 0
+                jul2017Emp = 0
+                aug2017Emp = 0
+                sep2017Emp = 0
+                oct2017Emp = 0
+                nov2017Emp = 0
+                dec2017Emp = 0
 
                 response.data.forEach(function(element) {
+                    var interviewStatus = element.interviewStatus
+
                     var momenYear = moment(element.dataapplicazione).format('YYYY')
                     if (momenYear == 2017) {
                         var momentDate = moment(element.dataapplicazione).format('M')
                         if (momentDate == 1) {
-                            jan2017Total++
+                            janTotal++
+                            if (element.interviewStatus == 'isEmployee') {
+                                jan2017Emp++
+                            }
                         } else
                         if (momentDate == 2) {
-                            feb2017Total++
+                            febTotal++
+                            if (element.interviewStatus == 'isEmployee') {
+                                feb2017Emp++
+                            }
                         } else
                         if (momentDate == 3) {
-                            mar2017Total++
+                            marTotal++
+                            if (element.interviewStatus == 'isEmployee') {
+                                mar2017Emp++
+                            }
+                        } else
+                        if (momentDate == 4) {
+                            aprTotal++
+                            if (element.interviewStatus == 'isEmployee') {
+                                apr2017Emp++
+                            }
+                        } else
+                        if (momentDate == 5) {
+                            mayTotal++
+                            if (element.interviewStatus == 'isEmployee') {
+                                mai2017Emp++
+                            }
+                        } else
+                        if (momentDate == 6) {
+                            junTotal++
+                            if (element.interviewStatus == 'isEmployee') {
+                                jun2017Emp++
+                            }
+                        } else
+                        if (momentDate == 7) {
+                            julTotal++
+                            if (element.interviewStatus == 'isEmployee') {
+                                jul2017Emp++
+                            }
+                        } else
+                        if (momentDate == 8) {
+                            augTotal++
+                            if (element.interviewStatus == 'isEmployee') {
+                                aug2017Emp++
+                            }
+                        } else
+                        if (momentDate == 9) {
+                            sepTotal++
+                            if (element.interviewStatus == 'isEmployee') {
+                                sep2017Emp++
+                            }
+                        } else
+                        if (momentDate == 10) {
+                            oct2017Total++
+                            if (element.interviewStatus == 'isEmployee') {
+                                oct2017Emp++
+                            }
+                        } else
+                        if (momentDate == 11) {
+                            nov2017Total++
+                            if (element.interviewStatus == 'isEmployee') {
+                                nov2017Emp++
+                            }
+                        } else
+                        if (momentDate == 12) {
+                            dec2017Total++
+                            if (element.interviewStatus == 'isEmployee') {
+                                dec2017Emp++
+                            }
                         }
                     } else {
                         //console.log(momenYear)
                     }
                 }, this);
 
-                app.barChart.Interviews.push(jan2017Total)
-                app.barChart.Interviews.push(feb2017Total)
-                app.barChart.Interviews.push(mar2017Total)
+                app.barChart.Interviews.push(janTotal, febTotal, marTotal, aprTotal, mayTotal, junTotal, julTotal, augTotal, sepTotal, oct2017Total, nov2017Total, dec2017Total)
+                app.barChart.Employees.push(jan2017Emp, feb2017Emp, mar2017Emp, apr2017Emp, mai2017Emp, jun2017Emp, jul2017Emp, aug2017Emp, sep2017Emp, oct2017Emp, nov2017Emp, dec2017Emp)
+
                 app.barChart.data.push(app.barChart.Interviews)
                 app.barChart.data.push(app.barChart.Employees)
+
+                console.log(app.barChart.data)
             })
         } else if (option == 2016) {
+
             Interview.getChartData().then(function(response) {
-                app.barChart.data = []
                 jan2016Total = 0
                 feb2016Total = 0
                 mar2016Total = 0
@@ -132,6 +224,7 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
                 app.barChart.Interviews.push(dec2016Total)
                 app.barChart.data.push(app.barChart.Interviews)
                 app.barChart.data.push(app.barChart.Employees)
+                console.log(app.barChart.data)
             })
         }
 
