@@ -120,6 +120,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 //to accest username from the front-end
                 app.username = data.data.username
                 app.useremail = data.data.email
+                app.group = data.data.group
                 app.loadme = true;
             })
         } else {
@@ -144,15 +145,15 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     //Redirect To HomePage
                     app.checkSession();
 
-                    //Error might be comming from here <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-                    getInterviewsFiltered()
+                    //loading twich to hack the error :-(
+                    getInterviewsFiltered('All')
+                    console.log('got int on login')
                     $location.path('/interviews')
                     app.isLoading = false
                     app.loginData = null;
                     app.successMsg = false;
 
-                    app.group = data.data.group
-                    console.log(data.data.group)
+                    // app.group = data.data.group
                 })
 
             } else {
@@ -449,10 +450,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         }
     }
 
-
-
     //MD TABLE ///
-
     $scope.sort = {
         //defaults
         order: '-dataapplicazione',
@@ -510,12 +508,12 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         },
         {
             link: '/interviews',
-            title: 'Interviews',
+            title: 'Interviste',
             icon: 'message'
         },
         {
             link: '/statistics',
-            title: 'Statistics',
+            title: 'Statistiche',
             icon: 'message'
         }
     ];
@@ -526,7 +524,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         },
         {
             link: '/profile',
-            title: 'Profile',
+            title: 'Profilo',
             icon: 'settings'
         }
     ];

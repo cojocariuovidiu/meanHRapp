@@ -15,10 +15,6 @@ angular.module('interviewServices', [])
         })
     }
 
-    interviewFactory.getLast7Days = function() {
-        return $http.get('/api/getLast7Days')
-    }
-
     interviewFactory.getChartData = function() {
         return $http.get('/api/getChartData')
     }

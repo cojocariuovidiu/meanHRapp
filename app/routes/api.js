@@ -45,7 +45,7 @@ module.exports = function(router) {
             req.body.password === null || req.body.password === undefined || req.body.username === '' ||
             req.body.email === null || req.body.email === undefined || req.body.email === '' ||
             req.body.group === null || req.body.group === undefined || req.body.group === '') {
-            res.json({ success: false, message: 'Ensure username, email and password were provided' })
+            res.json({ success: false, message: 'Ensure group, username, email and password were provided' })
         } else {
             user.save(function(err) {
                 if (err) { //if user exists in the db or some other error
@@ -81,14 +81,13 @@ module.exports = function(router) {
                     //create jwt token
                     var token = jwt.sign({
                         username: user.username,
-                        email: user.email
+                        email: user.email,
+                        group: user.group
                     }, secret, {
                         expiresIn: '6360h'
                     })
 
-                    console.log('group', user.group)
-
-                    res.json({ success: true, message: 'User authenticated!', token: token, group: user.group })
+                    res.json({ success: true, message: 'User authenticated!', token: token })
                 }
             }
         })

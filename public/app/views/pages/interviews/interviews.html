@@ -1,9 +1,9 @@
 <!--<md-toolbar class="md-table-toolbar md-default">-->
 <div class="md-toolbar-tools">
-    <div class="toolbarTitle">Interviews</div>
+    <div class="toolbarTitle">Interviste</div>
     <div flex></div>
     <md-input-container>
-        <label>Search</label>
+        <label>Cerca</label>
         <input ng-model="searchInterview">
     </md-input-container>
     <md-button ng-if="main.group == 'hr' || main.group =='admin'" class="md-raised md-fab md-mini" ng-click="editInterview()">
@@ -59,7 +59,7 @@
                     <th md-column md-order-by="esitocolloquio">Esito colloquio</th>
                     <th md-column md-order-by="sito">Sito</th>
                     <th md-column md-order-by="email">E-mail</th>
-                    <th md-column md-order-by="username">Created by</th>
+                    <th md-column md-order-by="username">Creato da</th>
                     <th ng-if="main.group == 'hr' || main.group =='admin'" md-column>Action</th>
                 </tr>
             </thead>
