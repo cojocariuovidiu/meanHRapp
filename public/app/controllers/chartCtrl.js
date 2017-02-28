@@ -11,7 +11,20 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
     app.barChart.series = ['Interviews', 'Employees']
     app.barChart.options = {
         responsive: false,
-        maintainAspectRatio: true
+        maintainAspectRatio: true,
+        //hide grid lines
+        scales: {
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }],
+            yAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }]
+        }
     }
     app.barChart.data = []
     app.barChart.Interviews = []
