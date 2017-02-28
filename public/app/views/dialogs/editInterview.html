@@ -3,8 +3,8 @@
     <form ng-submit="submitInterview(newInterview)">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2 ng-if="editedObject.username">Edit Interview</h2>
-                <h2 ng-if="!editedObject.username">Add Interview</h2>
+                <h2 ng-if="editedObject.username">Modifica Intervista</h2>
+                <h2 ng-if="!editedObject.username">Agiungi Intervista</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog">close</md-icon>
@@ -129,7 +129,7 @@
                         </div>
                         <span flex></span>
                         <md-input-container ng-if="editedObject.username != null" class="md-block" flex-gt-sm="">
-                            <label>Created By {{editedObject.username}}</label>
+                            <label>Creato da {{editedObject.username}}</label>
                         </md-input-container>
                     </div>
                 </md-content>
@@ -145,7 +145,7 @@
             <input ng-click="UploadFile(uploadCV)" ng-model="uploadCV" class="ng-hide" id="input-file-id" multiple type="file" />
             -->
             <md-button ng-if="editedObject.username" ng-click="showConfirm()" class="md-raised">
-                Delete
+                Elimina
             </md-button>
 
             <md-menu>
@@ -181,10 +181,10 @@
             </md-button>-->
             <span flex></span>
             <md-button type="submit " class="md-raised md-primary ">
-                Save
+                Salva
             </md-button>
             <md-button class="md-raised md-warn " ng-click="cancel() ">
-                Cancel
+                Cancela
             </md-button>
         </md-dialog-actions>
     </form>
