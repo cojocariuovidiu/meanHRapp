@@ -51,31 +51,33 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
 
     //Filter function used for each year
     function ChartFilterYear(option) {
-        var janTotal = 0
-        var febTotal = 0
-        var marTotal = 0
-        var aprTotal = 0
-        var mayTotal = 0
-        var junTotal = 0
-        var julTotal = 0
-        var augTotal = 0
-        var sepTotal = 0
-        var octTotal = 0
-        var novTotal = 0
-        var decTotal = 0
-        var janEmp = 0
-        var febEmp = 0
-        var marEmp = 0
-        var aprEmp = 0
-        var mayEmp = 0
-        var junEmp = 0
-        var julEmp = 0
-        var augEmp = 0
-        var sepEmp = 0
-        var octEmp = 0
-        var novEmp = 0
-        var decEmp = 0
+        //Declare and reset values on function call
+        var janTotal = 0,
+            febTotal = 0,
+            marTotal = 0,
+            aprTotal = 0,
+            mayTotal = 0,
+            junTotal = 0,
+            julTotal = 0,
+            augTotal = 0,
+            sepTotal = 0,
+            octTotal = 0,
+            novTotal = 0,
+            decTotal = 0,
+            janEmp = 0,
+            febEmp = 0,
+            marEmp = 0,
+            aprEmp = 0,
+            mayEmp = 0,
+            junEmp = 0,
+            julEmp = 0,
+            augEmp = 0,
+            sepEmp = 0,
+            octEmp = 0,
+            novEmp = 0,
+            decEmp = 0
 
+        //Load all data from the DB
         Interview.getChartData().then(function(response) {
             response.data.forEach(function(element) {
                 var interviewStatus = element.interviewStatus
