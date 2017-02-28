@@ -12,7 +12,7 @@ var storage = multer.diskStorage({
         cb(null, './public/uploads')
     },
     filename: function(req, file, cb) {
-        if (!file.originalname.match(/\.(pdf|png|jpeg|jpg)$/)) {
+        if (!file.originalname.match(/\.(pdf|png|jpeg|jpg|doc|docx)$/)) {
             var err = new Error()
             err.code = 'filetype'
             return cb(err)
@@ -256,7 +256,7 @@ module.exports = function(router) {
                 if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
                     res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })
                 } else if (err.code === 'filetype') { //our custom error
-                    res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg' })
+                    res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg, doc, docx' })
                 } else {
                     console.log(err)
                     res.json({ success: false, message: 'Unable to upload, call Administrator' })
