@@ -42,13 +42,13 @@
 
             <md-content layout-margin="">
                 <md-list>
-                    <md-item ng-repeat="item in menu">
+                    <md-item ng-repeat="item in main.menu">
                         <a>
                             <md-item-content md-ink-ripple layout="row" layout-align="start center">
                                 <div class="inset">
                                     <ng-md-icon icon="{{item.icon}}"></ng-md-icon>
                                 </div>
-                                <div class="inset"><a ng-click="toggleLeft()" href="{{item.link}}">{{item.title}}</a> </div>
+                                <div class="inset"><a ng-click="main.toggleLeft()" href="{{item.link}}">{{item.title}}</a> </div>
                             </md-item-content>
                         </a>
                     </md-item>
@@ -59,7 +59,7 @@
                                 <div class="inset">
                                     <ng-md-icon icon="profile"></ng-md-icon>
                                 </div>
-                                <div class="inset"><a ng-click="toggleLeft()" href="/profile">Profilo</a></div>
+                                <div class="inset"><a ng-click="main.toggleLeft()" href="/profile">Profilo</a></div>
                             </md-item-content>
                         </a>
                         <a>
@@ -69,7 +69,7 @@
                                 </div>
                                 <!--<div class="inset"><a ng-click="main.logout()" href="#">Log Out</a></div>-->
                                 <div class="inset">
-                                    <a ng-click="toggleLeft()" href="#">
+                                    <a ng-click="main.toggleLeft()" href="#">
                                         <p ng-click="main.logout()"> Log Out </i>
                                         </p>
                                 </div>
@@ -84,7 +84,7 @@
         </md-sidenav>
     </section>
 
-    <md-button ng-if="main.isLoggedIn" ng-click="toggleLeft()" class="md-primary md-fab md-mini material-icons menuSilder">
+    <md-button ng-if="main.isLoggedIn" ng-click="main.toggleLeft()" class="md-primary md-fab md-mini material-icons menuSilder">
         <md-icon>menu</md-icon>
     </md-button>
 

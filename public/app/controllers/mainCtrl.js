@@ -5,7 +5,7 @@ angular.module('mainController', ['authServices', 'userServices', 'ngMaterial'])
     $mdThemingProvider.theme('docs-dark')
 })
 
-.controller('mainCtrl', function(shareData, $mdSidenav, Auth, $scope, $timeout, $location, $rootScope, $route) { //Auth from authServices
+.controller('mainCtrl', function(shareData, $mdSidenav, Auth, $timeout, $location, $rootScope, $route) { //Auth from authServices
     var main = this;
 
     main.loadme = false;
@@ -18,12 +18,9 @@ angular.module('mainController', ['authServices', 'userServices', 'ngMaterial'])
 
     main.checkSession();
 
-    //$rootScope.$on('$viewContentLoaded', function() {
     $rootScope.$on('$routeChangeStart', function() {
-
         if (!main.checkingsession) main.checkSession();
 
-        //Auth in authservices
         if (Auth.isLoggedIn()) {
             //console.log('success, User is logged in ');
 
@@ -35,7 +32,7 @@ angular.module('mainController', ['authServices', 'userServices', 'ngMaterial'])
                 main.useremail = data.data.email
                 main.group = data.data.group
                 main.loadme = true;
-                //share data 
+                //share logged user to other controllers
                 shareData.loggedUser = data.data.username
             })
         } else {
@@ -90,7 +87,7 @@ angular.module('mainController', ['authServices', 'userServices', 'ngMaterial'])
     }
 
 
-    $scope.toggleLeft = buildToggler('left');
+    main.toggleLeft = buildToggler('left');
 
     function buildToggler(componentId) {
         return function() {
@@ -98,19 +95,20 @@ angular.module('mainController', ['authServices', 'userServices', 'ngMaterial'])
             // showToast()
         };
     }
-    $scope.menu = [{
+
+    main.menu = [{
             link: '/',
             title: 'Home',
             icon: 'dashboard'
         },
         {
-            link: '/employees',
-            title: 'Dipendenti',
+            link: '/interviews',
+            title: 'Interviste',
             icon: 'message'
         },
         {
-            link: '/interviews',
-            title: 'Interviste',
+            link: '/employees',
+            title: 'Dipendenti',
             icon: 'message'
         },
         {
@@ -119,7 +117,7 @@ angular.module('mainController', ['authServices', 'userServices', 'ngMaterial'])
             icon: 'message'
         }
     ];
-    $scope.admin = [{
+    main.admin = [{
             link: '',
             title: 'Log Out',
             icon: 'delete',
