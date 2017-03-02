@@ -4,12 +4,12 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
 
 .controller("chartCtrl", function(Interview, $scope) {
 
-    var app = this
+    var chart = this
 
-    app.barChart = {};
-    app.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    app.barChart.series = ['Interviste', 'Dipendenti']
-    app.barChart.options = {
+    chart.barChart = {};
+    chart.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    chart.barChart.series = ['Interviste', 'Dipendenti']
+    chart.barChart.options = {
         responsive: false,
         maintainAspectRatio: true,
         //hide grid lines
@@ -26,16 +26,16 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
             }]
         }
     }
-    app.barChart.data = []
-    app.barChart.Interviews = []
-    app.barChart.Employees = []
+    chart.barChart.data = []
+    chart.barChart.Interviews = []
+    chart.barChart.Employees = []
 
     //Button/OnLoad function
     this.loadChartData = function(option) {
         $scope.selectedYear = option
-        app.barChart.data = []
-        app.barChart.Interviews = []
-        app.barChart.Employees = []
+        chart.barChart.data = []
+        chart.barChart.Interviews = []
+        chart.barChart.Employees = []
 
         if (option == 2017) {
             ChartFilterYear(option)
@@ -47,7 +47,7 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
     }
 
     //Load 2017 on start
-    app.loadChartData(2017)
+    chart.loadChartData(2017)
 
     //Filter function used for each year
     function ChartFilterYear(option) {
@@ -162,13 +162,13 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
                 }
             }, this);
 
-            app.barChart.Interviews.push(janTotal, febTotal, marTotal, aprTotal, mayTotal, junTotal, julTotal, augTotal, sepTotal, octTotal, novTotal, decTotal)
-            app.barChart.Employees.push(janEmp, febEmp, marEmp, aprEmp, mayEmp, junEmp, julEmp, augEmp, sepEmp, octEmp, novEmp, decEmp)
+            chart.barChart.Interviews.push(janTotal, febTotal, marTotal, aprTotal, mayTotal, junTotal, julTotal, augTotal, sepTotal, octTotal, novTotal, decTotal)
+            chart.barChart.Employees.push(janEmp, febEmp, marEmp, aprEmp, mayEmp, junEmp, julEmp, augEmp, sepEmp, octEmp, novEmp, decEmp)
 
-            app.barChart.data.push(app.barChart.Interviews)
-            app.barChart.data.push(app.barChart.Employees)
+            chart.barChart.data.push(chart.barChart.Interviews)
+            chart.barChart.data.push(chart.barChart.Employees)
 
-            console.log(app.barChart.data)
+            console.log(chart.barChart.data)
         })
     }
 

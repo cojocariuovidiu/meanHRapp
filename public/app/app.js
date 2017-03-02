@@ -9,7 +9,9 @@ angular.module('userApp', [
     'fileModelDirective',
     'uploadFileService',
     'chartControllers',
-    'employeeControllers'
+    'employeeControllers',
+    'interviewControllers',
+    'sharedService'
 ])
 
 .config(function($httpProvider) {

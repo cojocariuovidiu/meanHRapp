@@ -42,7 +42,9 @@ var app = angular.module('appRoutes', ['ngRoute'])
         // })
         .when('/interviews', {
             templateUrl: 'app/views/pages/interviews/interviews.html',
-            authenticated: true
+            authenticated: true,
+            controller: 'intCtrl',
+            controllerAs: 'int'
         })
         .when('/employees', {
             templateUrl: 'app/views/pages/employees/employees.html',
