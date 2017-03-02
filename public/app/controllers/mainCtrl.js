@@ -327,8 +327,8 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 //.textContent('All of the banks have agreed to forgive you your debts.')
                 .ariaLabel('Danger')
                 //.targetEvent(ev)
-                .ok('Cancel')
-                .cancel('Ok');
+                .ok('No')
+                .cancel('Si');
 
             $mdDialog.show(confirm).then(
                 function() {
