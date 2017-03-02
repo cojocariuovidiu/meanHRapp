@@ -44,6 +44,12 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/interviews/interviews.html',
             authenticated: true
         })
+        .when('/employees', {
+            templateUrl: 'app/views/pages/employees/employees.html',
+            authenticated: true,
+            controller: 'empCtrl',
+            controllerAs: 'emp',
+        })
         .when('/statistics', {
             templateUrl: 'app/views/pages/interviews/statistics.html',
             controller: 'chartCtrl',

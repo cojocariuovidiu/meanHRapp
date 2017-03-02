@@ -527,6 +527,11 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
             icon: 'dashboard'
         },
         {
+            link: '/employees',
+            title: 'Dipendenti',
+            icon: 'message'
+        },
+        {
             link: '/interviews',
             title: 'Interviste',
             icon: 'message'
