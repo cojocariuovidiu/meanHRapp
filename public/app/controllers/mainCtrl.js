@@ -1,11 +1,10 @@
-angular.module('mainController', ['authServices', 'userServices', 'ngMaterial'])
+angular.module('mainController', ['ngMaterial'])
 
-//config
 .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('docs-dark')
 })
 
-.controller('mainCtrl', function(shareData, $mdSidenav, Auth, $timeout, $location, $rootScope, $route) { //Auth from authServices
+.controller('mainCtrl', function(shareData, $mdSidenav, Auth, $timeout, $location, $rootScope, $route) {
     var main = this;
 
     main.loadme = false;
@@ -43,7 +42,7 @@ angular.module('mainController', ['authServices', 'userServices', 'ngMaterial'])
         }
     })
 
-    this.doLogin = function(loginData) {
+    main.doLogin = function(loginData) {
         main.successMsg = false;
         main.errorMsg = false;
         main.isLoading = true;
@@ -78,7 +77,7 @@ angular.module('mainController', ['authServices', 'userServices', 'ngMaterial'])
         })
     }
 
-    this.logout = function() {
+    main.logout = function() {
         // showModal(2)
         buildToggler('left')
         Auth.logout();

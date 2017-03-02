@@ -2,7 +2,7 @@
 
 angular.module("interviewControllers", ['md.data.table'])
 
-.controller("intCtrl", function(shareData, $mdToast, uploadFile, $mdSidenav, $mdDialog, Interview, $scope, $http, $timeout, $location, $rootScope, $window, $interval, $route) {
+.controller("intCtrl", function(shareData, $mdToast, uploadFile, $mdSidenav, $mdDialog, Interview, $scope, $http, $timeout, $location, $rootScope, $window, $interval) {
     console.log('intCtrl ok')
 
     var int = this

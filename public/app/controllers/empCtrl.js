@@ -3,5 +3,12 @@
 angular.module("employeeControllers", [])
 
 .controller("empCtrl", function() {
-    console.log('empCtrl ok')
+    var emp = this
+
+    emp.employeessList = [{
+        cnp: '111'
+    }, {
+        cnp: '222'
+    }]
+
 })
