@@ -2,13 +2,12 @@
 
 angular.module("employeeControllers", [])
 
-.controller("empCtrl", function() {
+.controller("empCtrl", function(Employee) {
     var emp = this
 
-    emp.employeessList = [{
-        cnp: '111'
-    }, {
-        cnp: '222'
-    }]
+    Employee.getEmployees().then(function(response) {
+        console.log(response.data)
+        emp.employeessList = response.data
+    })
 
 })

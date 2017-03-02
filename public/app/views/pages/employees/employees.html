@@ -58,7 +58,7 @@
             <tfoot md-foot>
                 <tr md-row>
                     <td md-cell></td>
-                    <td md-cell><strong>Totale: </strong>{{int.employeessList.length}}</td>
+                    <td md-cell><strong>Totale: </strong>{{emp.employeessList.length}}</td>
                     <td md-cell colspan="13"></td>
                 </tr>
             </tfoot>
@@ -66,5 +66,5 @@
     </md-table-container>
 </md-card>
 
-<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{int.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
+<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{emp.employeessList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
 <!--<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->

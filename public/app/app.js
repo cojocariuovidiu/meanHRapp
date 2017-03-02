@@ -11,7 +11,8 @@ angular.module('userApp', [
     'chartControllers',
     'employeeControllers',
     'interviewControllers',
-    'sharedService'
+    'sharedService',
+    'employeeServices'
 ])
 
 .config(function($httpProvider) {

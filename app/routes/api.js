@@ -1,8 +1,8 @@
 var User = require('../models/user')
 var Interview = require('../models/interview')
+var Employee = require('../models/employee')
 var jwt = require('jsonwebtoken')
 var secret = 'harrypotter'
-var mongoose = require('mongoose')
 var multer = require('multer')
 var moment = require('moment')
 
@@ -180,6 +180,13 @@ module.exports = function(router) {
     router.get('/getinterviews', function(req, res) {
         Interview.find({}, function(err, interviews) {
             res.send(interviews)
+        })
+    })
+
+    //http://127.0.0.1:3000/api/getemployees
+    router.get('/getemployees', function(req, res) {
+        Employee.find({}, function(err, employees) {
+            res.send(employees)
         })
     })
 
