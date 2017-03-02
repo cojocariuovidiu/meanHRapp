@@ -8,7 +8,7 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
 
     app.barChart = {};
     app.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    app.barChart.series = ['Interviews', 'Employees']
+    app.barChart.series = ['Interviste', 'Dipendenti']
     app.barChart.options = {
         responsive: false,
         maintainAspectRatio: true,

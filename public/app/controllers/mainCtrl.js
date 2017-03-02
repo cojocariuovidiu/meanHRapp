@@ -417,7 +417,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 Interview.getinterviews().then(function(response) {
                     app.interviewsList = response.data
                     displayingObject = {
-                        message: option + ' (Total: ' + app.interviewsList.length + ' )',
+                        message: option + ' (Totale: ' + app.interviewsList.length + ' )',
                         activator: 'All'
                     }
                     $scope.displaying = displayingObject.message
@@ -461,7 +461,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                 $http.post('/api/getRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
                     app.interviewsList = response.data
                     displayingObject = {
-                        message: momentFrom + ' - ' + momentTo + ' (Total: ' + app.interviewsList.length + ' )',
+                        message: momentFrom + ' - ' + momentTo + ' (Totale: ' + app.interviewsList.length + ' )',
                         activator: 'Range'
                     }
                 }, this)
