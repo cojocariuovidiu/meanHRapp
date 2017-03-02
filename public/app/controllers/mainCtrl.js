@@ -226,6 +226,17 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
 
     function DialogController($scope, $mdDialog, editedObject) {
         $scope.sessi = ['M', 'F']
+
+        $scope.esitocolloqui = [
+            'assunto',
+            'scartato',
+            'rifiuta',
+            'attendo risposta',
+            'da rivedere',
+            'irreperibile',
+            'non interessato'
+        ]
+
         $scope.hide = function() {
             $mdDialog.hide();
         };
@@ -312,7 +323,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
         $scope.showConfirm = function() {
             // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
-                .title('Are you sure you want to delete?')
+                .title('Sei sicuro di voler eliminare?')
                 //.textContent('All of the banks have agreed to forgive you your debts.')
                 .ariaLabel('Danger')
                 //.targetEvent(ev)

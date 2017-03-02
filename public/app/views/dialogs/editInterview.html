@@ -69,9 +69,15 @@
                             <label>Esito 2 chiamata</label>
                             <input ng-model="newInterview.esito2" aria-label="esito2Input">
                         </md-input-container>
+
                         <md-input-container class="md-block" flex-gt-xs="">
                             <label>Esito colloquio</label>
-                            <input ng-model="newInterview.esitocolloquio" aria-label="esitocolloquioInput">
+                            <md-select aria-label="esitocolloquioInput" ng-model="newInterview.esitocolloquio">
+                                <md-option ng-repeat="item in esitocolloqui" value="{{item}}">
+                                    {{item}}
+                                </md-option>
+                            </md-select>
+
                         </md-input-container>
                     </div>
 
