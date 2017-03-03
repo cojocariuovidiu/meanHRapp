@@ -9,10 +9,12 @@ angular.module('interviewServices', [])
     }
 
     //Interview.create(newInterview)
-    interviewFactory.create = function(id) {
-        return $http.post('/api/interview', id).then(function(response) {
-            console.log("Data saved status:", response.data.success);
-        })
+    interviewFactory.create = function(interview) {
+        console.log('id from int service:', interview)
+        return $http.post('/api/interview', interview)
+            .then(function(response) {
+                console.log("Data saved status:", response.data.success);
+            })
     }
 
     interviewFactory.getChartData = function() {

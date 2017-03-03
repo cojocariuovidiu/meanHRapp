@@ -176,6 +176,24 @@ module.exports = function(router) {
             //}
     })
 
+    //http://127.0.0.1:3000/api/employee
+    router.post('/employee', function(req, res) {
+        console.log('creating employee', req.body)
+
+        var employee = new Employee()
+        employee.cnp = req.body.newEmployee.cnp
+        employee.save(function(err) {
+            if (err) {
+                console.log('save failed');
+                console.log(err)
+                res.json({ success: false })
+            } else {
+                console.log('save success');
+                res.json({ success: true })
+            }
+        })
+    })
+
     //http://127.0.0.1:3000/api/getinterviews
     router.get('/getinterviews', function(req, res) {
         Interview.find({}, function(err, interviews) {

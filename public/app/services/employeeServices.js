@@ -8,5 +8,12 @@ angular.module('employeeServices', [])
         return $http.get('/api/getemployees')
     }
 
+    employeeFactory.create = ((newEmployee) => {
+        return $http.post('/api/employee', newEmployee)
+            .then((response) => {
+                console.log('Employee created', response.data.success)
+            })
+    })
+
     return employeeFactory;
 })

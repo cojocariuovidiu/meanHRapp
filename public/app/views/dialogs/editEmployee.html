@@ -1,0 +1,63 @@
+<md-dialog aria-label="Add/Edit">
+    <!--<form ng-submit="main.submitInterview(newInterview)" novalidate ng-cloak>-->
+    <form ng-submit="submitEmployee(newEmployee)">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2 ng-if="editedObject.username">Modifica Intervista</h2>
+                <h2 ng-if="!editedObject.username">Agiungi Intervista</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon aria-label="Close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+
+
+        <md-dialog-content aria-label="MD Dialog Content">
+            <div layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
+
+                <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
+                    <div layout-gt-sm="row">
+                        <md-input-container aria-label="MD Input Container" class="md-block" flex-gt-sm="">
+                            <label>Cnp</label>
+                            <input required aria-label="nomecognomeInput" ng-model="newEmployee.cnp">
+                        </md-input-container>
+                </md-content>
+                </div>
+        </md-dialog-content>
+
+
+        <md-dialog-actions layout="row">
+            <!--<md-button type="file" ng-click="UploadFile()" type="file" class="md-raised md-accent">
+        Upload CV
+            </md-button>
+            <label for="input-file-id" class="md-button md-raised md-primary">Upload CV</label>
+            <input ng-click="UploadFile(uploadCV)" ng-model="uploadCV" class="ng-hide" id="input-file-id" multiple type="file" />
+            -->
+            <md-button ng-if="editedObject.username" ng-click="showConfirm()" class="md-raised">
+                Elimina
+            </md-button>
+
+            <!--<md-button ng-if="editedObject.username " ng-click="AddRemoveEmployee() " ng-class="{ 'employee': isEmployee} ">
+                <span ng-if="!isEmployee ">Add Empoyee</span>
+                <span ng-if="isEmployee ">Remove Empoyee</span>
+            </md-button>-->
+            <span flex></span>
+            <md-button type="submit " class="md-raised md-primary ">
+                Salva
+            </md-button>
+            <md-button class="md-raised md-warn " ng-click="cancel() ">
+                Cancela
+            </md-button>
+        </md-dialog-actions>
+    </form>
+
+    <!--<div ng-show="uploading " class="progress ">
+        <div class="progress-bar progress-bar-striped active " role="progressbar " aria-valuenow="45 " aria-valuemin="0 " aria-valuemax="100 " style="width: 100% ">
+            <div class="sr-only "></div>
+        </div>
+    </div>-->
+
+
+
+</md-dialog>
