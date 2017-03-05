@@ -36,7 +36,6 @@ angular.module("employeeControllers", [])
                     // });
             })
         } else {
-            console.log('new employee')
             emp.editedObject = {}
             $mdDialog.show({
                 controller: DialogController,
@@ -53,6 +52,8 @@ angular.module("employeeControllers", [])
     }
 
     function DialogController($scope, $mdDialog, editedObject) {
+
+        $scope.departments = ['Maran', 'Trbioo']
 
         $scope.hide = function() {
             $mdDialog.hide();
@@ -71,26 +72,28 @@ angular.module("employeeControllers", [])
         $scope.newEmployee = angular.copy($scope.editedObject)
 
         $scope.submitEmployee = ((newEmployee) => {
-            if (newEmployee) {
-                //Update Employee
-                $http.put('/api/editEmployee/' + editedObject._id, {
-                    updateData: newEmployee,
-                    // editedBy: int.username,
-                    editedBy: shareData.loggedUser
-                        // interviewStatus: $scope.interviewStatus,
-                        // buletin: $scope.buletin
-                }).then(function(response) {
-                    console.log('Data updated status:', newEmployee)
-                }).then(function(response) {
-                    checkDisplaying()
-                    $mdDialog.hide();
-                })
-            } else {
-                console.log('new Emp:')
+            function isEmpty(obj) {
+                return Object.keys(obj).length === 0;
+            }
+            if (isEmpty(editedObject)) {
+                console.log('new Emp:', newEmployee, shareData.loggedUser)
                 Employee.create({
                     newEmployee: newEmployee,
                     username: shareData.loggedUser
                 }).then(function() {
+                    checkDisplaying()
+                    $mdDialog.hide();
+                })
+            } else {
+                //Update Employee
+                $http.put('/api/editEmployee/' + editedObject._id, {
+                    updateData: newEmployee,
+                    editedBy: shareData.loggedUser
+                        // interviewStatus: $scope.interviewStatus,
+                        // buletin: $scope.buletin
+                }).then(function(response) {
+                    // console.log('Data updated status:', newEmployee)
+                }).then(function(response) {
                     checkDisplaying()
                     $mdDialog.hide();
                 })

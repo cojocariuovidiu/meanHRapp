@@ -27,6 +27,7 @@
                 <tr md-row>
                     <!--<th md-column md-order-by="cartaidentita">Carta Identita</th>-->
                     <th md-column md-order-by="cnp">Cnp</th>
+                    <th md-column md-order-by="department">Departamento</th>
                     <!--<th md-column md-order-by="dataassunzione"><span>Data di assunzione</span></th>
                     <th md-column md-order-by="nomecognome"><span>Nome e cognome</span></th>
                     <th md-column md-order-by="sesso">Sesso</th>
@@ -42,6 +43,7 @@
                 <tr md-row ng-repeat="item in emp.employeessList">
                     <!--<td md-cell><i ng-if="item.cartaidentita" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.cv}}">face</a></i></td>-->
                     <td md-cell>{{ item.cnp}}</td>
+                    <td md-cell>{{ item.department}}</td>
                     <!--<td md-cell>{{ item.dataassunzione | date}}</td>
                     <td md-cell>{{ item.nomecognome }}</td>
                     <td class="sesso" md-cell>{{ item.sesso }}</td>

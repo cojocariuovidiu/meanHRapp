@@ -17,13 +17,23 @@
             <div layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
 
                 <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
-                    <div layout-gt-sm="row">
+                    <div layout-gt-xs="row">
                         <md-input-container aria-label="MD Input Container" class="md-block" flex-gt-sm="">
                             <label>Cnp</label>
-                            <input required aria-label="nomecognomeInput" ng-model="newEmployee.cnp">
+                            <input required aria-label="cnpInput" ng-model="newEmployee.cnp">
                         </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm="">
+                            <label>Departamento</label>
+                            <md-select aria-label="departmentInput" ng-model="newEmployee.department">
+                                <md-option ng-repeat="department in departments" value="{{department}}">
+                                    {{department}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
                 </md-content>
-                </div>
+            </div>
         </md-dialog-content>
 
 

@@ -154,8 +154,8 @@ module.exports = function(router) {
         interview.responsabile_colloquio = req.body.newInterview.responsabile_colloquio
         interview.sito = req.body.newInterview.sito
         interview.email = req.body.newInterview.email
-        interview.username = req.body.username,
-            interview.interviewStatus = req.body.interviewStatus
+        interview.username = req.body.username
+        interview.interviewStatus = req.body.interviewStatus
 
         // if (req.body.nomecognome === null || req.body.nomecognome === undefined || req.body.nomecognome === '' ||
         //     req.body.sesso === null || req.body.sesso === undefined || req.body.sesso === '' ||
@@ -182,6 +182,9 @@ module.exports = function(router) {
 
         var employee = new Employee()
         employee.cnp = req.body.newEmployee.cnp
+        employee.department = req.body.newEmployee.department
+        employee.username = req.body.username
+
         employee.save(function(err) {
             if (err) {
                 console.log('save failed');
@@ -231,6 +234,7 @@ module.exports = function(router) {
                 console.log("can't find id to edit.")
             } else {
                 res.json({ item })
+                ``
             }
         })
     })
@@ -343,10 +347,11 @@ module.exports = function(router) {
     //http://127.0.0.1:3000/api/editEmployee/:id
     router.put('/editEmployee/:id', function(req, res) {
         var id = req.params.id
-        console.log('updating id:', id, 'with data', req.body.updateData.cnp)
+        console.log('updating id:', id)
 
         Employee.findOneAndUpdate({ _id: id }, {
-            cnp: req.body.updateData.cnp
+            cnp: req.body.updateData.cnp,
+            department: req.body.updateData.department
         }, { new: true }, function(err) {
             if (err) {
                 console.log('update failed');
