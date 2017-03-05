@@ -71,21 +71,7 @@ angular.module("employeeControllers", [])
         $scope.newEmployee = angular.copy($scope.editedObject)
 
         $scope.submitEmployee = ((newEmployee) => {
-
-            function isEmpty(obj) {
-                return Object.keys(obj).length === 0;
-            }
-
-            if (isEmpty(editedObject)) {
-                console.log('new Emp:')
-                Employee.create({
-                    newEmployee: newEmployee,
-                    username: shareData.loggedUser
-                }).then(function() {
-                    checkDisplaying()
-                    $mdDialog.hide();
-                })
-            } else {
+            if (newEmployee) {
                 //Update Employee
                 $http.put('/api/editEmployee/' + editedObject._id, {
                     updateData: newEmployee,
@@ -99,13 +85,20 @@ angular.module("employeeControllers", [])
                     checkDisplaying()
                     $mdDialog.hide();
                 })
+            } else {
+                console.log('new Emp:')
+                Employee.create({
+                    newEmployee: newEmployee,
+                    username: shareData.loggedUser
+                }).then(function() {
+                    checkDisplaying()
+                    $mdDialog.hide();
+                })
             }
-
         })
 
         $scope.showConfirm = function() {
-            console.log('eel')
-                // Appending dialog to document.body to cover sidenav in docs app
+            // Appending dialog to document.body to cover sidenav in docs app
             var confirm = $mdDialog.confirm()
                 .title('Sei sicuro di voler eliminare?')
                 //.textContent('All of the banks have agreed to forgive you your debts.')
@@ -124,7 +117,7 @@ angular.module("employeeControllers", [])
                         checkDisplaying()
                     })
                 });
-        };
+        }
     }
 
     function checkDisplaying() {
@@ -143,6 +136,41 @@ angular.module("employeeControllers", [])
             })
             console.log('promisse all')
             console.log('Displaying', option)
+        }
+    }
+
+    //Call Sort Modal
+    emp.sortModal = function() {
+        $mdDialog.show({
+            controller: SortDialogController,
+            templateUrl: 'app/views/dialogs/sortEmployees.html',
+            // locals: {
+            //     editedObject: editedObject
+            // },
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+    }
+
+    //Controler for SortModal
+    function SortDialogController($scope, $mdDialog) {
+        $scope.RangeFilter = function(fromDate, toDate) {
+            RangeFilter(fromDate, toDate);
+            $mdDialog.hide();
+        }
+        $scope.getAll = function() {
+            getInterviewsFiltered('All')
+            $mdDialog.hide();
+        }
+        $scope.getDepartment = function(option) {
+            console.log(option)
+                // getInterviewsFiltered(option)
+            $mdDialog.hide();
+        }
+        $scope.cancel = function() {
+            $mdDialog.cancel();
         }
     }
 })

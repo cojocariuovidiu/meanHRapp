@@ -209,7 +209,7 @@ angular.module("interviewControllers", ['md.data.table'])
     $scope.sortModal = function() {
         $mdDialog.show({
             controller: SortDialogController,
-            templateUrl: 'app/views/dialogs/sortDialog.html',
+            templateUrl: 'app/views/dialogs/sortInterviews.html',
             // locals: {
             //     editedObject: editedObject
             // },

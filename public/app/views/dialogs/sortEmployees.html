@@ -1,0 +1,41 @@
+<md-dialog aria-label="sortModal">
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Select Range or All</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon aria-label="Close dialog">close</md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
+            <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
+                <div layout-gt-sm="row">
+                    <md-input-container>
+                        <label>From</label>
+                        <md-datepicker ng-model="fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>To</label>
+                        <md-datepicker ng-model="toDate" md-current-view="year" aria-label="toDate"></md-datepicker>
+                    </md-input-container>
+                    <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
+                        Go
+                    </md-button>
+                </div>
+                <!--<md-button md-colors="{background: 'red'}" layout-fill class="md-raised md-accent" ng-click="getAll()">-->
+                <!--<md-button layout-fill class="md-raised md-accent" ng-click="getAll()">-->
+                <md-button class="isEmployee" ng-click="getDepartment('Triboo')">
+                    Triboo
+                </md-button>
+                <md-button class="md-raised md-primary" ng-click="getAll()">
+                    Show ALL Employees
+                </md-button>
+            </md-content>
+        </div>
+    </md-dialog-content>
+
+</md-dialog>
