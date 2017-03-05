@@ -50,7 +50,7 @@
                     <td class="email" md-cell>{{ item.email }}</td>
                     <td md-cell>{{ item.username }}</td>-->
                     <td ng-if="main.group == 'hr' || main.group =='admin'" md-cell>
-                        <md-button ng-click="editDipendente(item._id)" class="md-fab md-mini md-warn">
+                        <md-button ng-click="emp.editEmployee(item._id)" class="md-fab md-mini md-warn">
                             <md-icon>edit</md-icon>
                         </md-button>
                     </td>

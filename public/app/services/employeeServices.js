@@ -15,5 +15,9 @@ angular.module('employeeServices', [])
             })
     })
 
+    // employeeFactory.edit = ((id) => {
+    //     $http.get('/editEmployee/' + id)
+    // })
+
     return employeeFactory;
 })

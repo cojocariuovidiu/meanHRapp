@@ -235,6 +235,19 @@ module.exports = function(router) {
         })
     })
 
+    //http://127.0.0.1:3000/api/getEmployee/:id
+    router.get('/getEmployee/:id', function(req, res) {
+
+        Employee.findOne({ _id: req.params.id }).select().exec(function(err, item) {
+            if (err) throw err;
+            if (!item) {
+                console.log("can't find id to edit.")
+            } else {
+                res.json({ item })
+            }
+        })
+    })
+
     //http://127.0.0.1:3000/api/getInterviewsFiltered
     router.post('/getInterviewsFiltered', function(req, res) {
         var start = new Date(req.body.year - 1, 11, 32);
@@ -311,6 +324,18 @@ module.exports = function(router) {
             }
         })
     })
+
+    //http://127.0.0.1:3000/api/editEmployee/:id
+    // router.put('/editEmployee/:id', function(req, res) {
+    //     var id = req.body.id
+    //     console.log(id)
+
+    //     if (!req.body.cv) {
+    //         Employee.findOneAndUpdate({ _id: id }, {
+    //             cnp: req.body.
+    //         })
+    //     }
+    // })
 
     //http://127.0.0.1:3000/api/editinterview/:id
     router.put('/editinterview/:id', function(req, res) {
