@@ -4,6 +4,7 @@ angular.module("employeeControllers", [])
 
 .controller("empCtrl", function(shareData, Employee, $mdDialog, $scope, $http) {
     var emp = this
+    var displayingObject = {}
 
     Employee.getEmployees().then((response) => {
         console.log(response.data)
@@ -15,13 +16,8 @@ angular.module("employeeControllers", [])
         if (id) {
             console.log('editing', id)
 
-            // Employee.edit(id).then(function(response) {
-            //     console.log(response)
-            // })
-
             $http.get('/api/getEmployee/' + id).then(function(response) {
                 emp.editedObject = response.data.item
-                console.log(emp.editedObject)
                 $mdDialog.show({
                         controller: DialogController,
                         templateUrl: 'app/views/dialogs/editEmployee.html',
@@ -41,6 +37,7 @@ angular.module("employeeControllers", [])
             })
         } else {
             console.log('new employee')
+            emp.editedObject = {}
             $mdDialog.show({
                 controller: DialogController,
                 templateUrl: 'app/views/dialogs/editEmployee.html',
@@ -70,46 +67,58 @@ angular.module("employeeControllers", [])
             //console.log(data);
         };
 
-
         $scope.editedObject = editedObject
         $scope.newEmployee = angular.copy($scope.editedObject)
 
         $scope.submitEmployee = ((newEmployee) => {
+
             function isEmpty(obj) {
                 return Object.keys(obj).length === 0;
             }
 
             if (isEmpty(editedObject)) {
-                //console.log('new interview:', newInterview, app.username)
-
-                console.log(newEmployee)
-
-                //CREATE Interview
+                console.log('new Emp:')
                 Employee.create({
-                    new: newEmployee,
-                    // interviewStatus: $scope.interviewStatus,
-                    // username: int.username
+                    newEmployee: newEmployee,
                     username: shareData.loggedUser
                 }).then(function() {
-                    // checkDisplaying()
+                    checkDisplaying()
                     $mdDialog.hide();
                 })
             } else {
-                //Update Interview
-                console.log('editing', editedObject._id)
-                $http.put('/api/editinterview/' + editedObject._id, {
+                //Update Employee
+                $http.put('/api/editEmployee/' + editedObject._id, {
                     updateData: newEmployee,
                     // editedBy: int.username,
-                    editedBy: shareData.loggedUser,
-                    // interviewStatus: $scope.interviewStatus,
-                    cv: $scope.cv
+                    editedBy: shareData.loggedUser
+                        // interviewStatus: $scope.interviewStatus,
+                        // buletin: $scope.buletin
                 }).then(function(response) {
-                    console.log('Data updated status:', newInterview)
+                    console.log('Data updated status:', newEmployee)
                 }).then(function(response) {
                     checkDisplaying()
                     $mdDialog.hide();
                 })
             }
         })
+    }
+
+    function checkDisplaying() {
+        getEmployeesFiltered('All')
+    }
+
+    function getEmployeesFiltered(option) {
+        if (option == 'All') {
+            Employee.getEmployees().then(function(response) {
+                console.log(response.data)
+                emp.employeessList = response.data
+                displayingObject = {
+                    activator: 'All'
+                }
+                $scope.displaying = displayingObject.message
+            })
+            console.log('promisse all')
+            console.log('Displaying', option)
+        }
     }
 })

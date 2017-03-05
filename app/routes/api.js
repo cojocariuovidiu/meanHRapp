@@ -326,16 +326,23 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/editEmployee/:id
-    // router.put('/editEmployee/:id', function(req, res) {
-    //     var id = req.body.id
-    //     console.log(id)
+    router.put('/editEmployee/:id', function(req, res) {
+        var id = req.params.id
+        console.log('updating id:', id, 'with data', req.body.updateData.cnp)
 
-    //     if (!req.body.cv) {
-    //         Employee.findOneAndUpdate({ _id: id }, {
-    //             cnp: req.body.
-    //         })
-    //     }
-    // })
+        Employee.findOneAndUpdate({ _id: id }, {
+            cnp: req.body.updateData.cnp
+        }, { new: true }, function(err) {
+            if (err) {
+                console.log('update failed');
+                console.log(err)
+                res.json({ success: false })
+            } else {
+                console.log('update success');
+                res.json({ success: true })
+            }
+        })
+    })
 
     //http://127.0.0.1:3000/api/editinterview/:id
     router.put('/editinterview/:id', function(req, res) {
