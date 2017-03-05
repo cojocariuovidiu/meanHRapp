@@ -17,7 +17,7 @@
             <div layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
 
                 <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
-                    <div layout-gt-xs="row">
+                    <div layout-gt-sm="row">
                         <md-input-container aria-label="MD Input Container" class="md-block" flex-gt-sm="">
                             <label>Cnp</label>
                             <input required aria-label="cnpInput" ng-model="newEmployee.cnp">
@@ -30,6 +30,27 @@
                                     {{department}}
                                 </md-option>
                             </md-select>
+                        </md-input-container>
+
+                    </div>
+                    <div layout-gt-sm="row">
+                        <!--<div ng-if="editedObject.username">
+                                <input ng-click=Browse() class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
+                                <label for="input-file-id" class="md-button md-accent md-raised">Browse</label>
+
+                                <md-button ng-click="SubmitUpload()" ng-disabled="!browseClicked" class="md-raised ">
+                                    Upload CV
+                                </md-button>
+                                <i ng-if="newInterview.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newInterview.cv}}">face</a></i>
+
+                                <div ng-show="message">
+                                    <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">{{file.upload.name}} </a> {{message}}
+                                </div>
+                                <div ng-show="!message">{{file.upload.name}}</div>
+                            </div>-->
+                        <span flex></span>
+                        <md-input-container class="md-block" flex-gt-sm="">
+                            <label>Creato da {{editedObject.username}}</label>
                         </md-input-container>
                     </div>
                 </md-content>
