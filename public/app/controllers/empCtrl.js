@@ -100,7 +100,31 @@ angular.module("employeeControllers", [])
                     $mdDialog.hide();
                 })
             }
+
         })
+
+        $scope.showConfirm = function() {
+            console.log('eel')
+                // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                .title('Sei sicuro di voler eliminare?')
+                //.textContent('All of the banks have agreed to forgive you your debts.')
+                .ariaLabel('Danger')
+                //.targetEvent(ev)
+                .ok('No')
+                .cancel('Si');
+
+            $mdDialog.show(confirm).then(
+                function() {
+                    console.log('Dialog Canceled')
+                },
+                function() {
+                    $http.delete('/api/employees/' + editedObject._id).then(function(response) {
+                        //console.log(response.data.success, response.data.message)
+                        checkDisplaying()
+                    })
+                });
+        };
     }
 
     function checkDisplaying() {

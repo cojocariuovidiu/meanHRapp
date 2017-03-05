@@ -325,6 +325,21 @@ module.exports = function(router) {
         })
     })
 
+    router.delete('/employees/:id', function(req, res) {
+        // Interview.findOneAndRemove({_id: req.params.id})
+        console.log('id sent:', req.params.id)
+
+        Employee.findOne({ _id: req.params.id }).remove().exec(function(err, data) {
+            if (err) {
+                console.log(err);
+                res.json({ success: false, message: 'Could not delete.' })
+            } else {
+                res.json({ success: true, message: data.result.n + ' documents deleted.' })
+                console.log(data.result.n, 'document removed.')
+            }
+        })
+    })
+
     //http://127.0.0.1:3000/api/editEmployee/:id
     router.put('/editEmployee/:id', function(req, res) {
         var id = req.params.id

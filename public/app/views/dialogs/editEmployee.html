@@ -3,8 +3,8 @@
     <form ng-submit="submitEmployee(newEmployee)">
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2 ng-if="editedObject.username">Modifica Intervista</h2>
-                <h2 ng-if="!editedObject.username">Agiungi Intervista</h2>
+                <h2 ng-if="editedObject.username">Modifica Dipendente</h2>
+                <h2 ng-if="!editedObject.username">Agiungi Dipendente</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="cancel()">
                     <md-icon aria-label="Close dialog">close</md-icon>
@@ -34,7 +34,7 @@
             <label for="input-file-id" class="md-button md-raised md-primary">Upload CV</label>
             <input ng-click="UploadFile(uploadCV)" ng-model="uploadCV" class="ng-hide" id="input-file-id" multiple type="file" />
             -->
-            <md-button ng-if="editedObject.username" ng-click="showConfirm()" class="md-raised">
+            <md-button ng-click="showConfirm()" class="md-raised">
                 Elimina
             </md-button>
 
