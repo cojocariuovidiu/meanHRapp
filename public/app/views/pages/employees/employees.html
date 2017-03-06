@@ -4,7 +4,7 @@
     <div flex></div>
     <md-input-container>
         <label>Cerca</label>
-        <input ng-model="searchInterview">
+        <input ng-model="searchEmployee">
     </md-input-container>
     <md-button ng-if="main.group == 'hr' || main.group =='admin'" class="md-raised md-fab md-mini" ng-click="emp.editEmployee()">
         <md-icon>add</md-icon>
@@ -21,9 +21,8 @@
     <md-table-container>
         <!--<multiple>-->
         <!--<table md-table md-row-select md-progress="promise" ng-model="selected">-->
-        <table md-table="">
-            <!--<thead md-head md-order="sort.order" ">-->
-            <thead md-head>
+        <table md-table="" md-progress="promise">
+            <thead md-head md-order="sort.order">
                 <tr md-row>
                     <th md-column md-order-by="ci">CI</th>
                     <th md-column md-order-by="employmentdate">Data di assunzione</th>
@@ -40,7 +39,7 @@
             </thead>
             <tbody md-body>
                 <!--<tr md-row md-select="item" md-select-id="name" ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">-->
-                <tr md-row ng-repeat="item in emp.employeessList">
+                <tr md-row ng-repeat="item in emp.employeessList  | orderBy:sort.order | filter:searchEmployee |  limitTo: sort.limit : (sort.page -1) * sort.limit">
                     <td md-cell><i ng-if="item.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.ci}}">face</a></i></td>
                     <td md-cell>{{ item.employmentdate | date}}</td>
                     <td md-cell>{{ item.name}}</td>

@@ -303,8 +303,8 @@ module.exports = function(router) {
         })
     })
 
-    //http://127.0.0.1:3000/api/getRangeFilter
-    router.post('/getRangeFilter', function(req, res) {
+    //http://127.0.0.1:3000/api/getInterviewsRangeFilter
+    router.post('/getInterviewsRangeFilter', function(req, res) {
         console.log(req.body.from)
         console.log(req.body.to)
 
@@ -316,6 +316,22 @@ module.exports = function(router) {
 
         Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function(err, interviews) {
             res.send(interviews)
+        })
+    })
+
+    //http://127.0.0.1:3000/api/getEmployeesRangeFilter
+    router.post('/getEmployeesRangeFilter', function(req, res) {
+        console.log(req.body.from)
+        console.log(req.body.to)
+
+        var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
+        var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
+
+        console.log(momentFrom)
+        console.log(momentTo)
+
+        Employee.find({ employmentdate: { $gte: momentFrom, $lte: momentTo } }, function(err, employees) {
+            res.send(employees)
         })
     })
 

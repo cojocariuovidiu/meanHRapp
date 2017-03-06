@@ -292,10 +292,9 @@ angular.module("interviewControllers", ['md.data.table'])
             $scope.toDate = toDate
 
             $scope.promise = $timeout(function() {
-                $http.post('/api/getRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
+                $http.post('/api/getInterviewsRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
                     int.interviewsList = response.data
                     displayingObject = {
-                        message: momentFrom + ' - ' + momentTo + ' (Totale: ' + int.interviewsList.length + ' )',
                         activator: 'Range'
                     }
                 }, this)
@@ -329,10 +328,10 @@ angular.module("interviewControllers", ['md.data.table'])
     //     }, 500);
     // };
 
-    $scope.loadStuff = function() {
+    $scope.refresh = function() {
         checkDisplaying()
         $scope.promise = $timeout(function() {
-            console.log('loading stuff')
+            console.log('refreshing data')
         }, 500);
     }
 

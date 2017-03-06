@@ -2,14 +2,11 @@
 
 angular.module("employeeControllers", [])
 
-.controller("empCtrl", function(uploadFile, shareData, Employee, $mdDialog, $scope, $http) {
+.controller("empCtrl", function($timeout, uploadFile, shareData, Employee, $mdDialog, $scope, $http) {
     var emp = this
     var displayingObject = {}
 
-    Employee.getEmployees().then((response) => {
-        console.log(response.data)
-        emp.employeessList = response.data
-    })
+    getEmployeesFiltered('All')
 
     //Loading the Modal
     emp.editEmployee = function(id) {
@@ -155,21 +152,33 @@ angular.module("employeeControllers", [])
     }
 
     function checkDisplaying() {
-        getEmployeesFiltered('All')
+        if (displayingObject.activator == 'All') {
+            getEmployeesFiltered('All')
+        } else if (displayingObject.activator == 'Range') {
+            RangeFilter($scope.fromDate, $scope.toDate)
+        }
     }
 
     function getEmployeesFiltered(option) {
         if (option == 'All') {
-            Employee.getEmployees().then(function(response) {
-                console.log(response.data)
-                emp.employeessList = response.data
-                displayingObject = {
-                    activator: 'All'
-                }
-                $scope.displaying = displayingObject.message
-            })
-            console.log('promisse all')
+            $scope.promise = $timeout(function() {
+
+                Employee.getEmployees().then(function(response) {
+                    console.log(response.data)
+                    emp.employeessList = response.data
+                    displayingObject = {
+                        activator: 'All'
+                    }
+                    $scope.displaying = displayingObject.message
+                })
+            }, 500)
             console.log('Displaying', option)
+        } else if (option == 'isEmployee') {
+            FilterByStatus('isEmployee')
+        } else if (option == 'callLater') {
+            FilterByStatus('callLater')
+        } else {
+            console.log('something wrong on getEmployeesFiltered')
         }
     }
 
@@ -195,16 +204,68 @@ angular.module("employeeControllers", [])
             $mdDialog.hide();
         }
         $scope.getAll = function() {
-            getInterviewsFiltered('All')
+            getEmployeesFiltered('All')
             $mdDialog.hide();
         }
         $scope.getDepartment = function(option) {
             console.log(option)
-                // getInterviewsFiltered(option)
+            getEmployeesFiltered(option)
             $mdDialog.hide();
         }
         $scope.cancel = function() {
             $mdDialog.cancel();
         }
+    }
+
+    function RangeFilter(fromDate, toDate) {
+        if (fromDate == undefined || fromDate == null || toDate == undefined || toDate == null) {
+            showToast('Select From - To Period')
+        } else {
+            var momentFrom = moment(fromDate).format('MMM/D/YYYY')
+            var momentTo = moment(toDate).format('MMM/D/YYYY')
+                // console.log('momentfrom', momentFrom)
+                // console.log('momentto', momentTo)
+
+            $scope.fromDate = fromDate
+            $scope.toDate = toDate
+
+            $scope.promise = $timeout(function() {
+                $http.post('/api/getEmployeesRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
+                    console.log(response.data)
+
+                    emp.employeessList = response.data
+                    displayingObject = {
+                        activator: 'Range'
+                    }
+                }, this)
+                console.log('promisse range')
+            }, 500);
+        }
+    }
+
+    //MD TABLE ///
+    $scope.sort = {
+        //defaults
+        order: '-employmentdate',
+        limit: '10',
+        page: 1
+    };
+
+    $scope.limitOptions = [5, 10, 30, {
+        label: 'All',
+        value: function() {
+            return emp.employeessList.length;
+        }
+    }];
+
+    function success(employees) {
+        $scope.employeessList = employees;
+    }
+
+    emp.refresh = function() {
+        checkDisplaying()
+        $scope.promise = $timeout(function() {
+            console.log('refreshing data')
+        }, 500);
     }
 })
