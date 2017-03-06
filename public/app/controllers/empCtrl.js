@@ -54,6 +54,7 @@ angular.module("employeeControllers", [])
     function DialogController($scope, $mdDialog, editedObject) {
 
         $scope.departments = ['Maran', 'Trbioo']
+        $scope.sessi = ['F', 'M']
 
         $scope.hide = function() {
             $mdDialog.hide();
