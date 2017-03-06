@@ -9,6 +9,7 @@ angular.module('userApp', [
     'fileModelDirective',
     'uploadFileService',
     'intChartControllers',
+    'empChartControllers',
     'employeeControllers',
     'interviewControllers',
     'sharedService',

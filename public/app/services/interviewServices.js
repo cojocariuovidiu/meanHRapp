@@ -17,9 +17,9 @@ angular.module('interviewServices', [])
             })
     }
 
-    interviewFactory.getChartData = function() {
-        return $http.get('/api/getChartData')
-    }
+    // interviewFactory.getChartData = function() {
+    //     return $http.get('/api/getChartData')
+    // }
 
     //Interview.update(updateInterview)
     // interviewFactory.update = function(id) {

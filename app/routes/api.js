@@ -454,14 +454,14 @@ module.exports = function(router) {
     })
 
     //Chart API
-    router.get('/getChartData', function(req, res) {
-        Interview.find({}, function(err, interviews) {
-            // interviews.forEach(function(element) {
-            //     console.log(element.dataapplicazione)
-            // }, this);
-            res.send(interviews)
-        })
-    })
+    // router.get('/getChartData', function(req, res) {
+    //     Interview.find({}, function(err, interviews) {
+    //         // interviews.forEach(function(element) {
+    //         //     console.log(element.dataapplicazione)
+    //         // }, this);
+    //         res.send(interviews)
+    //     })
+    // })
 
     //Upload file API's
     router.post('/uploadCV', function(req, res) {

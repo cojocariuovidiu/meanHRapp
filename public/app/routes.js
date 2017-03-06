@@ -52,10 +52,16 @@ var app = angular.module('appRoutes', ['ngRoute'])
             controller: 'empCtrl',
             controllerAs: 'emp',
         })
-        .when('/statistics', {
+        .when('/intchart', {
             templateUrl: 'app/views/pages/interviews/intchart.html',
             controller: 'intChartCtrl',
             controllerAs: 'intChart',
+            authenticated: true
+        })
+        .when('/empchart', {
+            templateUrl: 'app/views/pages/employees/empchart.html',
+            controller: 'empChartCtrl',
+            controllerAs: 'empChart',
             authenticated: true
         })
         .otherwise({ redirectTo: '/' });

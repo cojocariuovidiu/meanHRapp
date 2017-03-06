@@ -13,18 +13,18 @@ angular.module("intChartControllers", ["chart.js", 'interviewServices'])
         responsive: false,
         maintainAspectRatio: true,
         //hide grid lines
-        scales: {
-            xAxes: [{
-                gridLines: {
-                    display: false
-                }
-            }],
-            yAxes: [{
-                gridLines: {
-                    display: false
-                }
-            }]
-        }
+        // scales: {
+        //     xAxes: [{
+        //         gridLines: {
+        //             display: false
+        //         }
+        //     }],
+        //     yAxes: [{
+        //         gridLines: {
+        //             display: false
+        //         }
+        //     }]
+        // }
     }
     intChart.barChart.data = []
     intChart.barChart.Interviews = []
@@ -81,7 +81,7 @@ angular.module("intChartControllers", ["chart.js", 'interviewServices'])
             decEmp = 0
 
         //Load all data from the DB
-        Interview.getChartData().then(function(response) {
+        Interview.getinterviews().then(function(response) {
             response.data.forEach(function(element) {
                 var interviewStatus = element.interviewStatus
                 var momenYear = moment(element.dataapplicazione).format('YYYY')
