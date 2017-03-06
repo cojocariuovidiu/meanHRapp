@@ -181,14 +181,15 @@ module.exports = function(router) {
         console.log('creating employee', req.body)
 
         var employee = new Employee()
-        employee.name = req.body.newEmployee.name
         employee.employmentdate = req.body.newEmployee.employmentdate
+        employee.name = req.body.newEmployee.name
+        employee.department = req.body.newEmployee.department
         employee.cnp = req.body.newEmployee.cnp
         employee.age = req.body.newEmployee.age
         employee.tel = req.body.newEmployee.tel
-        employee.department = req.body.newEmployee.department
         employee.email = req.body.newEmployee.email
         employee.note = req.body.newEmployee.note
+        employee.username = req.body.username
 
         employee.save(function(err) {
             if (err) {
@@ -354,8 +355,15 @@ module.exports = function(router) {
         console.log('updating id:', id)
 
         Employee.findOneAndUpdate({ _id: id }, {
+            employmentdate: req.body.updateData.employmentdate,
+            name: req.body.updateData.name,
             cnp: req.body.updateData.cnp,
-            department: req.body.updateData.department
+            age: req.body.updateData.age,
+            tel: req.body.updateData.tel,
+            department: req.body.updateData.department,
+            email: req.body.updateData.email,
+            note: req.body.updateData.note
+
         }, { new: true }, function(err) {
             if (err) {
                 console.log('update failed');

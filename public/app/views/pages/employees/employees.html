@@ -28,12 +28,13 @@
                     <th md-column md-order-by="cartaidentita">Carta Identita</th>
                     <th md-column md-order-by="employmentdate">Data di assunzione</th>
                     <th md-column md-order-by="name">Nome e cognome</th>
+                    <th md-column md-order-by="department">Departamento</th>
                     <th md-column md-order-by="cnp">Cnp</th>
                     <th md-column md-order-by="age">Eta'</th>
                     <th md-column md-order-by="tel">Telefono</th>
-                    <th md-column md-order-by="department">Departamento</th>
                     <th md-column md-order-by="email">Email</th>
                     <th md-column md-order-by="note">Note</th>
+                    <th md-column md-order-by="note">Creato da</th>
                     <th ng-if="main.group == 'hr' || main.group =='admin'" md-column>Action</th>
                 </tr>
             </thead>
@@ -49,6 +50,7 @@
                     <td md-cell>{{ item.tel}}</td>
                     <td md-cell>{{ item.email}}</td>
                     <td md-cell>{{ item.note}}</td>
+                    <td md-cell>{{ item.username}}</td>
                     <td ng-if="main.group == 'hr' || main.group =='admin'" md-cell>
                         <md-button ng-click="emp.editEmployee(item._id)" class="md-fab md-mini md-warn">
                             <md-icon>edit</md-icon>
