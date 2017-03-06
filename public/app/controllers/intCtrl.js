@@ -138,7 +138,7 @@ angular.module("interviewControllers", ['md.data.table'])
         $scope.SubmitUpload = function() {
             // $scope.uploading = true
             console.log($scope.file.upload.name)
-            uploadFile.upload($scope.file).then(function(data) {
+            uploadFile.uploadCV($scope.file).then(function(data) {
                 if (data.data.success) {
                     // $scope.uploading = false
                     $scope.alert = 'alert alert-success'

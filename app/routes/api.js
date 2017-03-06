@@ -7,7 +7,7 @@ var multer = require('multer')
 var moment = require('moment')
 
 var cv = ''
-var storage = multer.diskStorage({
+var CVstorage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './public/uploads')
     },
@@ -17,13 +17,35 @@ var storage = multer.diskStorage({
             err.code = 'filetype'
             return cb(err)
         } else {
-            cv = Date.now() + '_' + file.originalname
+            cv = 'CV_' + Date.now() + '_' + file.originalname
             cb(null, cv)
         }
     }
 })
-var upload = multer({
-        storage: storage,
+var uploadCV = multer({
+        storage: CVstorage,
+        limits: { fileSize: 10000000 } //limit 10 MB
+    }).single('myfile') //from service and input html field
+
+
+var ci = ''
+var CIstorage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/uploads')
+    },
+    filename: function(req, file, cb) {
+        if (!file.originalname.match(/\.(pdf|png|jpeg|jpg|doc|docx)$/)) {
+            var err = new Error()
+            err.code = 'filetype'
+            return cb(err)
+        } else {
+            ci = 'CI_' + Date.now() + '_' + file.originalname
+            cb(null, ci)
+        }
+    }
+})
+var uploadCI = multer({
+        storage: CIstorage,
         limits: { fileSize: 10000000 } //limit 10 MB
     }).single('myfile') //from service and input html field
 
@@ -297,28 +319,6 @@ module.exports = function(router) {
         })
     })
 
-    router.post('/upload', function(req, res) {
-        upload(req, res, function(err) {
-            if (err) {
-                if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
-                    res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })
-                } else if (err.code === 'filetype') { //our custom error
-                    res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg, doc, docx' })
-                } else {
-                    console.log(err)
-                    res.json({ success: false, message: 'Unable to upload, call Administrator' })
-                }
-            } else {
-                if (!req.file) {
-                    res.json({ success: false, message: 'No file was selected' })
-                } else {
-                    console.log(cv)
-                    res.json({ success: true, message: 'uploaded succesfully!', cv: cv })
-                }
-            }
-        })
-    })
-
     router.delete('/interviews/:id', function(req, res) {
         // Interview.findOneAndRemove({_id: req.params.id})
         console.log('id sent:', req.params.id)
@@ -456,8 +456,49 @@ module.exports = function(router) {
         })
     })
 
-
-
+    //Upload file API's
+    router.post('/uploadCV', function(req, res) {
+        uploadCV(req, res, function(err) {
+            if (err) {
+                if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
+                    res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })
+                } else if (err.code === 'filetype') { //our custom error
+                    res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg, doc, docx' })
+                } else {
+                    console.log(err)
+                    res.json({ success: false, message: 'Unable to upload, call Administrator' })
+                }
+            } else {
+                if (!req.file) {
+                    res.json({ success: false, message: 'No file was selected' })
+                } else {
+                    console.log(cv)
+                    res.json({ success: true, message: 'uploaded succesfully!', cv: cv })
+                }
+            }
+        })
+    })
+    router.post('/uploadCI', function(req, res) {
+        uploadCI(req, res, function(err) {
+            if (err) {
+                if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
+                    res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })
+                } else if (err.code === 'filetype') { //our custom error
+                    res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg, doc, docx' })
+                } else {
+                    console.log(err)
+                    res.json({ success: false, message: 'Unable to upload, call Administrator' })
+                }
+            } else {
+                if (!req.file) {
+                    res.json({ success: false, message: 'No file was selected' })
+                } else {
+                    console.log(ci)
+                    res.json({ success: true, message: 'uploaded succesfully!', ci: ci })
+                }
+            }
+        })
+    })
 
     // router.post('/api/uploadcv', function(req, res) {
     //     //let part = req.files.fileslet writeStream -

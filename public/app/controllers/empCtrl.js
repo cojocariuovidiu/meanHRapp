@@ -129,11 +129,14 @@ angular.module("employeeControllers", [])
         }
 
         //Upload File Code:
+        $scope.Browse = function() {
+            $scope.browseClicked = true
+        }
         $scope.file = {}
         $scope.SubmitUpload = function() {
             // $scope.uploading = true
             console.log($scope.file.upload.name)
-            uploadFile.upload($scope.file).then(function(data) {
+            uploadFile.uploadCI($scope.file).then(function(data) {
                 if (data.data.success) {
                     // $scope.uploading = false
                     $scope.alert = 'alert alert-success'
