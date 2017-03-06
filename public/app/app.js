@@ -8,7 +8,7 @@ angular.module('userApp', [
     'interviewServices',
     'fileModelDirective',
     'uploadFileService',
-    'chartControllers',
+    'intChartControllers',
     'employeeControllers',
     'interviewControllers',
     'sharedService',

@@ -1,15 +1,15 @@
 'use strict'
 
-angular.module("chartControllers", ["chart.js", 'interviewServices'])
+angular.module("intChartControllers", ["chart.js", 'interviewServices'])
 
-.controller("chartCtrl", function(Interview, $scope) {
+.controller("intChartCtrl", function(Interview, $scope) {
 
-    var chart = this
+    var intChart = this
 
-    chart.barChart = {};
-    chart.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    chart.barChart.series = ['Interviste', 'Dipendenti']
-    chart.barChart.options = {
+    intChart.barChart = {};
+    intChart.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    intChart.barChart.series = ['Interviste', 'Dipendenti']
+    intChart.barChart.options = {
         responsive: false,
         maintainAspectRatio: true,
         //hide grid lines
@@ -26,18 +26,18 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
             }]
         }
     }
-    chart.barChart.data = []
-    chart.barChart.Interviews = []
-    chart.barChart.Employees = []
+    intChart.barChart.data = []
+    intChart.barChart.Interviews = []
+    intChart.barChart.Employees = []
 
     //Button/OnLoad function
     this.loadChartData = function(option) {
-        chart.selectedChartOrder = option
-        $scope.selectedYear = chart.selectedChartOrder
+        intChart.selectedChartOrder = option
+        $scope.selectedYear = intChart.selectedChartOrder
         console.log($scope.selectedYear)
-        chart.barChart.data = []
-        chart.barChart.Interviews = []
-        chart.barChart.Employees = []
+        intChart.barChart.data = []
+        intChart.barChart.Interviews = []
+        intChart.barChart.Employees = []
 
         if (option == 2017) {
             ChartFilterYear(option)
@@ -49,8 +49,8 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
     }
 
     //Load 2017 on start
-    chart.selectedChartOrder = (2017)
-    chart.loadChartData(chart.selectedChartOrder)
+    intChart.selectedChartOrder = (2017)
+    intChart.loadChartData(intChart.selectedChartOrder)
 
     //Filter function used for each year
     function ChartFilterYear(option) {
@@ -165,11 +165,11 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
                 }
             }, this);
 
-            chart.barChart.Interviews.push(janTotal, febTotal, marTotal, aprTotal, mayTotal, junTotal, julTotal, augTotal, sepTotal, octTotal, novTotal, decTotal)
-            chart.barChart.Employees.push(janEmp, febEmp, marEmp, aprEmp, mayEmp, junEmp, julEmp, augEmp, sepEmp, octEmp, novEmp, decEmp)
+            intChart.barChart.Interviews.push(janTotal, febTotal, marTotal, aprTotal, mayTotal, junTotal, julTotal, augTotal, sepTotal, octTotal, novTotal, decTotal)
+            intChart.barChart.Employees.push(janEmp, febEmp, marEmp, aprEmp, mayEmp, junEmp, julEmp, augEmp, sepEmp, octEmp, novEmp, decEmp)
 
-            chart.barChart.data.push(chart.barChart.Interviews)
-            chart.barChart.data.push(chart.barChart.Employees)
+            intChart.barChart.data.push(intChart.barChart.Interviews)
+            intChart.barChart.data.push(intChart.barChart.Employees)
 
             // console.log(chart.barChart.data)
         })
