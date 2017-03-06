@@ -353,27 +353,52 @@ module.exports = function(router) {
     router.put('/editEmployee/:id', function(req, res) {
         var id = req.params.id
         console.log('updating id:', id)
+        var ci
 
-        Employee.findOneAndUpdate({ _id: id }, {
-            employmentdate: req.body.updateData.employmentdate,
-            name: req.body.updateData.name,
-            cnp: req.body.updateData.cnp,
-            age: req.body.updateData.age,
-            tel: req.body.updateData.tel,
-            department: req.body.updateData.department,
-            email: req.body.updateData.email,
-            note: req.body.updateData.note
+        if (!req.body.ci) {
+            Employee.findOneAndUpdate({ _id: id }, {
+                employmentdate: req.body.updateData.employmentdate,
+                name: req.body.updateData.name,
+                cnp: req.body.updateData.cnp,
+                age: req.body.updateData.age,
+                tel: req.body.updateData.tel,
+                department: req.body.updateData.department,
+                email: req.body.updateData.email,
+                note: req.body.updateData.note
 
-        }, { new: true }, function(err) {
-            if (err) {
-                console.log('update failed');
-                console.log(err)
-                res.json({ success: false })
-            } else {
-                console.log('update success');
-                res.json({ success: true })
-            }
-        })
+            }, { new: true }, function(err) {
+                if (err) {
+                    console.log('update failed');
+                    console.log(err)
+                    res.json({ success: false })
+                } else {
+                    console.log('update success');
+                    res.json({ success: true })
+                }
+            })
+        } else {
+            Employee.findOneAndUpdate({ _id: id }, {
+                employmentdate: req.body.updateData.employmentdate,
+                name: req.body.updateData.name,
+                cnp: req.body.updateData.cnp,
+                age: req.body.updateData.age,
+                tel: req.body.updateData.tel,
+                department: req.body.updateData.department,
+                email: req.body.updateData.email,
+                note: req.body.updateData.note,
+                ci: req.body.ci
+
+            }, { new: true }, function(err) {
+                if (err) {
+                    console.log('update failed');
+                    console.log(err)
+                    res.json({ success: false })
+                } else {
+                    console.log('update success');
+                    res.json({ success: true })
+                }
+            })
+        }
     })
 
     //http://127.0.0.1:3000/api/editinterview/:id

@@ -9,7 +9,8 @@ var EmployeeSchema = new Schema({
     tel: { type: String },
     email: { type: String },
     note: { type: String },
-    username: { type: String }
+    username: { type: String },
+    ci: { type: String }
 })
 
 module.exports = mongoose.model('Employee', EmployeeSchema)

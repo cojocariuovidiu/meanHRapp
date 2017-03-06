@@ -94,7 +94,8 @@ angular.module("employeeControllers", [])
                 //Update Employee
                 $http.put('/api/editEmployee/' + editedObject._id, {
                     updateData: newEmployee,
-                    editedBy: shareData.loggedUser
+                    editedBy: shareData.loggedUser,
+                    ci: $scope.ci
                         // interviewStatus: $scope.interviewStatus,
                         // buletin: $scope.buletin
                 }).then(function(response) {
