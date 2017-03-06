@@ -173,13 +173,27 @@ angular.module("employeeControllers", [])
                 })
             }, 500)
             console.log('Displaying', option)
-        } else if (option == 'isEmployee') {
-            FilterByStatus('isEmployee')
-        } else if (option == 'callLater') {
-            FilterByStatus('callLater')
+        } else if (option == 'Triboo') {
+            FilterByDepartment('Triboo')
+        } else if (option == 'Maran') {
+            FilterByDepartment('Maran')
         } else {
             console.log('something wrong on getEmployeesFiltered')
         }
+    }
+
+    //executed on filter with option
+    function FilterByDepartment(option) {
+        $scope.promise = $timeout(function() {
+            $http.post('/api/getEmployeesByDepartment', { option: option }).then(function(response) {
+                console.log(response.data)
+
+                emp.interviewsList = response.data
+                displayingObject = {
+                    activator: option
+                }
+            })
+        }, 500)
     }
 
     //Call Sort Modal

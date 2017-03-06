@@ -161,8 +161,9 @@ module.exports = function(router) {
 
     //http://127.0.0.1:3000/api/interview
     router.post('/interview', function(req, res) {
-        var interview = new Interview()
+        console.log(req.body)
 
+        var interview = new Interview()
         interview.dataapplicazione = req.body.newInterview.dataapplicazione
         interview.nomecognome = req.body.newInterview.nomecognome
         interview.sesso = req.body.newInterview.sesso
@@ -184,7 +185,6 @@ module.exports = function(router) {
         //     req.body.email === null || req.body.email === undefined || req.body.email === '') {
         //     res.json({ success: false, message: 'Empty fields' })
         // } else {
-        console.log(req.body)
         interview.save(function(err) {
                 if (err) {
                     console.log('save failed');
@@ -200,7 +200,7 @@ module.exports = function(router) {
 
     //http://127.0.0.1:3000/api/employee
     router.post('/employee', function(req, res) {
-        console.log('creating employee', req.body)
+        console.log(req.body)
 
         var employee = new Employee()
         employee.employmentdate = req.body.newEmployee.employmentdate
@@ -239,20 +239,6 @@ module.exports = function(router) {
         })
     })
 
-    // //http://127.0.0.1:3000/api/getLast7Days
-    // router.get('/getLast7Days', function(req, res) {
-    //     var currentDate = moment().format("YYYY/MM/DD");
-    //     var sevenDays = moment().subtract(7, 'd').format('YYYY/MM/DD');
-    //     console.log(currentDate)
-    //     console.log(sevenDays)
-
-    //     Interview.find({ dataapplicazione: { $gte: sevenDays, $lte: currentDate } }, function(err, interviews) {
-    //         res.send(interviews)
-    //     })
-    // })
-
-
-
     //http://127.0.0.1:3000/api/getinterview/:id
     router.get('/getinterview/:id', function(req, res) {
 
@@ -279,19 +265,22 @@ module.exports = function(router) {
         })
     })
 
-    //http://127.0.0.1:3000/api/getInterviewsFiltered
-    router.post('/getInterviewsFiltered', function(req, res) {
-        var start = new Date(req.body.year - 1, 11, 32);
-        var end = new Date(req.body.year, 11, 32);
-
-        // console.log(start)
-        // console.log(end)
-        console.log('sorting by:', req.body.year)
-
-        Interview.find({ dataapplicazione: { $gte: start, $lt: end } }, function(err, interviews) {
+    //http://127.0.0.1:3000/api/getInterviewsRangeFilter
+    router.post('/getInterviewsRangeFilter', function(req, res) {
+        var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
+        var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
+        Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function(err, interviews) {
             res.send(interviews)
         })
+    })
 
+    //http://127.0.0.1:3000/api/getEmployeesRangeFilter
+    router.post('/getEmployeesRangeFilter', function(req, res) {
+        var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
+        var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
+        Employee.find({ employmentdate: { $gte: momentFrom, $lte: momentTo } }, function(err, employees) {
+            res.send(employees)
+        })
     })
 
     //http://127.0.0.1:3000/api/getInterviewsByStatus
@@ -303,40 +292,17 @@ module.exports = function(router) {
         })
     })
 
-    //http://127.0.0.1:3000/api/getInterviewsRangeFilter
-    router.post('/getInterviewsRangeFilter', function(req, res) {
-        console.log(req.body.from)
-        console.log(req.body.to)
+    //http://127.0.0.1:3000/api/getEmployeesByDepartment
+    router.post('/getEmployeesByDepartment', function(req, res) {
+        console.log(req.body.option)
 
-        var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
-        var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
-
-        console.log(momentFrom)
-        console.log(momentTo)
-
-        Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function(err, interviews) {
+        Employee.find({ department: req.body.option }, function(err, interviews) {
+            console.log(interviews)
             res.send(interviews)
         })
     })
 
-    //http://127.0.0.1:3000/api/getEmployeesRangeFilter
-    router.post('/getEmployeesRangeFilter', function(req, res) {
-        console.log(req.body.from)
-        console.log(req.body.to)
-
-        var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
-        var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
-
-        console.log(momentFrom)
-        console.log(momentTo)
-
-        Employee.find({ employmentdate: { $gte: momentFrom, $lte: momentTo } }, function(err, employees) {
-            res.send(employees)
-        })
-    })
-
     router.delete('/interviews/:id', function(req, res) {
-        // Interview.findOneAndRemove({_id: req.params.id})
         console.log('id sent:', req.params.id)
 
         Interview.findOne({ _id: req.params.id }).remove().exec(function(err, data) {
