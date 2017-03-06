@@ -50,7 +50,7 @@ angular.module("employeeControllers", [])
 
     function DialogController($scope, $mdDialog, editedObject) {
 
-        $scope.departments = ['Maran', 'Trbioo']
+        $scope.departments = ['Maran', 'Triboo']
         $scope.sessi = ['F', 'M']
 
         $scope.hide = function() {
@@ -79,7 +79,7 @@ angular.module("employeeControllers", [])
                 return Object.keys(obj).length === 0;
             }
             if (isEmpty(editedObject)) {
-                console.log('new Emp:', newEmployee, shareData.loggedUser)
+                // console.log('new Emp:', newEmployee, shareData.loggedUser)
                 Employee.create({
                     newEmployee: newEmployee,
                     username: shareData.loggedUser
@@ -116,7 +116,7 @@ angular.module("employeeControllers", [])
 
             $mdDialog.show(confirm).then(
                 function() {
-                    console.log('Dialog Canceled')
+                    // console.log('Dialog Canceled')
                 },
                 function() {
                     $http.delete('/api/employees/' + editedObject._id).then(function(response) {
@@ -133,7 +133,7 @@ angular.module("employeeControllers", [])
         $scope.file = {}
         $scope.SubmitUpload = function() {
             // $scope.uploading = true
-            console.log($scope.file.upload.name)
+            // console.log($scope.file.upload.name)
             uploadFile.uploadCI($scope.file).then(function(data) {
                 if (data.data.success) {
                     // $scope.uploading = false
@@ -186,9 +186,9 @@ angular.module("employeeControllers", [])
     function FilterByDepartment(option) {
         $scope.promise = $timeout(function() {
             $http.post('/api/getEmployeesByDepartment', { option: option }).then(function(response) {
-                console.log(response.data)
+                // console.log(response.data)
 
-                emp.interviewsList = response.data
+                emp.employeessList = response.data
                 displayingObject = {
                     activator: option
                 }
@@ -222,7 +222,7 @@ angular.module("employeeControllers", [])
             $mdDialog.hide();
         }
         $scope.getDepartment = function(option) {
-            console.log(option)
+            // console.log(option)
             getEmployeesFiltered(option)
             $mdDialog.hide();
         }
@@ -245,14 +245,13 @@ angular.module("employeeControllers", [])
 
             $scope.promise = $timeout(function() {
                 $http.post('/api/getEmployeesRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
-                    console.log(response.data)
+                    // console.log(response.data)
 
                     emp.employeessList = response.data
                     displayingObject = {
                         activator: 'Range'
                     }
                 }, this)
-                console.log('promisse range')
             }, 500);
         }
     }
@@ -277,9 +276,8 @@ angular.module("employeeControllers", [])
     }
 
     emp.refresh = function() {
-        checkDisplaying()
         $scope.promise = $timeout(function() {
-            console.log('refreshing data')
+            checkDisplaying()
         }, 500);
     }
 })

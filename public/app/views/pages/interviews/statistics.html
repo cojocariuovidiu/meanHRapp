@@ -1,20 +1,14 @@
 <div class="md-toolbar-tools">
     <div class="toolbarTitle">Statistiche per {{selectedYear}}</div>
     <div flex></div>
-    <!--<md-button class="md-raised md-icon-button" ng-click="chart.loadChartData(2016)">
-        2016
+    <md-button class="md-raised md-icon-button">
+        <md-icon><a href="/interviews">face</a></md-icon>
     </md-button>
-    <md-button class="md-raised md-icon-button" ng-click="chart.loadChartData(2017)">
-        2017
-    </md-button>-->
+    <md-button class="md-raised md-icon-button" ng-click="chart.loadChartData(chart.selectedChartOrder)">
+        <md-icon>refresh</md-icon>
+    </md-button>
 </div>
 <canvas height="300" width="900" chart-options="chart.barChart.options" class="chart chart-bar" chart-data="chart.barChart.data" chart-labels="chart.barChart.labels" chart-series="chart.barChart.series" id="bar"></canvas>
-
-<!--<canvas class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-click="onClick"></canvas>-->
-
-
-<!--chart-data="dataChart" chart-labels="labels" chart-click="onClick" chart-options="options"-->
-
 
 <div class="md-toolbar-tools">
 

@@ -32,7 +32,9 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
 
     //Button/OnLoad function
     this.loadChartData = function(option) {
-        $scope.selectedYear = option
+        chart.selectedChartOrder = option
+        $scope.selectedYear = chart.selectedChartOrder
+        console.log($scope.selectedYear)
         chart.barChart.data = []
         chart.barChart.Interviews = []
         chart.barChart.Employees = []
@@ -47,7 +49,8 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
     }
 
     //Load 2017 on start
-    chart.loadChartData(2017)
+    chart.selectedChartOrder = (2017)
+    chart.loadChartData(chart.selectedChartOrder)
 
     //Filter function used for each year
     function ChartFilterYear(option) {
@@ -168,12 +171,12 @@ angular.module("chartControllers", ["chart.js", 'interviewServices'])
             chart.barChart.data.push(chart.barChart.Interviews)
             chart.barChart.data.push(chart.barChart.Employees)
 
-            console.log(chart.barChart.data)
+            // console.log(chart.barChart.data)
         })
     }
 
     $scope.$on('chart-destroy', function(evt, chart) {
-        console.log('destroy');
+        // console.log('destroy');
     });
     $scope.$on('chart-update', function(evt, chart) {
         console.log('update');

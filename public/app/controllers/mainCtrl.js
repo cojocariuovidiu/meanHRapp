@@ -15,6 +15,14 @@ angular.module('mainController', ['ngMaterial'])
         }
     }
 
+    main.GoInterviews = function() {
+        $location.path('/interviews')
+    }
+
+    main.GoEmployees = function() {
+        $location.path('/employees')
+    }
+
     main.checkSession();
 
     $rootScope.$on('$routeChangeStart', function() {
@@ -109,12 +117,12 @@ angular.module('mainController', ['ngMaterial'])
             link: '/employees',
             title: 'Dipendenti',
             icon: 'message'
-        },
-        {
-            link: '/statistics',
-            title: 'Statistiche',
-            icon: 'message'
         }
+        // {
+        //     link: '/statistics',
+        //     title: 'Statistiche',
+        //     icon: 'message'
+        // }
     ];
     main.admin = [{
             link: '',
