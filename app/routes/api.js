@@ -234,7 +234,6 @@ module.exports = function(router) {
                 console.log("can't find id to edit.")
             } else {
                 res.json({ item })
-                ``
             }
         })
     })
