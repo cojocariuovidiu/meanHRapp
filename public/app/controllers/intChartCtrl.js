@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module("intChartControllers", ["chart.js", 'interviewServices'])
+angular.module("intChartControllers", ["chart.js"])
 
 .controller("intChartCtrl", function(Interview, $scope) {
 
