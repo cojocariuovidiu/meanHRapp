@@ -181,9 +181,14 @@ module.exports = function(router) {
         console.log('creating employee', req.body)
 
         var employee = new Employee()
+        employee.name = req.body.newEmployee.name
+        employee.employmentdate = req.body.newEmployee.employmentdate
         employee.cnp = req.body.newEmployee.cnp
+        employee.age = req.body.newEmployee.age
+        employee.tel = req.body.newEmployee.tel
         employee.department = req.body.newEmployee.department
-        employee.username = req.body.username
+        employee.email = req.body.newEmployee.email
+        employee.note = req.body.newEmployee.note
 
         employee.save(function(err) {
             if (err) {

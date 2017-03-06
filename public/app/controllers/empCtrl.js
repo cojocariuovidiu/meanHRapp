@@ -72,6 +72,11 @@ angular.module("employeeControllers", [])
         $scope.editedObject = editedObject
         $scope.newEmployee = angular.copy($scope.editedObject)
 
+        if ($scope.newEmployee.employmentdate) {
+            $scope.newEmployee.employmentdate = new Date($scope.newEmployee.employmentdate)
+                //console.log($scope.newEmployee.dataapplicazione)
+        }
+
         $scope.submitEmployee = ((newEmployee) => {
             function isEmpty(obj) {
                 return Object.keys(obj).length === 0;

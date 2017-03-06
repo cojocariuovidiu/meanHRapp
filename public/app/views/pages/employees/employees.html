@@ -25,32 +25,30 @@
             <!--<thead md-head md-order="sort.order" ">-->
             <thead md-head>
                 <tr md-row>
-                    <!--<th md-column md-order-by="cartaidentita">Carta Identita</th>-->
+                    <th md-column md-order-by="cartaidentita">Carta Identita</th>
+                    <th md-column md-order-by="employmentdate">Data di assunzione</th>
+                    <th md-column md-order-by="name">Nome e cognome</th>
                     <th md-column md-order-by="cnp">Cnp</th>
+                    <th md-column md-order-by="age">Eta'</th>
+                    <th md-column md-order-by="tel">Telefono</th>
                     <th md-column md-order-by="department">Departamento</th>
-                    <!--<th md-column md-order-by="dataassunzione"><span>Data di assunzione</span></th>
-                    <th md-column md-order-by="nomecognome"><span>Nome e cognome</span></th>
-                    <th md-column md-order-by="sesso">Sesso</th>
-                    <th md-column md-order-by="eta">Eta'</th>
-                    <th class="tel" md-column md-order-by="tel">Telefono</th>
                     <th md-column md-order-by="email">Email</th>
-                    <th md-column md-order-by="username">Creato da</th>-->
+                    <th md-column md-order-by="note">Note</th>
                     <th ng-if="main.group == 'hr' || main.group =='admin'" md-column>Action</th>
                 </tr>
             </thead>
             <tbody md-body>
                 <!--<tr md-row md-select="item" md-select-id="name" ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">-->
                 <tr md-row ng-repeat="item in emp.employeessList">
-                    <!--<td md-cell><i ng-if="item.cartaidentita" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.cv}}">face</a></i></td>-->
-                    <td md-cell>{{ item.cnp}}</td>
+                    <td md-cell><i ng-if="item.cartaidentita" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.cv}}">face</a></i></td>
+                    <td md-cell>{{ item.employmentdate | date}}</td>
+                    <td md-cell>{{ item.name}}</td>
                     <td md-cell>{{ item.department}}</td>
-                    <!--<td md-cell>{{ item.dataassunzione | date}}</td>
-                    <td md-cell>{{ item.nomecognome }}</td>
-                    <td class="sesso" md-cell>{{ item.sesso }}</td>
-                    <td md-cell>{{ item.eta }}</td>
-                    <td class="tel" md-cell>{{ item.tel }}</td>
-                    <td class="email" md-cell>{{ item.email }}</td>
-                    <td md-cell>{{ item.username }}</td>-->
+                    <td md-cell>{{ item.cnp}}</td>
+                    <td md-cell>{{ item.age}}</td>
+                    <td md-cell>{{ item.tel}}</td>
+                    <td md-cell>{{ item.email}}</td>
+                    <td md-cell>{{ item.note}}</td>
                     <td ng-if="main.group == 'hr' || main.group =='admin'" md-cell>
                         <md-button ng-click="emp.editEmployee(item._id)" class="md-fab md-mini md-warn">
                             <md-icon>edit</md-icon>
