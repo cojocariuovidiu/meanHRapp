@@ -88,12 +88,31 @@
     <!--<md-button ng-if="main.isLoggedIn" ng-click="main.toggleLeft()" class="md-primary md-fab md-mini material-icons menuSilder">
         <md-icon>menu</md-icon>
     </md-button>-->
-    <md-nav-bar md-selected-nav-item="currentNavItem">
-        <md-nav-item md-nav-href="/interviews" name="interviews">Interviews</md-nav-item>
-        <md-nav-item md-nav-href="/employees" name="employees">Employees</md-nav-item>
-    </md-nav-bar>
-    <div ng-view></div>
+    <md-nav-bar ng-if="main.isLoggedIn" aria-label="navMain" md-selected-nav-item="currentNavItem">
+        <md-nav-item md-nav-href="/interviews" name="interviews" aria-label="navInt">Interviste</md-nav-item>
+        <md-nav-item md-nav-href="/employees" name="employees" aria-label="navEmp">Dipendenti</md-nav-item>
+        <span flex></span>
+        <md-menu>
+            <md-button ng-click="$mdMenu.open($event)">
+                <md-icon>person</md-icon>{{ main.username }}
+            </md-button>
+            <md-menu-content width="3 ">
+                <!--<md-menu-item>
+                    <md-button>
+                        <p ng-click="main.goProfile()">Profile</p>
+                    </md-button>
+                </md-menu-item>-->
+                <md-menu-item>
+                    <md-button>
+                        <p ng-click="main.logout()"> Log Out </p>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
 
+    </md-nav-bar>
+
+    <div ng-view></div>
 
     <!--jQuery, Bootstrap-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

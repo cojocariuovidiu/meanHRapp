@@ -284,18 +284,10 @@ md-input-container {
     background: #3949AB;
 }
 
-md-nav-bar .md-button.md-accent {
-    color: white;
-}
+
 
 md-nav-bar .md-button._md-nav-button.md-unselected {
     color: white;
-}
-
-md-nav-bar.md-default-theme md-nav-ink-bar,
-md-nav-bar md-nav-ink-bar {
-    color: white;
-    background: white;
 }
 
 md-nav-bar md-icon.md-default-theme,
@@ -306,7 +298,18 @@ md-icon {
 .md-button {
     color: white
 }
+*/
 
 md-menu-content {
-    background-color: #3949AB;
-}*/
+    padding: 0px;
+}
+
+md-nav-bar .md-button.md-accent {
+    color: #3949AB;
+}
+
+md-nav-bar.md-default-theme md-nav-ink-bar,
+md-nav-bar md-nav-ink-bar {
+    color: white;
+    background: #3949AB;
+}

@@ -9,23 +9,10 @@ angular.module('mainController', ['ngMaterial'])
 
     main.loadme = false;
 
-
-    $scope.test = function() {
-        console.log('clicked')
-    }
-
     main.checkSession = function() {
         if (Auth.isLoggedIn()) {
             main.checkingsession = true;
         }
-    }
-
-    main.GoInterviews = function() {
-        $location.path('/interviews')
-    }
-
-    main.GoEmployees = function() {
-        $location.path('/employees')
     }
 
     main.checkSession();
@@ -37,9 +24,6 @@ angular.module('mainController', ['ngMaterial'])
     // });
 
     $rootScope.$on('$routeChangeStart', function(e, current, pre) {
-
-
-
         if (!main.checkingsession) main.checkSession();
 
         if (Auth.isLoggedIn()) {
@@ -106,26 +90,25 @@ angular.module('mainController', ['ngMaterial'])
     }
 
     main.logout = function() {
-        // showModal(2)
-        buildToggler('left')
         Auth.logout();
         $location.path('/login');
         $route.reload();
     }
 
-    main.goProfile = function() {
-        $location.path('/profile');
-    }
+    // main.goProfile = function() {
+    //     $location.path('/profile');
+    //     $route.reload();
+    // }
 
 
-    main.toggleLeft = buildToggler('left');
+    // main.toggleLeft = buildToggler('left');
 
-    function buildToggler(componentId) {
-        return function() {
-            $mdSidenav(componentId).toggle();
-            // showToast()
-        };
-    }
+    // function buildToggler(componentId) {
+    //     return function() {
+    //         $mdSidenav(componentId).toggle();
+    //         // showToast()
+    //     };
+    // }
 
     main.menu = [{
             link: '/',
