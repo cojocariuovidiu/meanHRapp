@@ -12,19 +12,7 @@ angular.module("intChartControllers", ["chart.js"])
     intChart.barChart.options = {
         responsive: false,
         maintainAspectRatio: true,
-        //hide grid lines
-        // scales: {
-        //     xAxes: [{
-        //         gridLines: {
-        //             display: false
-        //         }
-        //     }],
-        //     yAxes: [{
-        //         gridLines: {
-        //             display: false
-        //         }
-        //     }]
-        // }
+        legend: { display: true }
     }
     intChart.barChart.data = []
     intChart.barChart.Interviews = []

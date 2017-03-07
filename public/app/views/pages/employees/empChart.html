@@ -1,5 +1,5 @@
 <div class="md-toolbar-tools">
-    <div class="toolbarTitle">Statistiche</div>
+    <div class="toolbarTitle">Statistiche Dipendenti</div>
     <div flex></div>
     <md-button class="md-raised md-icon-button">
         <md-icon><a href="/employees">face</a></md-icon>
@@ -8,11 +8,17 @@
         <md-icon>refresh</md-icon>
     </md-button>
 </div>
-<canvas height="300" width="900" chart-options="empChart.barChart.options" class="chart chart-bar" chart-data="empChart.barChart.data" chart-labels="empChart.barChart.labels" chart-series="empChart.barChart.series" id="bar"></canvas>
 
-<div class="md-toolbar-tools">
+<section layout="row" flex="">
+    <!--Pie-->
+    <canvas height="300" width="300" chart-colors="empChart.dougChart.colors" id="pie" class="chart chart-pie" chart-data="empChart.dougChart.data" chart-labels="empChart.dougChart.labels" chart-options="empChart.dougChart.options" chart-series="empChart.dougChart.series">
+</canvas>
+    <!--Dougnot-->
+    <canvas height="300" width="300" chart-colors="empChart.dougChart.colors" chart-options="empChart.dougChart.options" class="chart chart-doughnut" chart-data="empChart.dougChart.data" chart-labels="empChart.dougChart.labels" chart-series="empChart.dougChart.series"
+        id="bar"></canvas>
+    <!--Polar-->
+    <canvas height="300" width="300" chart-colors="empChart.dougChart.colors" id="polar-area" class="chart chart-polar-area" chart-data="empChart.dougChart.data" chart-labels="empChart.dougChart.labels" chart-options="empChart.dougChart.options" chart-series="empChart.dougChart.series">
+</canvas>
 
-    <md-button class="md-raised md-icon-button" ng-click="empChart.loadChartData(2017)">
-        2017
-    </md-button>
-</div>
+    </canvas>
+</section>

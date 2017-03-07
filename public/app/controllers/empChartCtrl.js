@@ -6,66 +6,24 @@ angular.module("empChartControllers", ["chart.js"])
 
     var empChart = this
 
-    empChart.barChart = {};
-    empChart.barChart.labels = ['Maran', 'Triboo', 'No Dpt']
-    empChart.barChart.series = ['Dipendenti']
+    empChart.dougChart = {};
+    empChart.dougChart.labels = ['Maran', 'Triboo', 'No Dpt']
+    empChart.dougChart.series = ['Dipendenti']
+    empChart.dougChart.colors = ["#F7464A", "#97BBCD", "#000000"]
 
-    empChart.colours = [{
-        fillColor: 'rgba(151,187,205,0.2)',
-        strokeColor: 'red',
-        pointColor: 'rgba(151,187,205,1)',
-        pointStrokeColor: 'red',
-        pointHighlightFill: 'red',
-        pointHighlightStroke: 'rgba(151,187,205,0.8)'
-    }, {
-        fillColor: 'rgba(151,187,205,0.2)',
-        strokeColor: 'blue',
-        pointColor: 'rgba(151,187,205,1)',
-        pointStrokeColor: '#fff',
-        pointHighlightFill: '#fff',
-        pointHighlightStroke: 'rgba(151,187,205,0.8)'
-    }]
-
-    empChart.barChart.options = {
+    empChart.dougChart.options = {
         responsive: false,
         maintainAspectRatio: true,
-        scales: {
-            yAxes: [{
-                display: true,
-                ticks: {
-                    suggestedMin: 0, // minimum will be 0, unless there is a lower value.
-                    // OR //
-                    beginAtZero: true // minimum value will be 0.
-                }
-            }]
-        },
-        // colours = [{
-        //     fillColor: 'rgba(151,187,205,0.2)',
-        //     strokeColor: 'red',
-        //     pointColor: 'rgba(151,187,205,1)',
-        //     pointStrokeColor: '#fff',
-        //     pointHighlightFill: '#fff',
-        //     pointHighlightStroke: 'rgba(151,187,205,0.8)'
-        // }, {
-        //     fillColor: 'rgba(151,187,205,0.2)',
-        //     strokeColor: 'blue',
-        //     pointColor: 'rgba(151,187,205,1)',
-        //     pointStrokeColor: '#fff',
-        //     pointHighlightFill: '#fff',
-        //     pointHighlightStroke: 'rgba(151,187,205,0.8)'
-        // }]
+        legend: { display: true }
     }
-    empChart.barChart.data = []
-    empChart.barChart.Employees = []
-
+    empChart.dougChart.data = []
+    empChart.dougChart.Employees = []
 
     //Button/OnLoad function
     this.loadChartData = function(option) {
-        empChart.selectedChartOrder = option
-        $scope.selectedYear = empChart.selectedChartOrder
-        console.log($scope.selectedYear)
-        empChart.barChart.data = []
-        empChart.barChart.Employees = []
+
+        empChart.dougChart.data = []
+        empChart.dougChart.Employees = []
 
         if (option == 2017) {
             ChartFilterYear(option)
@@ -98,9 +56,9 @@ angular.module("empChartControllers", ["chart.js"])
                     noDepTotal++
                 }
             }, this);
-            empChart.barChart.Employees.push(maranTotal, tribooTotal, noDepTotal)
-            empChart.barChart.data.push(empChart.barChart.Employees)
-            console.log(empChart.barChart.data)
+            empChart.dougChart.data.push(maranTotal, tribooTotal, noDepTotal)
+                // empChart.dougChart.data.push(empChart.dougChart.Employees)
+            console.log(empChart.dougChart.data)
         })
     }
 
@@ -110,5 +68,4 @@ angular.module("empChartControllers", ["chart.js"])
     $scope.$on('chart-update', function(evt, chart) {
         console.log('update');
     });
-
 });
