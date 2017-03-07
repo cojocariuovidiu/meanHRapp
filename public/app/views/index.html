@@ -83,9 +83,18 @@
         </md-sidenav>
     </section>
 
-    <md-button ng-if="main.isLoggedIn" ng-click="main.toggleLeft()" class="md-primary md-fab md-mini material-icons menuSilder">
+    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+        <md-nav-item md-nav-href="/interviews" name="interviews"> Interviste </md-nav-item>
+        <md-nav-item md-nav-href="/employees" name="employees"> Dipendenti </md-nav-item>
+        <md-nav-item md-nav-href="/profile" name="profile">Profile</md-nav-item>
+
+        <!--<md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">        Page Six        </md-nav-item>-->
+
+    </md-nav-bar>
+
+    <!--<md-button ng-if="main.isLoggedIn" ng-click="main.toggleLeft()" class="md-primary md-fab md-mini material-icons menuSilder">
         <md-icon>menu</md-icon>
-    </md-button>
+    </md-button>-->
 
     <div ng-view></div>
 

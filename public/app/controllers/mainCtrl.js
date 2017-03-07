@@ -4,8 +4,10 @@ angular.module('mainController', ['ngMaterial'])
     $mdThemingProvider.theme('docs-dark')
 })
 
-.controller('mainCtrl', function(shareData, $mdSidenav, Auth, $timeout, $location, $rootScope, $route) {
+.controller('mainCtrl', function($scope, shareData, $mdSidenav, Auth, $timeout, $location, $rootScope, $route) {
     var main = this;
+
+    $scope.currentNavItem = 'interviews'
 
     main.loadme = false;
 
