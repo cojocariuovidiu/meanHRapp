@@ -13,7 +13,8 @@ angular.module('userApp', [
     'employeeControllers',
     'interviewControllers',
     'sharedService',
-    'employeeServices'
+    'employeeServices',
+    'appInfoDirective'
 ])
 
 .config(function($httpProvider) {

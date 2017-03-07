@@ -7,9 +7,12 @@ angular.module('mainController', ['ngMaterial'])
 .controller('mainCtrl', function($scope, shareData, $mdSidenav, Auth, $timeout, $location, $rootScope, $route) {
     var main = this;
 
-    $scope.currentNavItem = 'interviews'
-
     main.loadme = false;
+
+
+    $scope.test = function() {
+        console.log('clicked')
+    }
 
     main.checkSession = function() {
         if (Auth.isLoggedIn()) {
@@ -27,11 +30,26 @@ angular.module('mainController', ['ngMaterial'])
 
     main.checkSession();
 
-    $rootScope.$on('$routeChangeStart', function() {
+    // $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
+    //     console.log('Current route name: ' + $location.path());
+    //     // Get all URL parameter
+    //     console.log($routeParams);
+    // });
+
+    $rootScope.$on('$routeChangeStart', function(e, current, pre) {
+
+
+
         if (!main.checkingsession) main.checkSession();
 
         if (Auth.isLoggedIn()) {
-            //console.log('success, User is logged in ');
+
+            // Get current route and set it to the nav
+            var currentRoute = $location.path()
+            while (currentRoute.charAt(0) === '/') {
+                currentRoute = currentRoute.substr(1);
+            }
+            $scope.currentNavItem = currentRoute
 
             main.isLoggedIn = true;
 
@@ -93,6 +111,10 @@ angular.module('mainController', ['ngMaterial'])
         Auth.logout();
         $location.path('/login');
         $route.reload();
+    }
+
+    main.goProfile = function() {
+        $location.path('/profile');
     }
 
 

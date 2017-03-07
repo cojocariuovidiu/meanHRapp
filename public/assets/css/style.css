@@ -245,6 +245,15 @@ a {
     font-size: 24px;
 }
 
+md-input-container {
+    padding: 0px;
+    padding-right: 5px;
+}
+
+.table-card {
+    margin-top: 30px;
+}
+
 
 /*.bottomSheetdemoBasicUsage md-toast .md-toast-content {
     background-color: #B14141;
@@ -270,11 +279,12 @@ a {
 
 /*NavBar*/
 
-md-nav-bar .md-nav-bar {
+
+/*md-nav-bar .md-nav-bar {
     background: #3949AB;
 }
 
-.md-button.md-accent {
+md-nav-bar .md-button.md-accent {
     color: white;
 }
 
@@ -287,3 +297,16 @@ md-nav-bar md-nav-ink-bar {
     color: white;
     background: white;
 }
+
+md-nav-bar md-icon.md-default-theme,
+md-icon {
+    color: white;
+}
+
+.md-button {
+    color: white
+}
+
+md-menu-content {
+    background-color: #3949AB;
+}*/

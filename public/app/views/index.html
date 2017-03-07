@@ -29,7 +29,7 @@
 
 <body ng-cloak ng-app="userApp" ng-controller="mainCtrl as main">
 
-    <section layout="row" flex="">
+    <!--<section layout="row" flex="">
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="4">
             <md-toolbar class="md-tall md-hue-2">
                 <span flex></span>
@@ -81,21 +81,17 @@
                 </md-list>
             </md-content>
         </md-sidenav>
-    </section>
+    </section>-->
 
-    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
-        <md-nav-item md-nav-href="/interviews" name="interviews"> Interviste </md-nav-item>
-        <md-nav-item md-nav-href="/employees" name="employees"> Dipendenti </md-nav-item>
-        <md-nav-item md-nav-href="/profile" name="profile">Profile</md-nav-item>
 
-        <!--<md-nav-item md-nav-sref="page6" sref-opts="{reload:true, notify:true}">        Page Six        </md-nav-item>-->
-
-    </md-nav-bar>
 
     <!--<md-button ng-if="main.isLoggedIn" ng-click="main.toggleLeft()" class="md-primary md-fab md-mini material-icons menuSilder">
         <md-icon>menu</md-icon>
     </md-button>-->
-
+    <md-nav-bar md-selected-nav-item="currentNavItem">
+        <md-nav-item md-nav-href="/interviews" name="interviews">Interviews</md-nav-item>
+        <md-nav-item md-nav-href="/employees" name="employees">Employees</md-nav-item>
+    </md-nav-bar>
     <div ng-view></div>
 
 
@@ -128,6 +124,7 @@
 
     <!--Angular Directives-->
     <script src="app/directives/fileModel.js"></script>
+    <script src="app/directives/appInfo.js"></script>
 
     <!--Angular Services-->
     <script src="app/services/userServices.js"></script>
