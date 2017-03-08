@@ -119,10 +119,14 @@
 
                     <div layout-gt-sm="row">
                         <div ng-if="editedObject.username">
+                            <div ng-show="!message">{{file.upload.name}}</div>
                             <input class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
                             <label for="input-file-id" class="md-button md-accent md-raised">Browse</label>
 
-                            <md-button ng-click="SubmitUpload()" ng-disabled="!file.upload.name" class="md-raised ">
+                            <md-button ng-if="newInterview.cv" ng-click="SubmitUpload()" ng-disabled="!file.upload.name" class="md-raised ">
+                                Upload NEW CV
+                            </md-button>
+                            <md-button ng-if="!newInterview.cv" ng-click="SubmitUpload()" ng-disabled="!file.upload.name" class="md-raised ">
                                 Upload CV
                             </md-button>
                             <i ng-if="newInterview.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newInterview.cv}}">face</a></i>
@@ -130,7 +134,6 @@
                             <div ng-show="message">
                                 <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">{{file.upload.name}} </a> {{message}}
                             </div>
-                            <div ng-show="!message">{{file.upload.name}}</div>
                         </div>
                         <span flex></span>
                         <md-input-container ng-if="editedObject.username != null" class="md-block" flex-gt-sm="">
