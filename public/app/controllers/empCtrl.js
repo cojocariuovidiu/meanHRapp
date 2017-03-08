@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module("employeeControllers", [])
+angular.module("employeeControllers", ["chart.js"])
 
 .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
@@ -216,6 +216,87 @@ angular.module("employeeControllers", [])
             clickOutsideToClose: true,
             fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
         })
+    }
+
+    //Call Chart Modal
+    $scope.empChartModal = function() {
+        $mdDialog.show({
+            controller: ChartDialogController,
+            templateUrl: 'app/views/pages/employees/empChart.html',
+            // locals: {
+            //     editedObject: editedObject
+            // },
+            parent: angular.element(document.body),
+            //targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+    }
+
+    //Controller for Intervirews Chart
+    function ChartDialogController($scope, $mdDialog) {
+        $scope.dougChart = {};
+        $scope.dougChart.labels = ['Maran', 'Triboo', 'No Dpt']
+        $scope.dougChart.series = ['Dipendenti']
+        $scope.dougChart.colors = ["#F7464A", "#97BBCD", "#000000"]
+
+        $scope.dougChart.options = {
+            responsive: false,
+            maintainAspectRatio: true,
+            legend: { display: true }
+        }
+        $scope.dougChart.data = []
+        $scope.dougChart.Employees = []
+
+        //Button/OnLoad function
+        $scope.loadChartData = function(option) {
+
+            $scope.dougChart.data = []
+            $scope.dougChart.Employees = []
+
+            if (option == 2017) {
+                ChartFilterYear(option)
+            } else if (option == 2016) {
+                ChartFilterYear(option)
+            } else {
+                console.log('chart year != 2016 or 2017')
+            }
+        }
+
+        //Load 2017 on start
+        $scope.selectedChartOrder = (2017)
+        $scope.loadChartData($scope.selectedChartOrder)
+
+        //Filter function used for each year
+        function ChartFilterYear(option) {
+            var maranTotal = 0
+            var tribooTotal = 0
+            var noDepTotal = 0
+
+            //Load all data from the DB
+            Employee.getEmployees().then(function(response) {
+                response.data.forEach(function(element) {
+                    console.log(element.department)
+                    if (element.department === "Maran") {
+                        maranTotal++
+                    } else if (element.department === "Triboo") {
+                        tribooTotal++
+                    } else {
+                        noDepTotal++
+                    }
+                }, this);
+                $scope.dougChart.data.push(maranTotal, tribooTotal, noDepTotal)
+                    // $scope.dougChart.data.push($scope.dougChart.Employees)
+                console.log($scope.dougChart.data)
+            })
+        }
+
+        $scope.$on('chart-destroy', function(evt, chart) {
+            // console.log('destroy');
+        });
+        $scope.$on('chart-update', function(evt, chart) {
+            console.log('update');
+        });
     }
 
     //Controler for SortModal

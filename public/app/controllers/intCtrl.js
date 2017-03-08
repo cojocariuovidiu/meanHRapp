@@ -221,7 +221,7 @@ angular.module("interviewControllers", ['md.data.table'])
     }
 
     //Call Chart Modal
-    $scope.chartModal = function() {
+    $scope.intChartModal = function() {
         $mdDialog.show({
             controller: ChartDialogController,
             templateUrl: 'app/views/pages/interviews/intChart.html',
@@ -424,10 +424,6 @@ angular.module("interviewControllers", ['md.data.table'])
         $scope.$on('chart-update', function(evt, chart) {
             console.log('update');
         });
-
-        $scope.cancel = function() {
-            $mdDialog.cancel();
-        };
     }
 
     function getInterviewsFiltered(option) {
