@@ -129,10 +129,6 @@ angular.module("interviewControllers", ['md.data.table'])
             }
         }
 
-        $scope.Browse = function() {
-            $scope.browseClicked = true
-        }
-
         //Upload File Code:
         $scope.file = {}
         $scope.SubmitUpload = function() {

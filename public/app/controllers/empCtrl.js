@@ -133,10 +133,6 @@ angular.module("employeeControllers", ["chart.js"])
                 });
         }
 
-        //Upload File Code:
-        $scope.Browse = function() {
-            $scope.browseClicked = true
-        }
         $scope.file = {}
         $scope.SubmitUpload = function() {
             // $scope.uploading = true

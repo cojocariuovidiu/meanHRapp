@@ -72,10 +72,10 @@
 
                     <div layout-gt-sm="row">
                         <div ng-if="editedObject.username">
-                            <input ng-click=Browse() class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
+                            <input class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
                             <label for="input-file-id" class="md-button md-accent md-raised">Browse</label>
 
-                            <md-button ng-click="SubmitUpload()" ng-disabled="!browseClicked" class="md-raised ">
+                            <md-button ng-click="SubmitUpload()" ng-disabled="!file.upload.name" class="md-raised ">
                                 Upload CI
                             </md-button>
                             <i ng-if="newEmployee.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newEmployee.ci}}">face</a></i>
