@@ -1,21 +1,21 @@
 <div class="md-toolbar-tools">
     <div class="toolbarTitle">Statistiche per {{selectedYear}}</div>
     <div flex></div>
-    <md-button class="md-raised md-icon-button">
+    <!--<md-button class="md-raised md-icon-button">
         <md-icon><a href="/interviews">face</a></md-icon>
-    </md-button>
-    <md-button class="md-raised md-icon-button" ng-click="intChart.loadChartData(intChart.selectedChartOrder)">
+    </md-button>-->
+    <md-button class="md-raised md-icon-button" ng-click="loadChartData(selectedChartOrder)">
         <md-icon>refresh</md-icon>
     </md-button>
 </div>
-<canvas height="300" width="900" chart-options="intChart.barChart.options" class="chart chart-bar" chart-data="intChart.barChart.data" chart-labels="intChart.barChart.labels" chart-series="intChart.barChart.series" id="bar"></canvas>
+<canvas height="300" width="900" chart-options="barChart.options" class="chart chart-bar" chart-data="barChart.data" chart-labels="barChart.labels" chart-series="barChart.series" id="bar"></canvas>
 
 <div class="md-toolbar-tools">
 
-    <md-button class="md-raised md-icon-button" ng-click="intChart.loadChartData(2016)">
+    <md-button class="md-raised md-icon-button" ng-click="loadChartData(2016)">
         2016
     </md-button>
-    <md-button class="md-raised md-icon-button" ng-click="intChart.loadChartData(2017)">
+    <md-button class="md-raised md-icon-button" ng-click="loadChartData(2017)">
         2017
     </md-button>
 </div>

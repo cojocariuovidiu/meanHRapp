@@ -20,36 +20,6 @@
     </md-button>
 </div>
 
-
-
-
-
-<md-content class="md-padding" layout-xs="column" layout="row">
-    <div flex-xs="" flex-gt-xs="30" layout="column">
-        <md-card style="width: 500px; height: 100px;" ng-repeat="item in emp.employeessList" md-theme="{{ !showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch="">
-            <md-card-title>
-                <md-card-title-text>
-                    <i ng-if="item.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.ci}}">face</a></i>
-                    <span class="md-headline">{{ item.name}}</span>
-                </md-card-title-text>
-                <md-card-title-media>
-                    <div class="md-media-sm card-media"></div>
-                </md-card-title-media>
-            </md-card-title>
-            <md-card-content>
-                <span class="md-subhead">{{ item.department}}</span>
-            </md-card-content>
-            <md-card-actions layout="row" layout-align="end center">
-                By {{ item.username}}
-                <md-button ng-click="emp.editEmployee(item._id)" class="md-fab md-mini md-warn">
-                    <md-icon>edit</md-icon>
-                </md-button>
-            </md-card-actions>
-        </md-card>
-    </div>
-
-</md-content>
-
 <md-card>
     <md-table-container>
         <table md-table="" md-progress="promise">
@@ -100,6 +70,33 @@
 
 <md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{emp.employeessList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
 <!--<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->
+
+
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs="" flex-gt-xs="30" layout="column">
+        <md-card style="width: 500px; height: 100px;" ng-repeat="item in emp.employeessList" md-theme="{{ !showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch="">
+            <md-card-title>
+                <md-card-title-text>
+                    <i ng-if="item.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.ci}}">face</a></i>
+                    <span class="md-headline">{{ item.name}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-sm card-media"></div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-content>
+                <span class="md-subhead">{{ item.department}}</span>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+                By {{ item.username}}
+                <md-button ng-click="emp.editEmployee(item._id)" class="md-fab md-mini md-warn">
+                    <md-icon>edit</md-icon>
+                </md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+
+</md-content>
 
 <!--
         <div flex-xs="" flex-gt-xs="30" layout="column">

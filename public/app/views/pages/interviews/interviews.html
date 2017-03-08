@@ -6,15 +6,18 @@
         <label>Cerca</label>
         <input ng-model="searchInterview">
     </md-input-container>
-    <md-button ng-if="main.group == 'hr' || main.group =='admin'" class="md-raised md-fab md-mini" ng-click="editInterview()">
+    <md-button ng-click="editInterview()" ng-if="main.group == 'hr' || main.group =='admin'" class="md-raised md-fab md-mini">
         <md-icon>add</md-icon>
     </md-button>
-    <md-button class="md-raised md-icon-button" ng-click="sortModal()">
+    <md-button ng-click="sortModal()" class="md-raised md-icon-button">
         <md-icon>sort</md-icon>
     </md-button>
-    <md-button class="md-raised md-icon-button">
-        <md-icon><a href="/intchart">trending_up</a></md-icon>
+    <md-button ng-click="chartModal()" class="md-raised md-icon-button">
+        <md-icon>trending_up</md-icon>
     </md-button>
+    <!--<md-button class="md-raised md-icon-button">
+        <md-icon><a href="/intchart">trending_up</a></md-icon>
+    </md-button>-->
     <md-button class="md-raised md-icon-button" ng-click="refresh()">
         <md-icon>refresh</md-icon>
     </md-button>
