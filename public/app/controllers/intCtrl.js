@@ -131,13 +131,19 @@ angular.module("interviewControllers", ['md.data.table'])
                     $mdDialog.hide();
                 })
             }
+            showToast('Salvato con successo !')
         }
 
         //Upload File Code:
         $scope.file = {}
+        $scope.uploadCVEnabled = true
+        $scope.uploadCIEnabled = true
+        console.log('enabling buttons', $scope.uploadButtonsAreEnabled)
+
         $scope.SubmitUploadCV = function() {
-            // $scope.uploading = true
-            console.log($scope.file.upload.name)
+            $scope.uploadCVEnabled = false
+                // $scope.uploading = true
+            console.log('enabling buttons', $scope.uploadButtonsAreEnabled)
             uploadFile.uploadCV($scope.file).then(function(data) {
                 if (data.data.success) {
                     // $scope.uploading = false
@@ -154,8 +160,9 @@ angular.module("interviewControllers", ['md.data.table'])
             })
         }
         $scope.SubmitUploadCI = function() {
-            // $scope.uploading = true
-            // console.log($scope.file.upload.name)
+            $scope.uploadCIEnabled = false
+                // $scope.uploading = true
+                // console.log($scope.file.upload.name)
             uploadFile.uploadCI($scope.file).then(function(data) {
                 if (data.data.success) {
                     // $scope.uploading = false

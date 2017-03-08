@@ -407,10 +407,10 @@ module.exports = function(router) {
                 }
             } else {
                 if (!req.file) {
-                    res.json({ success: false, message: 'No file was selected' })
+                    res.json({ success: false, message: 'Nessun file selezionato!' })
                 } else {
                     console.log(cv)
-                    res.json({ success: true, message: 'uploaded succesfully!', cv: cv })
+                    res.json({ success: true, message: 'caricato con successo come CV !', cv: cv })
                 }
             }
         })
@@ -428,10 +428,10 @@ module.exports = function(router) {
                 }
             } else {
                 if (!req.file) {
-                    res.json({ success: false, message: 'No file was selected' })
+                    res.json({ success: false, message: 'Nessun file selezionato!' })
                 } else {
                     console.log(ci)
-                    res.json({ success: true, message: 'uploaded succesfully!', ci: ci })
+                    res.json({ success: true, message: 'caricato con successo come CI !', ci: ci })
                 }
             }
         })
