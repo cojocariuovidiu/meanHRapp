@@ -99,7 +99,7 @@ angular.module("interviewControllers", ['md.data.table'])
             if (isEmpty(editedObject)) {
                 //console.log('new interview:', newInterview, app.username)
 
-                console.log(newInterview)
+                console.log('new int:', newInterview)
 
                 //CREATE Interview
                 Interview.create({
@@ -112,14 +112,18 @@ angular.module("interviewControllers", ['md.data.table'])
                     $mdDialog.hide();
                 })
             } else {
-                //Update Interview
-                console.log('editing', editedObject._id)
+                console.log('edited:', newInterview)
+
+                let currentCV = ((!$scope.cv) ? newInterview.cv : $scope.cv);
+                let currentCI = ((!$scope.ci) ? newInterview.ci : $scope.ci);
+
                 $http.put('/api/editinterview/' + editedObject._id, {
                     updateData: newInterview,
                     // editedBy: int.username,
                     editedBy: shareData.loggedUser,
                     interviewStatus: $scope.interviewStatus,
-                    cv: $scope.cv
+                    cv: currentCV,
+                    ci: currentCI
                 }).then(function(response) {
                     console.log('Data updated status:', newInterview)
                 }).then(function(response) {
@@ -131,7 +135,7 @@ angular.module("interviewControllers", ['md.data.table'])
 
         //Upload File Code:
         $scope.file = {}
-        $scope.SubmitUpload = function() {
+        $scope.SubmitUploadCV = function() {
             // $scope.uploading = true
             console.log($scope.file.upload.name)
             uploadFile.uploadCV($scope.file).then(function(data) {
@@ -141,6 +145,24 @@ angular.module("interviewControllers", ['md.data.table'])
                     $scope.message = data.data.message
                         // $scope.file = {}
                     $scope.cv = data.data.cv
+                } else {
+                    // $scope.uploading = false
+                    $scope.alert = 'alert alert-danger'
+                    $scope.message = data.data.message;
+                    $scope.file = {}
+                }
+            })
+        }
+        $scope.SubmitUploadCI = function() {
+            // $scope.uploading = true
+            // console.log($scope.file.upload.name)
+            uploadFile.uploadCI($scope.file).then(function(data) {
+                if (data.data.success) {
+                    // $scope.uploading = false
+                    $scope.alert = 'alert alert-success'
+                    $scope.message = data.data.message
+                        // $scope.file = {}
+                    $scope.ci = data.data.ci
                 } else {
                     // $scope.uploading = false
                     $scope.alert = 'alert alert-danger'

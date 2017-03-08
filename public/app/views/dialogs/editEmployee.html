@@ -76,12 +76,12 @@
                             <label for="input-file-id" class="md-button md-accent md-raised">Browse</label>
 
                             <md-button ng-if="newEmployee.ci" ng-click="SubmitUpload()" ng-disabled="!file.upload.name" class="md-raised ">
-                                Upload NEW CI
+                                Upload Nuovo CI
                             </md-button>
                             <md-button ng-if="!newEmployee.ci" ng-click="SubmitUpload()" ng-disabled="!file.upload.name" class="md-raised ">
                                 Upload CI
                             </md-button>
-                            <i ng-if="newEmployee.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newEmployee.ci}}">face</a></i>
+                            <i ng-if="newEmployee.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newEmployee.ci}}">credit_card</a></i>
 
                             <div ng-show="message">
                                 <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{ci}}" target="_blank">{{file.upload.name}} </a> {{message}}

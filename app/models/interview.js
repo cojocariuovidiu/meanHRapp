@@ -16,7 +16,8 @@ var InterviewSchema = new Schema({
     note: { type: String },
     username: { type: String },
     interviewStatus: { type: String },
-    cv: { type: String }
+    cv: { type: String },
+    ci: { type: String }
 })
 
 // InterviewSchema.pre('save', function(next) {

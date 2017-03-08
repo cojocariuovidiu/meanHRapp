@@ -333,135 +333,65 @@ module.exports = function(router) {
 
     //http://127.0.0.1:3000/api/editEmployee/:id
     router.put('/editEmployee/:id', function(req, res) {
-        var id = req.params.id
-        console.log('updating id:', id)
-        var ci
+        Employee.findOneAndUpdate({ _id: req.params.id }, {
+            employmentdate: req.body.updateData.employmentdate,
+            name: req.body.updateData.name,
+            cnp: req.body.updateData.cnp,
+            age: req.body.updateData.age,
+            tel: req.body.updateData.tel,
+            department: req.body.updateData.department,
+            email: req.body.updateData.email,
+            note: req.body.updateData.note,
+            ci: req.body.ci
 
-        if (!req.body.ci) {
-            Employee.findOneAndUpdate({ _id: id }, {
-                employmentdate: req.body.updateData.employmentdate,
-                name: req.body.updateData.name,
-                cnp: req.body.updateData.cnp,
-                age: req.body.updateData.age,
-                tel: req.body.updateData.tel,
-                department: req.body.updateData.department,
-                email: req.body.updateData.email,
-                note: req.body.updateData.note
+        }, { new: true }, function(err) {
+            if (err) {
+                console.log('update failed');
+                console.log(err)
+                res.json({ success: false })
+            } else {
+                console.log('update success');
+                res.json({ success: true })
+            }
+        })
 
-            }, { new: true }, function(err) {
-                if (err) {
-                    console.log('update failed');
-                    console.log(err)
-                    res.json({ success: false })
-                } else {
-                    console.log('update success');
-                    res.json({ success: true })
-                }
-            })
-        } else {
-            Employee.findOneAndUpdate({ _id: id }, {
-                employmentdate: req.body.updateData.employmentdate,
-                name: req.body.updateData.name,
-                cnp: req.body.updateData.cnp,
-                age: req.body.updateData.age,
-                tel: req.body.updateData.tel,
-                department: req.body.updateData.department,
-                email: req.body.updateData.email,
-                note: req.body.updateData.note,
-                ci: req.body.ci
-
-            }, { new: true }, function(err) {
-                if (err) {
-                    console.log('update failed');
-                    console.log(err)
-                    res.json({ success: false })
-                } else {
-                    console.log('update success');
-                    res.json({ success: true })
-                }
-            })
-        }
     })
 
     //http://127.0.0.1:3000/api/editinterview/:id
     router.put('/editinterview/:id', function(req, res) {
 
-        var id = req.params.id
-        console.log(req.body.cv)
-        var cv
+        console.log('cv:', req.body.cv)
+        console.log('ci:', req.body.ci)
 
-        if (!req.body.cv) {
-            Interview.findOneAndUpdate({ _id: id }, {
-                dataapplicazione: req.body.updateData.dataapplicazione,
-                nomecognome: req.body.updateData.nomecognome,
-                sesso: req.body.updateData.sesso,
-                eta: req.body.updateData.eta,
-                tel: req.body.updateData.tel,
-                esito1: req.body.updateData.esito1,
-                esito2: req.body.updateData.esito2,
-                esitocolloquio: req.body.updateData.esitocolloquio,
-                colloquio_sostenuto_da: req.body.updateData.colloquio_sostenuto_da,
-                responsabile_colloquio: req.body.updateData.responsabile_colloquio,
-                sito: req.body.updateData.sito,
-                email: req.body.updateData.email,
-                note: req.body.updateData.note,
-                interviewStatus: req.body.interviewStatus
+        Interview.findOneAndUpdate({ _id: req.params.id }, {
+            dataapplicazione: req.body.updateData.dataapplicazione,
+            nomecognome: req.body.updateData.nomecognome,
+            sesso: req.body.updateData.sesso,
+            eta: req.body.updateData.eta,
+            tel: req.body.updateData.tel,
+            esito1: req.body.updateData.esito1,
+            esito2: req.body.updateData.esito2,
+            esitocolloquio: req.body.updateData.esitocolloquio,
+            colloquio_sostenuto_da: req.body.updateData.colloquio_sostenuto_da,
+            responsabile_colloquio: req.body.updateData.responsabile_colloquio,
+            sito: req.body.updateData.sito,
+            email: req.body.updateData.email,
+            note: req.body.updateData.note,
+            interviewStatus: req.body.interviewStatus,
+            cv: req.body.cv,
+            ci: req.body.ci
 
-                // username: { type: String }
-
-            }, { new: true }, function(err) {
-                if (err) {
-                    console.log('update failed (no CV)');
-                    console.log(err)
-                    res.json({ success: false })
-                } else {
-                    console.log('update success (no CV)');
-                    res.json({ success: true })
-                }
-            });
-        } else {
-            Interview.findOneAndUpdate({ _id: id }, {
-                dataapplicazione: req.body.updateData.dataapplicazione,
-                nomecognome: req.body.updateData.nomecognome,
-                sesso: req.body.updateData.sesso,
-                eta: req.body.updateData.eta,
-                tel: req.body.updateData.tel,
-                esito1: req.body.updateData.esito1,
-                esito2: req.body.updateData.esito2,
-                esitocolloquio: req.body.updateData.esitocolloquio,
-                colloquio_sostenuto_da: req.body.updateData.colloquio_sostenuto_da,
-                responsabile_colloquio: req.body.updateData.responsabile_colloquio,
-                sito: req.body.updateData.sito,
-                email: req.body.updateData.email,
-                note: req.body.updateData.note,
-                interviewStatus: req.body.interviewStatus,
-                cv: req.body.cv
-
-                // username: { type: String }
-
-            }, { new: true }, function(err) {
-                if (err) {
-                    console.log('update failed (with CV)');
-                    console.log(err)
-                    res.json({ success: false })
-                } else {
-                    console.log('update success (with CV)');
-                    res.json({ success: true })
-                }
-            });
-        }
-
+        }, { new: true }, function(err) {
+            if (err) {
+                console.log('update failed (no CV)');
+                console.log(err)
+                res.json({ success: false })
+            } else {
+                console.log('update success');
+                res.json({ success: true })
+            }
+        });
     })
-
-    //Chart API
-    // router.get('/getChartData', function(req, res) {
-    //     Interview.find({}, function(err, interviews) {
-    //         // interviews.forEach(function(element) {
-    //         //     console.log(element.dataapplicazione)
-    //         // }, this);
-    //         res.send(interviews)
-    //     })
-    // })
 
     //Upload file API's
     router.post('/uploadCV', function(req, res) {
