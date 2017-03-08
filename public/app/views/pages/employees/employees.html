@@ -41,7 +41,7 @@
             <tbody md-body>
                 <!--<tr md-row md-select="item" md-select-id="name" ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">-->
                 <tr md-row ng-repeat="item in emp.employeessList  | orderBy:sort.order | filter:searchEmployee |  limitTo: sort.limit : (sort.page -1) * sort.limit">
-                    <td md-cell><i ng-if="item.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.ci}}">face</a></i></td>
+                    <td md-cell><i ng-if="item.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.ci}}">credit_card</a></i></td>
                     <td md-cell>{{ item.employmentdate | date}}</td>
                     <td md-cell>{{ item.name}}</td>
                     <td md-cell>{{ item.department}}</td>
@@ -72,9 +72,11 @@
 <!--<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->
 
 
-<md-content class="md-padding" layout-xs="column" layout="row">
+<!--CARDS Idea-->
+
+<!--<md-content class="md-padding" layout-xs="column" layout="row">
     <div flex-xs="" flex-gt-xs="30" layout="column">
-        <md-card style="width: 500px; height: 100px;" ng-repeat="item in emp.employeessList" md-theme="{{ !showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch="">
+        <md-card style="width: 500px; height: 100px;" ng-repeat="item in emp.employeessList" md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch="">
             <md-card-title>
                 <md-card-title-text>
                     <i ng-if="item.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.ci}}">face</a></i>
@@ -96,7 +98,7 @@
         </md-card>
     </div>
 
-</md-content>
+</md-content>-->
 
 <!--
         <div flex-xs="" flex-gt-xs="30" layout="column">

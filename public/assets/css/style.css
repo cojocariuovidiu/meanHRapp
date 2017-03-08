@@ -313,3 +313,7 @@ md-nav-bar md-nav-ink-bar {
     color: white;
     background: #3949AB;
 }
+
+a {
+    color: #3949AB;
+}
