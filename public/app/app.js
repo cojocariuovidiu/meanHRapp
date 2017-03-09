@@ -12,7 +12,8 @@ angular.module('userApp', [
     'interviewControllers',
     'sharedService',
     'employeeServices',
-    'appInfoDirective'
+    'appInfoDirective',
+    'logoutControllers'
 ])
 
 .config(function($httpProvider) {

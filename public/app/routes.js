@@ -20,10 +20,12 @@ var app = angular.module('appRoutes', ['ngRoute'])
             templateUrl: 'app/views/pages/users/login.html',
             authenticated: false
         })
-        // .when('/logout', {
-        //     templateUrl: 'app/views/pages/users/logout.html',
-        //     authenticated: true
-        // })
+        .when('/logout', {
+            templateUrl: 'app/views/pages/users/logout.html',
+            authenticated: true,
+            controller: 'logoutCtrl',
+            controllerAs: 'logout'
+        })
         .when('/profile', {
             templateUrl: 'app/views/pages/users/profile.html',
             authenticated: true
