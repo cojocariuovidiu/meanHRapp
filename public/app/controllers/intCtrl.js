@@ -470,7 +470,7 @@ angular.module("interviewControllers", ['md.data.table'])
                     }];
                 })
                 console.log('promisse all')
-            }, 500);
+            }, 400);
             console.log('Displaying', option)
         } else if (option == 'isEmployee') {
             FilterByStatus('isEmployee')
@@ -489,7 +489,7 @@ angular.module("interviewControllers", ['md.data.table'])
                     activator: option
                 }
             })
-        }, 500)
+        }, 400)
     }
 
     function RangeFilter(fromDate, toDate) {
@@ -512,7 +512,7 @@ angular.module("interviewControllers", ['md.data.table'])
                     }
                 }, this)
                 console.log('promisse range')
-            }, 500);
+            }, 400);
         }
     }
 
@@ -540,7 +540,7 @@ angular.module("interviewControllers", ['md.data.table'])
         checkDisplaying()
         $scope.promise = $timeout(function() {
             console.log('refreshing data')
-        }, 500);
+        }, 400);
     }
 
     function checkDisplaying() {
@@ -605,7 +605,7 @@ angular.module("interviewControllers", ['md.data.table'])
             $mdToast.simple()
             .action('OK')
             .textContent(message)
-            .hideDelay(2000)
+            .hideDelay(4000)
             .highlightAction(true)
             .capsule(true)
             .position('top right')
@@ -617,7 +617,7 @@ angular.module("interviewControllers", ['md.data.table'])
         //     .highlightAction(true)
         //     .parent(document.querySelectorAll('#toaster'))
         //     .position('bottom right')
-        //     .hideDelay(3000)
+        //     .hideDelay(4000)
         //     .action('OK')
         //     //.action('x')
         // );

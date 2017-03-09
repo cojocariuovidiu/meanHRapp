@@ -185,7 +185,7 @@ angular.module("employeeControllers", ["chart.js"])
                         }
                     }];
                 })
-            }, 500)
+            }, 400)
             console.log('Displaying', option)
         } else if (option == 'Triboo') {
             FilterByDepartment('Triboo')
@@ -207,7 +207,7 @@ angular.module("employeeControllers", ["chart.js"])
                     activator: option
                 }
             })
-        }, 500)
+        }, 400)
     }
 
     //Call Sort Modal
@@ -347,7 +347,7 @@ angular.module("employeeControllers", ["chart.js"])
                         activator: 'Range'
                     }
                 }, this)
-            }, 500);
+            }, 400);
         }
     }
 
@@ -366,7 +366,7 @@ angular.module("employeeControllers", ["chart.js"])
     emp.refresh = function() {
         $scope.promise = $timeout(function() {
             checkDisplaying()
-        }, 500);
+        }, 400);
     }
 
     var showToast = function(message) {
