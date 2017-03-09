@@ -116,8 +116,8 @@
                         <textarea ng-model="newInterview.note" aria-label="noteInput"></textarea>
                         <!--<textarea ng-model="newInterview.note" md-maxlength="150" rows="5" md-select-on-focus=""></textarea>-->
                     </md-input-container>
-                    <md-card ng-if="editedObject.username">
 
+                    <md-card ng-if="editedObject.username">
                         <div layout-gt-sm="row">
                             <input class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
                             <label for="input-file-id" class="md-button md-accent md-raised">Browse</label>
@@ -142,14 +142,11 @@
                             </md-button>
                             <i ng-if="newInterview.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newInterview.ci}}">credit_card</a></i>
                         </div>
-
-
                     </md-card>
+
                     <div layout-gt-sm="row">
                         <span flex></span>
-                        <md-input-container ng-if="editedObject.username != null" class="md-block" flex-gt-sm="">
-                            <label>Creato da {{editedObject.username}}</label>
-                        </md-input-container>
+                        <label ng-if="editedObject.username != null">Creato da {{editedObject.username}}</label>
                     </div>
 
                 </md-content>

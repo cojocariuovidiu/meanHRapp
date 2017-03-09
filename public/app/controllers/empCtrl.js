@@ -9,7 +9,7 @@ angular.module("employeeControllers", ["chart.js"])
     $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
 })
 
-.controller("empCtrl", function($timeout, uploadFile, shareData, Employee, $mdDialog, $scope, $http) {
+.controller("empCtrl", function($mdToast, $timeout, uploadFile, shareData, Employee, $mdDialog, $scope, $http) {
     var emp = this
     var displayingObject = {}
 
@@ -95,11 +95,12 @@ angular.module("employeeControllers", ["chart.js"])
                     $mdDialog.hide();
                 })
             } else {
+                let currentCI = ((!$scope.ci) ? newEmployee.ci : $scope.ci);
                 //Update Employee
                 $http.put('/api/editEmployee/' + editedObject._id, {
                     updateData: newEmployee,
                     editedBy: shareData.loggedUser,
-                    ci: $scope.ci
+                    ci: currentCI
                         // interviewStatus: $scope.interviewStatus,
                         // buletin: $scope.buletin
                 }).then(function(response) {
@@ -109,6 +110,8 @@ angular.module("employeeControllers", ["chart.js"])
                     $mdDialog.hide();
                 })
             }
+            showToast('Dipendente salvato con successo !')
+            console.log('Dipendente salvato con successo !')
         })
 
         $scope.showConfirm = function() {
@@ -134,9 +137,11 @@ angular.module("employeeControllers", ["chart.js"])
         }
 
         $scope.file = {}
+        $scope.uploadCIEnabled = true
         $scope.SubmitUpload = function() {
-            // $scope.uploading = true
-            // console.log($scope.file.upload.name)
+            $scope.uploadCIEnabled = false
+                // $scope.uploading = true
+                // console.log($scope.file.upload.name)
             uploadFile.uploadCI($scope.file).then(function(data) {
                 if (data.data.success) {
                     // $scope.uploading = false
@@ -363,5 +368,28 @@ angular.module("employeeControllers", ["chart.js"])
         $scope.promise = $timeout(function() {
             checkDisplaying()
         }, 500);
+    }
+
+    var showToast = function(message) {
+        $mdToast.show(
+            $mdToast.simple()
+            .action('OK')
+            .textContent(message)
+            .hideDelay(2000)
+            .highlightAction(true)
+            .capsule(true)
+            .position('top right')
+            // .theme(string)
+        );
+        // $mdToast.show(
+        //     $mdToast.simple()
+        //     .textContent('Error!')
+        //     .highlightAction(true)
+        //     .parent(document.querySelectorAll('#toaster'))
+        //     .position('bottom right')
+        //     .hideDelay(3000)
+        //     .action('OK')
+        //     //.action('x')
+        // );
     }
 })

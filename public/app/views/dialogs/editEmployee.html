@@ -70,29 +70,30 @@
                         <textarea ng-model="newEmployee.note" aria-label="noteInput"></textarea>
                     </md-input-container>
 
-                    <div layout-gt-sm="row">
-                        <div ng-if="editedObject.username">
+                    <md-card ng-if="editedObject.username">
+                        <div layout-gt-sm="row">
                             <input class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
                             <label for="input-file-id" class="md-button md-accent md-raised">Browse</label>
-
-                            <md-button ng-if="newEmployee.ci" ng-click="SubmitUpload()" ng-disabled="!file.upload.name" class="md-raised ">
-                                Upload Nuovo CI
-                            </md-button>
-                            <md-button ng-if="!newEmployee.ci" ng-click="SubmitUpload()" ng-disabled="!file.upload.name" class="md-raised ">
-                                Upload CI
-                            </md-button>
-                            <i ng-if="newEmployee.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newEmployee.ci}}">credit_card</a></i>
-
+                            <div ng-show="!message">{{file.upload.name}}</div>
                             <div ng-show="message">
                                 <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{ci}}" target="_blank">{{file.upload.name}} </a> {{message}}
                             </div>
-                            <div ng-show="!message">{{file.upload.name}}</div>
+
                         </div>
+                        <div layout-gt-sm="row">
+                            <md-button ng-click="SubmitUpload()" ng-disabled="!file.upload.name || !uploadCIEnabled" class="md-raised" aria-label="Submit-Upload-CI">
+                                <span ng-if="!newEmployee.ci">Carica CI</span>
+                                <span ng-if="newEmployee.ci">Carica Nuovo CI</span>
+                            </md-button>
+
+                            <i ng-if="newEmployee.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newEmployee.ci}}">credit_card</a></i>
+                        </div>
+                    </md-card>
+                    <div layout-gt-sm="row">
                         <span flex></span>
-                        <md-input-container ng-if="editedObject.username != null" class="md-block" flex-gt-sm="">
-                            <label>Creato da {{editedObject.username}}</label>
-                        </md-input-container>
+                        <label ng-if="editedObject.username != null">Creato da {{editedObject.username}}</label>
                     </div>
+
                 </md-content>
             </div>
         </md-dialog-content>
@@ -106,7 +107,7 @@
             <label for="input-file-id" class="md-button md-raised md-primary">Upload ci</label>
             <input ng-click="UploadFile(uploadci)" ng-model="uploadci" class="ng-hide" id="input-file-id" multiple type="file" />
             -->
-            <md-button ng-click="showConfirm()" class="md-raised">
+            <md-button ng-if="editedObject.username" ng-click="showConfirm()" class="md-raised">
                 Elimina
             </md-button>
 

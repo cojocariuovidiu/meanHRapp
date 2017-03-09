@@ -131,7 +131,7 @@ angular.module("interviewControllers", ['md.data.table'])
                     $mdDialog.hide();
                 })
             }
-            showToast('Salvato con successo !')
+            showToast('Intervista salvato con successo !')
         }
 
         //Upload File Code:
