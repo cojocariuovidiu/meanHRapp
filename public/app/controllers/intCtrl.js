@@ -462,6 +462,12 @@ angular.module("interviewControllers", ['md.data.table'])
                         activator: 'All'
                     }
                     $scope.displaying = displayingObject.message
+                    $scope.limitOptions = [5, 10, 30, {
+                        label: 'All',
+                        value: function() {
+                            return int.interviewsList.length;
+                        }
+                    }];
                 })
                 console.log('promisse all')
             }, 500);
@@ -518,12 +524,7 @@ angular.module("interviewControllers", ['md.data.table'])
         page: 1
     };
 
-    $scope.limitOptions = [5, 10, 30, {
-        label: 'All',
-        value: function() {
-            return int.interviewsList.length;
-        }
-    }];
+
 
     function success(interviews) {
         $scope.interviewsList = interviews;

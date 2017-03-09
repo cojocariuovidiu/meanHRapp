@@ -178,6 +178,12 @@ angular.module("employeeControllers", ["chart.js"])
                         activator: 'All'
                     }
                     $scope.displaying = displayingObject.message
+                    $scope.limitOptions = [5, 10, 30, {
+                        label: 'All',
+                        value: function() {
+                            return emp.employeessList.length;
+                        }
+                    }];
                 })
             }, 500)
             console.log('Displaying', option)
@@ -352,13 +358,6 @@ angular.module("employeeControllers", ["chart.js"])
         limit: '10',
         page: 1
     };
-
-    $scope.limitOptions = [5, 10, 30, {
-        label: 'All',
-        value: function() {
-            return emp.employeessList.length;
-        }
-    }];
 
     function success(employees) {
         $scope.employeessList = employees;
