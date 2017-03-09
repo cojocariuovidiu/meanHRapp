@@ -57,7 +57,7 @@ angular.module("employeeControllers", ["chart.js"])
 
     function DialogController($scope, $mdDialog, editedObject) {
 
-        $scope.departments = ['Maran', 'Triboo']
+        $scope.departments = ['Maran BO', 'Triboo', 'Aria']
         $scope.sessi = ['F', 'M']
 
         $scope.hide = function() {
@@ -187,10 +187,12 @@ angular.module("employeeControllers", ["chart.js"])
                 })
             }, 200)
             console.log('Displaying', option)
+        } else if (option == 'Maran BO') {
+            FilterByDepartment('Maran BO')
         } else if (option == 'Triboo') {
             FilterByDepartment('Triboo')
-        } else if (option == 'Maran') {
-            FilterByDepartment('Maran')
+        } else if (option == 'Aria') {
+            FilterByDepartment('Aria')
         } else {
             console.log('something wrong on getEmployeesFiltered')
         }
@@ -243,7 +245,7 @@ angular.module("employeeControllers", ["chart.js"])
     //Controller for Intervirews Chart
     function ChartDialogController($scope, $mdDialog) {
         $scope.dougChart = {};
-        $scope.dougChart.labels = ['Maran', 'Triboo', 'No Dpt']
+        $scope.dougChart.labels = ['Maran BO', 'Triboo', 'Aria', 'No Dpt']
         $scope.dougChart.series = ['Dipendenti']
             // $scope.dougChart.colors = ["#F7464A", "#97BBCD", "#000000"]
 
@@ -256,47 +258,33 @@ angular.module("employeeControllers", ["chart.js"])
         $scope.dougChart.Employees = []
 
         //Button/OnLoad function
-        $scope.loadChartData = function(option) {
+        $scope.loadChartData = function() {
 
             $scope.dougChart.data = []
             $scope.dougChart.Employees = []
 
-            if (option == 2017) {
-                ChartFilterYear(option)
-            } else if (option == 2016) {
-                ChartFilterYear(option)
-            } else {
-                console.log('chart year != 2016 or 2017')
-            }
-        }
-
-        //Load 2017 on start
-        $scope.selectedChartOrder = (2017)
-        $scope.loadChartData($scope.selectedChartOrder)
-
-        //Filter function used for each year
-        function ChartFilterYear(option) {
-            var maranTotal = 0
-            var tribooTotal = 0
-            var noDepTotal = 0
+            var totals = [0, 0, 0, 0]
 
             //Load all data from the DB
             Employee.getEmployees().then(function(response) {
-                response.data.forEach(function(element) {
-                    console.log(element.department)
-                    if (element.department === "Maran") {
-                        maranTotal++
-                    } else if (element.department === "Triboo") {
-                        tribooTotal++
+
+                for (var i = 0; i < response.data.length; i++) {
+                    if (response.data[i].department == $scope.dougChart.labels[0]) { //Maran
+                        totals[0]++
+                    } else if (response.data[i].department === $scope.dougChart.labels[1]) { //Triboo
+                        totals[1]++
+                    } else if (response.data[i].department === $scope.dougChart.labels[2]) { //Aria
+                        totals[2]++
                     } else {
-                        noDepTotal++
+                        totals[3]++
                     }
-                }, this);
-                $scope.dougChart.data.push(maranTotal, tribooTotal, noDepTotal)
-                    // $scope.dougChart.data.push($scope.dougChart.Employees)
-                console.log($scope.dougChart.data)
+                }
+                console.log(totals)
+                $scope.dougChart.data = totals
             })
         }
+
+        $scope.loadChartData()
 
         $scope.$on('chart-destroy', function(evt, chart) {
             // console.log('destroy');
@@ -309,26 +297,26 @@ angular.module("employeeControllers", ["chart.js"])
     //Controler for SortModal
     function SortDialogController($scope, $mdDialog) {
         $scope.RangeFilter = function(fromDate, toDate) {
-            RangeFilter(fromDate, toDate);
-            $mdDialog.hide();
+            RangeFilter(fromDate, toDate)
+            $mdDialog.hide()
         }
         $scope.getAll = function() {
             getEmployeesFiltered('All')
-            $mdDialog.hide();
+            $mdDialog.hide()
         }
         $scope.getDepartment = function(option) {
             // console.log(option)
             getEmployeesFiltered(option)
-            $mdDialog.hide();
+            $mdDialog.hide()
         }
         $scope.cancel = function() {
-            $mdDialog.cancel();
+            $mdDialog.cancel()
         }
     }
 
     function RangeFilter(fromDate, toDate) {
         if (fromDate == undefined || fromDate == null || toDate == undefined || toDate == null) {
-            showToast('Select From - To Period')
+            showToast('Selezionare Da - A periodo')
         } else {
             var momentFrom = moment(fromDate).format('MMM/D/YYYY')
             var momentTo = moment(toDate).format('MMM/D/YYYY')

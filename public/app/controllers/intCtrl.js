@@ -16,13 +16,7 @@ angular.module("interviewControllers", ['md.data.table'])
     $scope.editInterview = function(id) {
         if (id) {
             $http.get('/api/getinterview/' + id).then(function(response) {
-
-                console.log(response.data.item)
-
                 int.editedObject = response.data.item
-
-                console.log(int.editedObject)
-
                 $mdDialog.show({
                         controller: DialogController,
                         templateUrl: 'app/views/dialogs/editInterview.html',
@@ -510,7 +504,7 @@ angular.module("interviewControllers", ['md.data.table'])
 
     function RangeFilter(fromDate, toDate) {
         if (fromDate == undefined || fromDate == null || toDate == undefined || toDate == null) {
-            showToast('Select From - To Period')
+            showToast('Selezionare Da - A periodo')
         } else {
             var momentFrom = moment(fromDate).format('MMM/D/YYYY')
             var momentTo = moment(toDate).format('MMM/D/YYYY')

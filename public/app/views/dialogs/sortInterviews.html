@@ -2,7 +2,7 @@
 
     <md-toolbar>
         <div class="md-toolbar-tools">
-            <h2>Select Range or All</h2>
+            <h2>Ordinare Interviste</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="cancel()">
                 <md-icon aria-label="Close dialog">close</md-icon>
@@ -15,15 +15,15 @@
             <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
                 <div layout-gt-sm="row">
                     <md-input-container>
-                        <label>From</label>
+                        <label>Da</label>
                         <md-datepicker ng-model="fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
                     </md-input-container>
                     <md-input-container>
-                        <label>To</label>
+                        <label>A</label>
                         <md-datepicker ng-model="toDate" md-current-view="year" aria-label="toDate"></md-datepicker>
                     </md-input-container>
                     <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
-                        Go
+                        Vai
                     </md-button>
                 </div>
                 <!--<md-button md-colors="{background: 'red'}" layout-fill class="md-raised md-accent" ng-click="getAll()">-->
