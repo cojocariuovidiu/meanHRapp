@@ -166,27 +166,17 @@
             </md-button>
 
             <md-menu>
-                <md-button ng-class="{'{{interviewStatus}}': interviewStatus, 'isEmployee': interviewStatus == 'isEmployee', 'callLater': interviewStatus =='callLater', 'clear': interviewStatus == 'clear'}" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">
-                    <!--<md-button ng-class="{'{{editedObject.interviewStatus}}' : editedObject.interviewStatus, 'isEmployee': interviewStatus == 'isEmployee'}" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">-->
+                <!--<md-button ng-class="{'{{interviewStatus}}': interviewStatus, 'isEmployee': interviewStatus == 'isEmployee', 'callLater': interviewStatus =='callLater', 'clear': interviewStatus == 'clear'}" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">-->
+                <md-button ng-class="interviewStatus === 'Chiama più tardi' ? 'chiama_più_tardi' :  ( interviewStatus === 'Accettato' ? 'accettato' :(interviewStatus === 'Respinto' ? 'respinto' : 'resetStatus'))" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">
                     <span ng-if="editedObject.interviewStatus && !interviewStatus">{{ editedObject.interviewStatus }}</span>
-
                     <span ng-if="!editedObject.interviewStatus && !interviewStatus">Status</span>
                     <span ng-if="interviewStatus">{{ interviewStatus }}</span>
                 </md-button>
+
                 <md-menu-content width="3 ">
-                    <md-menu-item>
-                        <md-button ng-click="SetStatus('isEmployee') " class="isEmployee ">
-                            Add Employee
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="SetStatus('callLater') " class="callLater ">
-                            Call Later
-                        </md-button>
-                    </md-menu-item>
-                    <md-menu-item>
-                        <md-button ng-click="SetStatus('clear') " class="clear">
-                            Clear
+                    <md-menu-item ng-repeat="item in empStatus">
+                        <md-button ng-class="item === 'Chiama più tardi' ? 'chiama_più_tardi' :  ( item === 'Accettato' ? 'accettato' :(item === 'Respinto' ? 'respinto' : 'resetStatus'))" ng-click="SetStatus(item)" class="isEmployee ">
+                            {{item}}
                         </md-button>
                     </md-menu-item>
                 </md-menu-content>

@@ -228,15 +228,19 @@ a {
     margin-top: 10px;
 }
 
-.isEmployee {
+.accettato {
     background-color: #dbf2d5
 }
 
-.callLater {
+.respinto {
     background-color: #f2c5a9
 }
 
-.clear {
+.chiama_più_tardi {
+    background-color: #b9f7f5
+}
+
+.resetStatus {
     /*background-color: rgba(158, 158, 158, 0.2);*/
     background-color: white;
 }

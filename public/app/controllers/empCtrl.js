@@ -185,7 +185,7 @@ angular.module("employeeControllers", ["chart.js"])
                         }
                     }];
                 })
-            }, 400)
+            }, 200)
             console.log('Displaying', option)
         } else if (option == 'Triboo') {
             FilterByDepartment('Triboo')
@@ -207,7 +207,7 @@ angular.module("employeeControllers", ["chart.js"])
                     activator: option
                 }
             })
-        }, 400)
+        }, 200)
     }
 
     //Call Sort Modal
@@ -245,7 +245,7 @@ angular.module("employeeControllers", ["chart.js"])
         $scope.dougChart = {};
         $scope.dougChart.labels = ['Maran', 'Triboo', 'No Dpt']
         $scope.dougChart.series = ['Dipendenti']
-        $scope.dougChart.colors = ["#F7464A", "#97BBCD", "#000000"]
+            // $scope.dougChart.colors = ["#F7464A", "#97BBCD", "#000000"]
 
         $scope.dougChart.options = {
             responsive: false,
@@ -347,7 +347,7 @@ angular.module("employeeControllers", ["chart.js"])
                         activator: 'Range'
                     }
                 }, this)
-            }, 400);
+            }, 200);
         }
     }
 
@@ -366,7 +366,7 @@ angular.module("employeeControllers", ["chart.js"])
     emp.refresh = function() {
         $scope.promise = $timeout(function() {
             checkDisplaying()
-        }, 400);
+        }, 200);
     }
 
     var showToast = function(message) {

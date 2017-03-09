@@ -59,6 +59,26 @@ angular.module("interviewControllers", ['md.data.table'])
     function DialogController($scope, $mdDialog, editedObject) {
         $scope.sessi = ['M', 'F']
 
+        $scope.empStatus = [
+            'Accettato',
+            'Chiama più tardi',
+            'Respinto',
+            'Reset'
+        ]
+        $scope.interviewStatus = editedObject.interviewStatus
+        $scope.SetStatus = function(option) {
+            if (option == 'Accettato') {
+                status = 'accettato'
+            } else if (option == 'chiama più tardi') {
+                status = 'Chiama_più_tardi'
+            } else if (option == 'Respinto') {
+                status = ''
+            } else if (option == 'Reset') {
+                status = 'resetStatus'
+            }
+            return $scope.interviewStatus = option
+        }
+
         $scope.esitocolloqui = [
             'assunto',
             'scartato',
@@ -216,18 +236,6 @@ angular.module("interviewControllers", ['md.data.table'])
 
         // $scope.status = editedObject.status
         // console.log($scope.status)
-
-        $scope.interviewStatus = editedObject.interviewStatus
-        $scope.SetStatus = function(option) {
-            if (option == 'isEmployee') {
-                status = 'isEmployee'
-            } else if (option == 'callLater') {
-                status = 'callLater'
-            } else if (option == 'clear') {
-                status = 'clear'
-            }
-            return $scope.interviewStatus = status
-        }
     }
 
     //Call Sort Modal
@@ -289,6 +297,8 @@ angular.module("interviewControllers", ['md.data.table'])
         $scope.barChart = {};
         $scope.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         $scope.barChart.series = ['Interviste', 'Dipendenti']
+            // $scope.barChart.colors = ["#F7464A", "#97BBCD", "#000000", "#F7464A", "#97BBCD", "#000000", "#97BBCD"]
+
         $scope.barChart.options = {
             responsive: false,
             maintainAspectRatio: true,
@@ -470,7 +480,7 @@ angular.module("interviewControllers", ['md.data.table'])
                     }];
                 })
                 console.log('promisse all')
-            }, 400);
+            }, 200);
             console.log('Displaying', option)
         } else if (option == 'isEmployee') {
             FilterByStatus('isEmployee')
@@ -489,7 +499,7 @@ angular.module("interviewControllers", ['md.data.table'])
                     activator: option
                 }
             })
-        }, 400)
+        }, 200)
     }
 
     function RangeFilter(fromDate, toDate) {
@@ -512,7 +522,7 @@ angular.module("interviewControllers", ['md.data.table'])
                     }
                 }, this)
                 console.log('promisse range')
-            }, 400);
+            }, 200);
         }
     }
 
@@ -540,7 +550,7 @@ angular.module("interviewControllers", ['md.data.table'])
         checkDisplaying()
         $scope.promise = $timeout(function() {
             console.log('refreshing data')
-        }, 400);
+        }, 200);
     }
 
     function checkDisplaying() {
@@ -605,7 +615,7 @@ angular.module("interviewControllers", ['md.data.table'])
             $mdToast.simple()
             .action('OK')
             .textContent(message)
-            .hideDelay(4000)
+            .hideDelay(2000)
             .highlightAction(true)
             .capsule(true)
             .position('top right')
@@ -617,7 +627,7 @@ angular.module("interviewControllers", ['md.data.table'])
         //     .highlightAction(true)
         //     .parent(document.querySelectorAll('#toaster'))
         //     .position('bottom right')
-        //     .hideDelay(4000)
+        //     .hideDelay(2000)
         //     .action('OK')
         //     //.action('x')
         // );
