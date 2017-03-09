@@ -279,12 +279,16 @@ angular.module("interviewControllers", ['md.data.table'])
             getInterviewsFiltered('All')
             $mdDialog.hide();
         };
-        $scope.getEmployees = function() {
-            getInterviewsFiltered('isEmployee')
+        $scope.getAccettati = function() {
+            getInterviewsFiltered('Accettati')
             $mdDialog.hide();
         };
         $scope.getCallLater = function() {
-            getInterviewsFiltered('callLater')
+            getInterviewsFiltered('Chiama più tardi')
+            $mdDialog.hide();
+        };
+        $scope.getRejected = function() {
+            getInterviewsFiltered('Respinti')
             $mdDialog.hide();
         };
         $scope.cancel = function() {
@@ -482,10 +486,12 @@ angular.module("interviewControllers", ['md.data.table'])
                 console.log('promisse all')
             }, 200);
             console.log('Displaying', option)
-        } else if (option == 'isEmployee') {
-            FilterByStatus('isEmployee')
-        } else if (option == 'callLater') {
-            FilterByStatus('callLater')
+        } else if (option == 'Accettati') {
+            FilterByStatus('Accettato')
+        } else if (option == 'Chiama più tardi') {
+            FilterByStatus('Chiama più tardi')
+        } else if (option == 'Respinti') {
+            FilterByStatus('Respinto')
         } else {
             console.log('something wrong on getInterviewsFiltered')
         }
