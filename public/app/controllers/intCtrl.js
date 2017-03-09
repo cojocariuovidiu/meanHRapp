@@ -55,19 +55,19 @@ angular.module("interviewControllers", ['md.data.table'])
 
         $scope.empStatus = [
             'Accettato',
-            'Chiama più tardi',
+            'Da Rivedere',
             'Respinto',
             'Reset'
         ]
         $scope.interviewStatus = editedObject.interviewStatus
         $scope.SetStatus = function(option) {
-            if (option == 'Accettato') {
-                status = 'accettato'
-            } else if (option == 'chiama più tardi') {
-                status = 'Chiama_più_tardi'
-            } else if (option == 'Respinto') {
-                status = ''
-            } else if (option == 'Reset') {
+            if (option == $scope.empStatus[0]) { //Accettato
+                status = $scope.empStatus[0]
+            } else if (option == $scope.empStatus[1]) { // Da Rivedere
+                status = $scope.empStatus[1]
+            } else if (option == $scope.empStatus[2]) { //Respinto
+                status = $scope.empStatus[2]
+            } else if (option == $scope.empStatus[3]) { //Reset / ResetStatus (css class)
                 status = 'resetStatus'
             }
             return $scope.interviewStatus = option
@@ -278,7 +278,7 @@ angular.module("interviewControllers", ['md.data.table'])
             $mdDialog.hide();
         };
         $scope.getCallLater = function() {
-            getInterviewsFiltered('Chiama più tardi')
+            getInterviewsFiltered('Da Rivedere')
             $mdDialog.hide();
         };
         $scope.getRejected = function() {
@@ -482,8 +482,8 @@ angular.module("interviewControllers", ['md.data.table'])
             console.log('Displaying', option)
         } else if (option == 'Accettati') {
             FilterByStatus('Accettato')
-        } else if (option == 'Chiama più tardi') {
-            FilterByStatus('Chiama più tardi')
+        } else if (option == 'Da Rivedere') {
+            FilterByStatus('Da Rivedere')
         } else if (option == 'Respinti') {
             FilterByStatus('Respinto')
         } else {
