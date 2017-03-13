@@ -334,7 +334,8 @@ module.exports = function(router) {
 
     //http://127.0.0.1:3000/api/editEmployee/:id
     router.put('/editEmployee/:id', function(req, res) {
-        Employee.findOneAndUpdate({ _id: req.params.id }, {
+
+        let updateEmployee = {
             employmentdate: req.body.updateData.employmentdate,
             name: req.body.updateData.name,
             cnp: req.body.updateData.cnp,
@@ -344,8 +345,18 @@ module.exports = function(router) {
             email: req.body.updateData.email,
             note: req.body.updateData.note,
             ci: req.body.ci
+        }
 
-        }, { new: true }, function(err) {
+        if (updateEmployee.employmentdate === null || updateEmployee.employmentdate === undefined) delete updateEmployee.employmentdate
+        if (updateEmployee.cnp === null || updateEmployee.cnp === undefined) delete updateEmployee.cnp
+        if (updateEmployee.age === null || updateEmployee.age === undefined) delete updateEmployee.age
+        if (updateEmployee.tel === null || updateEmployee.tel === undefined) delete updateEmployee.tel
+        if (updateEmployee.department === null || updateEmployee.department === undefined) delete updateEmployee.department
+        if (updateEmployee.email === null || updateEmployee.email === undefined) delete updateEmployee.email
+        if (updateEmployee.note === null || updateEmployee.note === undefined) delete updateEmployee.note
+        if (updateEmployee.ci === null || updateEmployee.ci === undefined) delete updateEmployee.ci
+
+        Employee.findOneAndUpdate({ _id: req.params.id }, updateEmployee, { new: true }, function(err) {
             if (err) {
                 console.log('update failed');
                 console.log(err)
@@ -381,22 +392,22 @@ module.exports = function(router) {
             ci: req.body.ci
         }
 
-        if (!updateInterview.dataapplicazione) delete updateInterview.dataapplicazione
-        if (!updateInterview.sesso) delete updateInterview.sesso
-        if (!updateInterview.eta) delete updateInterview.eta
-        if (!updateInterview.tel) delete updateInterview.tel
-        if (!updateInterview.esito1) delete updateInterview.esito1
-        if (!updateInterview.esito2) delete updateInterview.esito2
-        if (!updateInterview.esitocolloquio) delete updateInterview.esitocolloquio
-        if (!updateInterview.datacolloquio) delete updateInterview.datacolloquio
-        if (!updateInterview.colloquio_sostenuto_da) delete updateInterview.colloquio_sostenuto_da
-        if (!updateInterview.responsabile_colloquio) delete updateInterview.responsabile_colloquio
-        if (!updateInterview.sito) delete updateInterview.sito
-        if (!updateInterview.email) delete updateInterview.email
-        if (!updateInterview.note) delete updateInterview.note
-        if (!updateInterview.interviewStatus) delete updateInterview.interviewStatus
-        if (!updateInterview.cv) delete updateInterview.cv
-        if (!updateInterview.ci) delete updateInterview.ci
+        if (updateInterview.dataapplicazione === null || updateInterview.dataapplicazione === undefined) delete updateInterview.dataapplicazione
+        if (updateInterview.sesso === null || updateInterview.sesso === undefined) delete updateInterview.sesso
+        if (updateInterview.eta === null || updateInterview.eta === undefined) delete updateInterview.eta
+        if (updateInterview.tel === null || updateInterview.tel === undefined) delete updateInterview.tel
+        if (updateInterview.esito1 === null || updateInterview.esito1 === undefined) delete updateInterview.esito1
+        if (updateInterview.esito2 === null || updateInterview.esito2 === undefined) delete updateInterview.esito2
+        if (updateInterview.esitocolloquio === null || updateInterview.esitocolloquio === undefined) delete updateInterview.esitocolloquio
+        if (updateInterview.datacolloquio === null || updateInterview.datacolloquio === undefined) delete updateInterview.datacolloquio
+        if (updateInterview.colloquio_sostenuto_da === null || updateInterview.colloquio_sostenuto_da === undefined) delete updateInterview.colloquio_sostenuto_da
+        if (updateInterview.responsabile_colloquio === null || updateInterview.responsabile_colloquio === undefined) delete updateInterview.responsabile_colloquio
+        if (updateInterview.sito === null || updateInterview.sito === undefined) delete updateInterview.sito
+        if (updateInterview.email === null || updateInterview.email === undefined) delete updateInterview.email
+        if (updateInterview.note === null || updateInterview.note === undefined) delete updateInterview.note
+        if (updateInterview.interviewStatus === null || updateInterview.interviewStatus === undefined) delete updateInterview.interviewStatus
+        if (updateInterview.cv === null || updateInterview.cv === undefined) delete updateInterview.cv
+        if (updateInterview.ci === null || updateInterview.ci === undefined) delete updateInterview.ci
 
         console.log(updateInterview)
 
