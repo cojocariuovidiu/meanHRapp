@@ -1,6 +1,6 @@
 'use strict'
 
-angular.module("interviewControllers", ['md.data.table'])
+angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
 
 .controller("intCtrl", function(shareData, $mdToast, uploadFile, $mdSidenav, $mdDialog, Interview, $scope, $http, $timeout, $location, $rootScope, $window, $interval) {
     console.log('intCtrl ok')

@@ -35,6 +35,12 @@
                     </div>
 
                     <div layout-gt-sm="row">
+                        <md-input-container>
+                            <label>Data Colloquio</label>
+                            <md-datetime ng-model="someDateTime" ng-change="handleChange()"></md-datetime>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label>Sesso</label>
                             <md-select aria-label="sessoInput" ng-model="newInterview.sesso">
