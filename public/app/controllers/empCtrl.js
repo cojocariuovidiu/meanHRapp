@@ -2,11 +2,13 @@
 
 angular.module("employeeControllers", ["chart.js"])
 
-.config(function($mdThemingProvider) {
+.config(function($mdThemingProvider, $mdDateLocaleProvider) {
     $mdThemingProvider.theme('dark-grey').backgroundPalette('grey').dark();
     $mdThemingProvider.theme('dark-orange').backgroundPalette('orange').dark();
     $mdThemingProvider.theme('dark-purple').backgroundPalette('deep-purple').dark();
     $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
+
+    $mdDateLocaleProvider.firstDayOfWeek = 1;
 })
 
 .controller("empCtrl", function($mdToast, $timeout, uploadFile, shareData, Employee, $mdDialog, $scope, $http) {

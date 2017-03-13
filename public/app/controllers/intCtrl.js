@@ -2,6 +2,12 @@
 
 angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
 
+.config(function($mdDateLocaleProvider) {
+
+    // Can change week display to start on Monday.
+    $mdDateLocaleProvider.firstDayOfWeek = 1;
+})
+
 .controller("intCtrl", function(shareData, $mdToast, uploadFile, $mdSidenav, $mdDialog, Interview, $scope, $http, $timeout, $location, $rootScope, $window, $interval) {
     console.log('intCtrl ok')
 
