@@ -361,10 +361,7 @@ module.exports = function(router) {
     //http://127.0.0.1:3000/api/editinterview/:id
     router.put('/editinterview/:id', function(req, res) {
 
-        console.log('cv:', req.body.cv)
-        console.log('ci:', req.body.ci)
-
-        Interview.findOneAndUpdate({ _id: req.params.id }, {
+        let updateInterview = {
             dataapplicazione: req.body.updateData.dataapplicazione,
             nomecognome: req.body.updateData.nomecognome,
             sesso: req.body.updateData.sesso,
@@ -382,10 +379,30 @@ module.exports = function(router) {
             interviewStatus: req.body.interviewStatus,
             cv: req.body.cv,
             ci: req.body.ci
+        }
 
-        }, { new: true }, function(err) {
+        if (!updateInterview.dataapplicazione) delete updateInterview.dataapplicazione
+        if (!updateInterview.sesso) delete updateInterview.sesso
+        if (!updateInterview.eta) delete updateInterview.eta
+        if (!updateInterview.tel) delete updateInterview.tel
+        if (!updateInterview.esito1) delete updateInterview.esito1
+        if (!updateInterview.esito2) delete updateInterview.esito2
+        if (!updateInterview.esitocolloquio) delete updateInterview.esitocolloquio
+        if (!updateInterview.datacolloquio) delete updateInterview.datacolloquio
+        if (!updateInterview.colloquio_sostenuto_da) delete updateInterview.colloquio_sostenuto_da
+        if (!updateInterview.responsabile_colloquio) delete updateInterview.responsabile_colloquio
+        if (!updateInterview.sito) delete updateInterview.sito
+        if (!updateInterview.email) delete updateInterview.email
+        if (!updateInterview.note) delete updateInterview.note
+        if (!updateInterview.interviewStatus) delete updateInterview.interviewStatus
+        if (!updateInterview.cv) delete updateInterview.cv
+        if (!updateInterview.ci) delete updateInterview.ci
+
+        console.log(updateInterview)
+
+        Interview.findOneAndUpdate({ _id: req.params.id }, updateInterview, { new: true }, function(err) {
             if (err) {
-                console.log('update failed (no CV)');
+                console.log('update failed');
                 console.log(err)
                 res.json({ success: false })
             } else {

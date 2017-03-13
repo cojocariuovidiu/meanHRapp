@@ -22,12 +22,6 @@
                             <label>Nome e cognome</label>
                             <input required aria-label="nomecognomeInput" ng-model="newInterview.nomecognome">
                         </md-input-container>
-
-                        <!--<md-input-container class="md-block" flex-gt-sm="">
-                            <label>Last Name</label>
-                            <input aria-label="lastnameInput" ng-model="theMax">
-                        </md-input-container>-->
-
                         <md-input-container>
                             <label>Data Applicazione</label>
                             <md-datepicker required ng-model="newInterview.dataapplicazione" aria-label="dataapplicazioneInput"></md-datepicker>
@@ -81,7 +75,7 @@
                     </div>
 
                     <label>Data Colloquio</label>
-                    <md-datetime ng-change="dataCollChanged(newInterview.datacolloquio)" ng-model="newInterview.datacolloquio" no-reset></md-datetime>
+                    <md-datetime ng-change="dataCollChanged(newInterview.datacolloquio)" ng-model="newInterview.datacolloquio" no-reset aria-label="mddatetime-Aria"></md-datetime>
 
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-xs="">
@@ -139,7 +133,7 @@
                         </div>
                         <div layout-gt-sm="row">
                             <md-button ng-click="SubmitUploadCI()" ng-disabled="!file.upload.name || !uploadCIEnabled" aria-label="ariaSubmitUploadCI" class="md-raised ">
-                                <span ng-if="!newInterview.ci">Carica Carta Identita</span>
+                                <span ng-if="!newInterview.ci">Carica La Carta D'Identita</span>
                                 <span ng-if="newInterview.ci">Carica Nuova Carta Identita</span>
                             </md-button>
                             <i ng-if="newInterview.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newInterview.ci}}">credit_card</a></i>

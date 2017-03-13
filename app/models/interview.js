@@ -23,7 +23,7 @@ var InterviewSchema = new Schema({
 
 // InterviewSchema.pre('save', function(next) {
 //     var interview = this
-//     console.log(interview.nr);
+//     console.log(interview.dataapplicazione);
 //     next()
 // })
 

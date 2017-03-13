@@ -108,12 +108,11 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
 
         if ($scope.newInterview.dataapplicazione) {
             $scope.newInterview.dataapplicazione = new Date($scope.newInterview.dataapplicazione)
-                //console.log($scope.newInterview.dataapplicazione)
         }
         if ($scope.newInterview.datacolloquio) {
             $scope.newInterview.datacolloquio = new Date($scope.newInterview.datacolloquio)
-                //console.log($scope.newInterview.dataapplicazione)
         }
+
 
         $scope.dataCollChanged = function(date) {
             console.log('datechaged', date)
@@ -128,8 +127,8 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 //console.log('new interview:', newInterview, app.username)
 
                 console.log('new int:', newInterview)
-                console.log('dataapp:', $scope.newInterview.dataapplicazione)
-                console.log('datacoll:', $scope.newInterview.datacolloquio)
+                console.log('new dataapp:', $scope.newInterview.dataapplicazione)
+                console.log('new datacoll:', $scope.newInterview.datacolloquio)
 
                 //CREATE Interview
                 Interview.create({
@@ -142,12 +141,16 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                     $mdDialog.hide();
                 })
             } else {
-                console.log('edited:', newInterview)
-                console.log('dataapp:', $scope.newInterview.dataapplicazione)
-                console.log('datacoll:', $scope.newInterview.datacolloquio)
+                console.log('upd edited:', newInterview)
+                console.log('upd dataapp:', $scope.newInterview.dataapplicazione)
+                console.log('upd datacoll:', $scope.newInterview.datacolloquio)
 
                 let currentCV = ((!$scope.cv) ? newInterview.cv : $scope.cv);
                 let currentCI = ((!$scope.ci) ? newInterview.ci : $scope.ci);
+
+                // if (newInterview.dataapplicazione === null) {
+                //     delete newInterview.dataapplicazione
+                // }
 
                 $http.put('/api/editinterview/' + editedObject._id, {
                     updateData: newInterview,
@@ -170,7 +173,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         $scope.file = {}
         $scope.uploadCVEnabled = true
         $scope.uploadCIEnabled = true
-        console.log('enabling buttons', $scope.uploadButtonsAreEnabled)
+            // console.log('enabling buttons', $scope.uploadButtonsAreEnabled)
 
         $scope.SubmitUploadCV = function() {
             $scope.uploadCVEnabled = false
