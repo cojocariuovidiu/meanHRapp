@@ -104,6 +104,14 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             $scope.newInterview.dataapplicazione = new Date($scope.newInterview.dataapplicazione)
                 //console.log($scope.newInterview.dataapplicazione)
         }
+        if ($scope.newInterview.datacolloquio) {
+            $scope.newInterview.datacolloquio = new Date($scope.newInterview.datacolloquio)
+                //console.log($scope.newInterview.dataapplicazione)
+        }
+
+        $scope.dataCollChanged = function(date) {
+            console.log('datechaged', date)
+        }
 
         $scope.submitInterview = function(newInterview) {
             function isEmpty(obj) {
@@ -114,6 +122,8 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 //console.log('new interview:', newInterview, app.username)
 
                 console.log('new int:', newInterview)
+                console.log('dataapp:', $scope.newInterview.dataapplicazione)
+                console.log('datacoll:', $scope.newInterview.datacolloquio)
 
                 //CREATE Interview
                 Interview.create({
@@ -127,6 +137,8 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 })
             } else {
                 console.log('edited:', newInterview)
+                console.log('dataapp:', $scope.newInterview.dataapplicazione)
+                console.log('datacoll:', $scope.newInterview.datacolloquio)
 
                 let currentCV = ((!$scope.cv) ? newInterview.cv : $scope.cv);
                 let currentCI = ((!$scope.ci) ? newInterview.ci : $scope.ci);

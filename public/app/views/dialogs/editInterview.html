@@ -33,13 +33,6 @@
                             <md-datepicker required ng-model="newInterview.dataapplicazione" aria-label="dataapplicazioneInput"></md-datepicker>
                         </md-input-container>
                     </div>
-
-                    <div layout-gt-sm="row">
-                        <md-input-container>
-                            <label>Data Colloquio</label>
-                            <md-datetime ng-model="someDateTime" ng-change="handleChange()"></md-datetime>
-                        </md-input-container>
-                    </div>
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label>Sesso</label>
@@ -86,6 +79,9 @@
 
                         </md-input-container>
                     </div>
+
+                    <label>Data Colloquio</label>
+                    <md-datetime ng-change="dataCollChanged(newInterview.datacolloquio)" ng-model="newInterview.datacolloquio" no-reset></md-datetime>
 
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-xs="">

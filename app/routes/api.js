@@ -173,6 +173,7 @@ module.exports = function(router) {
         interview.esito2 = req.body.newInterview.esito2
         interview.note = req.body.newInterview.note
         interview.esitocolloquio = req.body.newInterview.esitocolloquio
+        interview.datacolloquio = req.body.newInterview.datacolloquio
         interview.colloquio_sostenuto_da = req.body.newInterview.colloquio_sostenuto_da
         interview.responsabile_colloquio = req.body.newInterview.responsabile_colloquio
         interview.sito = req.body.newInterview.sito
@@ -372,6 +373,7 @@ module.exports = function(router) {
             esito1: req.body.updateData.esito1,
             esito2: req.body.updateData.esito2,
             esitocolloquio: req.body.updateData.esitocolloquio,
+            datacolloquio: req.body.updateData.datacolloquio,
             colloquio_sostenuto_da: req.body.updateData.colloquio_sostenuto_da,
             responsabile_colloquio: req.body.updateData.responsabile_colloquio,
             sito: req.body.updateData.sito,
