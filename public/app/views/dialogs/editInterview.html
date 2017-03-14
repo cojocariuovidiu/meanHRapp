@@ -105,21 +105,6 @@
                                         </md-option>
                                     </md-select>
                                 </md-input-container>
-                                <!--<md-menu>
-                                   <md-button ng-class="interviewStatus === 'Da Rivedere' ? 'Da_Rivedere' :  ( interviewStatus === 'Accettato' ? 'accettato' :(interviewStatus === 'Respinto' ? 'respinto' : 'resetStatus'))" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">
-                                        <span ng-if="editedObject.interviewStatus && !interviewStatus">{{ editedObject.interviewStatus }}</span>
-                                        <span ng-if="!editedObject.interviewStatus && !interviewStatus">Status</span>
-                                        <span ng-if="interviewStatus">{{ interviewStatus }}</span>
-                                    </md-button>
-
-                                    <md-menu-content width="3 ">
-                                        <md-menu-item ng-repeat="item in empStatus">
-                                            <md-button ng-class="item === 'Da Rivedere' ? 'Da_Rivedere' :  ( item === 'Accettato' ? 'accettato' :(item === 'Respinto' ? 'respinto' : 'resetStatus'))" ng-click="SetStatus(item)" class="isEmployee ">
-                                                {{item}}
-                                            </md-button>
-                                        </md-menu-item>
-                                    </md-menu-content>
-                                </md-menu>-->
                             </div>
                         </div>
                     </md-card>
@@ -161,21 +146,10 @@
             </div>
         </md-dialog-content>
 
-
         <md-dialog-actions layout="row">
-            <!--<md-button type="file" ng-click="UploadFile()" type="file" class="md-raised md-accent">
-        Upload CV
-            </md-button>
-            <label for="input-file-id" class="md-button md-raised md-primary">Upload CV</label>
-            <input ng-click="UploadFile(uploadCV)" ng-model="uploadCV" class="ng-hide" id="input-file-id" multiple type="file" />
-            -->
             <md-button ng-if="editedObject.username" ng-click="showConfirm()" class="md-raised">
                 Elimina
             </md-button>
-            <!--<md-button ng-if="editedObject.username " ng-click="AddRemoveEmployee() " ng-class="{ 'employee': isEmployee} ">
-                <span ng-if="!isEmployee ">Add Empoyee</span>
-                <span ng-if="isEmployee ">Remove Empoyee</span>
-            </md-button>-->
             <span flex></span>
             <md-button type="submit " class="md-raised md-primary ">
                 Salva
@@ -185,13 +159,5 @@
             </md-button>
         </md-dialog-actions>
     </form>
-
-    <!--<div ng-show="uploading " class="progress ">
-        <div class="progress-bar progress-bar-striped active " role="progressbar " aria-valuenow="45 " aria-valuemin="0 " aria-valuemax="100 " style="width: 100% ">
-            <div class="sr-only "></div>
-        </div>
-    </div>-->
-
-
 
 </md-dialog>
