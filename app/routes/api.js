@@ -284,13 +284,13 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/getInterviewsByStatus
-    // router.post('/getInterviewsByStatus', function(req, res) {
-    //     console.log(req.body.option)
-    //     Interview.find({ interviewStatus: req.body.option }, function(err, interviews) {
-    //         console.log(interviews)
-    //         res.send(interviews)
-    //     })
-    // })
+    router.post('/getInterviewsByStatus', function(req, res) {
+        console.log('sorting by', req.body.option)
+        Interview.find({ esitocolloquio: req.body.option }, function(err, interviews) {
+            console.log(interviews)
+            res.send(interviews)
+        })
+    })
 
     //http://127.0.0.1:3000/api/getEmployeesByDepartment
     router.post('/getEmployeesByDepartment', function(req, res) {
