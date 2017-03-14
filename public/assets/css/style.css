@@ -202,19 +202,19 @@ md-content {
         margin-top: 10px;
     }
     
-    .accettato {
+    .assunto {
         background-color: #dbf2d5
     }
     
-    .respinto {
+    .scartato {
         background-color: #f7d5c0
     }
     
-    .Da_Rivedere {
+    .da_rivedere {
         background-color: #b9f7f5
     }
     
-    .resetStatus {
+    .no_fill {
         /*background-color: rgba(158, 158, 158, 0.2);*/
         background-color: white;
     }
