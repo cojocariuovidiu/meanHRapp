@@ -1,199 +1,173 @@
-/*header .navbar {
+    /*header .navbar {
     border-radius: 0;
 }
 
 .reset {
     float: right;
 }*/
-
-
-/* NGANIMATE
+    /* NGANIMATE
 ====================== */
-
-
-/* show and hide */
-
-
-/*.show-hide-message.ng-hide-remove {
+    /* show and hide */
+    /*.show-hide-message.ng-hide-remove {
     -webkit-animation: zoomIn 0.3s both ease;
     -moz-animation: zoomIn 0.3s both ease;
     animation: zoomIn 0.3s both ease;
 }*/
-
-
-/* ANIMATIONS
+    /* ANIMATIONS
 ====================== */
-
-.spinner {
-    -webkit-animation: spin 1s infinite;
-    -moz-animation: spin 1s infinite;
-    animation: spin 1s infinite;
-}
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
+    
+    .spinner {
+        -webkit-animation: spin 1s infinite;
+        -moz-animation: spin 1s infinite;
+        animation: spin 1s infinite;
     }
-    to {
-        transform: rotate(360deg);
+    
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
     }
-}
-
-@-webkit-keyframes spin {
-    from {
-        -webkit-transform: rotate(0deg);
+    
+    @-webkit-keyframes spin {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
     }
-    to {
-        -webkit-transform: rotate(360deg);
+    
+    @-moz-keyframes spin {
+        from {
+            -moz-transform: rotate(0deg);
+        }
+        to {
+            -moz-transform: rotate(360deg);
+        }
     }
-}
-
-@-moz-keyframes spin {
-    from {
-        -moz-transform: rotate(0deg);
+    /*Table Toolbar*/
+    
+    .sortToolbar {}
+    /*TABLE*/
+    
+    th {
+        background-color: #F0F0F0;
     }
-    to {
-        -moz-transform: rotate(360deg);
+    
+    .selected {
+        background-color: #F0F0F0;
     }
-}
-
-
-/*Table Toolbar*/
-
-.sortToolbar {}
-
-
-/*TABLE*/
-
-th {
-    background-color: #F0F0F0;
-}
-
-.selected {
-    background-color: #F0F0F0;
-}
-
-.md-button.md-fab.md-mini {
-    line-height: 4rem;
-    width: 4rem;
-    height: 4rem;
-}
-
-.mythumbnail {
-    width: 100%;
-    height: 100%;
-    max-width: 50px;
-}
-
-
-/*body,
+    
+    .md-button.md-fab.md-mini {
+        line-height: 4rem;
+        width: 4rem;
+        height: 4rem;
+    }
+    
+    .mythumbnail {
+        width: 100%;
+        height: 100%;
+        max-width: 50px;
+    }
+    /*body,
 md-content {
     background-color: #f5f5f5 !important;
 }*/
-
-body>md-toolbar {
-    z-index: 3;
-}
-
-md-toolbar.md-table-toolbar.alternate {
-    color: #1e88e5;
-    background-color: #e3f2fd;
-}
-
-md-toolbar.md-table-toolbar.alternate .md-toolbar-tools {
-    font-size: 16px;
-}
-
-md-card:first-child {
-    padding: 8px 8px 8px 24px;
-}
-
-.checkboxes>md-checkbox {
-    margin: 0;
-    padding: 16px;
-    min-width: 300px;
-    flex: 0 0 auto;
-}
-
-.label {
-    font-size: 100%;
-    color: #707070;
-}
-
-table.md-table.md-row-select th.md-column:nth-child(n+3):nth-last-child(n+2) {
-    padding: 0px !important;
-}
-
-table.md-table.md-row-select td.md-cell:nth-child(n+3):nth-last-child(n+2),
-table.md-table.md-row-select th.md-column:nth-child(n+3):nth-last-child(n+2) {
-    padding: 0px !important;
-}
-
-table.md-table td.md-cell {
-    font-size: 12px;
-}
-
-
-/*clear padding on Edit button*/
-
-table.md-table td.md-cell:last-child,
-table.md-table th.md-column:last-child {
-    padding: 0px;
-}
-
-table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
-    padding: 0px !important;
-}
-
-
-/*clear padding for select to delete checkbox*/
-
-table.md-table td.md-cell:first-child,
-table.md-table th.md-column:first-child {
-    width: 10px;
-    padding: 0 0 0 5px;
-}
-
-table.md-table:not(.md-row-select) td.md-cell:first-child,
-table.md-table:not(.md-row-select) th.md-column:first-child {
-    padding: 0 0px;
-}
-
-table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2),
-table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
-    padding: 0px;
-}
-
-
-/*toolbar color reset to white*/
-
-md-toolbar.md-table-toolbar:not(.md-menu-toolbar).md-default .md-button {
-    color: white;
-}
-
-.md-toolbar-tools {
-    font-size: 13px;
-}
-
-
-/*clear padding for cv icon*/
-
-
-/*table.md-table:not(.md-row-select) td.md-cell:first-child {
+    
+    body>md-toolbar {
+        z-index: 3;
+    }
+    
+    md-toolbar.md-table-toolbar.alternate {
+        color: #1e88e5;
+        background-color: #e3f2fd;
+    }
+    
+    md-toolbar.md-table-toolbar.alternate .md-toolbar-tools {
+        font-size: 16px;
+    }
+    
+    md-card:first-child {
+        padding: 8px 8px 8px 24px;
+    }
+    
+    .checkboxes>md-checkbox {
+        margin: 0;
+        padding: 16px;
+        min-width: 300px;
+        flex: 0 0 auto;
+    }
+    
+    .label {
+        font-size: 100%;
+        color: #707070;
+    }
+    
+    table.md-table.md-row-select th.md-column:nth-child(n+3):nth-last-child(n+2) {
+        padding: 0px !important;
+    }
+    
+    table.md-table.md-row-select td.md-cell:nth-child(n+3):nth-last-child(n+2),
+    table.md-table.md-row-select th.md-column:nth-child(n+3):nth-last-child(n+2) {
+        padding: 0px !important;
+    }
+    
+    table.md-table td.md-cell {
+        font-size: 12px;
+    }
+    /*clear padding on Edit button*/
+    
+    table.md-table td.md-cell:last-child,
+    table.md-table th.md-column:last-child {
+        padding: 0px;
+    }
+    
+    table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
+        padding: 0px !important;
+    }
+    /*clear padding for select to delete checkbox*/
+    
+    table.md-table td.md-cell:first-child,
+    table.md-table th.md-column:first-child {
+        width: 10px;
+        padding: 0 0 0 5px;
+    }
+    
+    table.md-table:not(.md-row-select) td.md-cell:first-child,
+    table.md-table:not(.md-row-select) th.md-column:first-child {
+        padding: 0 0px;
+    }
+    
+    table.md-table:not(.md-row-select) td.md-cell:nth-child(n+2):nth-last-child(n+2),
+    table.md-table:not(.md-row-select) th.md-column:nth-child(n+2):nth-last-child(n+2) {
+        padding: 0px;
+    }
+    /*toolbar color reset to white*/
+    
+    md-toolbar.md-table-toolbar:not(.md-menu-toolbar).md-default .md-button {
+        color: white;
+    }
+    
+    .md-toolbar-tools {
+        font-size: 13px;
+    }
+    /*clear padding for cv icon*/
+    /*table.md-table:not(.md-row-select) td.md-cell:first-child {
     padding: 5px;
 }*/
-
-table.md-table th.md-column {
-    font-size: 11px;
-}
-
-.tel {
-    max-width: 80px;
-    word-wrap: break-word;
-}
-
-
-/*.note,
+    
+    table.md-table th.md-column {
+        font-size: 11px;
+    }
+    
+    .tel {
+        max-width: 80px;
+        word-wrap: break-word;
+    }
+    /*.note,
 .esito1,
 .esitocolloquio,
 .sito,
@@ -201,90 +175,80 @@ table.md-table th.md-column {
     max-width: 100px;
     word-wrap: break-word;
 }*/
-
-a {
-    text-decoration: none !important;
-}
-
-.loginScreen {
-    margin-top: 50px;
-    background-color: white;
-}
-
-.loginBox {
-    /*max-width: 90%;
+    
+    a {
+        text-decoration: none !important;
+    }
+    
+    .loginScreen {
+        margin-top: 50px;
+        background-color: white;
+    }
+    
+    .loginBox {
+        /*max-width: 90%;
     width: 500px ;*/
-    margin: auto;
-    width: 50%;
-    padding: 10px;
-}
-
-.stretch input {
-    width: 100%
-}
-
-.menuSilder {
-    margin-left: 10px;
-    margin-top: 10px;
-}
-
-.accettato {
-    background-color: #dbf2d5
-}
-
-.respinto {
-    background-color: #f7d5c0
-}
-
-.Da_Rivedere {
-    background-color: #b9f7f5
-}
-
-.resetStatus {
-    /*background-color: rgba(158, 158, 158, 0.2);*/
-    background-color: white;
-}
-
-.toolbarTitle {
-    font-size: 24px;
-}
-
-md-input-container {
-    padding: 0px;
-    padding-right: 5px;
-}
-
-.table-card {
-    margin-top: 30px;
-}
-
-
-/*.bottomSheetdemoBasicUsage md-toast .md-toast-content {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+    
+    .stretch input {
+        width: 100%
+    }
+    
+    .menuSilder {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+    
+    .accettato {
+        background-color: #dbf2d5
+    }
+    
+    .respinto {
+        background-color: #f7d5c0
+    }
+    
+    .Da_Rivedere {
+        background-color: #b9f7f5
+    }
+    
+    .resetStatus {
+        /*background-color: rgba(158, 158, 158, 0.2);*/
+        background-color: white;
+    }
+    
+    .toolbarTitle {
+        font-size: 24px;
+    }
+    
+    md-input-container {
+        padding: 0px;
+        padding-right: 5px;
+    }
+    
+    .table-card {
+        margin-top: 30px;
+    }
+    /*.bottomSheetdemoBasicUsage md-toast .md-toast-content {
     background-color: #B14141;
 }
 
 .bottomSheetdemoBasicUsage md-toast>* {
     font-weight: bolder;
 }*/
-
-
-/*.bumpmenu {
+    /*.bumpmenu {
     padding-top: 60px;
 }*/
-
-
-/*
+    /*
 .navBardemoBasicUsage md-content .ext-content {
     padding: 50px;
     margin: 20px;
     background-color: #FFF2E0;
 }*/
-
-
-/*NavBar*/
-
-
-/*md-nav-bar .md-nav-bar {
+    /*NavBar*/
+    /*md-nav-bar .md-nav-bar {
     background: #3949AB;
 }
 
@@ -303,21 +267,28 @@ md-icon {
     color: white
 }
 */
-
-md-menu-content {
-    padding: 0px;
-}
-
-md-nav-bar .md-button.md-accent {
-    color: #3949AB;
-}
-
-md-nav-bar.md-default-theme md-nav-ink-bar,
-md-nav-bar md-nav-ink-bar {
-    color: white;
-    background: #3949AB;
-}
-
-a {
-    color: #3949AB;
-}
+    
+    md-menu-content {
+        padding: 0px;
+    }
+    
+    md-nav-bar .md-button.md-accent {
+        color: #3949AB;
+    }
+    
+    md-nav-bar.md-default-theme md-nav-ink-bar,
+    md-nav-bar md-nav-ink-bar {
+        color: white;
+        background: #3949AB;
+    }
+    
+    a {
+        color: #3949AB;
+    }
+    
+    .md-timepicker-time-hour.selected,
+    .md-timepicker-time-minute.selected {
+        background-color: rgb(63, 81, 181);
+        font-weight: 600;
+        color: lightseagreen;
+    }
