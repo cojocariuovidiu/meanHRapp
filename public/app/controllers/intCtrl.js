@@ -118,6 +118,10 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             console.log('datechaged', date)
         }
 
+        $scope.AggiungiDataColloquio = function() {
+            $scope.DataCollEnabled = true
+        }
+
         $scope.submitInterview = function(newInterview) {
             function isEmpty(obj) {
                 return Object.keys(obj).length === 0;

@@ -74,8 +74,11 @@
                         </md-input-container>
                     </div>
 
-                    <label>Data Colloquio</label>
-                    <md-datetime ng-change="dataCollChanged(newInterview.datacolloquio)" ng-model="newInterview.datacolloquio" no-reset aria-label="mddatetime-Aria"></md-datetime>
+                    <label ng-if="newInterview.datacolloquio || DataCollEnabled">Data Colloquio: </label>
+                    <md-datetime ng-if="newInterview.datacolloquio || DataCollEnabled" ng-change="dataCollChanged(newInterview.datacolloquio)" ng-model="newInterview.datacolloquio" no-reset aria-label="mddatetime-Aria"></md-datetime>
+                    <md-button ng-if="!DataCollEnabled && !newInterview.datacolloquio" ng-click="AggiungiDataColloquio()" aria-label="AggiungiDataColloquio" class="md-raised">
+                        <span>Aggiungi Data Colloquio</span>
+                    </md-button>
 
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-xs="">
