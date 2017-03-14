@@ -105,6 +105,21 @@
                                         </md-option>
                                     </md-select>
                                 </md-input-container>
+                                <!--<md-menu>
+                                   <md-button ng-class="interviewStatus === 'Da Rivedere' ? 'Da_Rivedere' :  ( interviewStatus === 'Accettato' ? 'accettato' :(interviewStatus === 'Respinto' ? 'respinto' : 'resetStatus'))" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">
+                                        <span ng-if="editedObject.interviewStatus && !interviewStatus">{{ editedObject.interviewStatus }}</span>
+                                        <span ng-if="!editedObject.interviewStatus && !interviewStatus">Status</span>
+                                        <span ng-if="interviewStatus">{{ interviewStatus }}</span>
+                                    </md-button>
+
+                                    <md-menu-content width="3 ">
+                                        <md-menu-item ng-repeat="item in empStatus">
+                                            <md-button ng-class="item === 'Da Rivedere' ? 'Da_Rivedere' :  ( item === 'Accettato' ? 'accettato' :(item === 'Respinto' ? 'respinto' : 'resetStatus'))" ng-click="SetStatus(item)" class="isEmployee ">
+                                                {{item}}
+                                            </md-button>
+                                        </md-menu-item>
+                                    </md-menu-content>
+                                </md-menu>-->
                             </div>
                         </div>
                     </md-card>
@@ -157,24 +172,6 @@
             <md-button ng-if="editedObject.username" ng-click="showConfirm()" class="md-raised">
                 Elimina
             </md-button>
-
-            <md-menu>
-                <!--<md-button ng-class="{'{{interviewStatus}}': interviewStatus, 'isEmployee': interviewStatus == 'isEmployee', 'callLater': interviewStatus =='callLater', 'clear': interviewStatus == 'clear'}" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">-->
-                <md-button ng-class="interviewStatus === 'Da Rivedere' ? 'Da_Rivedere' :  ( interviewStatus === 'Accettato' ? 'accettato' :(interviewStatus === 'Respinto' ? 'respinto' : 'resetStatus'))" aria-label="OpenStatusMenu" ng-click="$mdMenu.open($event)">
-                    <span ng-if="editedObject.interviewStatus && !interviewStatus">{{ editedObject.interviewStatus }}</span>
-                    <span ng-if="!editedObject.interviewStatus && !interviewStatus">Status</span>
-                    <span ng-if="interviewStatus">{{ interviewStatus }}</span>
-                </md-button>
-
-                <md-menu-content width="3 ">
-                    <md-menu-item ng-repeat="item in empStatus">
-                        <md-button ng-class="item === 'Da Rivedere' ? 'Da_Rivedere' :  ( item === 'Accettato' ? 'accettato' :(item === 'Respinto' ? 'respinto' : 'resetStatus'))" ng-click="SetStatus(item)" class="isEmployee ">
-                            {{item}}
-                        </md-button>
-                    </md-menu-item>
-                </md-menu-content>
-            </md-menu>
-
             <!--<md-button ng-if="editedObject.username " ng-click="AddRemoveEmployee() " ng-class="{ 'employee': isEmployee} ">
                 <span ng-if="!isEmployee ">Add Empoyee</span>
                 <span ng-if="isEmployee ">Remove Empoyee</span>

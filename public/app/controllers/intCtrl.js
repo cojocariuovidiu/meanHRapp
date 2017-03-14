@@ -59,25 +59,25 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
     function DialogController($scope, $mdDialog, editedObject) {
         $scope.sessi = ['M', 'F']
 
-        $scope.empStatus = [
-            'Accettato',
-            'Da Rivedere',
-            'Respinto',
-            'Reset'
-        ]
-        $scope.interviewStatus = editedObject.interviewStatus
-        $scope.SetStatus = function(option) {
-            if (option == $scope.empStatus[0]) { //Accettato
-                status = $scope.empStatus[0]
-            } else if (option == $scope.empStatus[1]) { // Da Rivedere
-                status = $scope.empStatus[1]
-            } else if (option == $scope.empStatus[2]) { //Respinto
-                status = $scope.empStatus[2]
-            } else if (option == $scope.empStatus[3]) { //Reset / ResetStatus (css class)
-                status = 'resetStatus'
-            }
-            return $scope.interviewStatus = option
-        }
+        // $scope.empStatus = [
+        //     'Accettato',
+        //     'Da Rivedere',
+        //     'Respinto',
+        //     'Reset'
+        // ]
+        // $scope.interviewStatus = editedObject.interviewStatus
+        // $scope.SetStatus = function(option) {
+        //     if (option == $scope.empStatus[0]) { //Accettato
+        //         status = $scope.empStatus[0]
+        //     } else if (option == $scope.empStatus[1]) { // Da Rivedere
+        //         status = $scope.empStatus[1]
+        //     } else if (option == $scope.empStatus[2]) { //Respinto
+        //         status = $scope.empStatus[2]
+        //     } else if (option == $scope.empStatus[3]) { //Reset / ResetStatus (css class)
+        //         status = 'resetStatus'
+        //     }
+        //     return $scope.interviewStatus = option
+        // }
 
         $scope.esitocolloqui = [
             'assunto',
@@ -137,7 +137,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 //CREATE Interview
                 Interview.create({
                     newInterview: newInterview,
-                    interviewStatus: $scope.interviewStatus,
                     // username: int.username
                     username: shareData.loggedUser
                 }).then(function() {
@@ -160,7 +159,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                     updateData: newInterview,
                     // editedBy: int.username,
                     editedBy: shareData.loggedUser,
-                    interviewStatus: $scope.interviewStatus,
                     cv: currentCV,
                     ci: currentCI
                 }).then(function(response) {
