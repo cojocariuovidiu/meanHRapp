@@ -283,7 +283,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         $scope.barChart = {};
         $scope.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         $scope.barChart.series = ['Interviste', 'Assunti', 'Da Rivedere']
-            // $scope.barChart.colors = ["#F7464A", "#97BBCD", "#000000", "#F7464A", "#97BBCD", "#000000", "#97BBCD"]
+        $scope.barChart.colors = ["#adabab", "#52aa25", "#43ADE9"] //Interviste, Assunti, DaRivedere
 
         $scope.barChart.options = {
             responsive: false,
