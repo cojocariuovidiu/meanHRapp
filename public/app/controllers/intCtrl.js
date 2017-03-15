@@ -282,8 +282,8 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
     function ChartDialogController($scope, $mdDialog) {
         $scope.barChart = {};
         $scope.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        $scope.barChart.series = ['Interviste', 'Assunti', 'Da Rivedere']
-        $scope.barChart.colors = ["#adabab", "#52aa25", "#43ADE9"] //Interviste, Assunti, DaRivedere
+        $scope.barChart.series = ['Interviste', 'Assunti', 'Da Rivedere', 'Scartati']
+        $scope.barChart.colors = ["#adabab", "#52aa25", "#43ADE9", "#ce4533"] //Interviste, Assunti, DaRivedere, Scartati
 
         $scope.barChart.options = {
             responsive: false,
@@ -318,14 +318,15 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             var monthInterviews = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             var monthAssunti = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             var monthDaRivedere = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            var monthScartati = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
             //Load all data from the DB
             Interview.getinterviews().then(function(response) {
                 response.data.forEach(function(element) {
-                    var esitocolloquio = element.esitocolloquio
-                    var momenYear = moment(element.dataapplicazione).format('YYYY')
 
-                    if (momenYear == option) {
+                    var momentYear = moment(element.dataapplicazione).format('YYYY')
+
+                    if (momentYear == option) {
                         var momentDate = moment(element.dataapplicazione).format('M')
 
                         for (var i = 0; i < monthInterviews.length; i++) {
@@ -336,6 +337,8 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                                     } else
                                 if (element.esitocolloquio === 'da rivedere') {
                                     monthDaRivedere[i]++
+                                } else if (element.esitocolloquio === 'scartato') {
+                                    monthScartati[i]++
                                 }
                             }
                         }
@@ -345,6 +348,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 $scope.barChart.data.push(monthInterviews)
                 $scope.barChart.data.push(monthAssunti)
                 $scope.barChart.data.push(monthDaRivedere)
+                $scope.barChart.data.push(monthScartati)
             })
         }
 
