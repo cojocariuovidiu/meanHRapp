@@ -77,13 +77,13 @@ module.exports = function(router) {
                 }
             })
         }
-        console.log(req.body.username, req.body.password, req.body.email, req.body.group);
+        //console.log(req.body.username, req.body.password, req.body.email, req.body.group);
     })
 
     //USER LOGIN ROUTE
     //http://localhost:3000/api/authenticate
     router.post('/authenticate', function(req, res) {
-        console.log(req.body.username, req.body.password);
+        //console.log(req.body.username, req.body.password);
 
         User.findOne({ username: req.body.username }).select('group email username password').exec(function(err, user) {
             if (err) throw err;
@@ -161,7 +161,7 @@ module.exports = function(router) {
 
     //http://127.0.0.1:3000/api/interview
     router.post('/interview', function(req, res) {
-        console.log(req.body)
+        //console.log(req.body)
 
         var interview = new Interview()
         interview.dataapplicazione = req.body.newInterview.dataapplicazione
@@ -200,7 +200,7 @@ module.exports = function(router) {
 
     //http://127.0.0.1:3000/api/employee
     router.post('/employee', function(req, res) {
-        console.log(req.body)
+        //console.log(req.body)
 
         var employee = new Employee()
         employee.employmentdate = req.body.newEmployee.employmentdate
@@ -285,25 +285,25 @@ module.exports = function(router) {
 
     //http://127.0.0.1:3000/api/getInterviewsByStatus
     router.post('/getInterviewsByStatus', function(req, res) {
-        console.log('sorting by', req.body.option)
+        // console.log('sorting by', req.body.option)
         Interview.find({ esitocolloquio: req.body.option }, function(err, interviews) {
-            console.log(interviews)
+            //console.log(interviews)
             res.send(interviews)
         })
     })
 
     //http://127.0.0.1:3000/api/getEmployeesByDepartment
     router.post('/getEmployeesByDepartment', function(req, res) {
-        console.log(req.body.option)
+        // console.log('sorting by', req.body.option)
 
         Employee.find({ department: req.body.option }, function(err, interviews) {
-            console.log(interviews)
+            //console.log(interviews)
             res.send(interviews)
         })
     })
 
     router.delete('/interviews/:id', function(req, res) {
-        console.log('id sent:', req.params.id)
+        //console.log('id sent:', req.params.id)
 
         Interview.findOne({ _id: req.params.id }).remove().exec(function(err, data) {
             if (err) {
@@ -318,7 +318,7 @@ module.exports = function(router) {
 
     router.delete('/employees/:id', function(req, res) {
         // Interview.findOneAndRemove({_id: req.params.id})
-        console.log('id sent:', req.params.id)
+        //console.log('id sent:', req.params.id)
 
         Employee.findOne({ _id: req.params.id }).remove().exec(function(err, data) {
             if (err) {
