@@ -282,7 +282,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
     function ChartDialogController($scope, $mdDialog) {
         $scope.barChart = {};
         $scope.barChart.labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        $scope.barChart.series = ['Interviste', 'Dipendenti']
+        $scope.barChart.series = ['Interviste', 'Assunti']
             // $scope.barChart.colors = ["#F7464A", "#97BBCD", "#000000", "#F7464A", "#97BBCD", "#000000", "#97BBCD"]
 
         $scope.barChart.options = {
@@ -292,7 +292,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         }
         $scope.barChart.data = []
         $scope.barChart.Interviews = []
-        $scope.barChart.Employees = []
+        $scope.barChart.Assunti = []
 
         //Button/OnLoad function
         $scope.loadChartData = function(option) {
@@ -301,7 +301,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             console.log($scope.selectedYear)
             $scope.barChart.data = []
             $scope.barChart.Interviews = []
-            $scope.barChart.Employees = []
+            $scope.barChart.Assunti = []
 
             if (option == 2017) {
                 ChartFilterYear(option)
@@ -347,80 +347,80 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             //Load all data from the DB
             Interview.getinterviews().then(function(response) {
                 response.data.forEach(function(element) {
-                    var interviewStatus = element.interviewStatus
+                    var esitocolloquio = element.esitocolloquio
                     var momenYear = moment(element.dataapplicazione).format('YYYY')
 
                     if (momenYear == option) {
                         var momentDate = moment(element.dataapplicazione).format('M')
                         if (momentDate == 1) {
                             janTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 janEmp++
                             }
                         } else
                         if (momentDate == 2) {
                             febTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 febEmp++
                             }
                         } else
                         if (momentDate == 3) {
                             marTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 marEmp++
                             }
                         } else
                         if (momentDate == 4) {
                             aprTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 aprEmp++
                             }
                         } else
                         if (momentDate == 5) {
                             mayTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 mayEmp++
                             }
                         } else
                         if (momentDate == 6) {
                             junTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 junEmp++
                             }
                         } else
                         if (momentDate == 7) {
                             julTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 julEmp++
                             }
                         } else
                         if (momentDate == 8) {
                             augTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 augEmp++
                             }
                         } else
                         if (momentDate == 9) {
                             sepTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 sepEmp++
                             }
                         } else
                         if (momentDate == 10) {
                             octTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 octEmp++
                             }
                         } else
                         if (momentDate == 11) {
                             novTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 novEmp++
                             }
                         } else
                         if (momentDate == 12) {
                             decTotal++
-                            if (element.interviewStatus == 'isEmployee') {
+                            if (element.esitocolloquio == 'assunto') {
                                 decEmp++
                             }
                         }
@@ -430,10 +430,10 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 }, this);
 
                 $scope.barChart.Interviews.push(janTotal, febTotal, marTotal, aprTotal, mayTotal, junTotal, julTotal, augTotal, sepTotal, octTotal, novTotal, decTotal)
-                $scope.barChart.Employees.push(janEmp, febEmp, marEmp, aprEmp, mayEmp, junEmp, julEmp, augEmp, sepEmp, octEmp, novEmp, decEmp)
+                $scope.barChart.Assunti.push(janEmp, febEmp, marEmp, aprEmp, mayEmp, junEmp, julEmp, augEmp, sepEmp, octEmp, novEmp, decEmp)
 
                 $scope.barChart.data.push($scope.barChart.Interviews)
-                $scope.barChart.data.push($scope.barChart.Employees)
+                $scope.barChart.data.push($scope.barChart.Assunti)
 
                 // console.log(chart.barChart.data)
             })
