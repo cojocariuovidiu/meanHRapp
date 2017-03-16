@@ -292,3 +292,7 @@ md-icon {
         font-weight: 600;
         color: lightseagreen;
     }
+    
+    md-select .md-select-value {
+        margin-bottom: 20px;
+    }

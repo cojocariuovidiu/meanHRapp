@@ -204,12 +204,14 @@ module.exports = function(router) {
 
         var employee = new Employee()
         employee.employmentdate = req.body.newEmployee.employmentdate
+        employee.leavingDate = req.body.newEmployee.leavingDate
         employee.name = req.body.newEmployee.name
         employee.department = req.body.newEmployee.department
         employee.cnp = req.body.newEmployee.cnp
         employee.age = req.body.newEmployee.age
         employee.tel = req.body.newEmployee.tel
         employee.email = req.body.newEmployee.email
+        employee.status = req.body.newEmployee.status
         employee.username = req.body.username
 
         employee.save(function(err) {
@@ -335,21 +337,25 @@ module.exports = function(router) {
 
         let updateEmployee = {
             employmentdate: req.body.updateData.employmentdate,
+            leavingDate: req.body.updateData.leavingDate,
             name: req.body.updateData.name,
             cnp: req.body.updateData.cnp,
             age: req.body.updateData.age,
             tel: req.body.updateData.tel,
             department: req.body.updateData.department,
             email: req.body.updateData.email,
+            status: req.body.updateData.status,
             ci: req.body.ci
         }
 
         if (updateEmployee.employmentdate === null || updateEmployee.employmentdate === undefined) delete updateEmployee.employmentdate
+        if (updateEmployee.leavingDate === null || updateEmployee.leavingDate === undefined) delete updateEmployee.leavingDate
         if (updateEmployee.cnp === null || updateEmployee.cnp === undefined) delete updateEmployee.cnp
         if (updateEmployee.age === null || updateEmployee.age === undefined) delete updateEmployee.age
         if (updateEmployee.tel === null || updateEmployee.tel === undefined) delete updateEmployee.tel
         if (updateEmployee.department === null || updateEmployee.department === undefined) delete updateEmployee.department
         if (updateEmployee.email === null || updateEmployee.email === undefined) delete updateEmployee.email
+        if (updateEmployee.status === null || updateEmployee.status === undefined) delete updateEmployee.status
         if (updateEmployee.ci === null || updateEmployee.ci === undefined) delete updateEmployee.ci
 
         Employee.findOneAndUpdate({ _id: req.params.id }, updateEmployee, { new: true }, function(err) {

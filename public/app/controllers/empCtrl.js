@@ -61,6 +61,7 @@ angular.module("employeeControllers", ["chart.js"])
 
         $scope.departments = ['Maran BO', 'Triboo', 'Aria']
         $scope.sessi = ['F', 'M']
+        $scope.statusList = ['Lavora a Bitech', 'Non Lavora piu a Bitech']
 
         $scope.hide = function() {
             $mdDialog.hide();
@@ -82,10 +83,14 @@ angular.module("employeeControllers", ["chart.js"])
             $scope.newEmployee.employmentdate = new Date($scope.newEmployee.employmentdate)
                 //console.log($scope.newEmployee.dataapplicazione)
         }
+        if ($scope.newEmployee.leavingDate) {
+            $scope.newEmployee.leavingDate = new Date($scope.newEmployee.leavingDate)
+                //console.log($scope.newEmployee.dataapplicazione)
+        }
 
         $scope.submitEmployee = ((newEmployee) => {
             function isEmpty(obj) {
-                return Object.keys(obj).length === 0;
+                return Object.keys(obj).length === 0
             }
             if (isEmpty(editedObject)) {
                 // console.log('new Emp:', newEmployee, shareData.loggedUser)
