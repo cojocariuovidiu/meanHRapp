@@ -59,7 +59,7 @@ angular.module("employeeControllers", ["chart.js"])
 
     function DialogController($scope, $mdDialog, editedObject) {
 
-        $scope.departments = ['Maran BO', 'Triboo', 'Aria']
+        $scope.departments = ['Maran BO', 'Triboo', 'Aria', 'Cerved']
         $scope.sessi = ['F', 'M']
         $scope.statusList = ['Lavora a Bitech', 'Non lavora più a Bitech']
 
@@ -252,7 +252,7 @@ angular.module("employeeControllers", ["chart.js"])
     //Controller for Intervirews Chart
     function ChartDialogController($scope, $mdDialog) {
         $scope.dougChart = {};
-        $scope.dougChart.labels = ['Maran BO', 'Triboo', 'Aria', 'No Dpt']
+        $scope.dougChart.labels = ['Maran BO', 'Triboo', 'Aria', 'Cerved', 'No Dpt']
         $scope.dougChart.series = ['Dipendenti']
             // $scope.dougChart.colors = ["#F7464A", "#97BBCD", "#000000"]
 
@@ -274,7 +274,7 @@ angular.module("employeeControllers", ["chart.js"])
             $scope.dougChart.data = []
             $scope.dougChart.Employees = []
 
-            var totals = [0, 0, 0, 0]
+            var totals = [0, 0, 0, 0, 0]
 
             //Load all data from the DB
             Employee.getEmployees().then(function(response) {
@@ -286,8 +286,10 @@ angular.module("employeeControllers", ["chart.js"])
                         totals[1]++
                     } else if (response.data[i].department === $scope.dougChart.labels[2]) { //Aria
                         totals[2]++
-                    } else {
+                    } else if (response.data[i].department === $scope.dougChart.labels[2]) { //Cerved
                         totals[3]++
+                    } else { //No Dpt
+                        totals[4]++
                     }
                 }
                 console.log(totals)
