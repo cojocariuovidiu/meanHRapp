@@ -148,7 +148,7 @@ angular.module('mainController', ['authServices', 'userServices', 'interviewServ
                     //loading twich to hack the error :-(
                     getInterviewsFiltered('All')
                     console.log('got int on login')
-                    $location.path('/interviews')
+                    $location.path('/interviste')
                     app.isLoading = false
                     app.loginData = null;
                     app.successMsg = false;

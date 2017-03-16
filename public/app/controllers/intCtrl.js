@@ -468,52 +468,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         }
     }
 
-    /////////////////////////MENU
-    $scope.toggleLeft = buildToggler('left');
-
-    function buildToggler(componentId) {
-        return function() {
-            $mdSidenav(componentId).toggle();
-            // showToast()
-        };
-    }
-    $scope.menu = [{
-            link: '/',
-            title: 'Home',
-            icon: 'dashboard'
-        },
-        {
-            link: '/employees',
-            title: 'Dipendenti',
-            icon: 'message'
-        },
-        {
-            link: '/interviews',
-            title: 'Interviste',
-            icon: 'message'
-        },
-        {
-            link: '/statistics',
-            title: 'Statistiche',
-            icon: 'message'
-        },
-        {
-            link: '/interviews2',
-            title: 'Test',
-            icon: 'message'
-        },
-    ];
-    $scope.admin = [{
-            link: '',
-            title: 'Log Out',
-            icon: 'delete',
-        },
-        {
-            link: '/profile',
-            title: 'Profilo',
-            icon: 'settings'
-        }
-    ];
 
     var showToast = function(message) {
         $mdToast.show(
@@ -526,16 +480,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             .position('top right')
             // .theme(string)
         );
-        // $mdToast.show(
-        //     $mdToast.simple()
-        //     .textContent('Error!')
-        //     .highlightAction(true)
-        //     .parent(document.querySelectorAll('#toaster'))
-        //     .position('bottom right')
-        //     .hideDelay(2000)
-        //     .action('OK')
-        //     //.action('x')
-        // );
     }
 
 });

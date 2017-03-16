@@ -95,54 +95,6 @@ angular.module('mainController', ['ngMaterial'])
         $route.reload();
     }
 
-    // main.goProfile = function() {
-    //     $location.path('/profile');
-    //     $route.reload();
-    // }
-
-
-    // main.toggleLeft = buildToggler('left');
-
-    // function buildToggler(componentId) {
-    //     return function() {
-    //         $mdSidenav(componentId).toggle();
-    //         // showToast()
-    //     };
-    // }
-
-    main.menu = [{
-            link: '/',
-            title: 'Home',
-            icon: 'dashboard'
-        },
-        {
-            link: '/interviews',
-            title: 'Interviste',
-            icon: 'message'
-        },
-        {
-            link: '/employees',
-            title: 'Dipendenti',
-            icon: 'message'
-        }
-        // {
-        //     link: '/statistics',
-        //     title: 'Statistiche',
-        //     icon: 'message'
-        // }
-    ];
-    main.admin = [{
-            link: '',
-            title: 'Log Out',
-            icon: 'delete',
-        },
-        {
-            link: '/profile',
-            title: 'Profilo',
-            icon: 'settings'
-        }
-    ];
-
 });
 
 
