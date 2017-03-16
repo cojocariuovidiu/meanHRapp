@@ -277,7 +277,7 @@ angular.module("employeeControllers", ["chart.js"])
             var totals = [0, 0, 0, 0, 0]
 
             //Load all data from the DB
-            Employee.getEmployees().then(function(response) {
+            Employee.getWorkingEmployees().then(function(response) {
 
                 for (var i = 0; i < response.data.length; i++) {
                     if (response.data[i].department == $scope.dougChart.labels[0]) { //Maran

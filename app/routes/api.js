@@ -240,6 +240,13 @@ module.exports = function(router) {
         })
     })
 
+    //http://127.0.0.1:3000/api/getWorkingEmployees
+    router.get('/getWorkingEmployees', function(req, res) {
+        Employee.find({ "status": "Lavora a Bitech" }, function(err, employees) {
+            res.send(employees)
+        })
+    })
+
     //http://127.0.0.1:3000/api/getinterview/:id
     router.get('/getinterview/:id', function(req, res) {
 
