@@ -285,6 +285,10 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         $scope.barChart.series = ['Interviste', 'Assunti', 'Da Rivedere', 'Scartati']
         $scope.barChart.colors = ["#adabab", "#52aa25", "#43ADE9", "#ce4533"] //Interviste, Assunti, DaRivedere, Scartati
 
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
         $scope.barChart.options = {
             responsive: false,
             maintainAspectRatio: true,

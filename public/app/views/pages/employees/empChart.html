@@ -1,20 +1,23 @@
-<div class="md-toolbar-tools">
-    <div class="toolbarTitle">Statistiche Dipendenti</div>
-    <div flex></div>
-    <md-button class="md-raised md-icon-button" ng-click="loadChartData()">
-        <md-icon>refresh</md-icon>
-    </md-button>
+<div ng-cloak="">
+
+    <div class="md-toolbar-tools">
+        <div class="toolbarTitle">Statistiche Dipendenti</div>
+        <div flex></div>
+        <md-button class="md-raised md-icon-button" ng-click="loadChartData()">
+            <md-icon>refresh</md-icon>
+        </md-button>
+    </div>
+
+    <section layout="row" flex="">
+        <!--Pie-->
+        <canvas height="300" width="300" chart-colors="dougChart.colors" id="pie" class="chart chart-pie" chart-data="dougChart.data" chart-labels="dougChart.labels" chart-options="dougChart.options" chart-series="dougChart.series">
+</canvas>
+        <!--Dougnot-->
+        <canvas height="300" width="300" chart-colors="dougChart.colors" chart-options="dougChart.options" class="chart chart-doughnut" chart-data="dougChart.data" chart-labels="dougChart.labels" chart-series="dougChart.series" id="bar"></canvas>
+        <!--Polar-->
+        <canvas height="300" width="300" chart-colors="dougChart.colors" id="polar-area" class="chart chart-polar-area" chart-data="dougChart.data" chart-labels="dougChart.labels" chart-options="dougChart.options" chart-series="dougChart.series">
+</canvas>
+
+        </canvas>
+    </section>
 </div>
-
-<section layout="row" flex="">
-    <!--Pie-->
-    <canvas height="300" width="300" chart-colors="dougChart.colors" id="pie" class="chart chart-pie" chart-data="dougChart.data" chart-labels="dougChart.labels" chart-options="dougChart.options" chart-series="dougChart.series">
-</canvas>
-    <!--Dougnot-->
-    <canvas height="300" width="300" chart-colors="dougChart.colors" chart-options="dougChart.options" class="chart chart-doughnut" chart-data="dougChart.data" chart-labels="dougChart.labels" chart-series="dougChart.series" id="bar"></canvas>
-    <!--Polar-->
-    <canvas height="300" width="300" chart-colors="dougChart.colors" id="polar-area" class="chart chart-polar-area" chart-data="dougChart.data" chart-labels="dougChart.labels" chart-options="dougChart.options" chart-series="dougChart.series">
-</canvas>
-
-    </canvas>
-</section>
