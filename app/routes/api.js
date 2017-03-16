@@ -210,7 +210,6 @@ module.exports = function(router) {
         employee.age = req.body.newEmployee.age
         employee.tel = req.body.newEmployee.tel
         employee.email = req.body.newEmployee.email
-        employee.note = req.body.newEmployee.note
         employee.username = req.body.username
 
         employee.save(function(err) {
@@ -342,7 +341,6 @@ module.exports = function(router) {
             tel: req.body.updateData.tel,
             department: req.body.updateData.department,
             email: req.body.updateData.email,
-            note: req.body.updateData.note,
             ci: req.body.ci
         }
 
@@ -352,7 +350,6 @@ module.exports = function(router) {
         if (updateEmployee.tel === null || updateEmployee.tel === undefined) delete updateEmployee.tel
         if (updateEmployee.department === null || updateEmployee.department === undefined) delete updateEmployee.department
         if (updateEmployee.email === null || updateEmployee.email === undefined) delete updateEmployee.email
-        if (updateEmployee.note === null || updateEmployee.note === undefined) delete updateEmployee.note
         if (updateEmployee.ci === null || updateEmployee.ci === undefined) delete updateEmployee.ci
 
         Employee.findOneAndUpdate({ _id: req.params.id }, updateEmployee, { new: true }, function(err) {

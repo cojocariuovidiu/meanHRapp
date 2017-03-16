@@ -12,66 +12,59 @@
             </div>
         </md-toolbar>
 
-
         <md-dialog-content aria-label="MD Dialog Content">
             <div layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
 
                 <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
-                    <div layout-gt-sm="row">
-                        <md-input-container aria-label="MD Input Container" class="md-block" flex-gt-sm="">
-                            <label>Nome e cognome</label>
-                            <input required aria-label="nameInput" ng-model="newEmployee.name">
-                        </md-input-container>
 
-                        <md-input-container>
-                            <label>Data di Assunzione</label>
-                            <md-datepicker required ng-model="newEmployee.employmentdate" aria-label="employmentdateInput"></md-datepicker>
-                        </md-input-container>
-                    </div>
+                    <md-card>
+                        <label class="md-padding">Dati Personali:</label>
+                        <div layout-gt-lg="row">
+                            <md-input-container aria-label="MD Input Container" class="md-block" flex-gt-lg="">
+                                <label>Nome e cognome</label>
+                                <input required aria-label="nameInput" ng-model="newEmployee.name">
+                            </md-input-container>
 
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-xs="">
-                            <label>Cnp</label>
-                            <input aria-label="cnpInput" ng-model="newEmployee.cnp">
-                        </md-input-container>
-                        <div layout-gt-xs="row">
-                            <md-input-container class="md-block" flex-gt-xs="">
+                            <md-input-container class="md-block" flex-gt-sm="">
+                                <label>Cnp</label>
+                                <input aria-label="cnpInput" ng-model="newEmployee.cnp">
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm="">
                                 <label>Eta'</label>
                                 <input aria-label="ageInput" ng-model="newEmployee.age">
                             </md-input-container>
+                            <md-input-container class="md-block" flex-gt-sm="">
+                                <label>Telefono</label>
+                                <input aria-label="telInput" name="postalCode" ng-model="newEmployee.tel">
+                            </md-input-container>
+                            <md-input-container class="md-block">
+                                <label>Email</label>
+                                <input type="email" ng-model="newEmployee.email" aria-label="emailInput" />
+                            </md-input-container>
                         </div>
+                    </md-card>
 
-                        <md-input-container class="md-block" flex-gt-sm="">
-                            <label>Telefono</label>
-                            <input aria-label="telInput" name="postalCode" ng-model="newEmployee.tel">
-                        </md-input-container>
-                    </div>
-
-                    <div layout-gt-sm="row">
-                        <md-input-container class="md-block" flex-gt-xs="">
-                            <label>Departamento</label>
-                            <md-select aria-label="departmentInput" ng-model="newEmployee.department">
-                                <md-option ng-repeat="item in departments" value="{{item}}">
-                                    {{item}}
-                                </md-option>
-                            </md-select>
-                        </md-input-container>
-
-                        <md-input-container class="md-block">
-                            <label>Email</label>
-                            <input type="email" ng-model="newEmployee.email" aria-label="emailInput" />
-                        </md-input-container>
-
-                    </div>
-
-
-                    <md-input-container class="md-block">
-                        <label>Note</label>
-                        <textarea ng-model="newEmployee.note" aria-label="noteInput"></textarea>
-                    </md-input-container>
+                    <md-card>
+                        <label class="md-padding">Dati Assunzione:</label>
+                        <div layout-gt-lg="row">
+                            <md-input-container>
+                                <label>Data di Assunzione</label>
+                                <md-datepicker required ng-model="newEmployee.employmentdate" aria-label="employmentdateInput"></md-datepicker>
+                            </md-input-container>
+                            <md-input-container class="md-block" flex-gt-xs="">
+                                <label>Departamento</label>
+                                <md-select aria-label="departmentInput" ng-model="newEmployee.department">
+                                    <md-option ng-repeat="item in departments" value="{{item}}">
+                                        {{item}}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </md-card>
 
                     <md-card ng-if="editedObject.username">
-                        <div layout-gt-sm="row">
+                        <label class="md-padding">Dati Caricamenti:</label>
+                        <div layout-gt-lg="row">
                             <input class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
                             <label for="input-file-id" class="md-button md-accent md-raised">Browse</label>
                             <div ng-show="!message">{{file.upload.name}}</div>
@@ -79,16 +72,14 @@
                                 <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{ci}}" target="_blank">{{file.upload.name}} </a> {{message}}
                             </div>
 
-                        </div>
-                        <div layout-gt-sm="row">
                             <md-button ng-click="SubmitUpload()" ng-disabled="!file.upload.name || !uploadCIEnabled" class="md-raised" aria-label="Submit-Upload-CI">
                                 <span ng-if="!newEmployee.ci">Carica CI</span>
                                 <span ng-if="newEmployee.ci">Carica Nuovo CI</span>
                             </md-button>
-
                             <i ng-if="newEmployee.ci" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newEmployee.ci}}">credit_card</a></i>
                         </div>
                     </md-card>
+
                     <div layout-gt-sm="row">
                         <span flex></span>
                         <label ng-if="editedObject.username != null">Creato da {{editedObject.username}}</label>
