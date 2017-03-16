@@ -259,6 +259,10 @@ angular.module("employeeControllers", ["chart.js"])
         $scope.dougChart.data = []
         $scope.dougChart.Employees = []
 
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
         //Button/OnLoad function
         $scope.loadChartData = function() {
 
