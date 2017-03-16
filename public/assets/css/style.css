@@ -293,6 +293,6 @@ md-icon {
         color: lightseagreen;
     }
     
-    md-select .md-select-value {
+    md-dialog-content md-select .md-select-value {
         margin-bottom: 20px;
     }

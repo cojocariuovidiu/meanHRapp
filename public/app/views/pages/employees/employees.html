@@ -33,7 +33,7 @@
                     <th md-column md-order-by="age">Eta'</th>
                     <th md-column md-order-by="tel">Telefono</th>
                     <th md-column md-order-by="email">Email</th>
-                    <th md-column md-order-by="note">Note</th>
+                    <th md-column md-order-by="status">Status</th>
                     <th md-column md-order-by="note">Creato da</th>
                     <th ng-if="main.group == 'hr' || main.group =='admin'" md-column>Azione</th>
                 </tr>
@@ -49,7 +49,7 @@
                     <td md-cell>{{ item.age}}</td>
                     <td md-cell>{{ item.tel}}</td>
                     <td md-cell>{{ item.email}}</td>
-                    <td md-cell>{{ item.note}}</td>
+                    <td md-cell>{{ item.status}}</td>
                     <td md-cell>{{ item.username}}</td>
                     <td ng-if="main.group == 'hr' || main.group =='admin'" md-cell>
                         <md-button ng-click="emp.editEmployee(item._id)" class="md-fab md-mini md-warn">
