@@ -66,14 +66,14 @@
                                 <label>Data Assunzione</label>
                                 <md-datepicker required ng-model="newEmployee.employmentdate" aria-label="employmentdateInput"></md-datepicker>
                             </md-input-container>
-                            <md-input-container>
-                                <label>Data Partenza</label>
-                                <md-datepicker ng-model=" newEmployee.leavingDate " aria-label="leavingDateInput "></md-datepicker>
+                            <md-input-container ng-show="newEmployee.status == 'Non lavora più a Bitech'">
+                                <label>Data Partenza </label>
+                                <md-datepicker ng-model="newEmployee.leavingDate " aria-label="leavingDateInput"></md-datepicker>
                             </md-input-container>
                         </div>
                     </md-card>
 
-                    <md-card ng-if="editedObject.username ">
+                    <md-card ng-if="editedObject.username">
                         <label class="md-padding ">Dati Caricamenti:</label>
                         <div layout-gt-lg="row ">
                             <input class="ng-hide " id="input-file-id " file-model="file.upload " type="file " name="myfile " style="display: none ">

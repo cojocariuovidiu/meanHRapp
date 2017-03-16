@@ -61,7 +61,7 @@ angular.module("employeeControllers", ["chart.js"])
 
         $scope.departments = ['Maran BO', 'Triboo', 'Aria']
         $scope.sessi = ['F', 'M']
-        $scope.statusList = ['Lavora a Bitech', 'Non Lavora piu a Bitech']
+        $scope.statusList = ['Lavora a Bitech', 'Non lavora più a Bitech']
 
         $scope.hide = function() {
             $mdDialog.hide();
