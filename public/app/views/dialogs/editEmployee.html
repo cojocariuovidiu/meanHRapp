@@ -1,4 +1,4 @@
-<md-dialog aria-label="Add/Edit">
+<md-dialog ng-cloak="" style="height: 80%" flex="50" aria-label="Add/Edit">
     <!--<form ng-submit="main.submitInterview(newEmployee)" novalidate ng-cloak>-->
     <form ng-submit="submitEmployee(newEmployee)">
         <md-toolbar>
@@ -13,7 +13,7 @@
         </md-toolbar>
 
         <md-dialog-content aria-label="MD Dialog Content">
-            <div layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
+            <div layout="column" class="md-inline-form inputdemoBasicUsage">
 
                 <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
 
@@ -24,7 +24,6 @@
                                 <label>Nome e cognome</label>
                                 <input required aria-label="nameInput" ng-model="newEmployee.name">
                             </md-input-container>
-
                             <md-input-container class="md-block" flex-gt-sm="">
                                 <label>Cnp</label>
                                 <input aria-label="cnpInput" ng-model="newEmployee.cnp">
@@ -71,7 +70,6 @@
                             <div ng-show="message">
                                 <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{ci}}" target="_blank">{{file.upload.name}} </a> {{message}}
                             </div>
-
                             <md-button ng-click="SubmitUpload()" ng-disabled="!file.upload.name || !uploadCIEnabled" class="md-raised" aria-label="Submit-Upload-CI">
                                 <span ng-if="!newEmployee.ci">Carica CI</span>
                                 <span ng-if="newEmployee.ci">Carica Nuovo CI</span>
