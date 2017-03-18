@@ -21,9 +21,9 @@ angular.module('employeeServices', [])
         return $http.get('/api/getWorkingEmployees')
     }
 
-    // employeeFactory.edit = ((id) => {
-    //     $http.get('/editEmployee/' + id)
-    // })
+    employeeFactory.getEmployee = function(id) {
+        return $http.post('/api/getEmployee/', { id: id })
+    }
 
     return employeeFactory;
 })

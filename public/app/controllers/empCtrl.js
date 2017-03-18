@@ -22,25 +22,26 @@ angular.module("employeeControllers", ["chart.js"])
         if (id) {
             console.log('editing', id)
 
-            $http.get('/api/getEmployee/' + id).then(function(response) {
-                emp.editedObject = response.data.item
-                $mdDialog.show({
-                        controller: DialogController,
-                        templateUrl: 'app/views/dialogs/editEmployee.html',
-                        locals: {
-                            editedObject: emp.editedObject
-                        },
-                        parent: angular.element(document.body),
-                        //targetEvent: ev,
-                        clickOutsideToClose: false,
-                        fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-                    })
-                    // .then(function(answer) {
-                    //     $scope.status = 'You said the information was "' + answer + '".';
-                    // }, function() {
-                    //     $scope.status = 'You cancelled the dialog.';
-                    // });
-            })
+            Employee.getEmployee(id)
+                .then(function(response) {
+                    emp.editedObject = response.data.item
+                    $mdDialog.show({
+                            controller: DialogController,
+                            templateUrl: 'app/views/dialogs/editEmployee.html',
+                            locals: {
+                                editedObject: emp.editedObject
+                            },
+                            parent: angular.element(document.body),
+                            //targetEvent: ev,
+                            clickOutsideToClose: false,
+                            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+                        })
+                        // .then(function(answer) {
+                        //     $scope.status = 'You said the information was "' + answer + '".';
+                        // }, function() {
+                        //     $scope.status = 'You cancelled the dialog.';
+                        // });
+                })
         } else {
             emp.editedObject = {}
             $mdDialog.show({

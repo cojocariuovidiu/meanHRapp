@@ -261,9 +261,8 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/getEmployee/:id
-    router.get('/getEmployee/:id', function(req, res) {
-
-        Employee.findOne({ _id: req.params.id }).select().exec(function(err, item) {
+    router.post('/getEmployee', function(req, res) {
+        Employee.findOne({ _id: req.body.id }).select().exec(function(err, item) {
             if (err) throw err;
             if (!item) {
                 console.log("can't find id to edit.")
@@ -423,7 +422,6 @@ module.exports = function(router) {
                 console.log('update failed');
                 console.log(err)
                 res.json({ success: false })
-            } else {
                 console.log('update success');
                 res.json({ success: true })
             }

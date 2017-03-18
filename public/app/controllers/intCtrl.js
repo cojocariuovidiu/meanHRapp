@@ -439,8 +439,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         page: 1
     };
 
-
-
     function success(interviews) {
         $scope.interviewsList = interviews;
     }
@@ -467,7 +465,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             FilterByStatus(displayingObject.activator)
         }
     }
-
 
     var showToast = function(message) {
         $mdToast.show(
