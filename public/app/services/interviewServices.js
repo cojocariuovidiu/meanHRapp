@@ -22,7 +22,7 @@ angular.module('interviewServices', [])
             })
     }
 
-    //Interview.editInterview
+    //Interview.editInterview(id, newInterview, currentCV, currentCI)
     interviewFactory.editInterview = function(id, newInterview, currentCV, currentCI) {
         return $http.put('/api/editInterview/' + id, {
             updateData: newInterview,
@@ -31,27 +31,15 @@ angular.module('interviewServices', [])
         })
     }
 
-    //Interview.delete
+    //Interview.delete(id)
     interviewFactory.delete = function(id) {
         return $http.delete('/api/interviews/' + id)
-
     }
 
-    // interviewFactory.getChartData = function() {
-    //     return $http.get('/api/getChartData')
-    // }
-
-    //Interview.update(updateInterview)
-    // interviewFactory.update = function(id) {
-    //     return $http.put('/api/getinterviews', id).then(function(response) {
-    //         console.log('Data updated status:', response.data.success)
-    //     })
-    // }
-
-    // interviewFactory.getinterview = function() {
-    //     return $http.get('/api/getinterview')
-    // }
-
+    //Interview.getInterviewsByStatus(option)
+    interviewFactory.getInterviewsByStatus = function(option) {
+        return $http.post('/api/getInterviewsByStatus', { option: option })
+    }
 
     return interviewFactory;
 })

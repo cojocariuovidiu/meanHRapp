@@ -94,7 +94,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             $scope.newInterview.datacolloquio = new Date($scope.newInterview.datacolloquio)
         }
 
-
         $scope.dataCollChanged = function(date) {
             console.log('datechaged', date)
         }
@@ -118,7 +117,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 //CREATE Interview
                 Interview.create({
                     newInterview: newInterview,
-                    // username: int.username
                     username: shareData.loggedUser
                 }).then(function() {
                     checkDisplaying()
@@ -393,12 +391,13 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
     //executed on filter with option
     function FilterByStatus(option) {
         $scope.promise = $timeout(function() {
-            $http.post('/api/getInterviewsByStatus', { option: option }).then(function(response) {
-                int.interviewsList = response.data
-                displayingObject = {
-                    activator: option
-                }
-            })
+            Interview.getInterviewsByStatus(option)
+                .then(function(response) {
+                    int.interviewsList = response.data
+                    displayingObject = {
+                        activator: option
+                    }
+                })
         }, 200)
     }
 
