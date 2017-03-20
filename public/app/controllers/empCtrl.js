@@ -136,13 +136,13 @@ angular.module("employeeControllers", ["chart.js"])
 
             $mdDialog.show(confirm).then(
                 function() {
-                    // console.log('Dialog Canceled')
+                    console.log('Dialog Canceled')
                 },
                 function() {
-                    $http.delete('/api/employees/' + editedObject._id).then(function(response) {
-                        //console.log(response.data.success, response.data.message)
-                        checkDisplaying()
-                    })
+                    Employee.delete(editedObject._id)
+                        .then(function(response) {
+                            checkDisplaying()
+                        })
                 });
         }
 

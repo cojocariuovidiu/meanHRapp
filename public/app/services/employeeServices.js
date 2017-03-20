@@ -37,5 +37,10 @@ angular.module('employeeServices', [])
         })
     }
 
+    //Employee.delete(editedObject._id)
+    employeeFactory.delete = function(id) {
+        return $http.delete('/api/employees/' + id)
+    }
+
     return employeeFactory;
 })
