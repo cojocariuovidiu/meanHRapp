@@ -11,7 +11,7 @@ angular.module("employeeControllers", ["chart.js"])
     $mdDateLocaleProvider.firstDayOfWeek = 1;
 })
 
-.controller("empCtrl", function($mdToast, $timeout, uploadFile, shareData, Employee, $mdDialog, $scope, $http) {
+.controller("empCtrl", function($mdToast, $timeout, uploadFile, shareData, Employee, $mdDialog, $scope) {
     var emp = this
     var displayingObject = {}
 
@@ -330,21 +330,18 @@ angular.module("employeeControllers", ["chart.js"])
         } else {
             var momentFrom = moment(fromDate).format('MMM/D/YYYY')
             var momentTo = moment(toDate).format('MMM/D/YYYY')
-                // console.log('momentfrom', momentFrom)
-                // console.log('momentto', momentTo)
 
             $scope.fromDate = fromDate
             $scope.toDate = toDate
 
             $scope.promise = $timeout(function() {
-                $http.post('/api/getEmployeesRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
-                    // console.log(response.data)
-
-                    emp.employeessList = response.data
-                    displayingObject = {
-                        activator: 'Range'
-                    }
-                }, this)
+                Employee.RangeFilter(fromDate, toDate)
+                    .then(function(response) {
+                        emp.employeessList = response.data
+                        displayingObject = {
+                            activator: 'Range'
+                        }
+                    }, this)
             }, 200);
         }
     }

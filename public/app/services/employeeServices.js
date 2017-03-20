@@ -26,13 +26,12 @@ angular.module('employeeServices', [])
         return $http.post('/api/getEmployee/', { id: id })
     }
 
-    //Employee.editEmployee
+    //Employee.editEmployee(id, newEmployee, currentCI)
     employeeFactory.editEmployee = function(id, newEmployee, currentCI) {
         console.log(id, newEmployee, currentCI)
 
         return $http.put('/api/editEmployee/' + id, {
             updateData: newEmployee,
-            //editedBy: editedBy,
             ci: currentCI
         })
     }
@@ -42,9 +41,18 @@ angular.module('employeeServices', [])
         return $http.delete('/api/employees/' + id)
     }
 
+    //Employee.getEmployeesByDepartment(option)
     employeeFactory.getEmployeesByDepartment = function(option) {
         return $http.post('/api/getEmployeesByDepartment', {
             option: option
+        })
+    }
+
+    //Employee.RangeFilter(fromDate, toDate)
+    employeeFactory.RangeFilter = function(fromDate, toDate) {
+        return $http.post('/api/getEmployeesRangeFilter', {
+            from: fromDate,
+            to: toDate
         })
     }
 
