@@ -42,5 +42,11 @@ angular.module('employeeServices', [])
         return $http.delete('/api/employees/' + id)
     }
 
+    employeeFactory.getEmployeesByDepartment = function(option) {
+        return $http.post('/api/getEmployeesByDepartment', {
+            option: option
+        })
+    }
+
     return employeeFactory;
 })

@@ -106,13 +106,6 @@ angular.module("employeeControllers", ["chart.js"])
                 let currentCI = ((!$scope.ci) ? newEmployee.ci : $scope.ci);
                 //Update Employee
                 Employee.editEmployee(editedObject._id, newEmployee, currentCI)
-                    // $http.put('/api/editEmployee/' + editedObject._id, {
-                    //     updateData: newEmployee,
-                    //     editedBy: shareData.loggedUser,
-                    //     ci: currentCI
-                    // interviewStatus: $scope.interviewStatus,
-                    // buletin: $scope.buletin
-                    // })
                     .then(function(response) {
                         // console.log('Data updated status:', newEmployee)
                     }).then(function(response) {
@@ -174,6 +167,8 @@ angular.module("employeeControllers", ["chart.js"])
             getEmployeesFiltered('All')
         } else if (displayingObject.activator == 'Range') {
             RangeFilter($scope.fromDate, $scope.toDate)
+        } else {
+            FilterByDepartment(displayingObject.activator)
         }
     }
 
@@ -211,14 +206,13 @@ angular.module("employeeControllers", ["chart.js"])
     //executed on filter with option
     function FilterByDepartment(option) {
         $scope.promise = $timeout(function() {
-            $http.post('/api/getEmployeesByDepartment', { option: option }).then(function(response) {
-                // console.log(response.data)
-
-                emp.employeessList = response.data
-                displayingObject = {
-                    activator: option
-                }
-            })
+            Employee.getEmployeesByDepartment(option)
+                .then(function(response) {
+                    emp.employeessList = response.data
+                    displayingObject = {
+                        activator: option
+                    }
+                })
         }, 200)
     }
 

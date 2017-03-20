@@ -367,7 +367,6 @@ module.exports = function(router) {
         Employee.findOneAndUpdate({ _id: req.params.id }, updateEmployee, { new: true }, function(err) {
             if (err) {
                 console.log('update failed');
-                console.log(err)
                 res.json({ success: false })
             } else {
                 console.log('update success');
