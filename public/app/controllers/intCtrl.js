@@ -8,7 +8,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
     $mdDateLocaleProvider.firstDayOfWeek = 1;
 })
 
-.controller("intCtrl", function(shareData, $mdToast, uploadFile, $mdSidenav, $mdDialog, Interview, $scope, $http, $timeout, $location, $rootScope, $window, $interval) {
+.controller("intCtrl", function(shareData, $mdToast, uploadFile, $mdSidenav, $mdDialog, Interview, $scope, $timeout, $location, $rootScope, $window, $interval) {
     console.log('intCtrl ok')
 
     var int = this
@@ -414,12 +414,13 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             $scope.toDate = toDate
 
             $scope.promise = $timeout(function() {
-                $http.post('/api/getInterviewsRangeFilter', { from: fromDate, to: toDate }).then(function(response) {
-                    int.interviewsList = response.data
-                    displayingObject = {
-                        activator: 'Range'
-                    }
-                }, this)
+                Interview.getInterviewsRangeFilter(fromDate, toDate)
+                    .then(function(response) {
+                        int.interviewsList = response.data
+                        displayingObject = {
+                            activator: 'Range'
+                        }
+                    }, this)
                 console.log('promisse range')
             }, 200);
         }

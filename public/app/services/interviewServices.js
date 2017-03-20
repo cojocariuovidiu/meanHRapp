@@ -15,11 +15,10 @@ angular.module('interviewServices', [])
 
     //Interview.create(newInterview)
     interviewFactory.create = function(interview) {
-        console.log('id from int service:', interview)
         return $http.post('/api/interview', interview)
-            .then(function(response) {
-                console.log("Data saved status:", response.data.success);
-            })
+            // .then(function(response) {
+            //     console.log("Data saved status:", response.data.success);
+            // })
     }
 
     //Interview.editInterview(id, newInterview, currentCV, currentCI)
@@ -39,6 +38,14 @@ angular.module('interviewServices', [])
     //Interview.getInterviewsByStatus(option)
     interviewFactory.getInterviewsByStatus = function(option) {
         return $http.post('/api/getInterviewsByStatus', { option: option })
+    }
+
+    //Interview.getInterviewsRangeFilter(fromDate, toDate)
+    interviewFactory.getInterviewsRangeFilter = function(fromDate, toDate) {
+        return $http.post('/api/getInterviewsRangeFilter', {
+            from: fromDate,
+            to: toDate
+        })
     }
 
     return interviewFactory;
