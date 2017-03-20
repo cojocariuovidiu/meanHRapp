@@ -135,14 +135,11 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 //     delete newInterview.dataapplicazione
                 // }
 
-                $http.put('/api/editinterview/' + editedObject._id, {
-                    updateData: newInterview,
-                    cv: currentCV,
-                    ci: currentCI
-                }).then(function(response) {
-                    checkDisplaying()
-                    $mdDialog.hide();
-                })
+                Interview.editInterview(editedObject._id, newInterview, currentCI, currentCI)
+                    .then(function(response) {
+                        checkDisplaying()
+                        $mdDialog.hide();
+                    })
             }
             showToast('Intervista salvato con successo !')
         }

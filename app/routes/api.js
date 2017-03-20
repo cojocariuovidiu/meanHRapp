@@ -378,7 +378,7 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/editinterview/:id
-    router.put('/editinterview/:id', function(req, res) {
+    router.put('/editInterview/:id', function(req, res) {
 
         let updateInterview = {
             dataapplicazione: req.body.updateData.dataapplicazione,

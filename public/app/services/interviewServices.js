@@ -17,6 +17,15 @@ angular.module('interviewServices', [])
             })
     }
 
+    //Interview.editInterview
+    interviewFactory.editInterview = function(id, newInterview, currentCV, currentCI) {
+        return $http.put('/api/editInterview/' + id, {
+            updateData: newInterview,
+            cv: currentCV,
+            ci: currentCI
+        })
+    }
+
     // interviewFactory.getChartData = function() {
     //     return $http.get('/api/getChartData')
     // }
@@ -37,5 +46,7 @@ angular.module('interviewServices', [])
     // interviewFactory.getinterview = function() {
     //     return $http.get('/api/getinterview')
     // }
+
+
     return interviewFactory;
 })
