@@ -199,18 +199,19 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 .ok('No')
                 .cancel('Si');
 
-            $mdDialog.show(confirm).then(
-                function() {
-                    console.log('Dialog Canceled')
-                },
-                function() {
-                    $http.delete('/api/interviews/' + editedObject._id).then(function(response) {
-                        //console.log(response.data.success, response.data.message)
-                        checkDisplaying()
-                    })
-                });
+            $mdDialog.show(confirm)
+                .then(
+                    function() { //Cancel
+                        console.log('Dialog Canceled')
+                    },
+                    function() { //Confirm
+                        Interview.delete(editedObject._id)
+                            .then(function(response) {
+                                //console.log(response.data.success, response.data.message)
+                                checkDisplaying()
+                            })
+                    });
         };
-
     }
 
     //Call Sort Modal

@@ -26,6 +26,12 @@ angular.module('interviewServices', [])
         })
     }
 
+    //Interview.delete
+    interviewFactory.delete = function(id) {
+        return $http.delete('/api/interviews/' + id)
+
+    }
+
     // interviewFactory.getChartData = function() {
     //     return $http.get('/api/getChartData')
     // }
@@ -34,12 +40,6 @@ angular.module('interviewServices', [])
     // interviewFactory.update = function(id) {
     //     return $http.put('/api/getinterviews', id).then(function(response) {
     //         console.log('Data updated status:', response.data.success)
-    //     })
-    // }
-
-    // interviewFactory.delete = function(id) {
-    //     return $http.delete('/api/interviews/', id).then(function(response) {
-    //         console.log('Data delete status:', response.data.success)
     //     })
     // }
 
