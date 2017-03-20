@@ -248,7 +248,7 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/getinterview/:id
-    router.get('/getinterview/:id', function(req, res) {
+    router.get('/getClickedInterview/:id', function(req, res) {
 
         Interview.findOne({ _id: req.params.id }).select().exec(function(err, item) {
             if (err) throw err;

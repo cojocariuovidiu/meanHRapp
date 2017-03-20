@@ -21,25 +21,26 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
 
     $scope.editInterview = function(id) {
         if (id) {
-            $http.get('/api/getinterview/' + id).then(function(response) {
-                int.editedObject = response.data.item
-                $mdDialog.show({
-                        controller: DialogController,
-                        templateUrl: 'app/views/dialogs/editInterview.html',
-                        locals: {
-                            editedObject: int.editedObject
-                        },
-                        parent: angular.element(document.body),
-                        //targetEvent: ev,
-                        clickOutsideToClose: false,
-                        fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-                    })
-                    // .then(function(answer) {
-                    //     $scope.status = 'You said the information was "' + answer + '".';
-                    // }, function() {
-                    //     $scope.status = 'You cancelled the dialog.';
-                    // });
-            })
+            Interview.getClickedInterview(id)
+                .then(function(response) {
+                    int.editedObject = response.data.item
+                    $mdDialog.show({
+                            controller: DialogController,
+                            templateUrl: 'app/views/dialogs/editInterview.html',
+                            locals: {
+                                editedObject: int.editedObject
+                            },
+                            parent: angular.element(document.body),
+                            //targetEvent: ev,
+                            clickOutsideToClose: false,
+                            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+                        })
+                        // .then(function(answer) {
+                        //     $scope.status = 'You said the information was "' + answer + '".';
+                        // }, function() {
+                        //     $scope.status = 'You cancelled the dialog.';
+                        // });
+                })
         } else {
             int.editedObject = {}
             $mdDialog.show({

@@ -3,9 +3,14 @@ angular.module('interviewServices', [])
 .factory('Interview', function($http) {
     interviewFactory = {};
 
-    ////Interview.getinterviews()
+    //Interview.getinterviews()
     interviewFactory.getinterviews = function() {
         return $http.get('/api/getinterviews')
+    }
+
+    //Interview.getinterview(id)
+    interviewFactory.getClickedInterview = function(id) {
+        return $http.get('/api/getClickedInterview/' + id)
     }
 
     //Interview.create(newInterview)
