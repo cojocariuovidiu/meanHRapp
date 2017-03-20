@@ -422,6 +422,7 @@ module.exports = function(router) {
                 console.log('update failed');
                 console.log(err)
                 res.json({ success: false })
+            } else {
                 console.log('update success');
                 res.json({ success: true })
             }

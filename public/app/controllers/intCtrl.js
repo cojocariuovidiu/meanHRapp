@@ -137,12 +137,8 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
 
                 $http.put('/api/editinterview/' + editedObject._id, {
                     updateData: newInterview,
-                    // editedBy: int.username,
-                    editedBy: shareData.loggedUser,
                     cv: currentCV,
                     ci: currentCI
-                }).then(function(response) {
-                    console.log('Data updated status:', newInterview)
                 }).then(function(response) {
                     checkDisplaying()
                     $mdDialog.hide();

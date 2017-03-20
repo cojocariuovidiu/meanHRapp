@@ -105,18 +105,20 @@ angular.module("employeeControllers", ["chart.js"])
             } else {
                 let currentCI = ((!$scope.ci) ? newEmployee.ci : $scope.ci);
                 //Update Employee
-                $http.put('/api/editEmployee/' + editedObject._id, {
-                    updateData: newEmployee,
-                    editedBy: shareData.loggedUser,
-                    ci: currentCI
-                        // interviewStatus: $scope.interviewStatus,
-                        // buletin: $scope.buletin
-                }).then(function(response) {
-                    // console.log('Data updated status:', newEmployee)
-                }).then(function(response) {
-                    checkDisplaying()
-                    $mdDialog.hide();
-                })
+                Employee.editEmployee(editedObject._id, newEmployee, currentCI)
+                    // $http.put('/api/editEmployee/' + editedObject._id, {
+                    //     updateData: newEmployee,
+                    //     editedBy: shareData.loggedUser,
+                    //     ci: currentCI
+                    // interviewStatus: $scope.interviewStatus,
+                    // buletin: $scope.buletin
+                    // })
+                    .then(function(response) {
+                        // console.log('Data updated status:', newEmployee)
+                    }).then(function(response) {
+                        checkDisplaying()
+                        $mdDialog.hide();
+                    })
             }
             showToast('Dipendente salvato con successo !')
             console.log('Dipendente salvato con successo !')
