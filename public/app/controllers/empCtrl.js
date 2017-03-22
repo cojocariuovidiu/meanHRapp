@@ -283,7 +283,7 @@ angular.module("employeeControllers", ["chart.js"])
                         totals[1]++
                     } else if (response.data[i].department === $scope.dougChart.labels[2]) { //Aria
                         totals[2]++
-                    } else if (response.data[i].department === $scope.dougChart.labels[2]) { //Cerved
+                    } else if (response.data[i].department === $scope.dougChart.labels[3]) { //Cerved
                         totals[3]++
                     } else { //No Dpt
                         totals[4]++
