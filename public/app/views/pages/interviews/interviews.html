@@ -2,8 +2,9 @@
 <div class="md-toolbar-tools">
     <!--<div class="toolbarTitle">Interviste</div>-->
     <div flex></div>
-    <md-input-container>
-        <label>Cerca</label>
+    <md-input-container class="cerca">
+
+        <label><md-icon>search</md-icon>Cerca</label>
         <input ng-model="searchInterview">
     </md-input-container>
     <md-button ng-click="editInterview()" ng-if="main.group == 'hr' || main.group =='admin'" class="md-raised md-fab md-mini">

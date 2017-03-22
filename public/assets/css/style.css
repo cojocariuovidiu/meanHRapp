@@ -228,6 +228,10 @@ md-content {
         padding-right: 5px;
     }
     
+    .cerca {
+        margin-bottom: -20px;
+    }
+    
     .table-card {
         margin-top: 30px;
     }
