@@ -134,7 +134,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 //     delete newInterview.dataapplicazione
                 // }
 
-                Interview.editInterview(editedObject._id, newInterview, currentCI, currentCI)
+                Interview.editInterview(editedObject._id, newInterview, currentCV, currentCI)
                     .then(function(response) {
                         checkDisplaying()
                         $mdDialog.hide();
