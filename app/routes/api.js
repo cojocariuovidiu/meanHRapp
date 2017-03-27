@@ -8,10 +8,10 @@ var moment = require('moment')
 
 var cv = ''
 var CVstorage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, './public/uploads')
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         if (!file.originalname.match(/\.(pdf|png|jpeg|jpg|doc|docx)$/)) {
             var err = new Error()
             err.code = 'filetype'
@@ -23,17 +23,17 @@ var CVstorage = multer.diskStorage({
     }
 })
 var uploadCV = multer({
-        storage: CVstorage,
-        limits: { fileSize: 10000000 } //limit 10 MB
-    }).single('myfile') //from service and input html field
+    storage: CVstorage,
+    limits: { fileSize: 10000000 } //limit 10 MB
+}).single('myfile') //from service and input html field
 
 
 var ci = ''
 var CIstorage = multer.diskStorage({
-    destination: function(req, file, cb) {
+    destination: function (req, file, cb) {
         cb(null, './public/uploads')
     },
-    filename: function(req, file, cb) {
+    filename: function (req, file, cb) {
         if (!file.originalname.match(/\.(pdf|png|jpeg|jpg|doc|docx)$/)) {
             var err = new Error()
             err.code = 'filetype'
@@ -45,15 +45,15 @@ var CIstorage = multer.diskStorage({
     }
 })
 var uploadCI = multer({
-        storage: CIstorage,
-        limits: { fileSize: 10000000 } //limit 10 MB
-    }).single('myfile') //from service and input html field
+    storage: CIstorage,
+    limits: { fileSize: 10000000 } //limit 10 MB
+}).single('myfile') //from service and input html field
 
-module.exports = function(router) {
+module.exports = function (router) {
 
     //USER REGISTRATION ROUTE
     //http://127.0.0.1:3000/users
-    router.post('/users', function(req, res) {
+    router.post('/users', function (req, res) {
         var user = new User()
 
         user.username = req.body.username
@@ -69,7 +69,7 @@ module.exports = function(router) {
             req.body.group === null || req.body.group === undefined || req.body.group === '') {
             res.json({ success: false, message: 'Ensure group, username, email and password were provided' })
         } else {
-            user.save(function(err) {
+            user.save(function (err) {
                 if (err) { //if user exists in the db or some other error
                     res.json({ success: false, message: 'Username or Email already exists' })
                 } else {
@@ -82,10 +82,10 @@ module.exports = function(router) {
 
     //USER LOGIN ROUTE
     //http://localhost:3000/api/authenticate
-    router.post('/authenticate', function(req, res) {
+    router.post('/authenticate', function (req, res) {
         //console.log(req.body.username, req.body.password);
 
-        User.findOne({ username: req.body.username }).select('group email username password').exec(function(err, user) {
+        User.findOne({ username: req.body.username }).select('group email username password').exec(function (err, user) {
             if (err) throw err;
 
             if (!user) {
@@ -106,8 +106,8 @@ module.exports = function(router) {
                         email: user.email,
                         group: user.group
                     }, secret, {
-                        expiresIn: '6360h'
-                    })
+                            expiresIn: '6360h'
+                        })
 
                     res.json({ success: true, message: 'User authenticated!', token: token })
                 }
@@ -116,11 +116,11 @@ module.exports = function(router) {
     })
 
     //middleware (EVERYTHING AFTER THIS REQUIRE THE USER TO BE LOGGED IN)
-    router.use(function(req, res, next) {
+    router.use(function (req, res, next) {
         var token = req.body.token || req.body.query || req.headers['x-access-token']
         if (token) {
             //verify token
-            jwt.verify(token, secret, function(err, decoded) {
+            jwt.verify(token, secret, function (err, decoded) {
                 if (err) { //if token expired
                     console.log('Token Invalid', err)
                     res.json({ success: false, message: 'Token Invalid' })
@@ -136,7 +136,7 @@ module.exports = function(router) {
         }
     })
 
-    router.post('/me', function(req, res) {
+    router.post('/me', function (req, res) {
         res.send(req.decoded)
     })
 
@@ -160,7 +160,7 @@ module.exports = function(router) {
     // })
 
     //http://127.0.0.1:3000/api/interview
-    router.post('/interview', function(req, res) {
+    router.post('/interview', function (req, res) {
         //console.log(req.body)
 
         var interview = new Interview()
@@ -185,21 +185,21 @@ module.exports = function(router) {
         //     req.body.email === null || req.body.email === undefined || req.body.email === '') {
         //     res.json({ success: false, message: 'Empty fields' })
         // } else {
-        interview.save(function(err) {
-                if (err) {
-                    console.log('save failed');
-                    console.log(err)
-                    res.json({ success: false })
-                } else {
-                    console.log('save success');
-                    res.json({ success: true })
-                }
-            })
-            //}
+        interview.save(function (err) {
+            if (err) {
+                console.log('new intervieew create Failed');
+                console.log(err)
+                res.json({ success: false })
+            } else {
+                console.log('new interview created OK');
+                res.json({ success: true })
+            }
+        })
+        //}
     })
 
     //http://127.0.0.1:3000/api/employee
-    router.post('/employee', function(req, res) {
+    router.post('/employee', function (req, res) {
         //console.log(req.body)
 
         var employee = new Employee()
@@ -214,7 +214,7 @@ module.exports = function(router) {
         employee.status = req.body.newEmployee.status
         employee.username = req.body.username
 
-        employee.save(function(err) {
+        employee.save(function (err) {
             if (err) {
                 console.log('save failed');
                 console.log(err)
@@ -227,30 +227,40 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/getinterviews
-    router.get('/getinterviews', function(req, res) {
-        Interview.find({}, function(err, interviews) {
-            res.send(interviews)
+    router.get('/getinterviews', function (req, res) {
+        Interview.find({}, function (err, interviews) {
+            if (!err) {
+                res.send(interviews)
+                console.log('got all interviews OK')
+            } else {
+                console.log('Error getinterviews : ',err)
+            }
         })
     })
 
     //http://127.0.0.1:3000/api/getemployees
-    router.get('/getemployees', function(req, res) {
-        Employee.find({}, function(err, employees) {
-            res.send(employees)
+    router.get('/getemployees', function (req, res) {
+        Employee.find({}, function (err, employees) {
+            if (!err) {
+                res.send(employees)
+                console.log('got all employees OK')
+            } else {
+                console.log('Error getemployees : ',err)
+            }
         })
     })
 
     //http://127.0.0.1:3000/api/getWorkingEmployees
-    router.get('/getWorkingEmployees', function(req, res) {
-        Employee.find({ "status": "Lavora a Bitech" }, function(err, employees) {
+    router.get('/getWorkingEmployees', function (req, res) {
+        Employee.find({ "status": "Lavora a Bitech" }, function (err, employees) {
             res.send(employees)
         })
     })
 
     //http://127.0.0.1:3000/api/getinterview/:id
-    router.get('/getClickedInterview/:id', function(req, res) {
+    router.get('/getClickedInterview/:id', function (req, res) {
 
-        Interview.findOne({ _id: req.params.id }).select().exec(function(err, item) {
+        Interview.findOne({ _id: req.params.id }).select().exec(function (err, item) {
             if (err) throw err;
             if (!item) {
                 console.log("can't find id to edit.")
@@ -261,8 +271,8 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/getEmployee/:id
-    router.post('/getEmployee', function(req, res) {
-        Employee.findOne({ _id: req.body.id }).select().exec(function(err, item) {
+    router.post('/getEmployee', function (req, res) {
+        Employee.findOne({ _id: req.body.id }).select().exec(function (err, item) {
             if (err) throw err;
             if (!item) {
                 console.log("can't find id to edit.")
@@ -273,46 +283,46 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/getInterviewsRangeFilter
-    router.post('/getInterviewsRangeFilter', function(req, res) {
+    router.post('/getInterviewsRangeFilter', function (req, res) {
         var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
         var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
-        Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function(err, interviews) {
+        Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
             res.send(interviews)
         })
     })
 
     //http://127.0.0.1:3000/api/getEmployeesRangeFilter
-    router.post('/getEmployeesRangeFilter', function(req, res) {
+    router.post('/getEmployeesRangeFilter', function (req, res) {
         var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
         var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
-        Employee.find({ employmentdate: { $gte: momentFrom, $lte: momentTo } }, function(err, employees) {
+        Employee.find({ employmentdate: { $gte: momentFrom, $lte: momentTo } }, function (err, employees) {
             res.send(employees)
         })
     })
 
     //http://127.0.0.1:3000/api/getInterviewsByStatus
-    router.post('/getInterviewsByStatus', function(req, res) {
+    router.post('/getInterviewsByStatus', function (req, res) {
         // console.log('sorting by', req.body.option)
-        Interview.find({ esitocolloquio: req.body.option }, function(err, interviews) {
+        Interview.find({ esitocolloquio: req.body.option }, function (err, interviews) {
             //console.log(interviews)
             res.send(interviews)
         })
     })
 
     //http://127.0.0.1:3000/api/getEmployeesByDepartment
-    router.post('/getEmployeesByDepartment', function(req, res) {
+    router.post('/getEmployeesByDepartment', function (req, res) {
         // console.log('sorting by', req.body.option)
 
-        Employee.find({ department: req.body.option }, function(err, interviews) {
+        Employee.find({ department: req.body.option }, function (err, interviews) {
             //console.log(interviews)
             res.send(interviews)
         })
     })
 
-    router.delete('/interviews/:id', function(req, res) {
+    router.delete('/interviews/:id', function (req, res) {
         //console.log('id sent:', req.params.id)
 
-        Interview.findOne({ _id: req.params.id }).remove().exec(function(err, data) {
+        Interview.findOne({ _id: req.params.id }).remove().exec(function (err, data) {
             if (err) {
                 console.log(err);
                 res.json({ success: false, message: 'Could not delete.' })
@@ -323,11 +333,11 @@ module.exports = function(router) {
         })
     })
 
-    router.delete('/employees/:id', function(req, res) {
+    router.delete('/employees/:id', function (req, res) {
         // Interview.findOneAndRemove({_id: req.params.id})
         //console.log('id sent:', req.params.id)
 
-        Employee.findOne({ _id: req.params.id }).remove().exec(function(err, data) {
+        Employee.findOne({ _id: req.params.id }).remove().exec(function (err, data) {
             if (err) {
                 console.log(err);
                 res.json({ success: false, message: 'Could not delete.' })
@@ -339,7 +349,7 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/editEmployee/:id
-    router.put('/editEmployee/:id', function(req, res) {
+    router.put('/editEmployee/:id', function (req, res) {
 
         let updateEmployee = {
             employmentdate: req.body.updateData.employmentdate,
@@ -364,12 +374,12 @@ module.exports = function(router) {
         if (updateEmployee.status === null || updateEmployee.status === undefined) delete updateEmployee.status
         if (updateEmployee.ci === null || updateEmployee.ci === undefined) delete updateEmployee.ci
 
-        Employee.findOneAndUpdate({ _id: req.params.id }, updateEmployee, { new: true }, function(err) {
+        Employee.findOneAndUpdate({ _id: req.params.id }, updateEmployee, { new: true }, function (err) {
             if (err) {
-                console.log('update failed');
+                console.log('Employee Update Failed');
                 res.json({ success: false })
             } else {
-                console.log('update success');
+                console.log('Employee Update OK');
                 res.json({ success: true })
             }
         })
@@ -377,7 +387,7 @@ module.exports = function(router) {
     })
 
     //http://127.0.0.1:3000/api/editinterview/:id
-    router.put('/editInterview/:id', function(req, res) {
+    router.put('/editInterview/:id', function (req, res) {
 
         let updateInterview = {
             dataapplicazione: req.body.updateData.dataapplicazione,
@@ -416,21 +426,21 @@ module.exports = function(router) {
 
         console.log(updateInterview)
 
-        Interview.findOneAndUpdate({ _id: req.params.id }, updateInterview, { new: true }, function(err) {
+        Interview.findOneAndUpdate({ _id: req.params.id }, updateInterview, { new: true }, function (err) {
             if (err) {
-                console.log('update failed');
+                console.log('Interview Update Failed');
                 console.log(err)
                 res.json({ success: false })
             } else {
-                console.log('update success');
+                console.log('Interview Update OK');
                 res.json({ success: true })
             }
         });
     })
 
     //Upload file API's
-    router.post('/uploadCV', function(req, res) {
-        uploadCV(req, res, function(err) {
+    router.post('/uploadCV', function (req, res) {
+        uploadCV(req, res, function (err) {
             if (err) {
                 if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
                     res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })
@@ -450,8 +460,8 @@ module.exports = function(router) {
             }
         })
     })
-    router.post('/uploadCI', function(req, res) {
-        uploadCI(req, res, function(err) {
+    router.post('/uploadCI', function (req, res) {
+        uploadCI(req, res, function (err) {
             if (err) {
                 if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
                     res.json({ success: false, message: 'File size is too large. Max limit is 10MB' })

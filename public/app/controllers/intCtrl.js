@@ -360,7 +360,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
     function getInterviewsFiltered(option) {
         if (option == 'All') {
             // app.loadAll = true
-            $scope.promise = $timeout(function() {
+            // $scope.promise = $timeout(function() {
                 Interview.getinterviews().then(function(response) {
                     int.interviewsList = response.data
                     displayingObject = {
@@ -376,7 +376,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                     }];
                 })
                 console.log('promisse all')
-            }, 200);
+            // }, 200);
             console.log('Displaying', option)
         } else if (option == 'Assunti') {
             FilterByStatus('assunto')
