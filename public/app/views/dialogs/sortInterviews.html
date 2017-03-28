@@ -13,33 +13,62 @@
     <md-dialog-content>
         <div layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
             <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
-                <div layout-gt-sm="row">
-                    <md-input-container>
-                        <label>Da</label>
-                        <md-datepicker ng-model="fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>A</label>
-                        <md-datepicker ng-model="toDate" md-current-view="year" aria-label="toDate"></md-datepicker>
-                    </md-input-container>
-                    <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
-                        Vai
-                    </md-button>
-                </div>
-                <!--<md-button md-colors="{background: 'red'}" layout-fill class="md-raised md-accent" ng-click="getAll()">-->
-                <!--<md-button layout-fill class="md-raised md-accent" ng-click="getAll()">-->
-                <md-button class="assunto" ng-click="getAssunti()">
-                    Assunti
-                </md-button>
-                <md-button class="da_rivedere" ng-click="getDaRivedere()">
-                    Da Rivedere
-                </md-button>
-                <md-button class="scartato" ng-click="getScartati()">
-                    Scartati
-                </md-button>
-                <md-button class="md-raised md-primary" ng-click="getAll()">
-                    Tutti
-                </md-button>
+                <md-card>
+                    <div style="text-align:center">Ordinare per Status:</div>
+                    <div layout-gt-sm="row">
+                        <md-input-container>
+                            <label>Da</label>
+                            <!--md-current-view="year"-->
+                            <md-datepicker ng-model="fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>A</label>
+                            <md-datepicker ng-model="toDate" md-current-view="year" aria-label="toDate"></md-datepicker>
+                        </md-input-container>
+                        <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
+                            Vai
+                        </md-button>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-button class="assunto" ng-click="getAssunti()">
+                            Assunti
+                        </md-button>
+                        <md-button class="da_rivedere" ng-click="getDaRivedere()">
+                            Da Rivedere
+                        </md-button>
+                        <md-button class="scartato" ng-click="getScartati()">
+                            Scartati
+                        </md-button>
+                        <md-button class="md-raised md-primary" ng-click="getAll()">
+                            Tutti
+                        </md-button>
+                    </div>
+                </md-card>
+
+                <md-card>
+                    <div style="text-align:center">Ordinare per Data Coloquio:</div>
+                    <div layout-gt-sm="row">
+                        <md-input-container>
+                            <label>Da</label>
+                            <md-datepicker ng-model="fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>A</label>
+                            <md-datepicker ng-model="toDate" md-current-view="year" aria-label="toDate"></md-datepicker>
+                        </md-input-container>
+                        <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
+                            Vai
+                        </md-button>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-button ng-click="getToday()">
+                            Oggi
+                        </md-button>
+                        <md-button ng-click="getOneWeek()">
+                            Setimana
+                        </md-button>
+                    </div>
+                </md-card>
             </md-content>
         </div>
     </md-dialog-content>

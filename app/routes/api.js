@@ -231,7 +231,7 @@ module.exports = function (router) {
         Interview.find({}, function (err, interviews) {
             if (!err) {
                 res.send(interviews)
-                console.log(req.body.username, '- OK - get all int', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username, 'OK - get all int', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
                 console.log(req.body.username, '- error - get int ', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                 console.log(err)
@@ -244,7 +244,7 @@ module.exports = function (router) {
         Employee.find({}, function (err, employees) {
             if (!err) {
                 res.send(employees)
-                console.log(req.body.username,' - OK - get all emp', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username, 'OK - get all emp', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
                 console.log(req.body.username, '- error - get empl', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                 console.log(err)
@@ -253,7 +253,7 @@ module.exports = function (router) {
     })
 
     //LogMessage
-    function LogMessage(username){        
+    function LogMessage(username) {
 
     }
 
@@ -310,15 +310,30 @@ module.exports = function (router) {
     //http://127.0.0.1:3000/api/getInterviewsByStatus
     router.post('/getInterviewsByStatus', function (req, res) {
         // console.log('sorting by', req.body.option)
-        Interview.find({ esitocolloquio: req.body.option }, function (err, interviews) {
-            console.log(req.body.username, 'OK - sort Int by', req.body.option, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
-            res.send(interviews)
-        })
+        if (req.body.option === 'assunto' || req.body.option === 'da rivedere' || req.body.option === 'scartato') {
+            Interview.find({ esitocolloquio: req.body.option }, function (err, interviews) {
+                res.send(interviews)
+            })
+        } else if (req.body.option === 'today') {
+            var today = moment(Date.now()).format('YYYY/MM/DD')
+            var todayFix = moment(today).add('days', 1).format('YYYY/MM/DD')
+            console.log(today)
+            Interview.find({ datacolloquio: { $gte: today, $lte: todayFix } }, function (err, interviews) {
+                res.send(interviews)
+            })
+        } else if (req.body.option === 'week') {
+            var today = moment(Date.now()).format('YYYY/MM/DD')
+            var nextWeek = moment(Date.now()).add('days', 7).format('YYYY/MM/DD')
+            Interview.find({ datacolloquio: { $gte: today, $lte: nextWeek } }, function (err, interviews) {
+                res.send(interviews)
+            })
+        }
+        console.log(req.body.username, 'OK - sort Int by', req.body.option, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
     })
 
     //http://127.0.0.1:3000/api/getEmployeesByDepartment
     router.post('/getEmployeesByDepartment', function (req, res) {
-        console.log(req.body.username, '- OK - sort Emp by', req.body.option, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+        console.log(req.body.username, 'OK - sort Emp by', req.body.option, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
 
         Employee.find({ department: req.body.option }, function (err, interviews) {
             //console.log(interviews)

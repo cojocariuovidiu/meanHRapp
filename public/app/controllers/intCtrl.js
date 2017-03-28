@@ -265,6 +265,14 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 getInterviewsFiltered('Scartati')
                 $mdDialog.hide();
             };
+            $scope.getToday = function () {
+                getInterviewsFiltered('Today')
+                $mdDialog.hide();
+            }
+            $scope.getOneWeek = function () {
+                getInterviewsFiltered('Week')
+                $mdDialog.hide();
+            }
             $scope.cancel = function () {
                 $mdDialog.cancel();
             };
@@ -383,13 +391,18 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                             }];
                         })
                 }, 200);
-            } else if (option == 'Assunti') {
+            } else if (option === 'Assunti') {
                 FilterByStatus('assunto')
-            } else if (option == 'Da Rivedere') {
+            } else if (option === 'Da Rivedere') {
                 FilterByStatus('da rivedere')
-            } else if (option == 'Scartati') {
+            } else if (option === 'Scartati') {
                 FilterByStatus('scartato')
-            } else {
+            } else if (option === 'Today') {
+                FilterByStatus('today')
+            } else if (option === 'Week') {
+                FilterByStatus('week')
+            }
+            else {
                 console.log('something wrong on getInterviewsFiltered')
             }
         }
