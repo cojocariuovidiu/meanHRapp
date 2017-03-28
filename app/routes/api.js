@@ -227,30 +227,35 @@ module.exports = function (router) {
     })
 
     //http://127.0.0.1:3000/api/getinterviews
-    router.get('/getinterviews', function (req, res) {
+    router.post('/getinterviews', function (req, res) {
         Interview.find({}, function (err, interviews) {
             if (!err) {
                 res.send(interviews)
-                console.log('got all interviews OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username, '- get all int OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
-                console.log('Error getinterviews : ', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username, '- error get int ', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                 console.log(err)
             }
         })
     })
 
     //http://127.0.0.1:3000/api/getemployees
-    router.get('/getemployees', function (req, res) {
+    router.post('/getemployees', function (req, res) {
         Employee.find({}, function (err, employees) {
             if (!err) {
                 res.send(employees)
-                console.log('got all employees OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username,' - get all emp OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
-                console.log('Error getemployees : ', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username, '- error get empl', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                 console.log(err)
             }
         })
     })
+
+    //LogMessage
+    function LogMessage(username){        
+
+    }
 
     //http://127.0.0.1:3000/api/getWorkingEmployees
     router.get('/getWorkingEmployees', function (req, res) {
@@ -457,7 +462,7 @@ module.exports = function (router) {
                 if (!req.file) {
                     res.json({ success: false, message: 'Nessun file selezionato!' })
                 } else {
-                    console.log(cv, 'upload OK', , moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                    console.log(cv, 'upload OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                     res.json({ success: true, message: 'caricato con successo come CV !', cv: cv })
                 }
             }

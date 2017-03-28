@@ -78,14 +78,14 @@ var app = angular.module('appRoutes', ['ngRoute'])
 app.run(['$rootScope', 'Auth', '$location', function($rootScope, Auth, $location) {
     $rootScope.$on('$routeChangeStart', function(event, next, current) {
         if (next.$$route.authenticated == true) {
-            console.log('route restricted');
+            // console.log('route restricted');
             if (!Auth.isLoggedIn()) {
                 //event.preventDefault(); //prevent from navigating
                 $location.path('/login')
             }
 
         } else if (next.$$route.authenticated == false) {
-            console.log('route allowed');
+            // console.log('route allowed');
             if (Auth.isLoggedIn()) {
                 // event.preventDefault();
                 $location.path('/')

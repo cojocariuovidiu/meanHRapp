@@ -4,8 +4,8 @@ angular.module('interviewServices', [])
     interviewFactory = {};
 
     //Interview.getinterviews()
-    interviewFactory.getinterviews = function() {
-        return $http.get('/api/getinterviews')
+    interviewFactory.getinterviews = function(username) {
+        return $http.post('/api/getinterviews',{username: username})
     }
 
     //Interview.getinterview(id)

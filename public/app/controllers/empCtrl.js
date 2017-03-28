@@ -176,7 +176,7 @@ angular.module("employeeControllers", ["chart.js"])
         if (option == 'All') {
             $scope.promise = $timeout(function() {
 
-                Employee.getEmployees().then(function(response) {
+                Employee.getEmployees(shareData.loggedUser).then(function(response) {
                     console.log(response.data)
                     emp.employeessList = response.data
                     displayingObject = {

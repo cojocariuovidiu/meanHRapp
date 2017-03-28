@@ -4,8 +4,8 @@ angular.module('employeeServices', [])
     employeeFactory = {};
 
     //Employee.getEmployees()
-    employeeFactory.getEmployees = function() {
-        return $http.get('/api/getemployees')
+    employeeFactory.getEmployees = function(username) {
+        return $http.post('/api/getemployees', {username: username})
     }
 
     //Employee.create
