@@ -397,7 +397,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         function FilterByStatus(option) {
             var before = moment(Date.now())
             $scope.promise = $timeout(function () {
-                Interview.getInterviewsByStatus(option)
+                Interview.getInterviewsByStatus(shareData.loggedUser, option)
                     .then(function (response) {
                         int.interviewsList = response.data
                         displayingObject = {

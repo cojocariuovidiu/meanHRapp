@@ -42,8 +42,9 @@ angular.module('employeeServices', [])
     }
 
     //Employee.getEmployeesByDepartment(option)
-    employeeFactory.getEmployeesByDepartment = function(option) {
+    employeeFactory.getEmployeesByDepartment = function(username, option) {
         return $http.post('/api/getEmployeesByDepartment', {
+            username: username,
             option: option
         })
     }

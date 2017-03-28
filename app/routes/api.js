@@ -231,9 +231,9 @@ module.exports = function (router) {
         Interview.find({}, function (err, interviews) {
             if (!err) {
                 res.send(interviews)
-                console.log(req.body.username, '- get all int OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username, '- OK - get all int', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
-                console.log(req.body.username, '- error get int ', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username, '- error - get int ', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                 console.log(err)
             }
         })
@@ -244,9 +244,9 @@ module.exports = function (router) {
         Employee.find({}, function (err, employees) {
             if (!err) {
                 res.send(employees)
-                console.log(req.body.username,' - get all emp OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username,' - OK - get all emp', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
-                console.log(req.body.username, '- error get empl', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(req.body.username, '- error - get empl', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                 console.log(err)
             }
         })
@@ -311,14 +311,14 @@ module.exports = function (router) {
     router.post('/getInterviewsByStatus', function (req, res) {
         // console.log('sorting by', req.body.option)
         Interview.find({ esitocolloquio: req.body.option }, function (err, interviews) {
-            console.log('Sort Int By Status Ok', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+            console.log(req.body.username, 'OK - sort Int by', req.body.option, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             res.send(interviews)
         })
     })
 
     //http://127.0.0.1:3000/api/getEmployeesByDepartment
     router.post('/getEmployeesByDepartment', function (req, res) {
-        console.log('Sorting Emp by', req.body.option, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+        console.log(req.body.username, '- OK - sort Emp by', req.body.option, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
 
         Employee.find({ department: req.body.option }, function (err, interviews) {
             //console.log(interviews)
