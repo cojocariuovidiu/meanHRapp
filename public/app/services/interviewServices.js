@@ -5,8 +5,7 @@ angular.module('interviewServices', [])
 
     //Interview.getinterviews()
     interviewFactory.getinterviews = function() {
-        console.log('intService got all int')
-        return $http.post('/api/getinterviews')
+        return $http.get('/api/getinterviews')
     }
 
     //Interview.getinterview(id)

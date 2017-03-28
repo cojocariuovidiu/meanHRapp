@@ -227,7 +227,7 @@ module.exports = function (router) {
     })
 
     //http://127.0.0.1:3000/api/getinterviews
-    router.post('/getinterviews', function (req, res) {
+    router.get('/getinterviews', function (req, res) {
         Interview.find({}, function (err, interviews) {
             if (!err) {
                 res.send(interviews)
@@ -306,14 +306,14 @@ module.exports = function (router) {
     router.post('/getInterviewsByStatus', function (req, res) {
         // console.log('sorting by', req.body.option)
         Interview.find({ esitocolloquio: req.body.option }, function (err, interviews) {
-            //console.log(interviews)
+            console.log('Sort Int By Status Ok', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             res.send(interviews)
         })
     })
 
     //http://127.0.0.1:3000/api/getEmployeesByDepartment
     router.post('/getEmployeesByDepartment', function (req, res) {
-        // console.log('sorting by', req.body.option)
+        console.log('Sorting Emp by', req.body.option, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
 
         Employee.find({ department: req.body.option }, function (err, interviews) {
             //console.log(interviews)
@@ -326,11 +326,11 @@ module.exports = function (router) {
 
         Interview.findOne({ _id: req.params.id }).remove().exec(function (err, data) {
             if (err) {
-                console.log(err);
+                console.log(err, moment(Date.now()).format('YYYY/MM/DD HH:mm'));
                 res.json({ success: false, message: 'Could not delete.' })
             } else {
                 res.json({ success: true, message: data.result.n + ' documents deleted.' })
-                console.log(data.result.n, 'document removed.')
+                console.log(data.result.n, 'Int removed OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             }
         })
     })
@@ -345,7 +345,7 @@ module.exports = function (router) {
                 res.json({ success: false, message: 'Could not delete.' })
             } else {
                 res.json({ success: true, message: data.result.n + ' documents deleted.' })
-                console.log(data.result.n, 'document removed.')
+                console.log(data.result.n, 'Emp removed OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             }
         })
     })
@@ -378,10 +378,10 @@ module.exports = function (router) {
 
         Employee.findOneAndUpdate({ _id: req.params.id }, updateEmployee, { new: true }, function (err) {
             if (err) {
-                console.log('Employee Update Failed');
+                console.log('Employee Update Failed', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
                 res.json({ success: false })
             } else {
-                console.log('Employee Update OK');
+                console.log('Employee Update OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
                 res.json({ success: true })
             }
         })
@@ -430,11 +430,11 @@ module.exports = function (router) {
 
         Interview.findOneAndUpdate({ _id: req.params.id }, updateInterview, { new: true }, function (err) {
             if (err) {
-                console.log('Interview Update Failed');
+                console.log('Interview Update Failed', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
                 console.log(err)
                 res.json({ success: false })
             } else {
-                console.log('Interview Update OK');
+                console.log('Interview Update OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
                 res.json({ success: true })
             }
         });
@@ -449,6 +449,7 @@ module.exports = function (router) {
                 } else if (err.code === 'filetype') { //our custom error
                     res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg, doc, docx' })
                 } else {
+                    console.log('CV Upload Failed', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                     console.log(err)
                     res.json({ success: false, message: 'Unable to upload, call Administrator' })
                 }
@@ -456,7 +457,7 @@ module.exports = function (router) {
                 if (!req.file) {
                     res.json({ success: false, message: 'Nessun file selezionato!' })
                 } else {
-                    console.log(cv)
+                    console.log(cv, 'upload OK', , moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                     res.json({ success: true, message: 'caricato con successo come CV !', cv: cv })
                 }
             }
@@ -470,6 +471,7 @@ module.exports = function (router) {
                 } else if (err.code === 'filetype') { //our custom error
                     res.json({ success: false, message: 'File type is invalid. Must be pdf, png, jpeg, jpg, doc, docx' })
                 } else {
+                    console.log('CI Upload Failed', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                     console.log(err)
                     res.json({ success: false, message: 'Unable to upload, call Administrator' })
                 }
@@ -477,7 +479,7 @@ module.exports = function (router) {
                 if (!req.file) {
                     res.json({ success: false, message: 'Nessun file selezionato!' })
                 } else {
-                    console.log(ci)
+                    console.log(ci, 'upload OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
                     res.json({ success: true, message: 'caricato con successo come CI !', ci: ci })
                 }
             }

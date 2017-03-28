@@ -364,8 +364,8 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 Interview.getinterviews().then(function(response) {
                     int.interviewsList = response.data
 
-                    console.log('Interviews:', response.data)
-                    
+                    console.log('All interviews loaded: ')
+
                     displayingObject = {
                         message: option + ' (Totale: ' + int.interviewsList.length + ' )',
                         activator: 'All'
