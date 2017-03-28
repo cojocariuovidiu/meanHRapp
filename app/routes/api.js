@@ -191,7 +191,7 @@ module.exports = function (router) {
                 console.log(err)
                 res.json({ success: false })
             } else {
-                console.log('new interview created OK' , moment(Date.now()).format('YYYY/MM/DD HH:mm'));
+                console.log('new interview created OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
                 res.json({ success: true })
             }
         })
@@ -216,7 +216,7 @@ module.exports = function (router) {
 
         employee.save(function (err) {
             if (err) {
-                console.log('Employee save Failed' , moment(Date.now()).format('YYYY/MM/DD HH:mm'));
+                console.log('Employee save Failed', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
                 console.log(err)
                 res.json({ success: false })
             } else {
@@ -231,9 +231,10 @@ module.exports = function (router) {
         Interview.find({}, function (err, interviews) {
             if (!err) {
                 res.send(interviews)
-                console.log('got all interviews OK' , moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log('got all interviews OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
-                console.log('Error getinterviews : ', , moment(Date.now()).format('YYYY/MM/DD HH:mm') ,err)
+                console.log('Error getinterviews : ', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(err)
             }
         })
     })
@@ -243,9 +244,10 @@ module.exports = function (router) {
         Employee.find({}, function (err, employees) {
             if (!err) {
                 res.send(employees)
-                console.log('got all employees OK' , moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log('got all employees OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
-                console.log('Error getemployees : ', moment(Date.now()).format('YYYY/MM/DD HH:mm'),err)
+                console.log('Error getemployees : ', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log(err)
             }
         })
     })
@@ -263,7 +265,7 @@ module.exports = function (router) {
         Interview.findOne({ _id: req.params.id }).select().exec(function (err, item) {
             if (err) throw err;
             if (!item) {
-                console.log("Can't find id to edit." , moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log("Can't find id to edit.", moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
                 res.json({ item })
             }
@@ -275,7 +277,7 @@ module.exports = function (router) {
         Employee.findOne({ _id: req.body.id }).select().exec(function (err, item) {
             if (err) throw err;
             if (!item) {
-                console.log("can't find id to edit." , moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                console.log("can't find id to edit.", moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
                 res.json({ item })
             }
