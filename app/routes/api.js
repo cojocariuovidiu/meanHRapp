@@ -293,7 +293,7 @@ module.exports = function (router) {
     router.post('/getInterviewsRangeFilter', function (req, res) {
         var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
         var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
-        Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
+        Interview.find({ datacolloquio: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
             res.send(interviews)
         })
     })

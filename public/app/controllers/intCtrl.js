@@ -364,19 +364,21 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             });
         }
 
+        function LoadingLog(before) {
+            var after = moment(Date.now())
+            int.loadingLog = after.diff(before, 'miliseconds')
+            return int.loadingLog
+        }
+
         function getInterviewsFiltered(option) {
             if (option == 'All') {
-
                 var before = moment(Date.now())
-
                 $scope.promise = $timeout(function () {
                     Interview.getinterviews(shareData.loggedUser)
                         .then(function (response) {
                             int.interviewsList = response.data
-
-                            var after = moment(Date.now())
-
-                            console.log('All interviews loaded in:', after.diff(before, 'miliseconds'), 'ms')
+                            
+                            console.log('All interviews loaded in:', LoadingLog(before), 'ms')
 
                             displayingObject = {
                                 message: option + ' (Totale: ' + int.interviewsList.length + ' )',
@@ -416,8 +418,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                         displayingObject = {
                             activator: option
                         }
-                        var after = moment(Date.now())
-                        console.log(option, 'interviews loaded in:', after.diff(before, 'miliseconds'), 'ms')
+                        console.log(option, 'interviews loaded in:', LoadingLog(before), 'ms')
                     })
             }, 200)
         }
@@ -428,9 +429,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             } else {
                 var momentFrom = moment(fromDate).format('MMM/D/YYYY')
                 var momentTo = moment(toDate).format('MMM/D/YYYY')
-                // console.log('momentfrom', momentFrom)
-                // console.log('momentto', momentTo)
-
                 $scope.fromDate = fromDate
                 $scope.toDate = toDate
 
@@ -443,8 +441,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                                 activator: 'Range'
                             }
                         }, this)
-                    var after = moment(Date.now())
-                    console.log('Range interviews loaded in:', after.diff(before, 'miliseconds'), 'ms')
+                    console.log('Range interviews loaded in:', LoadingLog(before), 'ms')
                 }, 200);
             }
         }

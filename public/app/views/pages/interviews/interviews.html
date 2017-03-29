@@ -50,7 +50,8 @@
             </thead>
             <tbody md-body>
                 <!--<tr md-row md-select="item" md-select-id="name" ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">-->
-                <tr md-row ng-repeat="item in int.interviewsList   | orderBy:sort.order | filter:searchInterview |  limitTo: sort.limit : (sort.page -1) * sort.limit" ng-class="item.esitocolloquio === 'assunto' ? 'assunto' :  ( item.esitocolloquio === 'scartato' ? 'scartato' :(item.esitocolloquio === 'da rivedere' ? 'da_rivedere' : 'no_fill'))">
+                <tr md-row ng-repeat="item in int.interviewsList   | orderBy:sort.order | filter:searchInterview |  limitTo: sort.limit : (sort.page -1) * sort.limit"
+                    ng-class="item.esitocolloquio === 'assunto' ? 'assunto' :  ( item.esitocolloquio === 'scartato' ? 'scartato' :(item.esitocolloquio === 'da rivedere' ? 'da_rivedere' : 'no_fill'))">
                     <td md-cell><i ng-if="item.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.cv}}">face</a></i></td>
                     <td md-cell>{{ item.dataapplicazione | date}}</td>
                     <td md-cell>{{ item.datacolloquio | date :'MMM dd, HH:mm'}}</td>
@@ -81,5 +82,6 @@
     </md-table-container>
 </md-card>
 
-<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{int.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
+<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{int.interviewsList.length}}"
+    md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
 <!--<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->

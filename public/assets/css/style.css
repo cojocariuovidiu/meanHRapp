@@ -300,3 +300,7 @@ md-icon {
     md-dialog-content md-select .md-select-value {
         margin-bottom: 20px;
     }
+/*
+    .footer-no-wrap-txt{
+        white-space: nowrap;
+    }*/
