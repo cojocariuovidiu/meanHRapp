@@ -172,16 +172,20 @@ angular.module("employeeControllers", ["chart.js"])
             }
         }
 
+        function LoadingLog(before) {
+            var after = moment(Date.now())
+            return after.diff(before, 'miliseconds')
+        }
+
         function getEmployeesFiltered(option) {
             if (option == 'All') {
+                var before  = moment(Date.now())
                 $scope.promise = $timeout(function () {
-
-                    var before = moment(Date.now())
                     Employee.getEmployees(shareData.loggedUser).then(function (response) {
                         emp.employeessList = response.data
 
                         var after = moment(Date.now())
-                        console.log('All emp loaded in:', after.diff(before, 'miliseconds'), 'ms')
+                        console.log('All emp loaded in:', LoadingLog(before), 'ms')
 
                         displayingObject = {
                             activator: 'All'
@@ -213,9 +217,7 @@ angular.module("employeeControllers", ["chart.js"])
                 Employee.getEmployeesByDepartment(shareData.loggedUser, option)
                     .then(function (response) {
                         emp.employeessList = response.data
-
-                        var after = moment(Date.now())
-                        console.log(option, 'emp loaded in:', after.diff(before, 'miliseconds'), 'ms')
+                        console.log(option, 'emp loaded in:', LoadingLog(before), 'ms')
 
                         displayingObject = {
                             activator: option
@@ -300,8 +302,7 @@ angular.module("employeeControllers", ["chart.js"])
                             }
                         }
                         // console.log(totals)
-                        var after = moment(Date.now())
-                        console.log(option, 'emp chanrt loaded in:', after.diff(before, 'miliseconds'), 'ms')
+                        console.log('Emp chart loaded in:', LoadingLog(before), 'ms')
                         $scope.dougChart.data = totals
                     })
             }
@@ -351,8 +352,7 @@ angular.module("employeeControllers", ["chart.js"])
                     Employee.RangeFilter(fromDate, toDate)
                         .then(function (response) {
                             emp.employeessList = response.data
-                            var after = moment(Date.now())
-                            console.log('Range emp loaded in:', after.diff(before, 'miliseconds'), 'ms')
+                            console.log('Range emp loaded in:', LoadingLog(before), 'ms')
 
                             displayingObject = {
                                 activator: 'Range'

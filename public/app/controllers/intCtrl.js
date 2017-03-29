@@ -325,7 +325,9 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 var monthScartati = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
                 //Load all data from the DB
+                var before = moment(Date.now())
                 Interview.getinterviews().then(function (response) {
+                    console.log('Int chart loaded in:', LoadingLog(before), 'ms')
                     response.data.forEach(function (element) {
 
                         var momentYear = moment(element.dataapplicazione).format('YYYY')
@@ -366,8 +368,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
 
         function LoadingLog(before) {
             var after = moment(Date.now())
-            int.loadingLog = after.diff(before, 'miliseconds')
-            return int.loadingLog
+            return after.diff(before, 'miliseconds')
         }
 
         function getInterviewsFiltered(option) {
@@ -377,7 +378,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                     Interview.getinterviews(shareData.loggedUser)
                         .then(function (response) {
                             int.interviewsList = response.data
-                            
+
                             console.log('All interviews loaded in:', LoadingLog(before), 'ms')
 
                             displayingObject = {
