@@ -414,7 +414,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                                 }
                             }];
                         })
-                }, 200);
+                });
             } else if (option === 'Assunti') {
                 FilterByStatus('assunto')
             } else if (option === 'Da Rivedere') {
@@ -442,7 +442,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                         }
                         console.log(option, 'interviews loaded in:', LoadingLog(before), 'ms')
                     })
-            }, 200)
+            })
         }
 
         function RangeFilter(fromDate, toDate) {
@@ -464,7 +464,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                             }
                         }, this)
                     console.log('Range interviews loaded in:', LoadingLog(before), 'ms')
-                }, 200);
+                });
             }
         }
 
@@ -490,7 +490,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             checkDisplaying()
             $scope.promise = $timeout(function () {
                 console.log('refreshing data')
-            }, 200);
+            });
         }
 
         function checkDisplaying() {

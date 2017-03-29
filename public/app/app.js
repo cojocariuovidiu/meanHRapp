@@ -13,7 +13,8 @@ angular.module('userApp', [
     'sharedService',
     'employeeServices',
     'appInfoDirective',
-    'logoutControllers'
+    'logoutControllers',
+    'homeController'
 ])
 
 .config(function($httpProvider) {

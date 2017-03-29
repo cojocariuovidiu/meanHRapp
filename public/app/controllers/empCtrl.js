@@ -198,7 +198,7 @@ angular.module("employeeControllers", ["chart.js"])
                             }
                         }];
                     })
-                }, 200)
+                })
             } else if (option == 'Maran BO') {
                 FilterByDepartment('Maran BO')
             } else if (option == 'Triboo') {
@@ -223,7 +223,7 @@ angular.module("employeeControllers", ["chart.js"])
                             activator: option
                         }
                     })
-            }, 200)
+            })
         }
 
         //Call Sort Modal
@@ -358,7 +358,7 @@ angular.module("employeeControllers", ["chart.js"])
                                 activator: 'Range'
                             }
                         }, this)
-                }, 200);
+                });
             }
         }
 
@@ -377,7 +377,7 @@ angular.module("employeeControllers", ["chart.js"])
         emp.refresh = function () {
             $scope.promise = $timeout(function () {
                 checkDisplaying()
-            }, 200);
+            });
         }
 
         var showToast = function (message) {

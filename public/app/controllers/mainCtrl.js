@@ -70,7 +70,7 @@ angular.module('mainController', ['ngMaterial'])
 
                     //loading twich to hack the error :-(
                     // getInterviewsFiltered('All')
-                    console.log('got int on login')
+                    // console.log('got int on login')
                     $location.path('/interviste')
                     main.isLoading = false
                     main.loginData = null;
