@@ -19,8 +19,7 @@
                 <md-content class="modal-background" aria-label="MD Content" md-theme="docs-dark" layout-padding="">
 
                     <md-card>
-
-                        <label class="md-padding">Dati Personali:</label>
+                        <label class="md-padding text-center">Dati Personali:</label>
                         <div layout-gt-lg="row">
                             <md-input-container aria-label="MD Input Container" class="md-block" flex-gt-lg="">
                                 <label>Nome e cognome</label>
@@ -59,7 +58,7 @@
                     </md-card>
 
                     <md-card>
-                        <label class="md-padding">Dati Intervista:</label>
+                        <label class="md-padding text-center">Dati Intervista:</label>
                         <div layout-gt-lg="row">
                             <md-input-container>
                                 <label>Data Applicazione</label>
@@ -83,11 +82,15 @@
                     <md-card>
                         <div layout-gt-lg="row">
                             <div layout="column" class="md-padding">
-                                <label class="md-padding">Dati Colloquio:</label>
-                                <md-datetime ng-if="newInterview.datacolloquio || DataCollEnabled" ng-change="dataCollChanged(newInterview.datacolloquio)" ng-model="newInterview.datacolloquio" no-reset aria-label="mddatetime-Aria"></md-datetime>
-                                <md-button class="md-raised" ng-if="!DataCollEnabled && !newInterview.datacolloquio" ng-click="AggiungiDataColloquio()" aria-label="AggiungiDataColloquio">
-                                    <span>Nessun Data Colloquio / Click per Aggiungere</span>
-                                </md-button>
+                                <label class="md-padding text-center">Dati Colloquio:</label>
+                                <div class="data-colloquio-padding text-center">
+                                    <md-datetime ng-if="newInterview.datacolloquio || DataCollEnabled" ng-change="dataCollChanged(newInterview.datacolloquio)"
+                                        ng-model="newInterview.datacolloquio" no-reset aria-label="mddatetime-Aria">
+                                    </md-datetime>
+                                    <md-button class="md-raised" ng-if="!DataCollEnabled && !newInterview.datacolloquio" ng-click="AggiungiDataColloquio()" aria-label="AggiungiDataColloquio">
+                                        <span>Nessun Data Colloquio / Click per Aggiungere</span>
+                                    </md-button>
+                                </div>
 
                                 <md-input-container class="md-block" flex-gt-xs="">
                                     <label>Coll sostenuto da</label>
@@ -110,7 +113,7 @@
                     </md-card>
 
                     <md-card ng-if="editedObject.username">
-                        <label class="md-padding">Dati Caricamenti:</label>
+                        <label class="md-padding text-center">Dati Caricamenti:</label>
                         <div layout-gt-lg="row">
                             <input class="ng-hide" id="input-file-id" file-model="file.upload" type="file" name="myfile" style="display: none">
                             <label for="input-file-id" class="md-button md-accent md-raised">Browse</label>
@@ -118,18 +121,20 @@
                             <div ng-show="!message">{{file.upload.name}}</div>
 
                             <div ng-show="message">
-                                <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">{{file.upload.name}} </a> {{message}}
+                                <a ng-if="editedObject.username" href="http://localhost:3000/uploads/{{cv}}" target="_blank">{{file.upload.name}} </a>                                {{message}}
                             </div>
                         </div>
                         <div layout-gt-sm="row">
-                            <md-button ng-click="SubmitUploadCV()" ng-disabled="!file.upload.name || !uploadCVEnabled" aria-label="ariaSubmitUploadCV" class="md-raised ">
+                            <md-button ng-click="SubmitUploadCV()" ng-disabled="!file.upload.name || !uploadCVEnabled" aria-label="ariaSubmitUploadCV"
+                                class="md-raised ">
                                 <span ng-if="!newInterview.cv">Carica CV</span>
                                 <span ng-if="newInterview.cv">Carica Nuovo CV</span>
                             </md-button>
                             <i ng-if="newInterview.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{newInterview.cv}}">face</a></i>
                         </div>
                         <div layout-gt-sm="row">
-                            <md-button ng-click="SubmitUploadCI()" ng-disabled="!file.upload.name || !uploadCIEnabled" aria-label="ariaSubmitUploadCI" class="md-raised ">
+                            <md-button ng-click="SubmitUploadCI()" ng-disabled="!file.upload.name || !uploadCIEnabled" aria-label="ariaSubmitUploadCI"
+                                class="md-raised ">
                                 <span ng-if="!newInterview.ci">Carica La Carta D'Identita</span>
                                 <span ng-if="newInterview.ci">Carica Nuova Carta Identita</span>
                             </md-button>
