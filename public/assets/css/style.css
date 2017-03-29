@@ -304,3 +304,7 @@ md-icon {
     .footer-no-wrap-txt{
         white-space: nowrap;
     }*/
+
+    .modal-background{
+        background-color:#CCD4E1 !important;
+    }

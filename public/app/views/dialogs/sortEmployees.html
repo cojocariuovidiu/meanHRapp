@@ -12,34 +12,38 @@
 
     <md-dialog-content>
         <div layout="column" class="md-inline-form inputdemoBasicUsage">
-            <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
-                <div layout-gt-sm="row">
-                    <md-input-container>
-                        <label>Da</label>
-                        <md-datepicker ng-model="fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>A</label>
-                        <md-datepicker ng-model="toDate" md-current-view="year" aria-label="toDate"></md-datepicker>
-                    </md-input-container>
-                    <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
-                        Vai
-                    </md-button>
-                </div>
-                <!--<md-button md-colors="{background: 'red'}" layout-fill class="md-raised md-accent" ng-click="getAll()">-->
-                <!--<md-button layout-fill class="md-raised md-accent" ng-click="getAll()">-->
-                <md-button class="isEmployee" ng-click="getDepartment('Triboo')">
-                    Triboo
-                </md-button>
-                <md-button class="isEmployee" ng-click="getDepartment('Maran BO')">
-                    Maran
-                </md-button>
-                <md-button class="isEmployee" ng-click="getDepartment('Aria')">
-                    Aria
-                </md-button>
-                <md-button class="md-raised md-primary" ng-click="getAll()">
-                    Tutti
-                </md-button>
+            <md-content class="modal-background" aria-label="MD Content" md-theme="docs-dark" layout-padding="">
+                <md-card>
+                    <div layout-gt-sm="row">
+                        <md-input-container>
+                            <label>Da</label>
+                            <md-datepicker ng-model="fromDate" md-current-view="year" aria-label="fromDate"></md-datepicker>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>A</label>
+                            <md-datepicker ng-model="toDate" md-current-view="year" aria-label="toDate"></md-datepicker>
+                        </md-input-container>
+                        <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
+                            Vai
+                        </md-button>
+                    </div>
+                    <!--<md-button md-colors="{background: 'red'}" layout-fill class="md-raised md-accent" ng-click="getAll()">-->
+                    <!--<md-button layout-fill class="md-raised md-accent" ng-click="getAll()">-->
+                    <div layout-gt-sm="row">
+                        <md-button class="isEmployee" ng-click="getDepartment('Triboo')">
+                            Triboo
+                        </md-button>
+                        <md-button class="isEmployee" ng-click="getDepartment('Maran BO')">
+                            Maran
+                        </md-button>
+                        <md-button class="isEmployee" ng-click="getDepartment('Aria')">
+                            Aria
+                        </md-button>
+                        <md-button class="md-raised md-primary" ng-click="getAll()">
+                            Tutti
+                        </md-button>
+                    </div>
+                </md-card>
             </md-content>
         </div>
     </md-dialog-content>

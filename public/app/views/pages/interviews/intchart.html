@@ -12,23 +12,26 @@
 
     <md-dialog-content aria-label="MD Dialog Content">
         <div layout="column" class="md-inline-form inputdemoBasicUsage">
-            <md-content aria-label="MD Content" md-theme="docs-dark" layout-padding="">
-                <div class="md-toolbar-tools">
-                    <div flex></div>
-                    <md-button class="md-raised md-icon-button" ng-click="loadChartData(selectedChartOrder)">
-                        <md-icon>refresh</md-icon>
-                    </md-button>
-                </div>
-                <canvas height="300" width="900" chart-colors="barChart.colors" chart-options="barChart.options" class="chart chart-bar" chart-data="barChart.data" chart-labels="barChart.labels" chart-series="barChart.series" id="bar"></canvas>
+            <md-content class="modal-background" aria-label="MD Content" md-theme="docs-dark" layout-padding="">
+                <md-card>
+                    <div class="md-toolbar-tools">
+                        <div flex></div>
+                        <md-button class="md-raised md-icon-button" ng-click="loadChartData(selectedChartOrder)">
+                            <md-icon>refresh</md-icon>
+                        </md-button>
+                    </div>
+                    <canvas height="300" width="900" chart-colors="barChart.colors" chart-options="barChart.options" class="chart chart-bar"
+                        chart-data="barChart.data" chart-labels="barChart.labels" chart-series="barChart.series" id="bar"></canvas>
 
-                <div class="md-toolbar-tools">
-                    <md-button class="md-raised md-icon-button" ng-click="loadChartData(2016)">
-                        2016
-                    </md-button>
-                    <md-button class="md-raised md-icon-button" ng-click="loadChartData(2017)">
-                        2017
-                    </md-button>
-                </div>
+                    <div class="md-toolbar-tools">
+                        <md-button class="md-raised md-icon-button" ng-click="loadChartData(2016)">
+                            2016
+                        </md-button>
+                        <md-button class="md-raised md-icon-button" ng-click="loadChartData(2017)">
+                            2017
+                        </md-button>
+                    </div>
+                </md-card>
             </md-content>
         </div>
     </md-dialog-content>
