@@ -153,6 +153,7 @@ md-content {
     
     .md-toolbar-tools {
         font-size: 13px;
+        padding-top: 20px;
     }
     /*clear padding for cv icon*/
     /*table.md-table:not(.md-row-select) td.md-cell:first-child {
