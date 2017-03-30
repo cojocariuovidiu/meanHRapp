@@ -298,6 +298,10 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 getInterviewsFiltered('Week')
                 $mdDialog.hide();
             }
+            $scope.getOneMonth = function(){
+                getInterviewsFiltered('Month')
+                $mdDialog.hide()
+            }
             $scope.cancel = function () {
                 $mdDialog.cancel();
             };
@@ -429,6 +433,8 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 FilterByStatus('today')
             } else if (option === 'Week') {
                 FilterByStatus('week')
+            }else if(option === 'Month'){
+                FilterByStatus('month')
             }
             else {
                 console.log('something wrong on getInterviewsFiltered')

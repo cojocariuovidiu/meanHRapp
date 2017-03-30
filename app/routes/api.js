@@ -187,7 +187,7 @@ module.exports = function (router) {
         // } else {
         interview.save(function (err) {
             if (err) {
-                console.log('new intervieew create Failed', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
+                console.log('new interview create Failed', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
                 console.log(err)
                 res.json({ success: false })
             } else {
@@ -334,6 +334,12 @@ module.exports = function (router) {
             var today = moment(Date.now()).format('YYYY/MM/DD')
             var nextWeek = moment(Date.now()).add(7, 'days').format('YYYY/MM/DD')
             Interview.find({ datacolloquio: { $gte: today, $lte: nextWeek } }, function (err, interviews) {
+                res.send(interviews)
+            })
+        }else if (req.body.option === 'month'){
+            var today = moment(Date.now()).format('YYYY/MM/DD')
+            var nextMonth = moment(Date.now()).add(30, 'days').format('YYYY/MM/DD')
+            Interview.find({datacolloquio: { $gte: today, $lte: nextMonth}}, function(err, interviews){
                 res.send(interviews)
             })
         }
