@@ -325,27 +325,43 @@ module.exports = function (router) {
                 res.send(interviews)
             })
         } else if (req.body.option === 'today') {
-            var today = moment(Date.now()).format('YYYY/MM/DD')
-            var todayFix = moment(today).add(1, 'days').format('YYYY/MM/DD')
-            console.log(today)
-            Interview.find({ datacolloquio: { $gte: today, $lte: todayFix } }, function (err, interviews) {
-                res.send(interviews)
-            })
+            getInterviewsByStatus('period', 1)
         } else if (req.body.option === 'week') {
-            var today = moment(Date.now()).format('YYYY/MM/DD')
-            var nextWeek = moment(Date.now()).add(7, 'days').format('YYYY/MM/DD')
-            Interview.find({ datacolloquio: { $gte: today, $lte: nextWeek } }, function (err, interviews) {
-                res.send(interviews)
-            })
+            getInterviewsByStatus('period', 7)
+            // var today = moment(Date.now()).format('YYYY/MM/DD')
+            // var nextWeek = moment(Date.now()).add(7, 'days').format('YYYY/MM/DD')
+            // Interview.find({ datacolloquio: { $gte: today, $lte: nextWeek } }, function (err, interviews) {
+            //     res.send(interviews)
+            // })
         } else if (req.body.option === 'month') {
+            getInterviewsByStatus('period', 30)
+            // var today = moment(Date.now()).format('YYYY/MM/DD')
+            // var nextMonth = moment(Date.now()).add(30, 'days').format('YYYY/MM/DD')
+            // Interview.find({ datacolloquio: { $gte: today, $lte: nextMonth } }, function (err, interviews) {
+            //     res.send(interviews)
+            // })
+        }
+        function getInterviewsByStatus(period, days) {
             var today = moment(Date.now()).format('YYYY/MM/DD')
-            var nextMonth = moment(Date.now()).add(30, 'days').format('YYYY/MM/DD')
-            Interview.find({ datacolloquio: { $gte: today, $lte: nextMonth } }, function (err, interviews) {
-                res.send(interviews)
-            })
+            var todayFix = moment(Date.now()).add(days, 'days').format('YYYY/MM/DD')
+            Interview.find({
+                $or: [
+                    { datacolloquio: { $gte: today, $lte: todayFix } },
+                    { datarichiamare: { $gte: today, $lte: todayFix } }
+                ]
+            }
+                , function (err, interviews) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        console.log('sorting found',interviews.count)
+                        res.send(interviews)
+                    }
+                })
         }
         console.log(req.body.username, 'OK - sort Int by', req.body.option, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
     })
+
 
     //http://127.0.0.1:3000/api/getEmployeesByDepartment
     router.post('/getEmployeesByDepartment', function (req, res) {

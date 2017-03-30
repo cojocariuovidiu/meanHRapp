@@ -38,6 +38,7 @@
                     <th md-column md-order-by="cv">CV</th>
                     <th md-column md-order-by="dataapplicazione"><span>Data app</span></th>
                     <th md-column md-order-by="datacolloquio">Data Colloquio</th>
+                    <th md-column md-order-by="datarichiamare">Data Richiamare</th>
                     <th md-column md-order-by="nomecognome"><span>Nome e cognome</span></th>
                     <!--<th md-column md-order-by="sesso">Sesso</th>-->
                     <th md-column md-order-by="eta">Eta'</th>
@@ -58,6 +59,7 @@
                     <td md-cell><i ng-if="item.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.cv}}">face</a></i></td>
                     <td md-cell>{{ item.dataapplicazione | date}}</td>
                     <td md-cell>{{ item.datacolloquio | date :'MMM dd, HH:mm'}}</td>
+                    <td md-cell>{{ item.datarichiamare | date :'MMM dd, HH:mm'}}</td>
                     <td md-cell>{{ item.nomecognome }}</td>
                     <!--<td class="sesso" md-cell>{{ item.sesso }}</td>-->
                     <td md-cell>{{ item.eta }}</td>
