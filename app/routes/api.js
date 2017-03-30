@@ -174,6 +174,7 @@ module.exports = function (router) {
         interview.note = req.body.newInterview.note
         interview.esitocolloquio = req.body.newInterview.esitocolloquio
         interview.datacolloquio = req.body.newInterview.datacolloquio
+        interview.datarichiamare = req.body.newInterview.datarichiamare
         interview.colloquio_sostenuto_da = req.body.newInterview.colloquio_sostenuto_da
         interview.responsabile_colloquio = req.body.newInterview.responsabile_colloquio
         interview.sito = req.body.newInterview.sito
@@ -436,6 +437,7 @@ module.exports = function (router) {
             esito2: req.body.updateData.esito2,
             esitocolloquio: req.body.updateData.esitocolloquio,
             datacolloquio: req.body.updateData.datacolloquio,
+            datarichiamare: req.body.updateData.datarichiamare,
             colloquio_sostenuto_da: req.body.updateData.colloquio_sostenuto_da,
             responsabile_colloquio: req.body.updateData.responsabile_colloquio,
             sito: req.body.updateData.sito,
@@ -453,6 +455,7 @@ module.exports = function (router) {
         if (updateInterview.esito2 === null || updateInterview.esito2 === undefined) delete updateInterview.esito2
         if (updateInterview.esitocolloquio === null || updateInterview.esitocolloquio === undefined) delete updateInterview.esitocolloquio
         if (updateInterview.datacolloquio === null || updateInterview.datacolloquio === undefined) delete updateInterview.datacolloquio
+        if (updateInterview.datarichiamare === null || updateInterview.datarichiamare === undefined) delete updateInterview.datarichiamare
         if (updateInterview.colloquio_sostenuto_da === null || updateInterview.colloquio_sostenuto_da === undefined) delete updateInterview.colloquio_sostenuto_da
         if (updateInterview.responsabile_colloquio === null || updateInterview.responsabile_colloquio === undefined) delete updateInterview.responsabile_colloquio
         if (updateInterview.sito === null || updateInterview.sito === undefined) delete updateInterview.sito

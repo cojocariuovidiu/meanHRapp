@@ -92,6 +92,9 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             if ($scope.newInterview.datacolloquio) {
                 $scope.newInterview.datacolloquio = new Date($scope.newInterview.datacolloquio)
             }
+            if ($scope.newInterview.datarichiamare) {
+                $scope.newInterview.datarichiamare = new Date($scope.newInterview.datarichiamare)
+            }
 
             $scope.dataCollChanged = function (date) {
                 console.log('datechaged', date)
@@ -99,6 +102,9 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
 
             $scope.AggiungiDataColloquio = function () {
                 $scope.DataCollEnabled = true
+            }
+            $scope.AggiungiDataRichiamare = function () {
+                $scope.DataRichiamareEnabled = true
             }
 
             $scope.submitInterview = function (newInterview) {
@@ -112,6 +118,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                     console.log('new int:', newInterview)
                     console.log('new dataapp:', $scope.newInterview.dataapplicazione)
                     console.log('new datacoll:', $scope.newInterview.datacolloquio)
+                    console.log('new datarichiamare:', $scope.newInterview.datarichiamare)
 
                     //CREATE Interview
                     Interview.create({
@@ -125,6 +132,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                     console.log('upd edited:', newInterview)
                     console.log('upd dataapp:', $scope.newInterview.dataapplicazione)
                     console.log('upd datacoll:', $scope.newInterview.datacolloquio)
+                    console.log('upd datarichiamare:', $scope.newInterview.datarichiamare)
 
                     let currentCV = ((!$scope.cv) ? newInterview.cv : $scope.cv);
                     let currentCI = ((!$scope.ci) ? newInterview.ci : $scope.ci);

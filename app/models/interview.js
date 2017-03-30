@@ -10,6 +10,7 @@ var InterviewSchema = new Schema({
     esito2: { type: String },
     esitocolloquio: { type: String },
     datacolloquio: { type: Date },
+    datarichiamare: { type: Date },
     colloquio_sostenuto_da: { type: String },
     responsabile_colloquio: { type: String },
     sito: { type: String },
