@@ -44,13 +44,17 @@ angular.module('interviewServices', [])
                 })
         }
 
-        //Interview.getInterviewsRangeFilter(fromDate, toDate)
-        interviewFactory.getInterviewsRangeFilter = function (fromDate, toDate) {
-            return $http.post('/api/getInterviewsRangeFilter', {
-                from: fromDate,
-                to: toDate
-            })
+        //Interview.getInterviewsDataColDayFilter(customDay)
+        interviewFactory.getInterviewsDataColDayFilter = function (customDay) {
+            return $http.post('/api/getInterviewsDataColDayFilter', {day: customDay})
         }
+        // //Interview.getInterviewsRangeFilter(fromDate, toDate)
+        // interviewFactory.getInterviewsRangeFilter = function (fromDate, toDate) {
+        //     return $http.post('/api/getInterviewsRangeFilter', {
+        //         from: fromDate,
+        //         to: toDate
+        //     })
+        // }
 
         return interviewFactory;
     })

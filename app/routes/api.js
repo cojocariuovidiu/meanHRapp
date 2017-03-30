@@ -289,11 +289,20 @@ module.exports = function (router) {
         })
     })
 
-    //http://127.0.0.1:3000/api/getInterviewsRangeFilter
-    router.post('/getInterviewsRangeFilter', function (req, res) {
-        var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
-        var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
-        Interview.find({ datacolloquio: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
+    // //http://127.0.0.1:3000/api/getInterviewsRangeFilter
+    // router.post('/getInterviewsRangeFilter', function (req, res) {
+    //     var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
+    //     var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
+    //     Interview.find({ datacolloquio: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
+    //         res.send(interviews)
+    //     })
+    // })
+
+    //http://127.0.0.1:3000/api/getInterviewsDataColDayFilter
+    router.post('/getInterviewsDataColDayFilter', function (req, res) {
+        var momentCustomDay = moment(req.body.day).format('YYYY/MM/DD');
+        var momentCustomDayFix = moment(req.body.day).add(1, 'days').format('YYYY/MM/DD');
+        Interview.find({ datacolloquio: { $gte: momentCustomDay, $lte: momentCustomDayFix } }, function (err, interviews) {
             res.send(interviews)
         })
     })
@@ -301,7 +310,7 @@ module.exports = function (router) {
     //http://127.0.0.1:3000/api/getEmployeesRangeFilter
     router.post('/getEmployeesRangeFilter', function (req, res) {
         var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
-        var momentTo = moment(req.body.to).add('days', 1).format('YYYY/MM/DD');
+        var momentTo = moment(req.body.to).add(1, 'days').format('YYYY/MM/DD');
         Employee.find({ employmentdate: { $gte: momentFrom, $lte: momentTo } }, function (err, employees) {
             res.send(employees)
         })
@@ -316,14 +325,14 @@ module.exports = function (router) {
             })
         } else if (req.body.option === 'today') {
             var today = moment(Date.now()).format('YYYY/MM/DD')
-            var todayFix = moment(today).add('days', 1).format('YYYY/MM/DD')
+            var todayFix = moment(today).add(1, 'days').format('YYYY/MM/DD')
             console.log(today)
             Interview.find({ datacolloquio: { $gte: today, $lte: todayFix } }, function (err, interviews) {
                 res.send(interviews)
             })
         } else if (req.body.option === 'week') {
             var today = moment(Date.now()).format('YYYY/MM/DD')
-            var nextWeek = moment(Date.now()).add('days', 7).format('YYYY/MM/DD')
+            var nextWeek = moment(Date.now()).add(7, 'days').format('YYYY/MM/DD')
             Interview.find({ datacolloquio: { $gte: today, $lte: nextWeek } }, function (err, interviews) {
                 res.send(interviews)
             })

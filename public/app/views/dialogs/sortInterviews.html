@@ -15,12 +15,11 @@
             <md-content class="modal-background" aria-label="MD Content" md-theme="docs-dark" layout-padding="">
 
                 <md-card>
-                    <div style="text-align:center">Ordinare per Data Coloquio:</div>
-                    <div layout-gt-sm="row">
-                        <md-input-container>
+                    <label style="text-align:center; padding-bottom:30px;">Ordinare per Data Coloquio:</label>
+
+                        <!--<md-input-container>
                             <label>Da</label>
-                            <!-- md-current-view="year"-->
-                            <md-datepicker ng-model="fromDate" aria-label="fromDate"></md-datepicker>
+                            <md-datepicker md-current-view="year" ng-model="fromDate" aria-label="fromDate"></md-datepicker>
                         </md-input-container>
                         <md-input-container>
                             <label>A</label>
@@ -28,20 +27,29 @@
                         </md-input-container>
                         <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
                             Vai
-                        </md-button>
-                    </div>
+                        </md-button>-->
                     <div layout-gt-sm="row">
                         <md-button class="md-raised md-primary" ng-click="getToday()">
                             Oggi
                         </md-button>
                         <md-button class="md-raised md-primary" ng-click="getOneWeek()">
-                            Setimana
+                            7 Giorni
+                        </md-button>
+                        <md-button class="md-raised md-primary" ng-click="getOneMonth()">
+                            30 Giorni
+                        </md-button>
+                        <md-input-container>
+                            <label>Giorno</label>
+                            <md-datepicker ng-model="customDay" aria-label="intCustomDay"></md-datepicker>
+                        </md-input-container>
+                        <md-button class="md-raised md-fab md-mini md-primary" ng-click="dataColDayFilter(customDay)">
+                            Vai
                         </md-button>
                     </div>
                 </md-card>
 
                 <md-card>
-                    <div style="text-align:center">Ordinare per Status:</div>
+                    <label style="text-align:center; padding-bottom:30px;">Ordinare per Esito Colloquio:</label>
                     <div layout-gt-sm="row">
                         <md-button class="assunto" ng-click="getAssunti()">
                             Assunti
