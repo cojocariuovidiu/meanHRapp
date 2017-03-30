@@ -96,15 +96,26 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 $scope.newInterview.datarichiamare = new Date($scope.newInterview.datarichiamare)
             }
 
-            $scope.dataCollChanged = function (date) {
-                console.log('datechaged', date)
-            }
+            // $scope.dataCollChanged = function (date) {
+            //     console.log('datechaged', date)
+            // }
 
             $scope.AggiungiDataColloquio = function () {
                 $scope.DataCollEnabled = true
+                $scope.newInterview.datacolloquio = Date.now()
             }
             $scope.AggiungiDataRichiamare = function () {
+                $scope.newInterview.datarichiamare = Date.now()
                 $scope.DataRichiamareEnabled = true
+            }
+            $scope.eliminaDataColloquio = function () {
+                $scope.DataCollEnabled = false
+                $scope.newInterview.datacolloquio = null
+            }
+
+            $scope.eliminaDataRichiamare = function () {
+                $scope.DataRichiamareEnabled = false
+                $scope.newInterview.datarichiamare = null
             }
 
             $scope.submitInterview = function (newInterview) {
@@ -306,7 +317,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 getInterviewsFiltered('Week')
                 $mdDialog.hide();
             }
-            $scope.getOneMonth = function(){
+            $scope.getOneMonth = function () {
                 getInterviewsFiltered('Month')
                 $mdDialog.hide()
             }
@@ -441,7 +452,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 FilterByStatus('today')
             } else if (option === 'Week') {
                 FilterByStatus('week')
-            }else if(option === 'Month'){
+            } else if (option === 'Month') {
                 FilterByStatus('month')
             }
             else {
@@ -474,7 +485,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                     Interview.getInterviewsDataColDayFilter(customDay)
                         .then(function (response) {
                             int.interviewsList = response.data
-                        }, this) 
+                        }, this)
                     console.log('CustomDay interviews loaded in:', LoadingLog(before), 'ms')
                 });
                 displayingObject = {

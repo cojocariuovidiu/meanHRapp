@@ -337,10 +337,10 @@ module.exports = function (router) {
             Interview.find({ datacolloquio: { $gte: today, $lte: nextWeek } }, function (err, interviews) {
                 res.send(interviews)
             })
-        }else if (req.body.option === 'month'){
+        } else if (req.body.option === 'month') {
             var today = moment(Date.now()).format('YYYY/MM/DD')
             var nextMonth = moment(Date.now()).add(30, 'days').format('YYYY/MM/DD')
-            Interview.find({datacolloquio: { $gte: today, $lte: nextMonth}}, function(err, interviews){
+            Interview.find({ datacolloquio: { $gte: today, $lte: nextMonth } }, function (err, interviews) {
                 res.send(interviews)
             })
         }
@@ -454,8 +454,8 @@ module.exports = function (router) {
         if (updateInterview.esito1 === null || updateInterview.esito1 === undefined) delete updateInterview.esito1
         if (updateInterview.esito2 === null || updateInterview.esito2 === undefined) delete updateInterview.esito2
         if (updateInterview.esitocolloquio === null || updateInterview.esitocolloquio === undefined) delete updateInterview.esitocolloquio
-        if (updateInterview.datacolloquio === null || updateInterview.datacolloquio === undefined) delete updateInterview.datacolloquio
-        if (updateInterview.datarichiamare === null || updateInterview.datarichiamare === undefined) delete updateInterview.datarichiamare
+        if (updateInterview.datacolloquio === undefined) delete updateInterview.datacolloquio
+        if (updateInterview.datarichiamare === undefined) delete updateInterview.datarichiamare
         if (updateInterview.colloquio_sostenuto_da === null || updateInterview.colloquio_sostenuto_da === undefined) delete updateInterview.colloquio_sostenuto_da
         if (updateInterview.responsabile_colloquio === null || updateInterview.responsabile_colloquio === undefined) delete updateInterview.responsabile_colloquio
         if (updateInterview.sito === null || updateInterview.sito === undefined) delete updateInterview.sito

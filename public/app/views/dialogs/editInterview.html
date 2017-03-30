@@ -84,34 +84,30 @@
                             <div layout="column" class="md-padding">
                                 <label class="md-padding text-center">Dati Colloquio:</label>
                                 <div class="data-colloquio-padding text-center">
-                                    <md-card>
+                                    <md-card ng-if="newInterview.datarichiamare || DataRichiamareEnabled">
                                         Data Richiamare:
-                                        <md-datetime ng-if="newInterview.datarichiamare || DataRichiamareEnabled" ng-change="dataRichiamareChanged(newInterview.datarichiamare)"
-                                            ng-model="newInterview.datarichiamare" no-reset aria-label="Da-Richiamare-Aria">
-                                        </md-datetime>
+                                        <md-datetime ng-model="newInterview.datarichiamare" no-reset ng-change="dataRichiamareChanged(newInterview.datarichiamare)" aria-label="Da-Richiamare-Aria"></md-datetime>
                                         <md-button ng-click="eliminaDataRichiamare()" class="md-raised">
                                             Elimina Data Richiamare
                                         </md-button>
                                     </md-card>
-                                    <md-button class="md-raised da_richiamare" ng-if="!DataRichiamareEnabled && !newInterview.datarichiamare" ng-click="AggiungiDataRichiamare()"
+                                    <md-button class="md-raised scartato" ng-if="!DataRichiamareEnabled && !newInterview.datarichiamare" ng-click="AggiungiDataRichiamare()"
                                         aria-label="AggiungiDataRichiamare">
                                         <span>Nessun Data Richiamare / Click per Aggiungere</span>
                                     </md-button>
                                 </div>
                                 <div class="data-colloquio-padding text-center">
-                                    <md-card>
+                                    <md-card ng-if="newInterview.datacolloquio || DataCollEnabled" >
                                         Data Colloquio:
-                                        <md-datetime ng-if="newInterview.datacolloquio || DataCollEnabled" ng-change="dataCollChanged(newInterview.datacolloquio)"
-                                            ng-model="newInterview.datacolloquio" no-reset aria-label="mddatetime-Aria">
-                                        </md-datetime>
+                                        <md-datetime ng-model="newInterview.datacolloquio" no-reset ng-change="dataCollChanged(newInterview.datacolloquio)" aria-label="mddatetime-Aria"></md-datetime>
                                         <md-button ng-click="eliminaDataColloquio()" class="md-raised">
                                             Elimina Data Colloquio
                                         </md-button>
-                                        <md-button class="md-raised scartato" ng-if="!DataCollEnabled && !newInterview.datacolloquio" ng-click="AggiungiDataColloquio()"
-                                            aria-label="AggiungiDataColloquio">
-                                            <span>Nessun Data Colloquio / Click per Aggiungere</span>
-                                        </md-button>
                                     </md-card>
+                                    <md-button class="md-raised scartato" ng-if="!DataCollEnabled && !newInterview.datacolloquio" ng-click="AggiungiDataColloquio()"
+                                        aria-label="AggiungiDataColloquio">
+                                        <span>Nessun Data Colloquio / Click per Aggiungere</span>
+                                    </md-button>
                                 </div>
 
                                 <md-input-container class="md-block" flex-gt-xs="">
