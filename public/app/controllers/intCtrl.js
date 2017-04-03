@@ -246,21 +246,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             })
         }
 
-        //Call Calendar Modal
-        $scope.showCalendar = function () {
-            $mdDialog.show({
-                controller: ShowCalendarController,
-                templateUrl: 'app/views/dialogs/showCalendar.html',
-                // locals: {
-                //     editedObject: editedObject
-                // },
-                parent: angular.element(document.body),
-                //targetEvent: ev,
-                clickOutsideToClose: true,
-                fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-            })
-        }
-
         //Call Chart Modal
         $scope.intChartModal = function () {
             $mdDialog.show({
