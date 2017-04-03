@@ -63,7 +63,19 @@
                     <td md-cell>{{ item.eta }}</td>
                     <td class="tel" md-cell>{{ item.tel }}</td>
                     <td class="esito1" md-cell>{{ item.esito1 }}</td>
-                    <td class="note" md-cell>{{ item.note }}</td>
+
+
+                    <td ng-init="limit = 30; moreShown = false" class="note" md-cell>{{ item.note | limitTo: limit }}{{item.note.length > limit ? '...' : ''}}
+                        <a ng-show="item.note.length > limit" href ng-click="limit=item.note.length; moreShown = true"> Più </a>
+                        <a ng-show="moreShown" href ng-click="limit=30; moreShown = false"> Meno </a>
+                    </td>
+
+                    <!--<div ng-init="limit = 150; moreShown = false">
+                        {{text | limitTo: limit}}{{text.length > limit ? '...' : ''}}
+                        <a ng-show="text.length > limit" href ng-click="limit=text.length; moreShown = true">  More </a>
+                        <a ng-show="moreShown" href ng-click="limit=150; moreShown =    false"> Less </a>
+                    </div>-->
+
                     <td class="esitocolloquio" md-cell>{{ item.esitocolloquio }}</td>
                     <td class="sito" md-cell>{{ item.sito }}</td>
                     <td class="email" md-cell>{{ item.email }}</td>
