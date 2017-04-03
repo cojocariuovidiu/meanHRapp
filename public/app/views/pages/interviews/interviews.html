@@ -62,23 +62,23 @@
                     <!--<td class="sesso" md-cell>{{ item.sesso }}</td>-->
                     <td md-cell>{{ item.eta }}</td>
                     <td class="tel" md-cell>{{ item.tel }}</td>
-                    <td class="esito1" md-cell>{{ item.esito1 }}</td>
-
-
-                    <td ng-init="limit = 30; moreShown = false" class="note" md-cell>{{ item.note | limitTo: limit }}{{item.note.length > limit ? '...' : ''}}
-                        <a ng-show="item.note.length > limit" href ng-click="limit=item.note.length; moreShown = true"> Più </a>
-                        <a ng-show="moreShown" href ng-click="limit=30; moreShown = false"> Meno </a>
+                    <td ng-init="esito1Limit = 20; moreEsito1Shown = false" class="esito1" md-cell>
+                        {{ item.esito1 | limitTo: esito1Limit}}{{item.esito1.length > esito1Limit ? '...' : ''}}
+                        <a ng-show="item.esito1.length > esito1Limit" href ng-click="esito1Limit=item.esito1.length; moreEsito1Shown = true">Più</a>
+                        <a ng-show="moreEsito1Shown" href ng-click="esito1Limit=20; moreEsito1Shown = false"> Meno </a>
                     </td>
-
-                    <!--<div ng-init="limit = 150; moreShown = false">
-                        {{text | limitTo: limit}}{{text.length > limit ? '...' : ''}}
-                        <a ng-show="text.length > limit" href ng-click="limit=text.length; moreShown = true">  More </a>
-                        <a ng-show="moreShown" href ng-click="limit=150; moreShown =    false"> Less </a>
-                    </div>-->
-
+                    <td ng-init="noteLimit = 15; moreNoteShown = false" class="note" md-cell>
+                        {{ item.note | limitTo: noteLimit }}{{item.note.length > noteLimit ? '...' : ''}}
+                        <a ng-show="item.note.length > noteLimit" href ng-click="noteLimit=item.note.length; moreNoteShown = true"> Più </a>
+                        <a ng-show="moreNoteShown" href ng-click="noteLimit=15; moreNoteShown = false"> Meno </a>
+                    </td>
                     <td class="esitocolloquio" md-cell>{{ item.esitocolloquio }}</td>
                     <td class="sito" md-cell>{{ item.sito }}</td>
-                    <td class="email" md-cell>{{ item.email }}</td>
+                    <td ng-init="emailLimit = 7; moreEmailShown = false" class="email" md-cell>
+                        {{ item.email | limitTo: emailLimit}}{{item.email.length > emailLimit ? '...' : ''}}
+                        <a ng-show="item.email.length > emailLimit" href ng-click="emailLimit=item.email.length; moreEmailShown = true">Più</a>
+                        <a ng-show="moreEmailShown" href ng-click="emailLimit=7; moreEmailShown = false"> Meno </a>
+                    </td>
                     <td md-cell>{{ item.username }}</td>
                     <td ng-if="main.group == 'hr' || main.group =='admin'" md-cell>
                         <md-button ng-click="editInterview(item._id)" class="md-fab md-mini md-warn">
