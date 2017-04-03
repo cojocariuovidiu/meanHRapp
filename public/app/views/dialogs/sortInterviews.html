@@ -11,11 +11,12 @@
     </md-toolbar>
 
     <md-dialog-content>
-        <div layout="column" class="md-inline-form inputdemoBasicUsage">
-            <md-content class="modal-background" aria-label="MD Content" md-theme="docs-dark" layout-padding="">
-
-                <md-card>
-                    <label style="text-align:center; padding-bottom:30px;">Ordinare per Data Coloquio:</label>
+        <div class="md-inline-form inputdemoBasicUsage">
+            <md-content layout-xs="column" layout="row" class="modal-background md-padding" aria-label="MD Content" md-theme="docs-dark"
+                layout-padding="">
+                <div layout="column">
+                    <md-card>
+                        <label class="text-center"  style="padding-bottom:30px;">Ordinare per Data Coloquio / Da Richiamare:</label>
 
                         <!--<md-input-container>
                             <label>Da</label>
@@ -28,43 +29,46 @@
                         <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
                             Vai
                         </md-button>-->
-                    <div layout-gt-sm="row">
-                        <md-button class="md-raised md-primary" ng-click="getToday()">
-                            Oggi
-                        </md-button>
-                        <md-button class="md-raised md-primary" ng-click="getOneWeek()">
-                            7 Giorni
-                        </md-button>
-                        <md-button class="md-raised md-primary" ng-click="getOneMonth()">
-                            30 Giorni
-                        </md-button>
-                        <md-input-container>
-                            <label>Giorno</label>
-                            <md-datepicker ng-model="customDay" aria-label="intCustomDay"></md-datepicker>
-                        </md-input-container>
-                        <md-button class="md-raised md-fab md-mini md-primary" ng-click="dataColDayFilter(customDay)">
-                            Vai
-                        </md-button>
-                    </div>
-                </md-card>
+                        <div layout-gt-sm="row">
+                            <md-button class="calendar-sort-buttons md-raised" ng-click="getToday()">
+                                Oggi
+                            </md-button>
+                            <md-button class="calendar-sort-buttons md-raised" ng-click="getOneWeek()">
+                                7 Giorni
+                            </md-button>
+                            <md-button class="calendar-sort-buttons md-raised" ng-click="getOneMonth()">
+                                30 Giorni
+                            </md-button>
+                            <md-card>
+                                <md-input-container>
+                                    <label>Giorno</label>
+                                    <md-datepicker ng-model="customDay" aria-label="intCustomDay"></md-datepicker>
+                                </md-input-container>
+                                <md-button class="calendar-sort-buttons md-raised md-mini" ng-click="dataColDayFilter(customDay)">
+                                    Giorno Specifico
+                                </md-button>
+                            </md-card>
+                        </div>
+                    </md-card>
 
-                <md-card>
-                    <label style="text-align:center; padding-bottom:30px;">Ordinare per Esito Colloquio:</label>
-                    <div layout-gt-sm="row">
-                        <md-button class="assunto" ng-click="getAssunti()">
-                            Assunti
-                        </md-button>
-                        <md-button class="da_rivedere" ng-click="getDaRivedere()">
-                            Da Rivedere
-                        </md-button>
-                        <md-button class="scartato" ng-click="getScartati()">
-                            Scartati
-                        </md-button>
-                        <md-button class="md-raised md-primary" ng-click="getAll()">
-                            Tutti
-                        </md-button>
-                    </div>
-                </md-card>
+                    <md-card>
+                        <label class="text-center" style="padding-bottom:30px;">Ordinare per Esito Colloquio:</label>
+                        <div  layout-align="center" layout-gt-sm="row">
+                            <md-button class="assunto" ng-click="getAssunti()">
+                                Assunti
+                            </md-button>
+                            <md-button class="da_rivedere" ng-click="getDaRivedere()">
+                                Da Rivedere
+                            </md-button>
+                            <md-button class="scartato" ng-click="getScartati()">
+                                Scartati
+                            </md-button>
+                        </div>
+                    </md-card>
+                </div>
+                <md-button class="md-raised md-primary" ng-click="getAll()">
+                    Tutti
+                </md-button>
             </md-content>
         </div>
     </md-dialog-content>

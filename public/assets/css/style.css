@@ -321,3 +321,7 @@ md-icon {
     .data-colloquio-padding{
         padding-bottom: 20px;
     }
+
+    .calendar-sort-buttons{
+        background-color: lightgoldenrodyellow  !important;
+    }

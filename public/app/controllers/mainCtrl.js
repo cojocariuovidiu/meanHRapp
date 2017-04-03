@@ -3,6 +3,12 @@ angular.module('mainController', ['ngMaterial'])
 .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('docs-dark')
 })
+// .config( function($mdThemingProvider) {
+//         $mdThemingProvider.theme('default')
+//         .primaryPalette('indigo')
+//         .accentPalette('grey')
+//         .warnPalette('red');
+//     })
 
 .controller('mainCtrl', function($scope, shareData, $mdSidenav, Auth, $timeout, $location, $rootScope, $route) {
     var main = this;
