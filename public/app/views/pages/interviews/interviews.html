@@ -49,7 +49,11 @@
             <tbody md-body>
                 <!--<tr md-row md-select="item" md-select-id="name" ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">-->
                 <tr md-row ng-repeat="item in int.interviewsList   | orderBy:sort.order | filter:searchInterview |  limitTo: sort.limit : (sort.page -1) * sort.limit"
-                    ng-class="item.esitocolloquio === 'assunto' ? 'assunto' :  ( item.esitocolloquio === 'scartato' ? 'scartato' :(item.esitocolloquio === 'da rivedere' ? 'da_rivedere' : 'no_fill'))">
+                    ng-class="item.esitocolloquio === 'assunto' ? 'assunto' :  
+                                ( item.esitocolloquio === 'scartato' ? 'scartato' :
+                                    (item.esitocolloquio === 'da rivedere' ? 'da_rivedere' : 
+                                        (item.datarichiamare != null || item.datacolloquio != null ? 'data-coll-data-richiamare':
+                                            'no_fill')))">
                     <td md-cell><i ng-if="item.cv" class="material-icons"><a target="blank" href="http://192.168.0.4:3000/uploads/{{item.cv}}">face</a></i></td>
                     <td md-cell>{{ item.dataapplicazione | date}}</td>
                     <td md-cell>{{ item.datacolloquio | date :'MMM dd, HH:mm'}}</td>

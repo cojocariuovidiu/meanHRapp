@@ -405,7 +405,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         }
 
         function getInterviewsFiltered(option) {
-            if (option == 'All') {
+            if (option === 'All') {
                 var before = moment(Date.now())
                 $scope.promise = $timeout(function () {
                     Interview.getinterviews(shareData.loggedUser)

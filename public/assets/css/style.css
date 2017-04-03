@@ -230,7 +230,8 @@ md-content {
     }
     
     .cerca {
-        margin-bottom: -20px;
+        margin-bottom: -35px;
+        width: 150px;        
     }
     
     .table-card {
@@ -322,6 +323,6 @@ md-icon {
         padding-bottom: 20px;
     }
 
-    .calendar-sort-buttons{
+    .data-coll-data-richiamare{
         background-color: lightgoldenrodyellow  !important;
     }
