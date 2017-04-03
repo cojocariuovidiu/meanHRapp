@@ -74,10 +74,10 @@
                     </td>
                     <td class="esitocolloquio" md-cell>{{ item.esitocolloquio }}</td>
                     <td class="sito" md-cell>{{ item.sito }}</td>
-                    <td ng-init="emailLimit = 7; moreEmailShown = false" class="email" md-cell>
+                    <td ng-init="emailLimit = 5; moreEmailShown = false" class="email" md-cell>
                         {{ item.email | limitTo: emailLimit}}{{item.email.length > emailLimit ? '...' : ''}}
                         <a ng-show="item.email.length > emailLimit" href ng-click="emailLimit=item.email.length; moreEmailShown = true">Più</a>
-                        <a ng-show="moreEmailShown" href ng-click="emailLimit=7; moreEmailShown = false"> Meno </a>
+                        <a ng-show="moreEmailShown" href ng-click="emailLimit=5; moreEmailShown = false"> Meno </a>
                     </td>
                     <td md-cell>{{ item.username }}</td>
                     <td ng-if="main.group == 'hr' || main.group =='admin'" md-cell>

@@ -354,7 +354,7 @@ module.exports = function (router) {
                     if (err) {
                         console.log(err)
                     } else {
-                        console.log('sorting found',interviews.count)
+                        console.log('sorting by',days,'days found:',interviews.length)
                         res.send(interviews)
                     }
                 })
