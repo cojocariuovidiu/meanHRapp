@@ -480,6 +480,8 @@ module.exports = function (router) {
         if (updateInterview.cv === null || updateInterview.cv === undefined) delete updateInterview.cv
         if (updateInterview.ci === null || updateInterview.ci === undefined) delete updateInterview.ci
 
+        if(updateInterview.esitocolloquio === 'elimina esitocolloquio') updateInterview.esitocolloquio = null
+
         console.log(updateInterview)
 
         Interview.findOneAndUpdate({ _id: req.params.id }, updateInterview, { new: true }, function (err) {

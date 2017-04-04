@@ -66,7 +66,8 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 'attendo risposta',
                 'da rivedere',
                 'irreperibile',
-                'non interessato'
+                'non interessato',
+                'elimina esitocolloquio'
             ]
 
             $scope.hide = function () {
