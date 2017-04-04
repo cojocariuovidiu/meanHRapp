@@ -360,7 +360,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
 
                 //Load all data from the DB
                 var before = moment(Date.now())
-                Interview.getinterviews().then(function (response) {
+                Interview.getinterviews(shareData.loggedUser).then(function (response) {
                     console.log('Int chart loaded in:', LoadingLog(before), 'ms')
                     response.data.forEach(function (element) {
 

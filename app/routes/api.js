@@ -188,11 +188,11 @@ module.exports = function (router) {
         // } else {
         interview.save(function (err) {
             if (err) {
-                console.log('new interview create Failed', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
+                LogMessage(req.body.username, 'New Int Created', 'error')
                 console.log(err)
                 res.json({ success: false })
             } else {
-                console.log('new interview created OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
+                LogMessage(req.body.username, 'New Int Created', 'success')
                 res.json({ success: true })
             }
         })
@@ -217,11 +217,11 @@ module.exports = function (router) {
 
         employee.save(function (err) {
             if (err) {
-                console.log('Employee save Failed', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
+                LogMessage(req.body.username, 'Employee save', 'error')
                 console.log(err)
                 res.json({ success: false })
             } else {
-                console.log('Employee save OK', moment(Date.now()).format('YYYY/MM/DD HH:mm'));
+                LogMessage(req.body.username, 'Employee save', 'success')
                 res.json({ success: true })
             }
         })
@@ -232,9 +232,9 @@ module.exports = function (router) {
         Interview.find({}, function (err, interviews) {
             if (!err) {
                 res.send(interviews)
-                console.log(req.body.username, 'OK - get all int', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                LogMessage(req.body.username, 'get all Int', 'success')
             } else {
-                console.log(req.body.username, '- error - get int ', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                LogMessage(req.body.username, 'get all Int', 'error')
                 console.log(err)
             }
         })
@@ -244,18 +244,22 @@ module.exports = function (router) {
     router.post('/getemployees', function (req, res) {
         Employee.find({}, function (err, employees) {
             if (!err) {
+                LogMessage(req.body.username, 'get all Emp', 'success')
                 res.send(employees)
-                console.log(req.body.username, 'OK - get all emp', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
             } else {
-                console.log(req.body.username, '- error - get empl', moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                LogMessage(req.body.username, 'get all Emp', 'error')
                 console.log(err)
             }
         })
     })
 
     //LogMessage
-    function LogMessage(username) {
-
+    function LogMessage(username, text, action) {
+        if (action === 'success') {
+            console.log(username, 'OK -', text, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+        } else if (action === 'error') {
+            console.log(username, '- Error -', text, moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+        }
     }
 
     //http://127.0.0.1:3000/api/getWorkingEmployees
@@ -271,7 +275,7 @@ module.exports = function (router) {
         Interview.findOne({ _id: req.params.id }).select().exec(function (err, item) {
             if (err) throw err;
             if (!item) {
-                console.log("Can't find id to edit.", moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                LogMessage(req.body.username, "Can't find id to edit.", 'error')
             } else {
                 res.json({ item })
             }
@@ -283,7 +287,7 @@ module.exports = function (router) {
         Employee.findOne({ _id: req.body.id }).select().exec(function (err, item) {
             if (err) throw err;
             if (!item) {
-                console.log("can't find id to edit.", moment(Date.now()).format('YYYY/MM/DD HH:mm'))
+                LogMessage(req.body.username, "Can't find id to edit.", 'error')
             } else {
                 res.json({ item })
             }
@@ -354,7 +358,7 @@ module.exports = function (router) {
                     if (err) {
                         console.log(err)
                     } else {
-                        console.log('sorting by',days,'days found:',interviews.length)
+                        console.log('sorting by', days, 'days found:', interviews.length)
                         res.send(interviews)
                     }
                 })
@@ -480,7 +484,7 @@ module.exports = function (router) {
         if (updateInterview.cv === null || updateInterview.cv === undefined) delete updateInterview.cv
         if (updateInterview.ci === null || updateInterview.ci === undefined) delete updateInterview.ci
 
-        if(updateInterview.esitocolloquio === 'elimina esitocolloquio') updateInterview.esitocolloquio = null
+        if (updateInterview.esitocolloquio === 'elimina esitocolloquio') updateInterview.esitocolloquio = null
 
         console.log(updateInterview)
 
