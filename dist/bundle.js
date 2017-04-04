@@ -1,1 +1,197 @@
-!function(e){function n(t){if(o[t])return o[t].exports;var r=o[t]={i:t,l:!1,exports:{}};return e[t].call(r.exports,r,r.exports,n),r.l=!0,r.exports}var o={};n.m=e,n.c=o,n.i=function(e){return e},n.d=function(e,o,t){n.o(e,o)||Object.defineProperty(e,o,{configurable:!1,enumerable:!0,get:t})},n.n=function(e){var o=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(o,"a",o),o},n.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},n.p="/dist",n(n.s=0)}([function(e,n){angular.module("mainController",["ngMaterial"]).config(function(e){e.theme("docs-dark")}).controller("mainCtrl",function(e,n,o,t,r,s,i,a){var c=this;c.loadme=!1,c.checkSession=function(){t.isLoggedIn()&&(c.checkingsession=!0)},c.checkSession(),i.$on("$routeChangeStart",function(o,r,i){if(c.checkingsession||c.checkSession(),t.isLoggedIn()){for(var a=s.path();"/"===a.charAt(0);)a=a.substr(1);e.currentNavItem=a,c.isLoggedIn=!0,t.getUser().then(function(e){c.username=e.data.username,c.useremail=e.data.email,c.group=e.data.group,c.loadme=!0,n.loggedUser=e.data.username})}else c.isLoggedIn=!1,c.username=null,c.loadme=!0}),c.doLogin=function(e){c.successMsg=!1,c.errorMsg=!1,c.isLoading=!0,t.login(c.loginData).then(function(e){e.data.success?(c.successMsg=e.data.message+"...Redirecting",r(function(){c.checkSession(),s.path("/interviste"),c.isLoading=!1,c.loginData=null,c.successMsg=!1})):(c.errorMsg=e.data.message,r(function(){c.isLoading=!1},500))})},c.logout=function(){t.logout(),s.path("/login"),a.reload()}})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "/dist";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+angular.module('mainController', ['ngMaterial'])
+
+.config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('docs-dark')
+})
+// .config( function($mdThemingProvider) {
+//         $mdThemingProvider.theme('default')
+//         .primaryPalette('indigo')
+//         .accentPalette('grey')
+//         .warnPalette('red');
+//     })
+
+.controller('mainCtrl', function($scope, shareData, $mdSidenav, Auth, $timeout, $location, $rootScope, $route) {
+    var main = this;
+
+    main.loadme = false;
+
+    main.checkSession = function() {
+        if (Auth.isLoggedIn()) {
+            main.checkingsession = true;
+        }
+    }
+
+    main.checkSession();
+
+    // $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
+    //     console.log('Current route name: ' + $location.path());
+    //     // Get all URL parameter
+    //     console.log($routeParams);
+    // });
+
+    $rootScope.$on('$routeChangeStart', function(e, current, pre) {
+        if (!main.checkingsession) main.checkSession();
+
+        if (Auth.isLoggedIn()) {
+
+            // Get current route and set it to the nav
+            var currentRoute = $location.path()
+            while (currentRoute.charAt(0) === '/') {
+                currentRoute = currentRoute.substr(1);
+            }
+            $scope.currentNavItem = currentRoute
+
+            main.isLoggedIn = true;
+
+            Auth.getUser().then(function(data) {
+                //to accest username from the front-end
+                main.username = data.data.username
+                main.useremail = data.data.email
+                main.group = data.data.group
+                main.loadme = true;
+                //share logged user to other controllers
+                shareData.loggedUser = data.data.username
+            })
+        } else {
+            //console.log('failure, User is NOT logged in ');
+            main.isLoggedIn = false;
+            main.username = null;
+            main.loadme = true;
+        }
+    })
+
+    main.doLogin = function(loginData) {
+        main.successMsg = false;
+        main.errorMsg = false;
+        main.isLoading = true;
+
+        Auth.login(main.loginData).then(function(data) {
+            //console.log(data.data.success, data.data.message);
+            if (data.data.success) {
+                //Create Success message
+                main.successMsg = data.data.message + '...Redirecting';
+                $timeout(function() {
+                    //Redirect To HomePage
+                    main.checkSession();
+
+                    //loading twich to hack the error :-(
+                    // getInterviewsFiltered('All')
+                    // console.log('got int on login')
+                    $location.path('/interviste')
+                    main.isLoading = false
+                    main.loginData = null;
+                    main.successMsg = false;
+
+                    // main.group = data.data.group
+                })
+
+            } else {
+                //Create error message
+                main.errorMsg = data.data.message;
+                $timeout(function() {
+                    main.isLoading = false
+                }, 500)
+            }
+        })
+    }
+
+    main.logout = function() {
+        Auth.logout();
+        $location.path('/login');
+        $route.reload();
+    }
+
+});
+
+
+
+
+// .config(function($mdThemingProvider) {
+//   $mdThemingProvider.theme('default')
+//     .primaryPalette('pink')
+//     .accentPalette('orange');
+// });
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(0);
+(function webpackMissingModule() { throw new Error("Cannot find module \"run\""); }());
+(function webpackMissingModule() { throw new Error("Cannot find module \"dev\""); }());
+
+
+/***/ })
+/******/ ]);

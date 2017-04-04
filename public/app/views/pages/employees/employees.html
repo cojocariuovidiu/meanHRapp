@@ -69,8 +69,11 @@
     </md-table-container>
 </md-card>
 
-<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{emp.employeessList.length}}"
-    md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>
+<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" 
+    md-total="{{emp.employeessList.length}}" md-on-paginate="promiseInterviews" md-page-select
+        md-label="{ page: 'Pagina', rowsPerPage: 'Righe per pagina', of: 'da' }">
+</md-table-pagination>
+
 <!--<md-table-pagination md-limit="sort.limit" md-limit-options="limitOptions" md-page="sort.page" md-total="{{main.interviewsList.length}}" md-on-paginate="promiseInterviews" md-page-select></md-table-pagination>-->
 
 
