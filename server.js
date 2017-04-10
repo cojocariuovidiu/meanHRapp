@@ -1,24 +1,6 @@
-// 'use strict';
-
-// const app = require('express')(),
-//     config = require('./app/config/config')
-
-// //Express conf !
-// require('./app/config/express.config')(app);
-
-// //Mongoose Conf !
-// require('./app/config/mongoose.config')(config);
-
-// app.listen(config.dev.port, () => {
-//     console.log("Listening ..");
-// });
-
-
-
 var express = require('express')
 var app = express()
 var port = process.env.PORT || 3000
-    //var morgan = require('morgan')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var router = express.Router()
@@ -27,7 +9,6 @@ var path = require('path')
 mongoose.Promise = global.Promise; //deprecation warning goes before appRoutes
 var appRoutes = require('./app/routes/api')(router)
 
-//app.use(morgan('dev')) //morgan logs every server resqest
 app.use(bodyParser.json()) //for parsing the json 
 app.use(bodyParser.urlencoded({ extended: true })) //for parse application/x-www-form-urlencoded
 app.use(express.static(__dirname + '/public'))

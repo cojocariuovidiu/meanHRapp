@@ -2,11 +2,11 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-    entry: './public/app/controllers/mainCtrl.js',
+    entry: './public/app/app.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'public/dist'),
         filename: 'bundle.js',
-        publicPath: '/dist'
+        publicPath: '/public/dist'
     },
     // module:{
     //     rules:[
