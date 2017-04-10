@@ -163,9 +163,53 @@ md-content {
     table.md-table th.md-column {
         font-size: 11px;
     }
-    
+    .dataApp{
+        min-width: 90px;
+        width: 90px;
+        max-width: 90px;
+    }
+    .dataColl{
+        min-width: 110px;
+        width: 110px;
+        max-width: 110px;
+    }
+    .dataRic{
+        min-width: 110px;
+        width: 110px;
+        max-width: 110px;
+    }
     .tel {
-        max-width: 80px;
+        min-width: 90px;
+        width: 90px;
+        max-width: 90px;
+        word-wrap: break-word;
+    }
+    .esito1{
+        min-width: 110px;
+        width: 110px;
+        max-width: 110px;
+        word-wrap: break-word;
+    }
+    .note {
+        min-width: 110px;
+        width: 110px;
+        max-width: 110px;
+        word-wrap: break-word;
+    }
+    .esitocoll{
+        max-width: 70px;
+        word-wrap: break-word;
+    }
+    .sito{
+        min-width: 70px;
+        width: 70px;
+        max-width: 70px;
+        word-wrap: break-word;
+    }
+    .email{
+        min-width: 70px;
+        width: 70px;
+        max-width: 70px;
         word-wrap: break-word;
     }
     /*.note,

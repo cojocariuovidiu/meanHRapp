@@ -30,20 +30,20 @@
             <thead md-head md-order="sort.order">
                 <tr md-row>
                     <th md-column md-order-by="cv">CV</th>
-                    <th md-column md-order-by="dataapplicazione"><span>Data app</span></th>
-                    <th md-column md-order-by="datacolloquio">Data Colloquio</th>
-                    <th md-column md-order-by="datarichiamare">Data Richiamare</th>
+                    <th class="dataApp" md-column md-order-by="dataapplicazione"><span>Data App</span></th>
+                    <th class="dataColl" md-column md-order-by="datacolloquio">Data Colloquio</th>
+                    <th class="dataRic" md-column md-order-by="datarichiamare">Data Richiamare</th>
                     <th md-column md-order-by="nomecognome"><span>Nome e cognome</span></th>
                     <!--<th md-column md-order-by="sesso">Sesso</th>-->
                     <th md-column md-order-by="eta">Eta'</th>
                     <th class="tel" md-column md-order-by="tel">Telefono</th>
-                    <th md-column md-order-by="esito1">Esito 1 chiamata</th>
-                    <th md-column md-order-by="note">Note</th>
-                    <th md-column md-order-by="esitocolloquio">Esito colloquio</th>
-                    <th md-column md-order-by="sito">Sito</th>
-                    <th md-column md-order-by="email">E-mail</th>
-                    <th md-column md-order-by="username">Creato da</th>
-                    <th ng-if="main.group == 'hr' || main.group =='admin'" md-column>Azione</th>
+                    <th class="esito1" md-column md-order-by="esito1">Esito 1 chiamata</th>
+                    <th class="note" md-column md-order-by="note">Note</th>
+                    <th class="esitocoll" md-column md-order-by="esitocolloquio">Esito coll</th>
+                    <th class="sito" md-column md-order-by="sito">Sito</th>
+                    <th class="email" md-column md-order-by="email">E-mail</th>
+                    <th md-column md-order-by="username">Creato</th>
+                    <th class="azione" ng-if="main.group == 'hr' || main.group =='admin'" md-column>Azione</th>
                 </tr>
             </thead>
             <tbody md-body>
@@ -63,22 +63,27 @@
                     <!--<td class="sesso" md-cell>{{ item.sesso }}</td>-->
                     <td md-cell>{{ item.eta }}</td>
                     <td class="tel" md-cell>{{ item.tel }}</td>
-                    <td ng-init="esito1Limit = 20; moreEsito1Shown = false" class="esito1" md-cell>
+                    <td ng-init="esito1Limit = 15; moreEsito1Shown = false" class="esito1" md-cell>
                         {{ item.esito1 | limitTo: esito1Limit}}{{item.esito1.length > esito1Limit ? '...' : ''}}
-                        <a ng-show="item.esito1.length > esito1Limit" href ng-click="esito1Limit=item.esito1.length; moreEsito1Shown = true">Più</a>
-                        <a ng-show="moreEsito1Shown" href ng-click="esito1Limit=20; moreEsito1Shown = false"> Meno </a>
+                        <a ng-show="item.esito1.length > esito1Limit" href ng-click="esito1Limit=item.esito1.length; moreEsito1Shown = true"><p>Più</p></a>
+                        <a ng-show="moreEsito1Shown" href ng-click="esito1Limit=15; moreEsito1Shown = false"> Meno </a>
                     </td>
                     <td ng-init="noteLimit = 15; moreNoteShown = false" class="note" md-cell>
                         {{ item.note | limitTo: noteLimit }}{{item.note.length > noteLimit ? '...' : ''}}
-                        <a ng-show="item.note.length > noteLimit" href ng-click="noteLimit=item.note.length; moreNoteShown = true"> Più </a>
+                        <a ng-show="item.note.length > noteLimit" href ng-click="noteLimit=item.note.length; moreNoteShown = true"><p>Più</p></a>
                         <a ng-show="moreNoteShown" href ng-click="noteLimit=15; moreNoteShown = false"> Meno </a>
                     </td>
                     <td class="esitocolloquio" md-cell>{{ item.esitocolloquio }}</td>
-                    <td class="sito" md-cell>{{ item.sito }}</td>
-                    <td ng-init="emailLimit = 5; moreEmailShown = false" class="email" md-cell>
+                    <!--<td class="sito" md-cell>{{ item.sito }}</td>-->
+                    <td ng-init="sitoLimit = 7; moreSitoShown = false" class="sito" md-cell>
+                        {{ item.sito | limitTo: sitoLimit}}{{item.sito.length > sitoLimit ? '...' : ''}}
+                        <a ng-show="item.sito.length > sitoLimit" href ng-click="sitoLimit=item.sito.length; moreSitoShown = true"><p>Più</p></a>
+                        <a ng-show="moreSitoShown" href ng-click="sitoLimit=7; moreSitoShown = false"> Meno </a>
+                    </td>
+                    <td ng-init="emailLimit = 7; moreEmailShown = false" class="email" md-cell>
                         {{ item.email | limitTo: emailLimit}}{{item.email.length > emailLimit ? '...' : ''}}
-                        <a ng-show="item.email.length > emailLimit" href ng-click="emailLimit=item.email.length; moreEmailShown = true">Più</a>
-                        <a ng-show="moreEmailShown" href ng-click="emailLimit=5; moreEmailShown = false"> Meno </a>
+                        <a ng-show="item.email.length > emailLimit" href ng-click="emailLimit=item.email.length; moreEmailShown = true"><p>Più</p></a>
+                        <a ng-show="moreEmailShown" href ng-click="emailLimit=7; moreEmailShown = false"> Meno </a>
                     </td>
                     <td md-cell>{{ item.username }}</td>
                     <td ng-if="main.group == 'hr' || main.group =='admin'" md-cell>
