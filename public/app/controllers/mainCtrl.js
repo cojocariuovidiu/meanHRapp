@@ -1,107 +1,97 @@
 angular.module('mainController', ['ngMaterial'])
 
-.config(function($mdThemingProvider) {
-    $mdThemingProvider.theme('docs-dark')
-})
-// .config( function($mdThemingProvider) {
-//         $mdThemingProvider.theme('default')
-//         .primaryPalette('indigo')
-//         .accentPalette('grey')
-//         .warnPalette('red');
-//     })
-
-.controller('mainCtrl', function($scope, shareData, $mdSidenav, Auth, $timeout, $location, $rootScope, $route) {
-    var main = this;
-
-    main.loadme = false;
-
-    main.checkSession = function() {
-        if (Auth.isLoggedIn()) {
-            main.checkingsession = true;
-        }
-    }
-
-    main.checkSession();
-
-    // $rootScope.$on('$routeChangeSuccess', function(e, current, pre) {
-    //     console.log('Current route name: ' + $location.path());
-    //     // Get all URL parameter
-    //     console.log($routeParams);
-    // });
-
-    $rootScope.$on('$routeChangeStart', function(e, current, pre) {
-        if (!main.checkingsession) main.checkSession();
-
-        if (Auth.isLoggedIn()) {
-
-            // Get current route and set it to the nav
-            var currentRoute = $location.path()
-            while (currentRoute.charAt(0) === '/') {
-                currentRoute = currentRoute.substr(1);
-            }
-            $scope.currentNavItem = currentRoute
-
-            main.isLoggedIn = true;
-
-            Auth.getUser().then(function(data) {
-                //to accest username from the front-end
-                main.username = data.data.username
-                main.useremail = data.data.email
-                main.group = data.data.group
-                main.loadme = true;
-                //share logged user to other controllers
-                shareData.loggedUser = data.data.username
-            })
-        } else {
-            //console.log('failure, User is NOT logged in ');
-            main.isLoggedIn = false;
-            main.username = null;
-            main.loadme = true;
-        }
+    .config(function ($mdThemingProvider) {
+        $mdThemingProvider.theme('docs-dark')
     })
+    // .config( function($mdThemingProvider) {
+    //         $mdThemingProvider.theme('default')
+    //         .primaryPalette('indigo')
+    //         .accentPalette('grey')
+    //         .warnPalette('red');
+    //     })
 
-    main.doLogin = function(loginData) {
-        main.successMsg = false;
-        main.errorMsg = false;
-        main.isLoading = true;
+    .controller('mainCtrl', function ($scope, $mdToast, shareData, Auth, $timeout, $location, $rootScope, $route) {
+        var main = this;
 
-        Auth.login(main.loginData).then(function(data) {
-            //console.log(data.data.success, data.data.message);
-            if (data.data.success) {
-                //Create Success message
-                main.successMsg = data.data.message + '...Redirecting';
-                $timeout(function() {
-                    //Redirect To HomePage
-                    main.checkSession();
+        main.loadme = false;
 
-                    //loading twich to hack the error :-(
-                    // getInterviewsFiltered('All')
-                    // console.log('got int on login')
-                    $location.path('/interviste')
-                    main.isLoading = false
-                    main.loginData = null;
-                    main.successMsg = false;
+        main.checkSession = function () {
+            if (Auth.isLoggedIn()) {
+                main.checkingsession = true;
+            }
+        }
 
-                    // main.group = data.data.group
+        main.checkSession();
+
+        var showToast = function (message) {
+            $mdToast.show(
+                $mdToast.simple()
+                    .action('OK')
+                    .textContent(message)
+                    .hideDelay(2000)
+                    .highlightAction(true)
+                    .capsule(true)
+                    .position('top right')
+                // .theme(string)
+            );
+        }
+
+        $rootScope.$on('$routeChangeStart', function (e, current, pre) {
+            if (!main.checkingsession) main.checkSession();
+
+            if (Auth.isLoggedIn()) {
+
+                // Get current route and set it to the nav
+                var currentRoute = $location.path()
+                while (currentRoute.charAt(0) === '/') {
+                    currentRoute = currentRoute.substr(1);
+                }
+                $scope.currentNavItem = currentRoute
+
+                main.isLoggedIn = true;
+
+                Auth.getUser().then(function (data) {
+                    main.username = data.data.username
+                    main.useremail = data.data.email
+                    main.group = data.data.group
+                    main.loadme = true;
+                    shareData.loggedUser = data.data.username
                 })
-
             } else {
-                //Create error message
-                main.errorMsg = data.data.message;
-                $timeout(function() {
-                    main.isLoading = false
-                }, 500)
+                main.isLoggedIn = false;
+                main.username = null;
+                main.loadme = true;
             }
         })
-    }
 
-    main.logout = function() {
-        Auth.logout();
-        $location.path('/login');
-        $route.reload();
-    }
+        main.doLogin = function (loginData) {
+            main.errorMsg = false;
+            //main.isLoading = true;
 
-});
+            Auth.login(main.loginData).then(function (data) {
+                if (data.data.success) {
+                    showToast(data.data.message + '...Redirecting')
+                    // main.isLoading = false
+                    $timeout(function () {
+                        main.checkSession();
+                        $location.path('/interviste')
+                        main.loginData = null;
+                    }, 1000)
+
+                } else {
+                     showToast(data.data.message)
+                    // main.isLoading = false
+                }
+            })
+        }
+
+        main.logout = function () {
+            Auth.logout();
+            $location.path('/login');
+            $route.reload();
+        }
+
+    });
 
 
 
