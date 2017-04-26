@@ -76,11 +76,10 @@ angular.module('mainController', ['ngMaterial'])
                         main.checkSession();
                         $location.path('/interviste')
                         main.loginData = null;
-                    }, 2000)
+                    }, 1000)
 
                 } else {
-                    //Create error message
-                    showToast(data.data.message)
+                     showToast(data.data.message)
                     // main.isLoading = false
                 }
             })
