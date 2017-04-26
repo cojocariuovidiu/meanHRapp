@@ -251,7 +251,7 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         $scope.intChartModal = function () {
             $mdDialog.show({
                 controller: ChartDialogController,
-                templateUrl: 'app/views/pages/interviews/intChart.html',
+                templateUrl: 'app/views/dialogs/intChart.html',
                 // locals: {
                 //     editedObject: editedObject
                 // },

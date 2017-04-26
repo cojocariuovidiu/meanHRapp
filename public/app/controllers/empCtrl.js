@@ -245,7 +245,7 @@ angular.module("employeeControllers", ["chart.js"])
         $scope.empChartModal = function () {
             $mdDialog.show({
                 controller: ChartDialogController,
-                templateUrl: 'app/views/pages/employees/empChart.html',
+                templateUrl: 'app/views/dialogs/empChart.html',
                 // locals: {
                 //     editedObject: editedObject
                 // },

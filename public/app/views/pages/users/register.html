@@ -1,5 +1,5 @@
-<div layout="column" flex id="content" role="main">
-    <md-content layout="vertical" flex id="content">
+<card>
+    <md-content class="loginScreen" layout="vertical" flex id="content">
         <div class="loginBox md-whiteframe-z1" layout="column">
             <md-toolbar>
                 <h2 class="md-toolbar-tools"><span>Register</span></h2>
@@ -46,11 +46,10 @@
             </div>
         </div>
     </md-content>
-</div>
-<div ng-show="register.successMsg " class="row show-hide-message ">
-    <div class="alert alert-success ">{{ register.successMsg }}</div>
-</div>
-
+    <div ng-show="register.successMsg " class="row show-hide-message ">
+        <div class="alert alert-success ">{{ register.successMsg }}</div>
+    </div>
+</card>
 
 
 <!--<form ng-submit="register.regUser(regData)">
@@ -67,15 +66,11 @@
     <span ng-show="register.isLoading " class="fa fa-circle-o-notch fa-spin " style="font-size:25px;color:red "></span>
     <a ng-show="!main.isLoggedIn " href="/login ">Login</a>
 </form>
-
 <br>
-
 <div ng-show="register.successMsg " class="row show-hide-message ">
     <div class="alert alert-success ">{{ register.successMsg }}</div>
 </div>
-
 <br>
-
 <div ng-show="register.errorMsg " class="row show-hide-message ">
     <div class="alert alert-danger ">{{ register.errorMsg}}</div>
 </div>-->

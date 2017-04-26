@@ -5,6 +5,7 @@
             <md-toolbar>
                 <h2 class="md-toolbar-tools"><span>Login</span></h2>
             </md-toolbar>
+            <br>
             <md-content class="md-padding" layout="column">
                 <md-input-container>
                     <label>Username</label>
@@ -21,15 +22,15 @@
                     <!--<md-button href="/register" md-no-ink="md-no-ink">Register</md-button>-->
                 </div>
             </md-content>
+            <div ng-show="main.successMsg" class="row show-hide-message">
+                <div class="alert alert-success">{{ main.successMsg }}</div>
+            </div>
+            <div ng-show="main.errorMsg" class="row show-hide-message">
+                <div class="alert alert-danger">{{ main.errorMsg}}</div>
+            </div>
         </div>
-
     </md-content>
-    <div ng-show="main.successMsg" class="row show-hide-message">
-        <div class="alert alert-success">{{ main.successMsg }}</div>
-    </div>
-    <div ng-show="main.errorMsg" class="row show-hide-message">
-        <div class="alert alert-danger">{{ main.errorMsg}}</div>
-    </div>
+
 </card>
 <!--</div>-->
 
@@ -44,12 +45,7 @@
     <input ng-model="main.loginData.password" class="form-control" type="password" name="password" placeholder="please enter-password">
     <br>
     <button class="btn btn-primary" type="submit">Login</button>
-
     <a ng-show="!main.isLoggedIn" href="/register">Register</a>
 </form>
-
 <br>
-
-
-
 <br>-->
