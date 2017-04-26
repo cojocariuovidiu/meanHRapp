@@ -22,15 +22,15 @@
                     <!--<md-button href="/register" md-no-ink="md-no-ink">Register</md-button>-->
                 </div>
             </md-content>
+            <div ng-show="main.successMsg" class="row show-hide-message">
+                <div class="alert alert-success">{{ main.successMsg }}</div>
+            </div>
+            <div ng-show="main.errorMsg" class="row show-hide-message">
+                <div class="alert alert-danger">{{ main.errorMsg}}</div>
+            </div>
         </div>
-
     </md-content>
-    <div ng-show="main.successMsg" class="row show-hide-message">
-        <div class="alert alert-success">{{ main.successMsg }}</div>
-    </div>
-    <div ng-show="main.errorMsg" class="row show-hide-message">
-        <div class="alert alert-danger">{{ main.errorMsg}}</div>
-    </div>
+
 </card>
 <!--</div>-->
 
