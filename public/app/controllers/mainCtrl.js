@@ -70,7 +70,7 @@ angular.module('mainController', ['ngMaterial'])
 
             Auth.login(main.loginData).then(function (data) {
                 if (data.data.success) {
-                    showToast(data.data.message + '...Redirecting')
+                    showToast(data.data.message)
                     // main.isLoading = false
                     $timeout(function () {
                         main.checkSession();
