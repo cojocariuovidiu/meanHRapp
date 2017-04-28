@@ -16,19 +16,23 @@
                 layout-padding="">
                 <div layout="column">
                     <md-card>
-                        <label class="text-center"  style="padding-bottom:30px;">Ordinare per Data Coloquio / Da Richiamare:</label>
-
-                        <!--<md-input-container>
-                            <label>Da</label>
-                            <md-datepicker md-current-view="year" ng-model="fromDate" aria-label="fromDate"></md-datepicker>
-                        </md-input-container>
-                        <md-input-container>
-                            <label>A</label>
-                            <md-datepicker ng-model="toDate" aria-label="toDate"></md-datepicker>
-                        </md-input-container>
-                        <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
-                            Vai
-                        </md-button>-->
+                        <label class="text-center" style="padding-bottom:30px;">Ordinare per Data Applicazione:</label>
+                        <div layout-gt-sm="row">
+                            <md-input-container>
+                                <label>Da</label>
+                                <md-datepicker md-current-view="year" ng-model="fromDate" aria-label="fromDate"></md-datepicker>
+                            </md-input-container>
+                            <md-input-container>
+                                <label>A</label>
+                                <md-datepicker md-current-view="year" ng-model="toDate" aria-label="toDate"></md-datepicker>
+                            </md-input-container>
+                            <md-button class="md-raised md-fab md-mini" ng-click="RangeFilter(fromDate, toDate)">
+                                Vai
+                            </md-button>
+                        </div>
+                    </md-card>
+                    <md-card>
+                        <label class="text-center" style="padding-bottom:30px;">Ordinare per Data Coloquio / Da Richiamare:</label>
                         <div layout-gt-sm="row">
                             <md-button class="data-coll-data-richiamare md-raised" ng-click="getToday()">
                                 Oggi
@@ -53,7 +57,7 @@
 
                     <md-card>
                         <label class="text-center" style="padding-bottom:30px;">Ordinare per Esito Colloquio:</label>
-                        <div  layout-align="center" layout-gt-sm="row">
+                        <div layout-align="center" layout-gt-sm="row">
                             <md-button class="assunto" ng-click="getAssunti()">
                                 Assunti
                             </md-button>

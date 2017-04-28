@@ -49,12 +49,12 @@ angular.module('interviewServices', [])
             return $http.post('/api/getInterviewsDataColDayFilter', {day: customDay})
         }
         // //Interview.getInterviewsRangeFilter(fromDate, toDate)
-        // interviewFactory.getInterviewsRangeFilter = function (fromDate, toDate) {
-        //     return $http.post('/api/getInterviewsRangeFilter', {
-        //         from: fromDate,
-        //         to: toDate
-        //     })
-        // }
+        interviewFactory.getInterviewsRangeFilter = function (fromDate, toDate) {
+            return $http.post('/api/getInterviewsRangeFilter', {
+                from: fromDate,
+                to: toDate
+            })
+        }
 
         return interviewFactory;
     })

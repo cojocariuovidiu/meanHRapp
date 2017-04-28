@@ -274,10 +274,10 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 DataColDayFilter(customDay)
                 $mdDialog.hide();
             }
-            // $scope.RangeFilter = function (fromDate, toDate) {
-            //     RangeFilter(fromDate, toDate);
-            //     $mdDialog.hide();
-            // };
+            $scope.RangeFilter = function (fromDate, toDate) {
+                RangeFilter(fromDate, toDate);
+                $mdDialog.hide();
+            };
 
             $scope.getAll = function () {
                 getInterviewsFiltered('All')
@@ -479,28 +479,30 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 }
             }
         }
-        // function RangeFilter(fromDate, toDate) {
-        //     if (fromDate == undefined || fromDate == null || toDate == undefined || toDate == null) {
-        //         showToast('Selezionare Da - A periodo')
-        //     } else {
-        //         var momentFrom = moment(fromDate).format('MMM/D/YYYY')
-        //         var momentTo = moment(toDate).format('MMM/D/YYYY')
-        //         $scope.fromDate = fromDate
-        //         $scope.toDate = toDate
+        function RangeFilter(fromDate, toDate) {
+            if (fromDate == undefined || fromDate == null || toDate == undefined || toDate == null) {
+                showToast('Selezionare Da - A periodo')
+            } else {
+                var momentFrom = moment(fromDate).format('MMM/D/YYYY')
+                var momentTo = moment(toDate).format('MMM/D/YYYY')
+                $scope.fromDate = fromDate
+                $scope.toDate = toDate
 
-        //         var before = moment(Date.now())
-        //         $scope.promise = $timeout(function () {
-        //             Interview.getInterviewsRangeFilter(fromDate, toDate)
-        //                 .then(function (response) {
-        //                     int.interviewsList = response.data
-        //                     displayingObject = {
-        //                         activator: 'Range'
-        //                     }
-        //                 }, this)
-        //             console.log('Range interviews loaded in:', LoadingLog(before), 'ms')
-        //         });
-        //     }
-        // }
+                console.log(fromDate, toDate)
+
+                var before = moment(Date.now())
+                $scope.promise = $timeout(function () {
+                    Interview.getInterviewsRangeFilter(fromDate, toDate)
+                        .then(function (response) {
+                            int.interviewsList = response.data
+                            displayingObject = {
+                                activator: 'Range'
+                            }
+                        }, this)
+                    console.log('Range interviews loaded in:', LoadingLog(before), 'ms')
+                });
+            }
+        }
 
 
         //MD TABLE ///
