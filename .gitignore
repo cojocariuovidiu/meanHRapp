@@ -3,3 +3,5 @@ bower_components
 uploads/
 *.log
 .vscode
+uploads/
+uploads_old/
