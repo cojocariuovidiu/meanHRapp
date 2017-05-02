@@ -5,6 +5,7 @@ var jwt = require('jsonwebtoken')
 var secret = 'harrypotter'
 var multer = require('multer')
 var moment = require('moment')
+const fs = require('fs');
 
 var cv = ''
 var CVstorage = multer.diskStorage({
@@ -300,6 +301,17 @@ module.exports = function (router) {
         var momentTo = moment(req.body.to).add(1, 'days').format('YYYY/MM/DD');
         Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
             res.send(interviews)
+
+            fs.readdir(('./public/uploads'), (err, files) => {
+                interviews.forEach(function (interview) {
+                    files.forEach(file => {
+                        //Will match any file that contains meat pasta or dinner
+                        if (file.match(interview.nomecognome)) {
+                            console.log(file, 'match')
+                        }
+                    });
+                })
+            })
         })
     })
 
