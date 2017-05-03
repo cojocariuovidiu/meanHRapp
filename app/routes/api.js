@@ -299,20 +299,38 @@ module.exports = function (router) {
     router.post('/getInterviewsRangeFilter', function (req, res) {
         var momentFrom = moment(req.body.from).format('YYYY/MM/DD');
         var momentTo = moment(req.body.to).add(1, 'days').format('YYYY/MM/DD');
+        var i = 0
+
+        var logger = fs.createWriteStream('./public/uploads/CV Aprile/log' + moment().format('mm') + '.txt', {
+            flags: 'a' // 'a' means appending (old data will be preserved)
+        })
+
         Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
             res.send(interviews)
 
-            fs.readdir(('./public/uploads'), (err, files) => {
-                interviews.forEach(function (interview) {
-                    files.forEach(file => {
-                        //Will match any file that contains meat pasta or dinner
-                        if (file.match(interview.nomecognome)) {
-                            console.log(file, 'match')
-                        }
-                    });
-                })
-            })
+            // fs.readdir(('./public/uploads/CV Aprile'), (err, files) => {
+            //     //loop interviews
+            //     interviews.forEach(function (interview) {
+            //         //loop files
+            //         files.forEach(file => {
+            //             if (file.includes(interview.nomecognome)) {
+            //                 logger.write(interview.nomecognome + ' : ' + 'CV_' + Date.now() + '_' + file + "\r\n")
+
+            //                 Interview.findOneAndUpdate({ nomecognome: interview.nomecognome }, { cv: 'CV_' + Date.now() + '_' + file }, function (err) {
+            //                     if (err) {
+            //                         console.log('error auto-updating CV')
+            //                     }
+            //                 });
+
+            //                 i++
+            //             }
+            //         })
+
+            //     })
+            //     console.log(i, 'files match')
+            // })
         })
+        // logger.end()
     })
 
     //http://127.0.0.1:3000/api/getInterviewsDataColDayFilter
