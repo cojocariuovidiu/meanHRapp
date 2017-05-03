@@ -6,6 +6,7 @@ var secret = 'harrypotter'
 var multer = require('multer')
 var moment = require('moment')
 const fs = require('fs');
+var mkdirp = require('mkdirp');
 
 var cv = ''
 var CVstorage = multer.diskStorage({
@@ -13,7 +14,7 @@ var CVstorage = multer.diskStorage({
         cb(null, './public/uploads')
     },
     filename: function (req, file, cb) {
-        if (!file.originalname.match(/\.(pdf|png|jpeg|jpg|doc|docx)$/)) {
+        if (!file.originalname.match(/\.(pdf|PDF|png|PNG|jpeg|JPEG|jpg|JPG|doc|DOC|docx|DOCX)$/)) {
             var err = new Error()
             err.code = 'filetype'
             return cb(err)
@@ -35,7 +36,7 @@ var CIstorage = multer.diskStorage({
         cb(null, './public/uploads')
     },
     filename: function (req, file, cb) {
-        if (!file.originalname.match(/\.(pdf|png|jpeg|jpg|doc|docx)$/)) {
+        if (!file.originalname.match(/\.(pdf|PDF|png|PNG|jpeg|JPEG|jpg|JPG|doc|DOC|docx|DOCX)$/)) {
             var err = new Error()
             err.code = 'filetype'
             return cb(err)
@@ -301,6 +302,8 @@ module.exports = function (router) {
         var momentTo = moment(req.body.to).add(1, 'days').format('YYYY/MM/DD');
         var i = 0
 
+        UploadsDir = './public/uploads/CV Aprile/'
+
         var logger = fs.createWriteStream('./public/uploads/CV Aprile/log' + moment().format('mm') + '.txt', {
             flags: 'a' // 'a' means appending (old data will be preserved)
         })
@@ -308,27 +311,40 @@ module.exports = function (router) {
         Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
             res.send(interviews)
 
-            // fs.readdir(('./public/uploads/CV Aprile'), (err, files) => {
-            //     //loop interviews
-            //     interviews.forEach(function (interview) {
-            //         //loop files
-            //         files.forEach(file => {
-            //             if (file.includes(interview.nomecognome)) {
-            //                 logger.write(interview.nomecognome + ' : ' + 'CV_' + Date.now() + '_' + file + "\r\n")
+            fs.readdir((UploadsDir), (err, files) => {
+                //loop interviews
+                interviews.forEach(function (interview) {
+                    //loop files
+                    files.forEach(file => {
+                        if (file.includes(interview.nomecognome)) {
+                            //logger.write(interview.nomecognome + ' : ' + 'CV_' + Date.now() + '_' + file + "\r\n")
 
-            //                 Interview.findOneAndUpdate({ nomecognome: interview.nomecognome }, { cv: 'CV_' + Date.now() + '_' + file }, function (err) {
-            //                     if (err) {
-            //                         console.log('error auto-updating CV')
-            //                     }
-            //                 });
+                            var getYear = 'CV ' + moment(interview.dataapplicazione).format('YYYY')
+                            var getMonth = 'CV ' + moment(interview.dataapplicazione).format('MMM')
+                            fullPath = getYear + '/' + getMonth + '/' + file
 
-            //                 i++
-            //             }
-            //         })
+                            // update path to cv 
+                            Interview.findOneAndUpdate({ nomecognome: interview.nomecognome }, { cv: fullPath }, function (err) {
+                                if (err) {
+                                    console.log('error auto-updating CV')
+                                }
+                            });
 
-            //     })
-            //     console.log(i, 'files match')
-            // })
+                            //create dir and copy files
+                            mkdirp('./public/uploads' + getYear + '/' + getMonth, function (err) {
+                                if (err) console.error(err)
+                                else console.log('pow!')
+                            });
+
+                            //fs.linkSync(UploadsDir + '/' + file, fullPath);
+
+                            i++
+                        }
+                    })
+
+                })
+                console.log(i, 'files match')
+            })
         })
         // logger.end()
     })
