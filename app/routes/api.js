@@ -5,8 +5,8 @@ var jwt = require('jsonwebtoken')
 var secret = 'harrypotter'
 var multer = require('multer')
 var moment = require('moment')
-const fs = require('fs');
-var mkdirp = require('mkdirp');
+// const fs = require('fs');
+const fs = require('fs-extra')
 
 var cv = ''
 var CVstorage = multer.diskStorage({
@@ -304,9 +304,16 @@ module.exports = function (router) {
 
         UploadsDir = './public/uploads/CV Aprile/'
 
-        var logger = fs.createWriteStream('./public/uploads/CV Aprile/log' + moment().format('mm') + '.txt', {
-            flags: 'a' // 'a' means appending (old data will be preserved)
-        })
+        // var logger = fs.createWriteStream('./public/uploads/CV Aprile/log' + moment().format('mm') + '.txt', {
+        //     flags: 'a' // 'a' means appending (old data will be preserved)
+        // })
+
+        function createDir(path) {
+            mkdirp(path, function (err) {
+                if (err) console.error('err creating dir')
+                //else console.log('pow!')
+            });
+        }
 
         Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
             res.send(interviews)
@@ -321,23 +328,22 @@ module.exports = function (router) {
 
                             var getYear = 'CV ' + moment(interview.dataapplicazione).format('YYYY')
                             var getMonth = 'CV ' + moment(interview.dataapplicazione).format('MMM')
-                            fullPath = getYear + '/' + getMonth + '/' + file
+                            var fullPath = './public/uploads/' + getYear + '/' + getMonth + '/' + file
+                            var fullPathDbLink = 'uploads/' + getYear + '/' + getMonth + '/' + file
 
                             // update path to cv 
-                            Interview.findOneAndUpdate({ nomecognome: interview.nomecognome }, { cv: fullPath }, function (err) {
+                            Interview.findOneAndUpdate({ nomecognome: interview.nomecognome }, { cv: fullPathDbLink }, function (err) {
                                 if (err) {
                                     console.log('error auto-updating CV')
                                 }
                             });
 
-                            //create dir and copy files
-                            mkdirp('./public/uploads' + getYear + '/' + getMonth, function (err) {
-                                if (err) console.error(err)
-                                else console.log('pow!')
-                            });
+                            //copy files (AUTO-CREATE DIR) using fse
+                            fs.copy(UploadsDir + '/' + file, fullPath)
+                                .then(() => console.log(file, 'copy success!'))
+                                .catch(err => console.error('err copy files'))
 
-                            //fs.linkSync(UploadsDir + '/' + file, fullPath);
-
+                            //calculate total match
                             i++
                         }
                     })
