@@ -166,26 +166,29 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
             $scope.file = {}
             $scope.uploadCVEnabled = true
             $scope.uploadCIEnabled = true
-            // console.log('enabling buttons', $scope.uploadButtonsAreEnabled)
+
 
             $scope.SubmitUploadCV = function () {
                 $scope.uploadCVEnabled = false
                 // $scope.uploading = true
-                console.log('enabling buttons', $scope.uploadButtonsAreEnabled)
-                uploadFile.uploadCV($scope.file).then(function (data) {
-                    if (data.data.success) {
-                        // $scope.uploading = false
-                        $scope.alert = 'alert alert-success'
-                        $scope.message = data.data.message
-                        // $scope.file = {}
-                        $scope.cv = data.data.cv
-                    } else {
-                        // $scope.uploading = false
-                        $scope.alert = 'alert alert-danger'
-                        $scope.message = data.data.message;
-                        $scope.file = {}
-                    }
-                })
+                var uploadYear = (moment($scope.editedObject.dataapplicazione).format('YYYY'))
+                var uploadMonth = (moment($scope.editedObject.dataapplicazione).format('MMM'))
+
+                uploadFile.uploadCV($scope.file, uploadYear, uploadMonth)
+                    .then(function (data) {
+                        if (data.data.success) {
+                            // $scope.uploading = false
+                            $scope.alert = 'alert alert-success'
+                            $scope.message = data.data.message
+                            // $scope.file = {}
+                            $scope.cv = data.data.cv
+                        } else {
+                            // $scope.uploading = false
+                            $scope.alert = 'alert alert-danger'
+                            $scope.message = data.data.message;
+                            $scope.file = {}
+                        }
+                    })
             }
             $scope.SubmitUploadCI = function () {
                 $scope.uploadCIEnabled = false

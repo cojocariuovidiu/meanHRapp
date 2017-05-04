@@ -9,31 +9,38 @@ var moment = require('moment')
 const fs = require('fs-extra')
 
 var cv = ''
+var tempPath_UntilSolution = './public/uploads/CV 2016/CV Apr'
+var DB_tempPath_UntilSolution = 'uploads/CV 2016/CV Apr/'
+
 var CVstorage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/uploads')
+        cb(null, tempPath_UntilSolution)
     },
     filename: function (req, file, cb) {
+
         if (!file.originalname.match(/\.(pdf|PDF|png|PNG|jpeg|JPEG|jpg|JPG|doc|DOC|docx|DOCX)$/)) {
             var err = new Error()
             err.code = 'filetype'
             return cb(err)
         } else {
-            cv = 'CV_' + Date.now() + '_' + file.originalname
+            // cv = 'CV_' + Date.now() + '_' + file.originalname
+            cv = file.originalname
             cb(null, cv)
         }
     }
 })
-var uploadCV = multer({
-    storage: CVstorage,
-    limits: { fileSize: 10000000 } //limit 10 MB
-}).single('myfile') //from service and input html field
+var uploadCV = multer(
+    {
+        storage: CVstorage,
+        limits: { fileSize: 10000000 } //limit 10 MB
+    })
+    .single('myfile') //from service and input html field
 
 
 var ci = ''
 var CIstorage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/uploads')
+        cb(null, './public/uploads/CI')
     },
     filename: function (req, file, cb) {
         if (!file.originalname.match(/\.(pdf|PDF|png|PNG|jpeg|JPEG|jpg|JPG|doc|DOC|docx|DOCX)$/)) {
@@ -308,13 +315,6 @@ module.exports = function (router) {
         //     flags: 'a' // 'a' means appending (old data will be preserved)
         // })
 
-        function createDir(path) {
-            mkdirp(path, function (err) {
-                if (err) console.error('err creating dir')
-                //else console.log('pow!')
-            });
-        }
-
         Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
             res.send(interviews)
 
@@ -516,7 +516,7 @@ module.exports = function (router) {
             sito: req.body.updateData.sito,
             email: req.body.updateData.email,
             note: req.body.updateData.note,
-            cv: req.body.cv,
+            cv: DB_tempPath_UntilSolution + req.body.cv,
             ci: req.body.ci
         }
 
@@ -555,6 +555,8 @@ module.exports = function (router) {
 
     //Upload file API's
     router.post('/uploadCV', function (req, res) {
+        // console.log('uploadYear, month:', req.body.uploadYear, req.body.uploadMonth)
+
         uploadCV(req, res, function (err) {
             if (err) {
                 if (err.code === 'LIMIT_FILE_SIZE') { //LIMIT_FILE_SIZE if multer's error code for file too big
