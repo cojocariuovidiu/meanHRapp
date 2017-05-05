@@ -491,8 +491,6 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                 $scope.fromDate = fromDate
                 $scope.toDate = toDate
 
-                console.log(fromDate, toDate)
-
                 var before = moment(Date.now())
                 $scope.promise = $timeout(function () {
                     Interview.getInterviewsRangeFilter(fromDate, toDate)
@@ -504,6 +502,9 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
                         }, this)
                     console.log('Range interviews loaded in:', LoadingLog(before), 'ms')
                 });
+                displayingObject = {
+                    activator: 'rangeFilter'
+                }
             }
         }
 
@@ -534,11 +535,15 @@ angular.module("interviewControllers", ['md.data.table', 'mdDatetime'])
         }
 
         function checkDisplaying() {
+            console.log('Displaying: ', displayingObject.activator)
+
             if (displayingObject.activator === 'All') {
                 getInterviewsFiltered('All')
             } else if (displayingObject.activator === 'customDay') {
                 DataColDayFilter($scope.customDay)
-                // RangeFilter($scope.fromDate, $scope.toDate)
+            } else if (displayingObject.activator === 'rangeFilter') {
+                console.log('Range filter:', $scope.fromDate, $scope.toDate)
+                RangeFilter($scope.fromDate, $scope.toDate)
             } else {
                 FilterByStatus(displayingObject.activator)
             }

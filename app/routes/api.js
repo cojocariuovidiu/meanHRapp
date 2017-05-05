@@ -9,15 +9,19 @@ var moment = require('moment')
 const fs = require('fs-extra')
 
 var cv = ''
-var tempPath_UntilSolution = './public/uploads/CV 2016/CV Apr'
-var DB_tempPath_UntilSolution = 'uploads/CV 2016/CV Apr/'
+var filePathUpload = './public/uploads'
+var dbPathUpload = 'uploads/'
 
 var CVstorage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, tempPath_UntilSolution)
+        filePathUpload = './public/uploads/' + req.headers.path
+        console.log('filePathUpload:', filePathUpload)
+        dbPathUpload = 'uploads/' + req.headers.path + '/'
+        console.log('dbPathUpload:', dbPathUpload)
+
+        cb(null, filePathUpload)
     },
     filename: function (req, file, cb) {
-
         if (!file.originalname.match(/\.(pdf|PDF|png|PNG|jpeg|JPEG|jpg|JPG|doc|DOC|docx|DOCX)$/)) {
             var err = new Error()
             err.code = 'filetype'
@@ -309,7 +313,7 @@ module.exports = function (router) {
         var momentTo = moment(req.body.to).add(1, 'days').format('YYYY/MM/DD');
         var i = 0
 
-        UploadsDir = './public/uploads/CV Aprile/'
+        UploadsDir = './public/uploads/CV Agosto/'
 
         // var logger = fs.createWriteStream('./public/uploads/CV Aprile/log' + moment().format('mm') + '.txt', {
         //     flags: 'a' // 'a' means appending (old data will be preserved)
@@ -323,27 +327,32 @@ module.exports = function (router) {
                 interviews.forEach(function (interview) {
                     //loop files
                     files.forEach(file => {
+
+                        var splitName = interview.nomecognome.split(" ");
+
+                        console.log(splitName)
+
                         if (file.includes(interview.nomecognome)) {
-                            //logger.write(interview.nomecognome + ' : ' + 'CV_' + Date.now() + '_' + file + "\r\n")
+                            // //logger.write(interview.nomecognome + ' : ' + 'CV_' + Date.now() + '_' + file + "\r\n")
 
-                            var getYear = 'CV ' + moment(interview.dataapplicazione).format('YYYY')
-                            var getMonth = 'CV ' + moment(interview.dataapplicazione).format('MMM')
-                            var fullPath = './public/uploads/' + getYear + '/' + getMonth + '/' + file
-                            var fullPathDbLink = 'uploads/' + getYear + '/' + getMonth + '/' + file
+                            // var getYear = 'CV ' + moment(interview.dataapplicazione).format('YYYY')
+                            // var getMonth = 'CV ' + moment(interview.dataapplicazione).format('MMM')
+                            // var fullPath = './public/uploads/' + getYear + '/' + getMonth + '/' + file
+                            // var fullPathDbLink = 'uploads/' + getYear + '/' + getMonth + '/' + file
 
-                            // update path to cv 
-                            Interview.findOneAndUpdate({ nomecognome: interview.nomecognome }, { cv: fullPathDbLink }, function (err) {
-                                if (err) {
-                                    console.log('error auto-updating CV')
-                                }
-                            });
+                            // // update path to cv 
+                            // Interview.findOneAndUpdate({ nomecognome: interview.nomecognome }, { cv: fullPathDbLink }, function (err) {
+                            //     if (err) {
+                            //         console.log('error auto-updating CV')
+                            //     }
+                            // });
 
-                            //copy files (AUTO-CREATE DIR) using fse
-                            fs.copy(UploadsDir + '/' + file, fullPath)
-                                .then(() => console.log(file, 'copy success!'))
-                                .catch(err => console.error('err copy files'))
+                            // //copy files (AUTO-CREATE DIR) using fse
+                            // fs.copy(UploadsDir + '/' + file, fullPath)
+                            //     .then(() => console.log(file, 'copy success!'))
+                            //     .catch(err => console.error('err copy files'))
 
-                            //calculate total match
+                            // //calculate total match
                             i++
                         }
                     })
@@ -516,7 +525,7 @@ module.exports = function (router) {
             sito: req.body.updateData.sito,
             email: req.body.updateData.email,
             note: req.body.updateData.note,
-            cv: DB_tempPath_UntilSolution + req.body.cv,
+            cv: dbPathUpload + req.body.cv,
             ci: req.body.ci
         }
 
