@@ -5,7 +5,6 @@ var jwt = require('jsonwebtoken')
 var secret = 'harrypotter'
 var multer = require('multer')
 var moment = require('moment')
-// const fs = require('fs');
 const fs = require('fs-extra')
 
 var cv = ''
@@ -18,6 +17,15 @@ var CVstorage = multer.diskStorage({
         console.log('filePathUpload:', filePathUpload)
         dbPathUpload = 'uploads/' + req.headers.path + '/'
         console.log('dbPathUpload:', dbPathUpload)
+
+        //make sure the dir is being created
+        fs.ensureDir(filePathUpload)
+            .then(() => {
+                console.log(filePathUpload, 'created success!')
+            })
+            .catch(err => {
+                console.error('error in CVstorage')
+            })
 
         cb(null, filePathUpload)
     },
