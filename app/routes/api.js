@@ -313,7 +313,7 @@ module.exports = function (router) {
         var momentTo = moment(req.body.to).add(1, 'days').format('YYYY/MM/DD');
         var i = 0
 
-        UploadsDir = './public/uploads/CV Agosto/'
+        //var UploadsDir = './public/uploads/CV Aprile/'
 
         // var logger = fs.createWriteStream('./public/uploads/CV Aprile/log' + moment().format('mm') + '.txt', {
         //     flags: 'a' // 'a' means appending (old data will be preserved)
@@ -322,44 +322,40 @@ module.exports = function (router) {
         Interview.find({ dataapplicazione: { $gte: momentFrom, $lte: momentTo } }, function (err, interviews) {
             res.send(interviews)
 
-            fs.readdir((UploadsDir), (err, files) => {
-                //loop interviews
-                interviews.forEach(function (interview) {
-                    //loop files
-                    files.forEach(file => {
+            // fs.readdir((UploadsDir), (err, files) => {
+            //     //loop interviews
+            //     interviews.forEach(function (interview) {
+            //         //loop files
+            //         files.forEach(file => {
 
-                        var splitName = interview.nomecognome.split(" ");
+            //             if (file.includes(interview.nomecognome)) {
+            //                 //logger.write(interview.nomecognome + ' : ' + 'CV_' + Date.now() + '_' + file + "\r\n")
 
-                        console.log(splitName)
+            //                 var getYear = 'CV ' + moment(interview.dataapplicazione).format('YYYY')
+            //                 var getMonth = 'CV ' + moment(interview.dataapplicazione).format('MMM')
+            //                 var fullPath = './public/uploads/' + getYear + '/' + getMonth + '/' + file
+            //                 var fullPathDbLink = 'uploads/' + getYear + '/' + getMonth + '/' + file
 
-                        if (file.includes(interview.nomecognome)) {
-                            // //logger.write(interview.nomecognome + ' : ' + 'CV_' + Date.now() + '_' + file + "\r\n")
+            //                 // update path to cv 
+            //                 Interview.findOneAndUpdate({ nomecognome: interview.nomecognome }, { cv: fullPathDbLink }, function (err) {
+            //                     if (err) {
+            //                         console.log('error auto-updating CV')
+            //                     }
+            //                 });
 
-                            // var getYear = 'CV ' + moment(interview.dataapplicazione).format('YYYY')
-                            // var getMonth = 'CV ' + moment(interview.dataapplicazione).format('MMM')
-                            // var fullPath = './public/uploads/' + getYear + '/' + getMonth + '/' + file
-                            // var fullPathDbLink = 'uploads/' + getYear + '/' + getMonth + '/' + file
+            //                 //copy files (AUTO-CREATE DIR) using fse
+            //                 fs.copy(UploadsDir + '/' + file, fullPath)
+            //                     // .then(() => console.log(file, 'copy success!'))
+            //                     .catch(err => console.error('err copy file:', file))
 
-                            // // update path to cv 
-                            // Interview.findOneAndUpdate({ nomecognome: interview.nomecognome }, { cv: fullPathDbLink }, function (err) {
-                            //     if (err) {
-                            //         console.log('error auto-updating CV')
-                            //     }
-                            // });
+            //                 //calculate total match
+            //                 i++
+            //             }
+            //         })
 
-                            // //copy files (AUTO-CREATE DIR) using fse
-                            // fs.copy(UploadsDir + '/' + file, fullPath)
-                            //     .then(() => console.log(file, 'copy success!'))
-                            //     .catch(err => console.error('err copy files'))
-
-                            // //calculate total match
-                            i++
-                        }
-                    })
-
-                })
-                console.log(i, 'files match')
-            })
+            //     })
+            //     console.log(i, 'files match')
+            // })
         })
         // logger.end()
     })
