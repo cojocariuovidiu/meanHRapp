@@ -285,7 +285,7 @@ module.exports = function (router) {
 
     //http://127.0.0.1:3000/api/getWorkingEmployees
     router.get('/getWorkingEmployees', function (req, res) {
-        Employee.find({ "status": "Lavora a Bitech" }, function (err, employees) {
+        Employee.find({ "status": "Lavora" }, function (err, employees) {
             res.send(employees)
         })
     })

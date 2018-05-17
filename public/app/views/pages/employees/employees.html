@@ -41,7 +41,7 @@
             <tbody md-body>
                 <!--<tr md-row md-select="item" md-select-id="name" ng-repeat="item in main.interviewsList |  limitTo: sort.limit : (sort.page -1) * sort.limit  | orderBy:sort.order | filter:searchInterview ">-->
                 <tr md-row ng-repeat="item in emp.employeessList  | orderBy:sort.order | filter:searchEmployee |  limitTo: sort.limit : (sort.page -1) * sort.limit"
-                    ng-class="item.status === 'Lavora a Bitech' ? 'assunto' :  ( item.status === 'Non lavora più a Bitech' ? 'scartato' : 'no_fill')">
+                    ng-class="item.status === 'Lavora' ? 'assunto' :  ( item.status === 'Non lavora più' ? 'scartato' : 'no_fill')">
                     <td md-cell><i ng-if="item.ci" class="material-icons"><a target="blank" href="http://174.138.8.153:3000/uploads/{{item.ci}}">credit_card</a></i></td>
                     <td md-cell>{{ item.employmentdate | date}}</td>
                     <td md-cell>{{ item.name}}</td>
